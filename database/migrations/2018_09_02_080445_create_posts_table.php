@@ -16,8 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('post_id');
             $table->enum('post_type', ['text','photo','video','live_stream'])->default('text');  
-            $table->text('description');
-            $table->enum('level', ['easy', 'hard']);   
+            $table->text('description');  
             $table->enum('privacy', ['public','private','followers'])->default('public');   
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('user_id')->on('users');

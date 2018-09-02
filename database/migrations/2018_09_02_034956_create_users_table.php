@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('user_id');
             $table->tinyInteger('parent_id')->default(0);
             $table->string('email')->unique();
             $table->string('active_session_id');
@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_logout_time')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->integer('role_id')->unsigned();
+            $table->foreign('role_id')->references('role_id')->on('roles');  
             $table->timestamps();
             $table->softDeletes();
         });

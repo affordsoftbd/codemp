@@ -25,8 +25,6 @@ class CreateUserDetailsTable extends Migration
             $table->foreign('division_id')->references('division_id')->on('divisions');  
             $table->integer('district_id')->unsigned();
             $table->foreign('district_id')->references('district_id')->on('districts');  
-            $table->integer('district_id')->unsigned();
-            $table->foreign('district_id')->references('district_id')->on('districts');  
             $table->integer('thana_id')->unsigned();
             $table->foreign('thana_id')->references('thana_id')->on('thanas');
             $table->integer('zip_id')->unsigned();
