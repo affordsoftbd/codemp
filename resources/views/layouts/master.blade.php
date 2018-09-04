@@ -14,7 +14,7 @@
   </head>
   <!-- #ENDS# Header -->
 
-  <body {!! Request::is('/')? 'class="index"':'' !!}>
+  <body>
     
   	@include('layouts.partials.loader')
   	@include('layouts.partials.navigation')
