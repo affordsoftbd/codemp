@@ -1,15 +1,3 @@
-    <!-- Javascript -->
-
-    <!-- Bootstrap core JavaScript -->
- 	{{Html::script('js/jquery.min.js')}}
-    {{Html::script('js/jquery.form.js')}}
-
-    <!-- Bootstrap tooltips -->
- 	{{Html::script('js/popper.min.js')}}
-
-    <!-- Bootstrap core JavaScript -->
- 	{{Html::script('js/bootstrap.min.js')}}
-
     <!-- Sweet Alert -->
  	{{Html::script('plugins/sweetalert/sweetalert.min.js')}}
 

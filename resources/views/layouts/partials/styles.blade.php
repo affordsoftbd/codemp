@@ -22,3 +22,9 @@
 
     <!-- Jqurey Datatable Css -->
     {{ Html::style('plugins/material-addons/css/datatables.min.css') }}
+
+    <!-- Material Design Bootstrap -->
+    {{ Html::style('css/material.min.css') }}
+
+    <!-- Custom styles for this template -->
+    {{ Html::style('css/style.css') }}

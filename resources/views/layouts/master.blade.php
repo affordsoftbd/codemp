@@ -20,13 +20,9 @@
     {{ Html::style('css/bootstrap.min.css') }}
     
     @yield('extra-css')
-    <!-- @include('layouts.partials.styles') -->
 
-    <!-- Material Design Bootstrap -->
-    {{ Html::style('css/material.min.css') }}
+    @include('layouts.partials.styles')
 
-    <!-- Custom styles for this template -->
-    {{ Html::style('css/style.css') }}
   </head>
   <!-- #ENDS# Header -->
 
@@ -42,7 +38,21 @@
   	@include('layouts.partials.alerts')
     @include('layouts.partials.scrolltotop')
   	@include('layouts.partials.footer')
+
+    <!-- Javascript -->
+
+    <!-- Bootstrap core JavaScript -->
+    {{Html::script('js/jquery.min.js')}}
+    {{Html::script('js/jquery.form.js')}}
+
+    <!-- Bootstrap tooltips -->
+    {{Html::script('js/popper.min.js')}}
+
+    <!-- Bootstrap core JavaScript -->
+    {{Html::script('js/bootstrap.min.js')}}
+
     @yield('extra-script')
+
     @include('layouts.partials.scripts')
 
   </body>
