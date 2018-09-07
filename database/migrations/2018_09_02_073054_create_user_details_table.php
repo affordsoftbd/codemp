@@ -19,6 +19,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('last_name'); 
             $table->string('phone', 15)->unique(); 
             $table->string('nid', 20)->unique(); 
+            $table->string('address'); 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('user_id')->on('users');  
             $table->integer('division_id')->unsigned();

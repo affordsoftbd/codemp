@@ -6,9 +6,9 @@
     @include('layouts.partials.meta')
 
     <!-- Favicon-->
-    <link rel="icon" href="{!! asset('favicon.png') !!}"/>
+    <link rel="icon" href="https://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"/"/>
 
-    <title>@yield('title') Amar Neta || Connect with your workers</title>
+    <title>@yield('title') আমার নেতা || আপনার নেতাদের সাথে সংযোগ স্থাপন করুন</title>
 
     <!-- Font Awesome -->
     {{ Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
@@ -30,14 +30,22 @@
     
   	@include('layouts.partials.loader')
   	@include('layouts.partials.navigation')
-      
-    <!-- Content -->
-    @yield('content')
-    <!-- #ENDS# Content -->
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-3 mb-3">
+              @include('layouts.partials.sidemenu')
+            </div>
+            <div class="col-md-9">
+              <!-- Content -->
+              @yield('content')
+              <!-- #ENDS# Content -->
+            </div>
+        </div>
+    </div>
 
   	@include('layouts.partials.alerts')
     @include('layouts.partials.scrolltotop')
-  	@include('layouts.partials.footer')
 
     <!-- Javascript -->
 

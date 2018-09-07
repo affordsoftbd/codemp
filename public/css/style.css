@@ -16,6 +16,13 @@ footer {
     visibility: hidden;
 }
 
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+
 div.mce-fullscreen {
     z-index: 1050;
 }

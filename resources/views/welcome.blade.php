@@ -6,7 +6,7 @@
     @include('layouts.partials.meta')
 
     <!-- Favicon-->
-    <link rel="icon" href="{!! asset('favicon.png') !!}"/>
+    <link rel="icon" href="https://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"/>
 
     <title>@yield('title') আমার নেতা || আপনার নেতাকে খুঁজে বের করুন</title>
 
@@ -73,6 +73,16 @@
             -webkit-border-radius: 0;
             border-radius: 0;
         }
+        .breadcrumb{
+            border-radius: .0rem;
+            list-style: none;
+        }
+        .bc-icons .breadcrumb-item + .breadcrumb-item::before {
+            content: none; 
+        }
+        .switch label input[type=checkbox]:checked+.lever:after {
+            background-color: red;
+        }
     </style>
 
   </head>
@@ -85,10 +95,20 @@
     <div class="green z-depth-1">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
+                    <div class="switch">
+                      <label>
+                        <span class="white-text">Ban</span>
+                        <input type="checkbox">
+                        <span class="lever"></span>
+                        <span class="white-text">Eng</span>
+                      </label>
+                    </div>
+                </div>
+                <div class="col-md-2">
                     <div class="btn-group float-right" role="group" aria-label="Basic example">
                         <!--Facebook-->
                         <button type="button" class="btn btn-sm btn-fb"><i class="fa fa-facebook"></i></button>
@@ -104,7 +124,7 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-4">
                 <a href="{{ route('welcome') }}">
                     <img src="https://adminpanelproject.000webhostapp.com/amarneta/img/icons/favicon.png" height="50" alt="Logo">
@@ -117,12 +137,8 @@
                         <ul class="nav home-tabs" role="tablist">
                             <li class="nav-item">
                               <a class="nav-link waves-light {{ Route::is('login') || Route::is('welcome') ? 'active':'' }}" href="{{ route('welcome') }}" role="tab">সূচক</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link waves-light {{ Route::is('register') ? 'active':'' }}" href="{{ route('register') }}" role="tab">সমর্থক হিসেবে রেজিস্টার</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link waves-light {{ Route::is('login') ? 'active':'' }}" href="{{ route('register') }}" role="tab">নেতা/কর্মী হিসেবে রেজিস্টার</a>
+                            </li><li class="nav-item">
+                              <a class="nav-link waves-light {{ Route::is('register*') ? 'active':'' }}" href="{{ route('register.public') }}" role="tab"> রেজিস্টার</a>
                             </li>
                         </ul>
                     </div>
@@ -236,6 +252,9 @@
           $('body').css('padding-bottom', footerHeight);
           $('footer').css('height', footerHeight);
         }
+        $(document).ready(function() {
+           $('.mdb-select').material_select();
+         });
     </script>
 
   </body>
