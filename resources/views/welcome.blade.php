@@ -80,6 +80,9 @@
         .bc-icons .breadcrumb-item + .breadcrumb-item::before {
             content: none; 
         }
+        .switch label input[type=checkbox]:checked+.lever:after {
+            background-color: red;
+        }
     </style>
 
   </head>
@@ -92,10 +95,20 @@
     <div class="green z-depth-1">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
+                    <div class="switch">
+                      <label>
+                        <span class="white-text">Ban</span>
+                        <input type="checkbox">
+                        <span class="lever"></span>
+                        <span class="white-text">Eng</span>
+                      </label>
+                    </div>
+                </div>
+                <div class="col-md-2">
                     <div class="btn-group float-right" role="group" aria-label="Basic example">
                         <!--Facebook-->
                         <button type="button" class="btn btn-sm btn-fb"><i class="fa fa-facebook"></i></button>
