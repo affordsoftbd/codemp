@@ -148,19 +148,6 @@
                 <!-- Sign up button -->
                 <button class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
 
-                <!-- Social register -->
-                <p>অথবা রেজিস্টার করুন:</p>
-
-                <a type="button" class="btn-floating btn-fb btn-sm">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a type="button" class="btn-floating btn-tw btn-sm">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a type="button" class="btn-floating btn-li btn-sm">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-
                 <hr>
 
                 <!-- Terms of service -->
