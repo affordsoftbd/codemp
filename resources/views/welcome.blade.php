@@ -117,13 +117,15 @@
                         <ul class="nav home-tabs" role="tablist">
                             <li class="nav-item">
                               <a class="nav-link waves-light {{ Route::is('login') || Route::is('welcome') ? 'active':'' }}" href="{{ route('welcome') }}" role="tab">সূচক</a>
+                            </li><li class="nav-item">
+                              <a class="nav-link waves-light {{ Route::is('register') ? 'active':'' }}" href="{{ route('register') }}" role="tab"> রেজিস্টার</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                               <a class="nav-link waves-light {{ Route::is('register') ? 'active':'' }}" href="{{ route('register') }}" role="tab">সমর্থক হিসেবে রেজিস্টার</a>
                             </li>
                             <li class="nav-item">
                               <a class="nav-link waves-light {{ Route::is('login') ? 'active':'' }}" href="{{ route('register') }}" role="tab">নেতা/কর্মী হিসেবে রেজিস্টার</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
