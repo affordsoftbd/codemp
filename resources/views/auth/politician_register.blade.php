@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-sm-12">
                         <!-- Choose Division -->
-                        <select class="mdb-select" searchable="এখানে অনুসন্ধান করুন">
+                        <select class="mdb-select">
                             <option value="" disabled selected>আপনার বিভাগ</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
