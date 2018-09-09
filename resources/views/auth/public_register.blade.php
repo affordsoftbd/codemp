@@ -41,29 +41,36 @@
                     <div class="col-sm-6">
                         <!-- First name -->
                         <div class="md-form">
-                            <input type="text" id="materialRegisterFormFirstName" class="form-control">
-                            <label for="materialRegisterFormFirstName">নামের প্রথম অংশ</label>
+                            <input type="text" id="firstname" class="form-control">
+                            <label for="firstname">নামের প্রথম অংশ</label>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <!-- Last name -->
                         <div class="md-form">
-                            <input type="text" id="materialRegisterFormLastName" class="form-control">
-                            <label for="materialRegisterFormLastName">নামের শেষাংশ</label>
+                            <input type="text" id="lastname" class="form-control">
+                            <label for="lastname">নামের শেষাংশ</label>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <!-- E-mail -->
                         <div class="md-form">
-                            <input type="email" id="materialRegisterFormEmail" class="form-control">
-                            <label for="materialRegisterFormEmail">ই-মেইল</label>
+                            <input type="email" id="email" class="form-control">
+                            <label for="email">ই-মেইল</label>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <!-- Phone number -->
                         <div class="md-form">
-                            <input type="text" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
-                            <label for="materialRegisterFormPhone">ফোন নম্বর</label>
+                            <input type="text" id="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                            <label for="phone">ফোন নম্বর</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <!-- Phone number -->
+                        <div class="md-form">
+                            <input type="text" id="nid" class="form-control">
+                            <label for="nid">জাতীয় আইডি</label>
                         </div>
                     </div>
                 </div>
