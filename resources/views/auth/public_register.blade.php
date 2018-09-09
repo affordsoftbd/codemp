@@ -66,13 +66,6 @@
                             <label for="phone">ফোন নম্বর</label>
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                        <!-- Phone number -->
-                        <div class="md-form">
-                            <input type="text" id="nid" class="form-control">
-                            <label for="nid">জাতীয় আইডি</label>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Address -->
