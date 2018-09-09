@@ -6,7 +6,7 @@
     @include('layouts.partials.meta')
 
     <!-- Favicon-->
-    <link rel="icon" href="{!! asset('favicon.png') !!}"/>
+    <link rel="icon" href="https://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"/>
 
     <title>@yield('title') আমার নেতা || আপনার নেতাকে খুঁজে বের করুন</title>
 
@@ -72,6 +72,13 @@
             text-align: center;
             -webkit-border-radius: 0;
             border-radius: 0;
+        }
+        .breadcrumb{
+            border-radius: .0rem;
+            list-style: none;
+        }
+        .bc-icons .breadcrumb-item + .breadcrumb-item::before {
+            content: none; 
         }
     </style>
 

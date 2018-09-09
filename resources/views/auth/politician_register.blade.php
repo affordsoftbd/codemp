@@ -2,11 +2,12 @@
 
 @section('content')
 
-    <div class="card green">
-        <div class="card-body">
-            <div class="container">
-                <h4 class="font-weight-bold white-text"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>নীচের ঘরগুলোতে প্রয়োজনীয় তথ্য দিয়ে সাবমিট করুন</h4>
-            </div>
+    <div class="bc-icons green">
+        <div class="container">
+            <ol class="breadcrumb green">
+                <li class="breadcrumb-item"><i class="fa fa-hand-o-right mr-2 white-text" aria-hidden="true"></i><a class="white-text" href="#">রেজিস্টার</a></li>
+                <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i><a class="white-text" href="#">নেতা/কর্মী হিসেবে রেজিস্টার</a></li>
+            </ol>
         </div>
     </div>
 
