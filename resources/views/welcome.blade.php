@@ -239,6 +239,9 @@
           $('body').css('padding-bottom', footerHeight);
           $('footer').css('height', footerHeight);
         }
+        $(document).ready(function() {
+           $('.mdb-select').material_select();
+         });
     </script>
 
   </body>
