@@ -30,10 +30,19 @@
     
   	@include('layouts.partials.loader')
   	@include('layouts.partials.navigation')
-      
-    <!-- Content -->
-    @yield('content')
-    <!-- #ENDS# Content -->
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-3 mb-3">
+              @include('layouts.partials.sidemenu')
+            </div>
+            <div class="col-md-9">
+              <!-- Content -->
+              @yield('content')
+              <!-- #ENDS# Content -->
+            </div>
+        </div>
+    </div>
 
   	@include('layouts.partials.alerts')
     @include('layouts.partials.scrolltotop')
