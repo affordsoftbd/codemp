@@ -16,11 +16,11 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs md-tabs nav-justified red my-5 mx-5" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
+                <a class="nav-link" href="{{ route('register.public') }}" role="tab">
                 সমর্থক হিসেবে রেজিস্টার</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
+                <a class="nav-link active" href="javascript:void(0)" role="tab">
                 নেতা/কর্মী হিসেবে রেজিস্টার</a>
             </li>
         </ul>

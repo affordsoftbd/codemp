@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('welcome');
 
-Auth::routes();
+Route::get('/register/politician', function () {
+    return view('auth.politician_register');
+})->name('register.politician');
+
+Route::get('/register/public', function () {
+    return view('auth.public_register');
+})->name('register.public');
+
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

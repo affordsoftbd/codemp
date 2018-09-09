@@ -52,10 +52,10 @@
 
                             <div class="row mt-3">
                                 <div class="col-xl-8 col-md-8 col-sm-6 col-xs-6 col-6">
-                                    <a href="http://localhost:8000/register">রেজিস্টার</a>
+                                    <a href="{{ route('register.public') }}">রেজিস্টার</a>
                                 </div>
                                 <div class="col-xl-4 col-md-4 col-sm-6 col-xs-6 col-6 text-right">
-                                    <a href="http://localhost:8000/password/reset">পাসওয়ার্ড ভুলে গেছেন?</a>
+                                    <a href="javascript:void(0)">পাসওয়ার্ড ভুলে গেছেন?</a>
                                 </div>
                               </div>
                         </form>
