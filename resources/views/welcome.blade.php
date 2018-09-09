@@ -124,7 +124,7 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-4">
                 <a href="{{ route('welcome') }}">
                     <img src="https://adminpanelproject.000webhostapp.com/amarneta/img/icons/favicon.png" height="50" alt="Logo">
