@@ -152,7 +152,7 @@
 
                 <!-- Terms of service -->
                 <p><em>রেজিস্টার</em> 
-                    ক্লিক এর মাধ্যমে আপনি আমাদের
+                    ক্লিক এর আগে আপনি আমাদের
                     <a href="" target="_blank">terms of service</a> মেনে নিচ্ছেন
             </form>
             <!-- Form -->
