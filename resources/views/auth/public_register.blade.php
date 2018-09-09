@@ -1,5 +1,7 @@
 @extends('welcome')
 
+@section('title', "রেজিস্টার || ")
+
 @section('content')
 
     <div class="bc-icons green">
