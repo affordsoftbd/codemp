@@ -7,8 +7,8 @@
 <h4>What's on your mind?</h4><hr>
 
 <!-- Nav tabs -->
-<ul class="nav nav-tabs md-tabs nav-justified">
-    <li class="nav-item">
+ <ul class="nav nav-tabs md-tabs nav-justified green" role="tablist">
+     <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">
             <i class="fa fa-edit fa-sm pr-2"></i>Compose Post
         </a>
@@ -23,10 +23,9 @@
             <i class="fa fa-file-movie-o fa-sm pr-2"></i>Live Video
         </a>
     </li>
-</ul>
-<!-- Tab panels -->
-<div class="tab-content card">
-    <!--Panel 1-->
+ </ul>
+ <!-- Tab panels -->
+ <div class="tab-content">
     <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
         {!! Form::open() !!}    
             <div class="md-form">
@@ -41,6 +40,10 @@
     <!--/.Panel 1-->
     <!--Panel 2-->
     <div class="tab-pane fade" id="panel2" role="tabpanel">
+        <div class="text-center">
+            <img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
+            <p class="text-center mt-4">Maximum Allowed Size: 500 KB</p>
+        </div>
         {!! Form::open(['class'=>'md-form upload_image']) !!}
           <div class="file-field">
               <div class="btn btn-primary btn-sm float-left">
@@ -59,13 +62,10 @@
     <!--/.Panel 2-->
     <!--Panel 3-->
     <div class="tab-pane fade" id="panel3" role="tabpanel">
-        <br>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-            reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-            porro voluptate odit minima.</p>
+        <hr>
+        <button type="button" class="btn btn-danger btn-lg btn-block"><i class="fa fa-video-camera fa-sm pr-2"></i>Click here to start video</button>
     </div>
-    <!--/.Panel 3-->
-</div>
+ </div>
 
 
 
