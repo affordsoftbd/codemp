@@ -40,23 +40,21 @@
     <!--/.Panel 1-->
     <!--Panel 2-->
     <div class="tab-pane fade" id="panel2" role="tabpanel">
-        <div class="text-center">
-            <img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
-            <p class="text-center mt-4">Maximum Allowed Size: 500 KB</p>
-        </div>
         {!! Form::open(['class'=>'md-form upload_image']) !!}
-          <div class="file-field">
-              <div class="btn btn-danger btn-sm float-left">
-                  <span>নির্বাচন</span>
-                  {!! Form::file("image", ['class'=>'input_image']) !!}
-              </div>
-              <div class="file-path-wrapper">
-                  {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইলটি চয়ন করুন']) !!}
-              </div>
-          </div>
-          <div class="text-center mt-4">
-              {{ Form::button('চিত্র আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
-          </div>
+            <div class="file-field">
+                <div class="btn btn-danger btn-sm float-left">
+                <span>নির্বাচন</span>
+                    {!! Form::file("image", ['class'=>'input_image', 'multiple'=>'true']) !!}
+                </div>
+                <div class="file-path-wrapper">
+                    {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইলটি চয়ন করুন']) !!}
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="preview_input"></div>
+            <div class="text-center mt-4">
+                {{ Form::button('চিত্র আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+            </div>
         {!! Form::close() !!}
     </div>
     <!--/.Panel 2-->

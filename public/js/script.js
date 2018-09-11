@@ -85,16 +85,21 @@ $(document).ready(function(){
 
     //  Show image preview
 
-  $('.input_image').change(function() {
-      readURL(this, $(this).index());
-  });
-
-    //  Refresh preview on modal close
-
-  $('#updateimage').on('hidden.bs.modal', function (e) {
-    $('input[name=image]').empty().val('');
-    $('.file-path').empty().val('');
-    $('.preview_input').attr('src', 'http://placehold.it/200');
+  $(".input_image").on("change", function(e) {
+    var files = e.target.files,
+    filesLength = files.length;
+    for (var i = 0; i < filesLength; i++) {
+      var f = files[i]
+      var fileReader = new FileReader();
+      fileReader.onload = (function(e) {
+        var file = e.target;
+        $(".preview_input").append("<span class='pip'><img src='"+ e.target.result+"'' title='"+file.name+"'' alt='preview' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove'><i class='fa fa-trash'></i></button></span>");
+        $(".remove").click(function(){
+          $(this).parent(".pip").remove();
+        });
+      });
+      fileReader.readAsDataURL(f);
+    }
   });
 
     //  Jquery form for uploading image and showing progress
@@ -166,20 +171,7 @@ function dropDownRight(){
   } else if (width < 786) {
     $('.dropdown-wide').removeClass('dropdown-menu-right');
   }
-}
-
-  // Function for showing image preview
-
-function readURL(input, i) {
-    i = i-1;
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('.preview_input').eq(i).attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+} 
 
   // Function for tinymce editor
 
