@@ -46,7 +46,7 @@
         </div>
         {!! Form::open(['class'=>'md-form upload_image']) !!}
           <div class="file-field">
-              <div class="btn btn-primary btn-sm float-left">
+              <div class="btn btn-danger btn-sm float-left">
                   <span>নির্বাচন</span>
                   {!! Form::file("image", ['class'=>'input_image']) !!}
               </div>
