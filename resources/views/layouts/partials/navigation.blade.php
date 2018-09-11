@@ -23,7 +23,7 @@
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home
+                <a class="nav-link" href="#">ঘটনাচক্র
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
@@ -34,10 +34,10 @@
                 </a>
                 <!-- Notification Dropdown -->
                 <div class="dropdown-menu dropdown-menu-right dropdown-wide dropdown-success">
-                    <p class="text-center h6">Notifications</p>
+                    <p class="text-center h6">বিজ্ঞপ্তিগুলি</p>
                     <div class="dropdown-divider"></div>
                     <div id="all_new_notifications"></div>
-                    <a class="dropdown-item text-center" href="javascript:void(0)">All Notifications</a>
+                    <a class="dropdown-item text-center" href="javascript:void(0)">সমস্ত বিজ্ঞপ্তিগুলি</a>
                 </div>
                 <!-- Notification Dropdown -->
             </li> 
@@ -48,10 +48,10 @@
                 </a>
                 <!-- Messages Dropdown -->
                 <div class="dropdown-menu dropdown-wide dropdown-success">
-                  <p class="text-center h6">Messages</p>
+                  <p class="text-center h6">বার্তা</p>
                   <div class="dropdown-divider"></div>
                   <div id="all_new_messages"></div>
-                  <a class="dropdown-item" href="javascript:void(0)">Click here to show all messages</a>
+                  <a class="dropdown-item" href="javascript:void(0)">সব বার্তা প্রদর্শন করতে এখানে ক্লিক করুন</a>
                 </div>
             </li>
 
@@ -61,9 +61,9 @@
                     <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#"><i class="fa fa-user fa-sm pr-2"></i>Profile</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-cog fa-sm pr-2"></i>Settings</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-sm pr-2"></i>Logout</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-user fa-sm pr-2"></i>প্রোফাইল</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-cog fa-sm pr-2"></i>সেটিংস</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-sm pr-2"></i>প্রস্থান</a>
                 </div>
             </li>
 
