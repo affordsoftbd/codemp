@@ -6,68 +6,157 @@
 
 <h4>আপনি কি ভাবছেন?</h4><hr>
 
-<!-- Nav tabs -->
- <ul class="nav nav-tabs md-tabs nav-justified green" role="tablist">
-     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">
-            <i class="fa fa-edit fa-sm pr-2"></i>পোস্ট রচনা করুন
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">
-            <i class="fa fa-file-image-o fa-sm pr-2"></i>অ্যালবাম / ফটো
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">
-            <i class="fa fa-file-movie-o fa-sm pr-2"></i>লাইভ ভিডিও
-        </a>
-    </li>
- </ul>
- <!-- Tab panels -->
- <div class="tab-content">
-    <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
-        {!! Form::open() !!}    
-            <div class="md-form">
-                {!! Form::textarea('additional_details', null, array('class'=>'editor')) !!}
+<div class="card border message_area border-light">
+    <div class="card-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs nav-justified green" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">
+                    <i class="fa fa-edit fa-sm pr-2"></i>পোস্ট রচনা করুন
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">
+                    <i class="fa fa-file-image-o fa-sm pr-2"></i>অ্যালবাম / ফটো
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">
+                    <i class="fa fa-file-movie-o fa-sm pr-2"></i>লাইভ ভিডিও
+                </a>
+            </li>
+        </ul>
+         <!-- Tab panels -->
+         <div class="tab-content">
+            <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                {!! Form::open() !!}    
+                    <div class="md-form">
+                        {!! Form::textarea('additional_details', null, array('class'=>'editor')) !!}
+                    </div>
+                    <div class="text-center my-4">
+                        {!! Form::button('অবস্থা হালনাগাদ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm pull-right')) !!}
+                    </div>
+                {!! Form::close() !!}
+                <div class="clearfix"></div>
             </div>
-            <div class="text-center my-4">
-                {!! Form::button('অবস্থা হালনাগাদ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm pull-right')) !!}
+            <!--/.Panel 1-->
+            <!--Panel 2-->
+            <div class="tab-pane fade" id="panel2" role="tabpanel">
+                {!! Form::open(['class'=>'md-form upload_image']) !!}
+                    <div class="file-field">
+                        <div class="btn btn-danger btn-sm float-left">
+                        <span>নির্বাচন</span>
+                            {!! Form::file("image", ['class'=>'input_image', 'multiple'=>'true']) !!}
+                        </div>
+                        <div class="file-path-wrapper">
+                            {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইলটি চয়ন করুন']) !!}
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="preview_input"></div>
+                    <div class="text-center mt-4">
+                        {{ Form::button('চিত্র আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                    </div>
+                {!! Form::close() !!}
             </div>
-        {!! Form::close() !!}
-        <div class="clearfix"></div>
+            <!--/.Panel 2-->
+            <!--Panel 3-->
+            <div class="tab-pane fade" id="panel3" role="tabpanel">
+                <hr>
+                <button type="button" class="btn btn-danger btn-lg btn-block"><i class="fa fa-video-camera fa-sm pr-2"></i>ভিডিওটি শুরু করতে এখানে ক্লিক করুন</button>
+            </div>
+         </div>
     </div>
-    <!--/.Panel 1-->
-    <!--Panel 2-->
-    <div class="tab-pane fade" id="panel2" role="tabpanel">
-        {!! Form::open(['class'=>'md-form upload_image']) !!}
-            <div class="file-field">
-                <div class="btn btn-danger btn-sm float-left">
-                <span>নির্বাচন</span>
-                    {!! Form::file("image", ['class'=>'input_image', 'multiple'=>'true']) !!}
-                </div>
-                <div class="file-path-wrapper">
-                    {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইলটি চয়ন করুন']) !!}
-                </div>
+</div>
+
+<!-- text Card -->
+<div class="card my-4">
+    <!-- Card content -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-1 col-lg-2 col-md-2">
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
             </div>
-            <div class="clearfix"></div>
-            <div class="preview_input"></div>
-            <div class="text-center mt-4">
-                {{ Form::button('চিত্র আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+            <div class="col-xl-11 col-lg-10 col-md-10">
+                <h6 class="font-weight-bold">Gracie Monahan</h6>
+                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
             </div>
-        {!! Form::close() !!}
-    </div>
-    <!--/.Panel 2-->
-    <!--Panel 3-->
-    <div class="tab-pane fade" id="panel3" role="tabpanel">
+        </div>
         <hr>
-        <button type="button" class="btn btn-danger btn-lg btn-block"><i class="fa fa-video-camera fa-sm pr-2"></i>ভিডিওটি শুরু করতে এখানে ক্লিক করুন</button>
+        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
     </div>
- </div>
+
+  <!-- Card footer -->
+  <div class="rounded-bottom green text-center pt-3">
+    <ul class="list-unstyled list-inline font-small">
+      <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>05/10/2015</li>
+      <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>
+      <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"> </i>21</a></li>
+      <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"> </i>5</a></li>
+    </ul>
+  </div>
+</div>
+<!-- #ends# text Card -->
+
+<!-- text Card -->
+<div class="card my-4">
+
+    <!-- Card image -->
+    <div class="view overlay mt-4" align="center">
+        <div class="item" id="aniimated-thumbnials">         
+            <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                <li data-thumb="https://cdn.cnn.com/cnnnext/dam/assets/171222051904-01-week-in-politics-1224-restricted-super-16-9.jpg"> 
+                    <a href="https://cdn.cnn.com/cnnnext/dam/assets/171222051904-01-week-in-politics-1224-restricted-super-16-9.jpg" data-sub-html="Focused client-server ability 1">  
+                      <img src="https://cdn.cnn.com/cnnnext/dam/assets/171222051904-01-week-in-politics-1224-restricted-super-16-9.jpg" alt="Order Image ba5016238db98b54520a1294c88829b4 1"/>
+                    </a>
+                </li>
+                <li data-thumb="https://s.abcnews.com/images/US/anti-violence-demo-ohare-2-wls-ht-mem-180903_hpMain_4x3_992.jpg"> 
+                    <a href="https://s.abcnews.com/images/US/anti-violence-demo-ohare-2-wls-ht-mem-180903_hpMain_4x3_992.jpg" data-sub-html="Focused client-server ability 2">  
+                      <img src="https://s.abcnews.com/images/US/anti-violence-demo-ohare-2-wls-ht-mem-180903_hpMain_4x3_992.jpg" alt="Order Image f0ed63aaa83c0877b37a9d3651297d06 2"/>
+                    </a>
+                </li>
+                <li data-thumb="https://i2.wp.com/blogs.lt.vt.edu/motorcycledoc/files/2015/09/kkk-gay-flag.jpg?resize=362%2C218"> 
+                    <a href="https://i2.wp.com/blogs.lt.vt.edu/motorcycledoc/files/2015/09/kkk-gay-flag.jpg?resize=362%2C218" data-sub-html="Focused client-server ability 3">  
+                      <img src="https://i2.wp.com/blogs.lt.vt.edu/motorcycledoc/files/2015/09/kkk-gay-flag.jpg?resize=362%2C218" alt="Order Image 451ed4cefd0a22d2c38a2f59d8cf3507 3"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+  <!-- Button -->
+  <a class="btn-floating btn-action ml-auto mr-4 red"><i class="fa fa-chevron-right pl-1"></i></a>
+
+    <!-- Card content -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-1 col-lg-2 col-md-2">
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
+            </div>
+            <div class="col-xl-11 col-lg-10 col-md-10">
+                <h6 class="font-weight-bold">Gracie Monahan</h6>
+                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
+            </div>
+        </div>
+        <hr>
+        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
+    </div>
+
+  <!-- Card footer -->
+  <div class="rounded-bottom green text-center pt-3">
+    <ul class="list-unstyled list-inline font-small">
+      <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>05/10/2015</li>
+      <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>
+      <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"> </i>21</a></li>
+      <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"> </i>5</a></li>
+    </ul>
+  </div>
+
+</div>
+<!-- #ends# text Card -->
 
 
-
-<div class="card my-3">
+<div class="card">
     <div class="card-header">Dashboard</div>
 
     <div class="card-body">

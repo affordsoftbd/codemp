@@ -12,6 +12,6 @@
         <i class="fa fa-envelope fa-sm pr-2"></i>বার্তা
     </a>
     <a href="#" class="list-group-item list-group-item-action waves-effect">
-    	<i class="fa fa-video-camera fa-sm pr-2"></i>ভিডিও চ্যাট শুরু করুন
+    	<i class="fa fa-video-camera fa-sm pr-2"></i>ভিডিও চ্যাট
 	</a>
 </div>

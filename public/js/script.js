@@ -31,6 +31,21 @@ $(document).ready(function(){
 
   setTinyMce();
 
+    $('.image-gallery').lightSlider({
+        gallery:true,
+        item:1,
+        loop:true,
+        thumbItem:9,
+        slideMargin:0,
+        enableDrag: false,
+        currentPagerPosition:'left',
+        onSliderLoad: function(el) {
+            el.lightGallery({
+                selector: '.image-gallery .lslide'
+            });
+        }   
+    });     
+
     // hide button to scroll to top  
 
   $("#scrollToTopButton").hide();
