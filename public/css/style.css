@@ -16,6 +16,12 @@ footer {
     visibility: hidden;
 }
 
+.home-container{
+  padding-top: 50px;
+}
+
+.sticky-top { top: 6em; }
+
 .list-group-item.active {
     z-index: 2;
     color: #fff;

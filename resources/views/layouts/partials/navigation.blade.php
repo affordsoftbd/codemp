@@ -1,5 +1,5 @@
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark green">
+<nav class="navbar navbar-expand-lg navbar-dark green fixed-top">
     <div class="container">
     <a class="navbar-brand" href="#">
         <img src="https://adminpanelproject.000webhostapp.com/amarneta/img/icons/favicon.png" height="30" alt="">

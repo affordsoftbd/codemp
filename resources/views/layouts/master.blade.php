@@ -31,7 +31,7 @@
   	@include('layouts.partials.loader')
   	@include('layouts.partials.navigation')
 
-    <div class="container my-5">
+    <div class="container home-container my-5">
         <div class="row justify-content-center">
             <div class="col-md-3 mb-3">
               @include('layouts.partials.sidemenu')

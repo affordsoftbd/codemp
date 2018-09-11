@@ -1,4 +1,4 @@
-<div class="list-group">
+<div class="list-group sticky-top">
     <a href="#" class="list-group-item active waves-effect">
     	<i class="fa fa-group fa-sm pr-2"></i>Groups
 	</a>
