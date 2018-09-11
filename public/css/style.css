@@ -29,10 +29,15 @@ footer {
     border-color: #4caf50;
 }
 
-div.mce-fullscreen {
-    z-index: 1050;
-    /*top: 55px;*/
+.nav-tabs {
+    background-color: #4caf50;
 }
+
+/*div.mce-fullscreen {
+  z-index: 505050;
+  top: 51px!important;
+  bottom: 51px!important;
+}*/
 
 .bootstrap-tagsinput {
   -webkit-box-shadow: none !important;
