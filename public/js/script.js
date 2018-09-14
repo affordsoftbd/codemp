@@ -31,20 +31,24 @@ $(document).ready(function(){
 
   setTinyMce();
 
-    $('.image-gallery').lightSlider({
-        gallery:true,
-        item:1,
-        loop:true,
-        thumbItem:9,
-        slideMargin:0,
-        enableDrag: false,
-        currentPagerPosition:'left',
-        onSliderLoad: function(el) {
-            el.lightGallery({
-                selector: '.image-gallery .lslide'
-            });
-        }   
-    });     
+    // Set Lightslider
+
+  $('.lightSlider').each(function (index) {
+    $(this).lightSlider({
+        gallery: true,
+        item: 1,
+        loop: true,
+        slideMargin: 0,
+        thumbItem: 9,
+        onBeforeSlide: function (el) {
+            $('#counter' + index).text(el.getCurrentSlideCount());
+        }
+    });
+  }); 
+
+    // Set Lightslider 
+
+  $('.lightgallery').lightGallery();  
 
     // hide button to scroll to top  
 
