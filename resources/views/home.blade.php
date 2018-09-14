@@ -103,78 +103,79 @@
 
     <!-- Card image -->
     <div class="view overlay mt-4" align="center">
-
-    <div class="lightgallery">
-      <a href="http://sachinchoolur.github.io/lightGallery/static/img/16.jpg">
-        <img src="http://sachinchoolur.github.io/lightGallery/static/img/16.jpg" />
-      </a>
-      <a href="http://sachinchoolur.github.io/lightGallery/static/img/15.jpg">
-        <img src="http://sachinchoolur.github.io/lightGallery/static/img/15.jpg" />
-      </a>
-    </div>
     
-        <div class="jklightgallery">
-            <p><span id="counter0">1</span> of 12</p>
+        <div class="lightgallery">
+            <p><span id="counter0">1</span> of 05</p>
             <ul class="lightSlider">
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-1.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" data-sub-html="Focused client-server ability 10">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" />
-                    </a>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-8.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" />
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-2.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" data-sub-html="Focused client-server ability 11">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" />
-                    </a>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-9.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" data-sub-html="Focused client-server ability 14">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" />
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-3.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" data-sub-html="Focused client-server ability 12">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" />
-                    </a>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-10.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" data-sub-html="Focused client-server ability 15">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" />
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-4.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" data-sub-html="Focused client-server ability 2">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" />
-                    </a>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-11.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-11.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" />
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-5.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-5.jpg" data-sub-html="Focused client-server ability 3">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-5.jpg" />
-                    </a>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-13.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" />
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-6.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-6.jpg" data-sub-html="Focused client-server ability 4">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-6.jpg" />
-                    </a>
+            </ul>
+        </div> 
+    </div>
+
+  <!-- Button -->
+  <a class="btn-floating btn-action ml-auto mr-4 red"><i class="fa fa-chevron-right pl-1"></i></a>
+
+    <!-- Card content -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-1 col-lg-2 col-md-2">
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
+            </div>
+            <div class="col-xl-11 col-lg-10 col-md-10">
+                <h6 class="font-weight-bold">Gracie Monahan</h6>
+                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
+            </div>
+        </div>
+        <hr>
+        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
+    </div>
+
+  <!-- Card footer -->
+  <div class="rounded-bottom green text-center pt-3">
+    <ul class="list-unstyled list-inline font-small">
+      <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>05/10/2015</li>
+      <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>
+      <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"> </i>21</a></li>
+      <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"> </i>5</a></li>
+    </ul>
+  </div>
+
+</div>
+<!-- #ends# slider Card -->
+
+<!-- slider Card -->
+<div class="card my-4">
+
+    <!-- Card image -->
+    <div class="view overlay mt-4" align="center">
+        <div class="lightgallery">
+            <p><span id="counter1">1</span> of 04</p>
+            <ul class="lightSlider">
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-1.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" />
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-7.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-7.jpg" data-sub-html="Focused client-server ability 5">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-7.jpg" />
-                    </a>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-1.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" />
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-8.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" data-sub-html="Focused client-server ability 6">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" />
-                    </a>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-3.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" />
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-9.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" data-sub-html="Focused client-server ability 7">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" />
-                    </a>
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-10.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-11.jpg" data-sub-html="Focused client-server ability 8">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" />
-                    </a>
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-11.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" data-sub-html="Focused client-server ability 9">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" />
-                    </a>
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-13.jpg">
-                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" data-sub-html="Focused client-server ability 10">
-                        <img src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" />
-                    </a>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-4.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" />
                 </li>
             </ul>
         </div> 

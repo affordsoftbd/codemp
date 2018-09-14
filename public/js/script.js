@@ -42,13 +42,14 @@ $(document).ready(function(){
         thumbItem: 9,
         onBeforeSlide: function (el) {
             $('#counter' + index).text(el.getCurrentSlideCount());
+        },
+        onSliderLoad: function(el) {
+            el.lightGallery({
+                selector: '.lightgallery .lslide'
+            });
         }
     });
-  }); 
-
-    // Set Lightslider 
-
-  $('.lightgallery').lightGallery();  
+  });
 
     // hide button to scroll to top  
 
