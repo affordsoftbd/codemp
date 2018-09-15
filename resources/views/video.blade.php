@@ -23,6 +23,36 @@
         <button type="button" class="btn btn-sm btn-tw"><i class="fa fa-twitter"></i></button>
         <button type="button" class="btn btn-sm btn-gplus"><i class="fa fa-google-plus"></i></button>
     </div>
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <!--Pagination-->
+        <nav aria-label="pagination example">
+            <ul class="pagination pg-blue justify-content-center">
+
+                <!--Arrow left-->
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item active">
+                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <div class="col-xl-1 col-lg-2 col-md-2 my-3">
         <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
     </div>

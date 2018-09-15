@@ -14,23 +14,28 @@
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12" align="center">
         <hr>
-        <div class="lightgallery">
-            <p><span id="counter0">1</span> of 05</p>
-            <ul class="lightSlider">
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-8.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" />
+        <h4 class="font-weight-bold text-center">Album Name</h4>
+        <div class="item my-4" id="aniimated-thumbnials">
+            <ul id="content-slider" class="content-slider">
+                <li>
+                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" data-sub-html="Focused client-server ability 1"> 
+                    <img class="img-fluid" src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" alt="Order Image ba5016238db98b54520a1294c88829b4 1">
+                    </a>
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-9.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" data-sub-html="Focused client-server ability 14">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" />
+                <li>
+                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" data-sub-html="Focused client-server ability 2"> 
+                    <img class="img-fluid" src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" alt="Order Image f0ed63aaa83c0877b37a9d3651297d06 2">
+                    </a>
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-10.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" data-sub-html="Focused client-server ability 15">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" />
+                <li>
+                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" data-sub-html="Focused client-server ability 3"> 
+                    <img class="img-fluid" src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" alt="Order Image 451ed4cefd0a22d2c38a2f59d8cf3507 3">
+                    </a>
                 </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-11.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-11.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" />
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-13.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" />
+                <li>
+                    <a href="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" data-sub-html="Focused client-server ability 3"> 
+                    <img class="img-fluid" src="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" alt="Order Image 451ed4cefd0a22d2c38a2f59d8cf3507 3">
+                    </a>
                 </li>
             </ul>
         </div>
@@ -39,6 +44,36 @@
         <button type="button" class="btn btn-sm btn-fb"><i class="fa fa-facebook"></i></button>
         <button type="button" class="btn btn-sm btn-tw"><i class="fa fa-twitter"></i></button>
         <button type="button" class="btn btn-sm btn-gplus"><i class="fa fa-google-plus"></i></button>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <!--Pagination-->
+        <nav aria-label="pagination example">
+            <ul class="pagination pg-blue justify-content-center">
+
+                <!--Arrow left-->
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item active">
+                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2 my-3">
         <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">

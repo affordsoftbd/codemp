@@ -80,25 +80,25 @@ $(document).ready(function(){
 
   if ($(".info_messages").length) {
       $( ".info_messages" ).each(function() {
-        notificationLoop(time, $(this), "#", "info", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+        notificationLoop(time, $(this), "#", "info", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
         time++;
       });
   } 
   if ($(".success_messages").length) {
       $( ".success_messages" ).each(function() {
-        notificationLoop(time, $(this), "#", "success", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+        notificationLoop(time, $(this), "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
         time++;
       });
   } 
   if ($(".warning_messages").length) {
       $( ".warning_messages" ).each(function() {
-        notificationLoop(time, $(this), "#", "warning", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+        notificationLoop(time, $(this), "#", "warning", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
         time++;
       });
   } 
   if ($(".error_messages").length) {
       $( ".error_messages" ).each(function() {
-        notificationLoop(time, $(this), "#", "danger", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+        notificationLoop(time, $(this), "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
         time++;
       });
   } 
@@ -251,8 +251,8 @@ function showNotification(title, text, redirect, colorName, placementFrom, place
       newest_on_top: true,
       showProgressbar: false,
       placement: {
-        from: placementFrom,
-        align: placementAlign
+        from: "bottom",
+        align: "left"
       },
       offset: {
         x: offsetFrom,

@@ -300,6 +300,13 @@
 
 
 
+<div class="success_messages hidden">
+    <h1>স্বাগতম!</h1>
+    <p>আপনি সফলভাবে লগ ইন করেছেন!</p>
+</div>
+
+
+
 @endsection
 
 
