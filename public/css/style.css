@@ -16,6 +16,10 @@ footer {
     visibility: hidden;
 }
 
+.content_load {
+  font-size:24px;
+}
+
 .home-container{
   padding-top: 50px;
 }

@@ -26,3 +26,6 @@ Route::get('/register/public', function () {
 // Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/post', 'HomeController@post')->name('post');
+Route::get('/image', 'HomeController@image')->name('image');
+Route::get('/video', 'HomeController@video')->name('video');
