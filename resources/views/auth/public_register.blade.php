@@ -158,33 +158,33 @@
             var validate = '';
 
             if(first_name.trim()==''){
-                validate = validate+"first name is required</br>";
+                validate = validate+"নামের প্রথম অংশ প্রয়োজন</br>";
             }
             if(phone.trim()==''){
-                validate = validate+"phone is required</br>";
+                validate = validate+"নামের শেষাংশ প্রয়োজন</br>";
             }
             var re = /\S+@\S+\.\S+/;
             if(email.trim()!='' && !re.test(email)){
-                validate = validate+"invalid email address</br>";
+                validate = validate+"অকার্যকর ইমেইল</br>";
             }
             if(username.trim()==''){
-                validate = validate+"username is required</br>";
+                validate = validate+"ইউসার নাম প্রয়োজন</br>";
             }
             if(password.trim()==''){
-                validate = validate+"password is required</br>";
+                validate = validate+"পাসওয়ার্ড প্রয়োজন</br>";
             }
             if(password.trim()!='' && password.trim().length<8){
-                validate = validate+"password needs at least 8 digits</br>";
+                validate = validate+"পাসওয়ার্ড অন্তত ৮ সংখ্যা প্রয়োজন</br>";
             }
             var regex = /\d/g;
             if(password.trim()!='' && !regex.test(password.trim())){
-                validate = validate+"password should contain at least 1 number</br>";
+                validate = validate+"পাসওয়ার্ড অন্তত ১ টি নম্বর থাকতে হবে</br>";
             }
             if(password_confirm.trim()==''){
-                validate = validate+"password confirm is required</br>";
+                validate = validate+"পাসওয়ার্ড নিশ্চিত করুন</br>";
             }
             if(password.trim()!='' && password_confirm.trim()!='' && password!=password_confirm){
-                validate = validate+"password and password confirm does not match";
+                validate = validate+"পাসওয়ার্ড এবং পাসওয়ার্ড নিশ্চিত মেলে না";
             }
 
             if(validate==''){
