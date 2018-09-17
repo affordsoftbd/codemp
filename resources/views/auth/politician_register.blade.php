@@ -119,9 +119,8 @@
                         <!-- Choose Zip -->
                         <select class="mdb-select" name="role_id" id="role_id" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>হিসাবে নিবন্ধন করুন</option>
-                            <option value="1">Select role</option>
                             @foreach($roles as $role)
-                                <option value="{{ $role->role_id }}">{{ $role->role_code }}</option>
+                                <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -210,7 +209,7 @@
 
         $(document).on('change','#role_id', function(){
             var role_id = $(this).val();
-            //set_leader(role_id,'');
+            set_leader(role_id);
         });
 
         function set_district(division_id,district_id){   
