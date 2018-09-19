@@ -13,7 +13,12 @@
             <div class="card card-home wow h-100" data-wow-delay="0.3s">
                 <div class="card-body">
                     <div class="md-form">
-                        <form action="messaging.php">
+
+                        <div class="alert alert-success" id="login_success" style="display:none"></div>
+                        <div class="alert alert-danger" id="login_danger" style="display:none"></div>
+
+                        <form id="login_form" class="login-form" method="post" action="">
+                            {{ csrf_field() }}
                             <div class="text-center">
                               <h3 class="white-text"><i class="fa fa-user white-text fa-sm pr-2"></i>লগইন</h3>
                               <hr class="hr-light">
@@ -21,14 +26,14 @@
                           <!-- Material input text -->
                             <div class="md-form">
                               <i class="fa fa-envelope prefix white-text"></i>
-                              <input class="form-control" id="identity" name="identity_kormi" type="text">
+                              <input class="form-control" id="username" name="username" type="text">
                               <label for="identity">আপনার নাম</label>
                             </div>
                           
                           <!-- Material input password -->
                             <div class="md-form">
                               <i class="fa fa-lock prefix white-text"></i>
-                              <input class="form-control" id="password" name="password_kormi" type="password" value="">
+                              <input class="form-control" id="password" name="password" type="password" value="">
                               <label for="password">আপনার পাসওয়ার্ড</label>
                             </div>
 
@@ -110,4 +115,53 @@
       </div>
     </section>
 
+@endsection
+
+@section('extra-script')
+    <script>
+        $(document).on('submit', '#login_form', function(event){
+            event.preventDefault();
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var validate = '';
+
+            if(username==''){
+                validate = validate+"username is required</br>";
+            }
+
+            if(password==''){
+                validate = validate+"password is required";
+            }
+
+            if(validate==''){
+
+                var formData = new FormData($('#login_form')[0]);
+                var url = '{{ url('login') }}';
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formData,
+                    async: false,
+                    success: function (data) {
+                        if(data.status == 200){
+                            window.location.href="{{ url('/home') }}";
+                        }
+                        else{
+                            $('#login_success').hide();
+                            $('#login_danger').show();
+                            $('#login_danger').html(data.reason);
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            else{
+                $('#login_success').hide();
+                $('#login_danger').show();
+                $('#login_danger').html(validate);
+            }
+        });
+    </script>
 @endsection
