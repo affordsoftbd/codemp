@@ -48,24 +48,31 @@
                         <!-- First name -->
                         <div class="md-form">
                             <input type="text" name="first_name" id="first_name" class="form-control">
-                            <label for="firstname">নামের প্রথম অংশ</label>
+                            <label for="first_name">নামের প্রথম অংশ</label>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <!-- Last name -->
                         <div class="md-form">
                             <input type="text" name="last_name" id="last_name" class="form-control">
-                            <label for="lastname">নামের শেষাংশ</label>
+                            <label for="last_name">নামের শেষাংশ</label>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
+                        <!-- Username -->
+                        <div class="md-form">
+                            <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                            <label for="username">ইউসার নাম</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
                         <!-- E-mail -->
                         <div class="md-form">
                             <input type="text" name="email" id="email" class="form-control">
                             <label for="email">ই-মেইল</label>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <!-- Phone number -->
                         <div class="md-form">
                             <input type="text" name="phone" id="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
@@ -76,17 +83,10 @@
 
                 <!-- Address -->
                 <div class="form-row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="md-form">
                             <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
                             <label for="address">ঠিকানা</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <!-- Phone number -->
-                        <div class="md-form">
-                            <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
-                            <label for="phone">ইউসার নাম</label>
                         </div>
                     </div>
                 </div>

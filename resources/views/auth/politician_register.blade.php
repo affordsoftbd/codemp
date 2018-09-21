@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-sm-12">
                         <!-- Choose Division -->
-                        <select class="mdb-select" name="division" id="division">
+                        <select name="division" id="division">
                             <option value="" disabled selected>আপনার বিভাগ</option>
                             @foreach($divisions as $division)
                                 <option value="{{ $division->division_id }}">{{ $division->division_name }}</option>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- Choose District -->
-                        <select class="mdb-select" name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
+                        <select name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার জেলা</option>
                             @foreach($districts as $district)
                                 <option value="{{ $district->district_id }}">{{ $district->district_name }}</option>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- Choose Thana -->
-                        <select class="mdb-select" name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
+                        <select name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার থানা</option>
                             @foreach($thanas as $thana)
                                 <option value="{{ $thana->thana_id }}">{{ $thana->thana_name }}</option>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- Choose Zip -->
-                        <select class="mdb-select" name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
+                        <select name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার জিপ</option>
                             @foreach($zips as $zip)
                                 <option value="{{ $zip->zip_id }}">{{ $zip->zip_code }}</option>
@@ -191,27 +191,28 @@
 
 @section('extra-script')
     <script>
-
+        $(document).ready(function() {
+           $('#division').material_select();
+           $('#district').material_select();
+           $('#thana').material_select();
+           $('#zip').material_select();
+        });
         $(document).on('change','#division', function(){
             var division_id = $(this).val();
-            //set_district(division_id,'');
+            set_district(division_id,'');
         });
-
         $(document).on('change','#district', function(){
             var district_id = $(this).val();
             //set_thana(district_id,'');
         });
-
         $(document).on('change','#thana', function(){
             var thana_id = $(this).val();
             //set_zip(thana_id,'');
         });
-
         $(document).on('change','#role_id', function(){
             var role_id = $(this).val();
             set_leader(role_id);
         });
-
         function set_district(division_id,district_id){   
             $.ajax({
                 type: "POST",
@@ -228,13 +229,11 @@
                     else{
                         alert(data);
                     }
-
                 } ,error: function(xhr, status, error) {
                     alert(error);
                 },
             });
         }
-
         function set_thana(district_id,thana_id){
             $.ajax({
                 type: "POST",
@@ -251,13 +250,11 @@
                     else{
                         alert(data);
                     }
-
                 } ,error: function(xhr, status, error) {
                     alert(error);
                 },
             });
         }
-
         function set_zip(thana_id,address_type,zip_id){
             $.ajax({
                 type: "POST",
@@ -274,13 +271,11 @@
                     else{
                         alert(data);
                     }
-
                 } ,error: function(xhr, status, error) {
                     alert(error);
                 },
             });
         }
-
         function set_leader(role_id){   
             $.ajax({
                 type: "POST",
@@ -296,13 +291,11 @@
                     else{
                         alert(data);
                     }
-
                 } ,error: function(xhr, status, error) {
                     alert(error);
                 },
             });
         }
-
         $(document).on('submit', '#registration_form', function(event){
             event.preventDefault();
             var first_name = $('#first_name').val();
@@ -319,7 +312,6 @@
             var zip = $('#zip').val();
             var leader = $('#leader').val();
             var validate = '';
-
             if(first_name.trim()==''){
                 validate = validate+"নামের প্রথম অংশ প্রয়োজন</br>";
             }
@@ -361,9 +353,7 @@
             if(zip==''){
                 validate = validate+"জিপ প্রয়োজন</br>";
             }
-
             if(validate==''){
-
                 var formData = new FormData($('#registration_form')[0]);
                 var url = '{{ url('save_public_user') }}';
                 $.ajax({
