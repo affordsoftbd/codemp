@@ -12,17 +12,28 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('/home');
 })->name('welcome');
 
-Route::get('/register/politician', function () {
-    return view('auth.politician_register');
-})->name('register.politician');
+/*Authentication route*/
+Route::get('login','AuthController@login');
+Route::post('login','AuthController@postLogin');
+Route::get('logout','AuthController@logout');
 
-Route::get('/register/public', function () {
-    return view('auth.public_register');
-})->name('register.public');
+Route::get('/register/politician','AuthController@politicianRegister')->name('register.politician');
+Route::get('/register/public','AuthController@publicRegister')->name('register.public');
+Route::post('save_public_user','AuthController@savePublicUser');
+Route::post('save_politician_user','AuthController@savePoliticianUser');
 
 // Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*Post routes*/
+Route::post('saveTextPost', 'PostController@saveTextPost');
+
+/*Common routes*/
+Route::post('leader_by_role', 'CommonController@getLeaderByRole');
+Route::post('district_by_division', 'CommonController@getDistrictByDivision');
+Route::post('thana_by_district', 'CommonController@getThanaByDistrict');
+Route::post('zip_by_thana', 'CommonController@getZipByThana');
