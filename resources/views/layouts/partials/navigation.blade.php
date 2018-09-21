@@ -23,7 +23,9 @@
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">ঘটনাচক্র
+                <a class="nav-link" href="{{ route('home') }}">
+                    <i class="fa fa-rss pr-1"></i>
+                    ফিড
                     <span class="sr-only">(current)</span>
                 </a>
             </li>

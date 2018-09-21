@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('user_id');
+            $table->enum('status', ['active','inactive','pending','deleted'])->default('pending'); 
             $table->tinyInteger('parent_id')->default(0);
             $table->string('email')->unique();
             $table->string('active_session_id');
