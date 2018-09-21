@@ -203,11 +203,11 @@
         });
         $(document).on('change','#district', function(){
             var district_id = $(this).val();
-            //set_thana(district_id,'');
+            set_thana(district_id,'');
         });
         $(document).on('change','#thana', function(){
             var thana_id = $(this).val();
-            //set_zip(thana_id,'');
+            set_zip(thana_id,'');
         });
         $(document).on('change','#role_id', function(){
             var role_id = $(this).val();
@@ -226,7 +226,6 @@
                         $('#district').html(data.options);
                         $('#district').val(district_id);
                         $('#district').material_select();
-                        // $('#district').selectpicker('refresh');
                     }
                     else{
                         alert(data);
@@ -249,7 +248,6 @@
                         $('#thana').html(data.options);
                         $('#thana').val(thana_id);
                         $('#thana').material_select();
-                        // $('#thana').selectpicker('refresh');
                     }
                     else{
                         alert(data);
@@ -271,7 +269,6 @@
                         $('#zip').material_select('destroy');
                         $('#zip').html(data.options);
                         $('#zip').val(zip_id);
-                        $('#zip').selectpicker('refresh');
                         $('#zip').material_select();
                     }
                     else{
