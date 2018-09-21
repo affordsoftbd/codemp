@@ -58,14 +58,21 @@
                             <label for="lastname">নামের শেষাংশ</label>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
+                        <!-- Phone number -->
+                        <div class="md-form">
+                            <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                            <label for="phone">ইউসার নাম</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
                         <!-- E-mail -->
                         <div class="md-form">
                             <input type="email" name="email" id="email" class="form-control">
                             <label for="email">ই-মেইল</label>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <!-- Phone number -->
                         <div class="md-form">
                             <input type="text" name="phone" id="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
@@ -134,17 +141,10 @@
 
                 <!-- Address -->
                 <div class="form-row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="md-form">
                             <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
                             <label for="address">ঠিকানা</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <!-- Phone number -->
-                        <div class="md-form">
-                            <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
-                            <label for="phone">ইউসার নাম</label>
                         </div>
                     </div>
                 </div>
@@ -222,9 +222,11 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#district').material_select('destroy');
                         $('#district').html(data.options);
                         $('#district').val(district_id);
-                        $('#district').selectpicker('refresh');
+                        $('#district').material_select();
+                        // $('#district').selectpicker('refresh');
                     }
                     else{
                         alert(data);
@@ -243,9 +245,11 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#thana').material_select('destroy');
                         $('#thana').html(data.options);
                         $('#thana').val(thana_id);
-                        $('#thana').selectpicker('refresh');
+                        $('#thana').material_select();
+                        // $('#thana').selectpicker('refresh');
                     }
                     else{
                         alert(data);
@@ -264,9 +268,11 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#zip').material_select('destroy');
                         $('#zip').html(data.options);
                         $('#zip').val(zip_id);
                         $('#zip').selectpicker('refresh');
+                        $('#zip').material_select();
                     }
                     else{
                         alert(data);
