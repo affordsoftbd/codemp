@@ -34,8 +34,6 @@ class HomeController extends Controller
         catch (\Exception $e) {
             return $e->getMessage();
         }
-<<<<<<< HEAD
-=======
     }
 
     public function post()
@@ -75,6 +73,5 @@ class HomeController extends Controller
         catch (\Exception $e) {
             return $e->getMessage();
         }
->>>>>>> 31fcc469de5fb7e87a84b6b3cfeed75a08b4ba0e
     }
 }

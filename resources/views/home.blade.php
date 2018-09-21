@@ -29,14 +29,19 @@
          <!-- Tab panels -->
          <div class="tab-content">
             <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
-                {!! Form::open() !!}    
+
+                <div class="alert alert-success" id="post_success" style="display:none"></div>
+                <div class="alert alert-danger" id="post_danger" style="display:none"></div>
+                <form id="text_post_form" class="login-form" method="post" action="">
+                    {{ csrf_field() }}
+
                     <div class="md-form">
-                        {!! Form::textarea('additional_details', null, array('class'=>'editor')) !!}
+                        {!! Form::textarea('additional_details', null, array('class'=>'editor','name'=>'post_text','id'=>'post_text')) !!}
                     </div>
                     <div class="text-center my-4">
                         {!! Form::button('অবস্থা হালনাগাদ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm pull-right')) !!}
                     </div>
-                {!! Form::close() !!}
+                </form>
                 <div class="clearfix"></div>
             </div>
             <!--/.Panel 1-->
@@ -307,6 +312,51 @@
 
 
 
+@endsection
+
+@section('extra-script')
+    <script>
+        
+        $(document).on('submit', '#text_post_form', function(event){
+            event.preventDefault();
+            var post_text = $('#post_text').val();
+            var validate = '';
+
+            if(post_text==''){
+                validate = validate+"দয়া করে কিছু লিখুন";
+            }
+
+            if(validate==''){
+
+                var formData = new FormData($('#text_post_form')[0]);
+                var url = '{{ url('saveTextPost') }}';
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formData,
+                    async: false,
+                    success: function (data) {
+                        if(data.status == 200){
+                            location.reload();
+                        }
+                        else{
+                            $('#post_success').hide();
+                            $('#post_danger').show();
+                            $('#post_danger').html(data.reason);
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            else{
+                $('#post_success').hide();
+                $('#post_danger').show();
+                $('#post_danger').html(validate);
+            }
+        });
+    </script>
 @endsection
 
 

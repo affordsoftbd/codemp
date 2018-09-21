@@ -9,7 +9,7 @@ use Auth;
 use DB;
 use Session;
 
-class CommonController extends Controller
+class PostController extends Controller
 {
 
     public function getPost(Request $request){
@@ -21,7 +21,7 @@ class CommonController extends Controller
             return view('home');
         }
         catch (\Exception $e) {
-            return ['status'=>401, 'options'=>$e->getMessage()];
+            return ['status'=>401, 'reason'=>$e->getMessage()];
         }
     }
 
@@ -29,13 +29,13 @@ class CommonController extends Controller
         try {
             $post = NEW Post();
             $post->user_id = Session::get('user_id');
-            $post->text = $request->text;
+            $post->description = $request->post_text;
             $post->save();
 
-            return ['status'=>200, 'options'=>$options];
+            return ['status'=>200, 'reason'=>'Your post saved successfully'];
         }
         catch (\Exception $e) {
-            return ['status'=>401, 'options'=>$e->getMessage()];
+            return ['status'=>401, 'reason'=>$e->getMessage()];
         }
     }
 }
