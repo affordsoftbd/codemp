@@ -39,6 +39,7 @@ Route::get('/post', 'HomeController@post')->name('post');
 Route::get('/image', 'HomeController@image')->name('image');
 Route::get('/video', 'HomeController@video')->name('video');
 Route::post('saveTextPost', 'PostController@saveTextPost');
+Route::post('get_post_ajax', 'PostController@getPostAjax');
 
 /*Common routes*/
 Route::post('leader_by_role', 'CommonController@getLeaderByRole');

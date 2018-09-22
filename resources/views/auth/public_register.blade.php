@@ -48,22 +48,16 @@
                         <!-- First name -->
                         <div class="md-form">
                             <input type="text" name="first_name" id="first_name" class="form-control">
-<<<<<<< HEAD
                             <label for="firstname">নামের প্রথম অংশ</label>
-=======
                             <label for="first_name">নামের প্রথম অংশ</label>
->>>>>>> 31fcc469de5fb7e87a84b6b3cfeed75a08b4ba0e
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <!-- Last name -->
                         <div class="md-form">
                             <input type="text" name="last_name" id="last_name" class="form-control">
-<<<<<<< HEAD
                             <label for="lastname">নামের শেষাংশ</label>
-=======
                             <label for="last_name">নামের শেষাংশ</label>
->>>>>>> 31fcc469de5fb7e87a84b6b3cfeed75a08b4ba0e
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -91,17 +85,13 @@
 
                 <!-- Address -->
                 <div class="form-row">
-<<<<<<< HEAD
                     <div class="col-sm-6">
-=======
                     <div class="col-sm-12">
->>>>>>> 31fcc469de5fb7e87a84b6b3cfeed75a08b4ba0e
                         <div class="md-form">
                             <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
                             <label for="address">ঠিকানা</label>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div class="col-sm-6">
                         <!-- Phone number -->
                         <div class="md-form">
@@ -109,8 +99,6 @@
                             <label for="phone">ইউসার নাম</label>
                         </div>
                     </div>
-=======
->>>>>>> 31fcc469de5fb7e87a84b6b3cfeed75a08b4ba0e
                 </div>
 
                 <div class="form-row">
@@ -180,7 +168,6 @@
             var validate = '';
 
             if(first_name.trim()==''){
-<<<<<<< HEAD
                 validate = validate+"first name is required</br>";
             }
             if(phone.trim()==''){
@@ -208,7 +195,6 @@
             }
             if(password.trim()!='' && password_confirm.trim()!='' && password!=password_confirm){
                 validate = validate+"password and password confirm does not match";
-=======
                 validate = validate+"নামের প্রথম অংশ প্রয়োজন</br>";
             }
             if(phone.trim()==''){
@@ -236,7 +222,6 @@
             }
             if(password.trim()!='' && password_confirm.trim()!='' && password!=password_confirm){
                 validate = validate+"পাসওয়ার্ড এবং পাসওয়ার্ড নিশ্চিত মেলে না";
->>>>>>> 31fcc469de5fb7e87a84b6b3cfeed75a08b4ba0e
             }
 
             if(validate==''){

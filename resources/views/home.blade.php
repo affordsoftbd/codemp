@@ -356,6 +356,31 @@
                 $('#post_danger').html(validate);
             }
         });
+
+        function getPost(){
+            $.ajax({
+                type: "POST",
+                url: "{{ url('get_post_ajax') }}",
+                data: { _token: "{{ csrf_token() }}",division_id:division_id},
+                dataType: "json",
+                cache : false,
+                success: function(data){
+                    if(data.status == 200){
+                        $('#district').html(data.options);
+                        $('#district').val(district_id);
+                        $('#district').material_select('destroy');
+                        $('#district').html(data.options);
+                        $('#district').val(district_id);
+                        $('#district').material_select();
+                    }
+                    else{
+                        alert(data);
+                    }
+                } ,error: function(xhr, status, error) {
+                    alert(error);
+                },
+            });
+        }
     </script>
 @endsection
 
