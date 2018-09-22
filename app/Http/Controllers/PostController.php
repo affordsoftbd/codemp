@@ -16,7 +16,8 @@ class PostController extends Controller
         try {
             $user = Auth::user();
             $leader_id= $user->parent_id;
-            $posts = Post::where('user_id',$leader_id)->limit(5)->get();
+            $post_creators = [$user->id,$leader_id];
+            $posts = Post::whereIn('user_id',$post_creators)->limit(5)->get();
 
             return ['status'=>200,'reason'=>'','posts'=>$posts];
         }

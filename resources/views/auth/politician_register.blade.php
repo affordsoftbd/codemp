@@ -132,7 +132,7 @@
                             <option value="" disabled selected>Register as</option>
                             <option value="1">Select role</option>
                             @foreach($roles as $role)
-                                <option value="{{ $role->role_id }}">{{ $role->role_code }}</option>
+                                <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -240,22 +240,27 @@
            $('#thana').material_select();
            $('#zip').material_select();
         });
+
         $(document).on('change','#division', function(){
             var division_id = $(this).val();
             set_district(division_id,'');
         });
+
         $(document).on('change','#district', function(){
             var district_id = $(this).val();
             set_thana(district_id,'');
         });
+
         $(document).on('change','#thana', function(){
             var thana_id = $(this).val();
             set_zip(thana_id,'');
         });
+
         $(document).on('change','#role_id', function(){
             var role_id = $(this).val();
             set_leader(role_id);
         });
+
         function set_district(division_id,district_id){   
             $.ajax({
                 type: "POST",
@@ -280,6 +285,7 @@
                 },
             });
         }
+
         function set_thana(district_id,thana_id){
             $.ajax({
                 type: "POST",
@@ -304,6 +310,7 @@
                 },
             });
         }
+
         function set_zip(thana_id,address_type,zip_id){
             $.ajax({
                 type: "POST",
@@ -328,6 +335,7 @@
                 },
             });
         }
+
         function set_leader(role_id){   
             $.ajax({
                 type: "POST",
@@ -348,6 +356,7 @@
                 },
             });
         }
+
         $(document).on('submit', '#registration_form', function(event){
             event.preventDefault();
             var first_name = $('#first_name').val();
@@ -407,49 +416,6 @@
                 validate = validate+"zip is required</br>";
             }
 
-            if(validate==''){
-
-            if(first_name.trim()==''){
-                validate = validate+"নামের প্রথম অংশ প্রয়োজন</br>";
-            }
-            if(phone.trim()==''){
-                validate = validate+"নামের শেষাংশ প্রয়োজন</br>";
-            }
-            var re = /\S+@\S+\.\S+/;
-            if(email.trim()!='' && !re.test(email)){
-                validate = validate+"অকার্যকর ইমেইল</br>";
-            }
-            if(username.trim()==''){
-                validate = validate+"ইউসার নাম প্রয়োজন</br>";
-            }
-            if(password.trim()==''){
-                validate = validate+"পাসওয়ার্ড প্রয়োজন</br>";
-            }
-            if(password.trim()!='' && password.trim().length<8){
-                validate = validate+"পাসওয়ার্ড অন্তত ৮ সংখ্যা প্রয়োজন</br>";
-            }
-            var regex = /\d/g;
-            if(password.trim()!='' && !regex.test(password.trim())){
-                validate = validate+"পাসওয়ার্ড অন্তত ১ টি নম্বর থাকতে হবে</br>";
-            }
-            if(password_confirm.trim()==''){
-                validate = validate+"পাসওয়ার্ড নিশ্চিত করুন</br>";
-            }
-            if(password.trim()!='' && password_confirm.trim()!='' && password!=password_confirm){
-                validate = validate+"পাসওয়ার্ড এবং পাসওয়ার্ড নিশ্চিত মেলে না";
-            }
-            if(division==''){
-                validate = validate+"বিভাগ প্রয়োজন</br>";
-            }
-            if(district==''){
-                validate = validate+"জেলা প্রয়োজন</br>";
-            }
-            if(thana==''){
-                validate = validate+"থানা প্রয়োজন</br>";
-            }
-            if(zip==''){
-                validate = validate+"জিপ প্রয়োজন</br>";
-            }
             if(validate==''){
                 var formData = new FormData($('#registration_form')[0]);
                 var url = '{{ url('save_public_user') }}';
