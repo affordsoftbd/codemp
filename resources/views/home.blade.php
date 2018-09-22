@@ -316,6 +316,10 @@
 
 @section('extra-script')
     <script>
+
+        $(document).ready(function(){
+            getPost(0);
+        })
         
         $(document).on('submit', '#text_post_form', function(event){
             event.preventDefault();
@@ -357,21 +361,16 @@
             }
         });
 
-        function getPost(){
+        function getPost(last_id){
             $.ajax({
                 type: "POST",
                 url: "{{ url('get_post_ajax') }}",
-                data: { _token: "{{ csrf_token() }}",division_id:division_id},
+                data: { _token: "{{ csrf_token() }}",last_id:last_id},
                 dataType: "json",
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                        $('#district').html(data.options);
-                        $('#district').val(district_id);
-                        $('#district').material_select('destroy');
-                        $('#district').html(data.options);
-                        $('#district').val(district_id);
-                        $('#district').material_select();
+                        alert('post list');
                     }
                     else{
                         alert(data);

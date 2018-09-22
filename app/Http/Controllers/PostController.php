@@ -12,13 +12,13 @@ use Session;
 class PostController extends Controller
 {
 
-    public function getPost(Request $request){
+    public function getPostAjax(Request $request){
         try {
             $user = Auth::user();
             $leader_id= $user->parent_id;
-            $data['posts'] = Post::where('user_id',$leader_id)->limit(5)->get();
+            $posts = Post::where('user_id',$leader_id)->limit(5)->get();
 
-            return view('home');
+            return ['status'=>200,'reason'=>'','posts'=>$posts];
         }
         catch (\Exception $e) {
             return ['status'=>401, 'reason'=>$e->getMessage()];
