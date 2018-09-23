@@ -191,6 +191,8 @@
            $('#district').material_select();
            $('#thana').material_select();
            $('#zip').material_select();
+           $('#role_id').material_select();
+           $('#leader').material_select();
         });
 
         $(document).on('change','#division', function(){
@@ -222,8 +224,6 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                        $('#district').html(data.options);
-                        $('#district').val(district_id);
                         $('#district').material_select('destroy');
                         $('#district').html(data.options);
                         $('#district').val(district_id);
@@ -247,8 +247,6 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                        $('#thana').html(data.options);
-                        $('#thana').val(thana_id);
                         $('#thana').material_select('destroy');
                         $('#thana').html(data.options);
                         $('#thana').val(thana_id);
@@ -272,8 +270,6 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                        $('#zip').html(data.options);
-                        $('#zip').val(zip_id);
                         $('#zip').material_select('destroy');
                         $('#zip').html(data.options);
                         $('#zip').val(zip_id);
@@ -297,8 +293,10 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#leader').material_select('destroy');
                         $('#leader').html(data.options);
                         $('#leader').selectpicker('refresh');
+                        $('#leader').material_select();
                     }
                     else{
                         alert(data);
