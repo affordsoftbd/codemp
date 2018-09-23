@@ -14,10 +14,19 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    $roleIds = App\Role::all()->pluck('id')->toArray();
     return [
-        'name' => $faker->name,
+        'parent_id' => '0',
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
+        'active_session_id' => str_random(10),
+        'last_login_time' => $faker->dateTime($max = 'now', $timezone = null),
+        'last_logout_time' => $faker->dateTime($max = 'now', $timezone = null),
+        'username' => $faker->unique()->userName,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
+        'role_id' => $faker->randomElement($roleIds),
+        'status' => "pending",
     ];
 });

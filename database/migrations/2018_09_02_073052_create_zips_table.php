@@ -15,6 +15,7 @@ class CreateZipsTable extends Migration
     {
         Schema::create('zips', function (Blueprint $table) {
             $table->increments('zip_id');
+            $table->integer('thana_id')->unsigned();
             $table->string('zip_name');
             $table->timestamps();
             $table->softDeletes();
