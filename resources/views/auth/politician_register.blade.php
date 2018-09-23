@@ -89,7 +89,6 @@
                     <div class="col-sm-12">
                         <!-- Choose Division -->
                         <select class="mdb-select" name="division" id="division">
-                        <select name="division" id="division">
                             <option value="" disabled selected>আপনার বিভাগ</option>
                             @foreach($divisions as $division)
                                 <option value="{{ $division->division_id }}">{{ $division->division_name }}</option>
@@ -99,7 +98,6 @@
                     <div class="col-sm-4">
                         <!-- Choose District -->
                         <select class="mdb-select" name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
-                        <select name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার জেলা</option>
                             @foreach($districts as $district)
                                 <option value="{{ $district->district_id }}">{{ $district->district_name }}</option>
@@ -109,7 +107,6 @@
                     <div class="col-sm-4">
                         <!-- Choose Thana -->
                         <select class="mdb-select" name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
-                        <select name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার থানা</option>
                             @foreach($thanas as $thana)
                                 <option value="{{ $thana->thana_id }}">{{ $thana->thana_name }}</option>
@@ -119,7 +116,6 @@
                     <div class="col-sm-4">
                         <!-- Choose Zip -->
                         <select class="mdb-select" name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
-                        <select name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার জিপ</option>
                             @foreach($zips as $zip)
                                 <option value="{{ $zip->zip_id }}">{{ $zip->zip_code }}</option>
@@ -151,27 +147,12 @@
                             <option value="" disabled selected>আপনার নেতা</option>
                         </select>
                     </div>
-                </div>
-
-                <!-- Address -->
-                <div class="form-row">
-                    <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="md-form">
                             <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
                             <label for="address">ঠিকানা</label>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <!-- Phone number -->
-                        <div class="md-form">
-                            <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
-                            <label for="phone">ইউসার নাম</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
                     <div class="col-sm-6">
                         <div class="md-form">
                             <input type="password" name="password" id="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
@@ -194,11 +175,12 @@
                 <button class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
 
                 <hr>
-
+                <center>
                 <!-- Terms of service -->
                 <p><em>রেজিস্টার</em> 
                     ক্লিক এর আগে আপনি আমাদের
-                    <a href="" target="_blank">terms of service</a> মেনে নিচ্ছেন
+                    <a href="" target="_blank">terms of service</a> মেনে নিচ্ছেন</p>
+                </center>
             </form>
             <!-- Form -->
             <!-- Form -->
