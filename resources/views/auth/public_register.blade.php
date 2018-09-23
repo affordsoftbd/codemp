@@ -81,27 +81,13 @@
                             <label for="phone">ফোন নম্বর</label>
                         </div>
                     </div>
-                </div>
-
-                <!-- Address -->
-                <div class="form-row">
-                    <div class="col-sm-6">
                     <div class="col-sm-12">
+                        <!-- Address -->
                         <div class="md-form">
                             <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
                             <label for="address">ঠিকানা</label>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <!-- Phone number -->
-                        <div class="md-form">
-                            <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
-                            <label for="phone">ইউসার নাম</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
                     <div class="col-sm-6">
                         <div class="md-form">
                             <input type="password" name="password" id="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
@@ -120,28 +106,32 @@
                     </div>
                 </div>
 
-                <!-- Sign up button -->
-                <button class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
+                <center>
+                    <!-- Sign up button -->
+                    <button class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
 
-                <!-- Social register -->
-                <p>অথবা রেজিস্টার করুন:</p>
+                    <!-- Social register -->
+                    <p>অথবা রেজিস্টার করুন:</p>
 
-                <a type="button" class="btn-floating btn-fb btn-sm">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a type="button" class="btn-floating btn-tw btn-sm">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a type="button" class="btn-floating btn-li btn-sm">
-                    <i class="fa fa-google-plus"></i>
-                </a>
+                    <a type="button" class="btn-floating btn-fb btn-sm">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a type="button" class="btn-floating btn-tw btn-sm">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a type="button" class="btn-floating btn-li btn-sm">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
 
-                <hr>
+                    <hr>
 
-                <!-- Terms of service -->
-                <p><em>রেজিস্টার</em> 
-                    ক্লিক এর আগে আপনি আমাদের
-                    <a href="" target="_blank">terms of service</a> মেনে নিচ্ছেন
+                    <!-- Terms of service -->
+                    <p>
+                        <em>রেজিস্টার</em> 
+                        ক্লিক এর আগে আপনি আমাদের
+                        <a href="" target="_blank">terms of service</a> মেনে নিচ্ছেন
+                    </p>
+                </center>
             </form>
             <!-- Form -->
 
