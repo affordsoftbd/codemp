@@ -191,8 +191,6 @@
            $('#district').material_select();
            $('#thana').material_select();
            $('#zip').material_select();
-           $('#role_id').material_select();
-           $('#leader').material_select();
         });
 
         $(document).on('change','#division', function(){
@@ -300,8 +298,7 @@
                 success: function(data){
                     if(data.status == 200){
                         $('#leader').html(data.options);
-                        $('#leader').material_select('destroy');
-                        $('#leader').material_select();
+                        $('#leader').selectpicker('refresh');
                     }
                     else{
                         alert(data);
