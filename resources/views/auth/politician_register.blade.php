@@ -88,6 +88,7 @@
                     </div>
                     <div class="col-sm-12">
                         <!-- Choose Division -->
+                        <select class="mdb-select" name="division" id="division">
                         <select name="division" id="division">
                             <option value="" disabled selected>আপনার বিভাগ</option>
                             @foreach($divisions as $division)
@@ -97,6 +98,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- Choose District -->
+                        <select class="mdb-select" name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
                         <select name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার জেলা</option>
                             @foreach($districts as $district)
@@ -106,6 +108,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- Choose Thana -->
+                        <select class="mdb-select" name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
                         <select name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার থানা</option>
                             @foreach($thanas as $thana)
@@ -115,10 +118,21 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- Choose Zip -->
+                        <select class="mdb-select" name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
                         <select name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার জিপ</option>
                             @foreach($zips as $zip)
                                 <option value="{{ $zip->zip_id }}">{{ $zip->zip_code }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <!-- Choose Zip -->
+                        <select class="mdb-select" name="role_id" id="role_id" searchable="এখানে অনুসন্ধান করুন">
+                            <option value="" disabled selected>Register as</option>
+                            <option value="1">Select role</option>
+                            @foreach($roles as $role)
+                                <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -141,10 +155,18 @@
 
                 <!-- Address -->
                 <div class="form-row">
+                    <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="md-form">
                             <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
                             <label for="address">ঠিকানা</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- Phone number -->
+                        <div class="md-form">
+                            <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                            <label for="phone">ইউসার নাম</label>
                         </div>
                     </div>
                 </div>
@@ -191,28 +213,54 @@
 
 @section('extra-script')
     <script>
+
+        $(document).on('change','#division', function(){
+            var division_id = $(this).val();
+            //set_district(division_id,'');
+        });
+
+        $(document).on('change','#district', function(){
+            var district_id = $(this).val();
+            //set_thana(district_id,'');
+        });
+
+        $(document).on('change','#thana', function(){
+            var thana_id = $(this).val();
+            //set_zip(thana_id,'');
+        });
+
+        $(document).on('change','#role_id', function(){
+            var role_id = $(this).val();
+            //set_leader(role_id,'');
+        });
+
         $(document).ready(function() {
            $('#division').material_select();
            $('#district').material_select();
            $('#thana').material_select();
            $('#zip').material_select();
         });
+
         $(document).on('change','#division', function(){
             var division_id = $(this).val();
             set_district(division_id,'');
         });
+
         $(document).on('change','#district', function(){
             var district_id = $(this).val();
             set_thana(district_id,'');
         });
+
         $(document).on('change','#thana', function(){
             var thana_id = $(this).val();
             set_zip(thana_id,'');
         });
+
         $(document).on('change','#role_id', function(){
             var role_id = $(this).val();
             set_leader(role_id);
         });
+
         function set_district(division_id,district_id){   
             $.ajax({
                 type: "POST",
@@ -222,6 +270,8 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#district').html(data.options);
+                        $('#district').val(district_id);
                         $('#district').material_select('destroy');
                         $('#district').html(data.options);
                         $('#district').val(district_id);
@@ -235,6 +285,7 @@
                 },
             });
         }
+
         function set_thana(district_id,thana_id){
             $.ajax({
                 type: "POST",
@@ -244,6 +295,8 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#thana').html(data.options);
+                        $('#thana').val(thana_id);
                         $('#thana').material_select('destroy');
                         $('#thana').html(data.options);
                         $('#thana').val(thana_id);
@@ -257,6 +310,7 @@
                 },
             });
         }
+
         function set_zip(thana_id,address_type,zip_id){
             $.ajax({
                 type: "POST",
@@ -266,6 +320,8 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#zip').html(data.options);
+                        $('#zip').val(zip_id);
                         $('#zip').material_select('destroy');
                         $('#zip').html(data.options);
                         $('#zip').val(zip_id);
@@ -279,6 +335,7 @@
                 },
             });
         }
+
         function set_leader(role_id){   
             $.ajax({
                 type: "POST",
@@ -299,6 +356,7 @@
                 },
             });
         }
+
         $(document).on('submit', '#registration_form', function(event){
             event.preventDefault();
             var first_name = $('#first_name').val();
@@ -315,47 +373,49 @@
             var zip = $('#zip').val();
             var leader = $('#leader').val();
             var validate = '';
+
             if(first_name.trim()==''){
-                validate = validate+"নামের প্রথম অংশ প্রয়োজন</br>";
+                validate = validate+"first name is required</br>";
             }
             if(phone.trim()==''){
-                validate = validate+"নামের শেষাংশ প্রয়োজন</br>";
+                validate = validate+"phone is required</br>";
             }
             var re = /\S+@\S+\.\S+/;
             if(email.trim()!='' && !re.test(email)){
-                validate = validate+"অকার্যকর ইমেইল</br>";
+                validate = validate+"invalid email address</br>";
             }
             if(username.trim()==''){
-                validate = validate+"ইউসার নাম প্রয়োজন</br>";
+                validate = validate+"username is required</br>";
             }
             if(password.trim()==''){
-                validate = validate+"পাসওয়ার্ড প্রয়োজন</br>";
+                validate = validate+"password is required</br>";
             }
             if(password.trim()!='' && password.trim().length<8){
-                validate = validate+"পাসওয়ার্ড অন্তত ৮ সংখ্যা প্রয়োজন</br>";
+                validate = validate+"password needs at least 8 digits</br>";
             }
             var regex = /\d/g;
             if(password.trim()!='' && !regex.test(password.trim())){
-                validate = validate+"পাসওয়ার্ড অন্তত ১ টি নম্বর থাকতে হবে</br>";
+                validate = validate+"password should contain at least 1 number</br>";
             }
             if(password_confirm.trim()==''){
-                validate = validate+"পাসওয়ার্ড নিশ্চিত করুন</br>";
+                validate = validate+"password confirm is required</br>";
             }
             if(password.trim()!='' && password_confirm.trim()!='' && password!=password_confirm){
-                validate = validate+"পাসওয়ার্ড এবং পাসওয়ার্ড নিশ্চিত মেলে না";
+                validate = validate+"password and password confirm does not match";
             }
             if(division==''){
-                validate = validate+"বিভাগ প্রয়োজন</br>";
+                validate = validate+"division is required</br>";
             }
             if(district==''){
-                validate = validate+"জেলা প্রয়োজন</br>";
+                validate = validate+"district is required</br>";
             }
             if(thana==''){
-                validate = validate+"থানা প্রয়োজন</br>";
+                validate = validate+"thana is required</br>";
             }
             if(zip==''){
-                validate = validate+"জিপ প্রয়োজন</br>";
+                validate = validate+"zip is required</br>";
             }
+
             if(validate==''){
                 var formData = new FormData($('#registration_form')[0]);
                 var url = '{{ url('save_public_user') }}';

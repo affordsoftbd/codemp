@@ -65,7 +65,7 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-success" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#"><i class="fa fa-user fa-sm pr-2"></i>প্রোফাইল</a>
                     <a class="dropdown-item" href="#"><i class="fa fa-cog fa-sm pr-2"></i>সেটিংস</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-sm pr-2"></i>প্রস্থান</a>
+                    <a class="dropdown-item" href="{{ url('logout')}}"><i class="fa fa-sign-out fa-sm pr-2"></i>প্রস্থান</a>
                 </div>
             </li>
 

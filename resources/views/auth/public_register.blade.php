@@ -48,6 +48,7 @@
                         <!-- First name -->
                         <div class="md-form">
                             <input type="text" name="first_name" id="first_name" class="form-control">
+                            <label for="firstname">নামের প্রথম অংশ</label>
                             <label for="first_name">নামের প্রথম অংশ</label>
                         </div>
                     </div>
@@ -55,6 +56,7 @@
                         <!-- Last name -->
                         <div class="md-form">
                             <input type="text" name="last_name" id="last_name" class="form-control">
+                            <label for="lastname">নামের শেষাংশ</label>
                             <label for="last_name">নামের শেষাংশ</label>
                         </div>
                     </div>
@@ -83,10 +85,18 @@
 
                 <!-- Address -->
                 <div class="form-row">
+                    <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="md-form">
                             <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
                             <label for="address">ঠিকানা</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- Phone number -->
+                        <div class="md-form">
+                            <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                            <label for="phone">ইউসার নাম</label>
                         </div>
                     </div>
                 </div>
@@ -158,6 +168,33 @@
             var validate = '';
 
             if(first_name.trim()==''){
+                validate = validate+"first name is required</br>";
+            }
+            if(phone.trim()==''){
+                validate = validate+"phone is required</br>";
+            }
+            var re = /\S+@\S+\.\S+/;
+            if(email.trim()!='' && !re.test(email)){
+                validate = validate+"invalid email address</br>";
+            }
+            if(username.trim()==''){
+                validate = validate+"username is required</br>";
+            }
+            if(password.trim()==''){
+                validate = validate+"password is required</br>";
+            }
+            if(password.trim()!='' && password.trim().length<8){
+                validate = validate+"password needs at least 8 digits</br>";
+            }
+            var regex = /\d/g;
+            if(password.trim()!='' && !regex.test(password.trim())){
+                validate = validate+"password should contain at least 1 number</br>";
+            }
+            if(password_confirm.trim()==''){
+                validate = validate+"password confirm is required</br>";
+            }
+            if(password.trim()!='' && password_confirm.trim()!='' && password!=password_confirm){
+                validate = validate+"password and password confirm does not match";
                 validate = validate+"নামের প্রথম অংশ প্রয়োজন</br>";
             }
             if(phone.trim()==''){

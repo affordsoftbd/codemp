@@ -9,19 +9,20 @@ use Auth;
 use DB;
 use Session;
 
-class CommonController extends Controller
+class PostController extends Controller
 {
 
-    public function getPost(Request $request){
+    public function getPostAjax(Request $request){
         try {
             $user = Auth::user();
             $leader_id= $user->parent_id;
-            $data['posts'] = Post::where('user_id',$leader_id)->limit(5)->get();
+            $post_creators = [$user->id,$leader_id];
+            $posts = Post::whereIn('user_id',$post_creators)->limit(5)->get();
 
-            return view('home');
+            return ['status'=>200,'reason'=>'','posts'=>$posts];
         }
         catch (\Exception $e) {
-            return ['status'=>401, 'options'=>$e->getMessage()];
+            return ['status'=>401, 'reason'=>$e->getMessage()];
         }
     }
 
@@ -29,13 +30,13 @@ class CommonController extends Controller
         try {
             $post = NEW Post();
             $post->user_id = Session::get('user_id');
-            $post->text = $request->text;
+            $post->description = $request->post_text;
             $post->save();
 
-            return ['status'=>200, 'options'=>$options];
+            return ['status'=>200, 'reason'=>'Your post saved successfully'];
         }
         catch (\Exception $e) {
-            return ['status'=>401, 'options'=>$e->getMessage()];
+            return ['status'=>401, 'reason'=>$e->getMessage()];
         }
     }
 }
