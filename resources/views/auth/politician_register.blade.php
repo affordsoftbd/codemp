@@ -124,9 +124,8 @@
                     </div>
                     <div class="col-sm-12">
                         <!-- Choose Role -->
-                        <select class="mdb-select" name="role_id" id="role_id" searchable="এখানে অনুসন্ধান করুন">
+                        <select class="mdb-select" name="role_id" id="role_id">
                             <option value="" disabled selected>আপনি কি হিসাবে নিবন্ধন করতে চান?</option>
-                            <option value="1">Select role</option>
                             @foreach($roles as $role)
                                 <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
                             @endforeach
