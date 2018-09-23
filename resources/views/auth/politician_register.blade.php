@@ -132,7 +132,7 @@
                         </select>
                     </div>
                     <div class="col-sm-12">
-                        <!-- Choose Leader -->
+                        <!-- Choose Zip -->
                         <select class="mdb-select" name="leader" id="leader" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার নেতা</option>
                         </select>
@@ -186,33 +186,11 @@
 @section('extra-script')
     <script>
 
-        $(document).on('change','#division', function(){
-            var division_id = $(this).val();
-            set_district(division_id,'');
-        });
-
-        $(document).on('change','#district', function(){
-            var district_id = $(this).val();
-            set_thana(district_id,'');
-        });
-
-        $(document).on('change','#thana', function(){
-            var thana_id = $(this).val();
-            set_zip(thana_id,'');
-        });
-
-        $(document).on('change','#role_id', function(){
-            var role_id = $(this).val();
-            set_leader(role_id,'');
-        });
-
         $(document).ready(function() {
-            $('#division').material_select();
-            $('#district').material_select();
-            $('#thana').material_select();
-            $('#zip').material_select();
-            $('#role_id').material_select();
-            $('#leader').material_select();
+           $('#division').material_select();
+           $('#district').material_select();
+           $('#thana').material_select();
+           $('#zip').material_select();
         });
 
         $(document).on('change','#division', function(){
@@ -244,6 +222,8 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#district').html(data.options);
+                        $('#district').val(district_id);
                         $('#district').material_select('destroy');
                         $('#district').html(data.options);
                         $('#district').val(district_id);
@@ -267,6 +247,8 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#thana').html(data.options);
+                        $('#thana').val(thana_id);
                         $('#thana').material_select('destroy');
                         $('#thana').html(data.options);
                         $('#thana').val(thana_id);
@@ -290,6 +272,8 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        $('#zip').html(data.options);
+                        $('#zip').val(zip_id);
                         $('#zip').material_select('destroy');
                         $('#zip').html(data.options);
                         $('#zip').val(zip_id);
@@ -313,10 +297,8 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                        $('#leader').material_select('destroy');
                         $('#leader').html(data.options);
                         $('#leader').selectpicker('refresh');
-                        $('#leader').material_select();
                     }
                     else{
                         alert(data);
