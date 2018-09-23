@@ -56,13 +56,10 @@ class DistrictTableSeeder extends Seeder
             ['district_name'=>'ঝালকাঠি', 'division_id'=>'5', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
             ['district_name'=>'পটুয়াখালী', 'division_id'=>'5', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
             ['district_name'=>'পিরোজপুর', 'division_id'=>'5', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
-            ['district_name'=>'হবিগঞ্জ', 'division_id'=>'6', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")]],
-            ['district_name'=>'মৌলভীবাজার', 'division_id'=>'6', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")]],
+            ['district_name'=>'হবিগঞ্জ', 'division_id'=>'6', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
+            ['district_name'=>'মৌলভীবাজার', 'division_id'=>'6', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
             ['district_name'=>'সুনামগঞ্জ', 'division_id'=>'6', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
             ['district_name'=>'সিলেট', 'division_id'=>'6', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
-
-            	// /
-
             ['district_name'=>'দিনাজপুর', 'division_id'=>'7', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
             ['district_name'=>'গাইবান্ধা', 'division_id'=>'7', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
             ['district_name'=>'কুড়িগ্রাম', 'division_id'=>'7', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
@@ -70,8 +67,15 @@ class DistrictTableSeeder extends Seeder
             ['district_name'=>'নীলফামারী', 'division_id'=>'7', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
             ['district_name'=>'পঞ্চগড়', 'division_id'=>'7', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
             ['district_name'=>'রংপুর', 'division_id'=>'7', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
-            ['district_name'=>'Thakurgaon', 'division_id'=>'7', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
-            /*['district_name'=>'সাতক্ষীরা', 'division_id'=>'4', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")]]*/
+            ['district_name'=>'ঠাকুরগাঁও', 'division_id'=>'7', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
+            ['district_name'=>'বগুড়া', 'division_id'=>'8', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
+            ['district_name'=>'জয়পুরহাট', 'division_id'=>'8', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
+            ['district_name'=>'নওগাঁ', 'division_id'=>'8', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
+            ['district_name'=>'নাটোর', 'division_id'=>'8', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
+            ['district_name'=>'চাঁপাইনবাবগঞ্জ', 'division_id'=>'8', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
+            ['district_name'=>'পাবনা', 'division_id'=>'8', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
+            ['district_name'=>'রাজশাহী', 'division_id'=>'8', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")],
+            ['district_name'=>'সিরাজগঞ্জ', 'division_id'=>'8', 'created_at' => strftime("%Y-%m-%d %H:%M:%S"), 'updated_at' => strftime("%Y-%m-%d %H:%M:%S")]
         ];
 
         

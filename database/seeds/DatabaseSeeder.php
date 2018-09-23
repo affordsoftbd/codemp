@@ -11,8 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        	// Seed the countries
-		$this->call('DivisionTableSeeder');
-		$this->command->info('Seeded the divisions!');
+        	// Seed the divisions
+		// $this->call('DivisionTableSeeder');
+		// $this->command->info('Seeded the divisions!');
+
+			// Seed the districts
+		$this->call('DistrictTableSeeder');
+		$this->command->info('Seeded the districts!');
     }
 }

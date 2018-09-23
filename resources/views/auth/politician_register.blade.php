@@ -295,7 +295,7 @@
                     if(data.status == 200){
                         $('#leader').material_select('destroy');
                         $('#leader').html(data.options);
-                        $('#leader').selectpicker('refresh');
+                        // $('#leader').val(zip_id);
                         $('#leader').material_select();
                     }
                     else{
