@@ -128,25 +128,6 @@
                     </div>
                     <div class="col-sm-12">
                         <!-- Choose Zip -->
-                        <select class="mdb-select" name="role_id" id="role_id" searchable="এখানে অনুসন্ধান করুন">
-                            <option value="" disabled selected>Register as</option>
-                            <option value="1">Select role</option>
-                            @foreach($roles as $role)
-                                <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-sm-12">
-                        <!-- Choose Zip -->
-                        <select class="mdb-select" name="role_id" id="role_id" searchable="এখানে অনুসন্ধান করুন">
-                            <option value="" disabled selected>হিসাবে নিবন্ধন করুন</option>
-                            @foreach($roles as $role)
-                                <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-sm-12">
-                        <!-- Choose Zip -->
                         <select class="mdb-select" name="leader" id="leader" searchable="এখানে অনুসন্ধান করুন">
                             <option value="" disabled selected>আপনার নেতা</option>
                         </select>
