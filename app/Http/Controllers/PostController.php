@@ -17,7 +17,24 @@ class PostController extends Controller
             $user = Auth::user();
             $leader_id= $user->parent_id;
             $post_creators = [$user->id,$leader_id];
-            $posts = Post::whereIn('user_id',$post_creators)->limit(5)->get();
+            $lastPost = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();
+            if(!empty($lastPost)){
+                $last_id = $lastPost->post_id;
+            }
+            else{
+                $last_id = 0;
+            }
+
+            $posts = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
+            ->with('comments')
+            ->with('likes')
+            ->join('users','users.id','=','posts.user_id')
+            ->join('user_details','users.id','=','user_details.user_id')
+            ->whereIn('posts.user_id',$post_creators)
+            ->where('post_id','<=',$last_id)
+            ->orderBy('post_id','desc')
+            ->limit(5)
+            ->get();
 
             return ['status'=>200,'reason'=>'','posts'=>$posts];
         }
