@@ -90,189 +90,14 @@
     </div>
 </div>
 
-<!-- text Card -->
-<div class="card my-4">
-    <!-- Card content -->
-    <div class="card-body">
-        <div class="row">
-            <div class="col-xl-1 col-lg-2 col-md-2">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="col-xl-11 col-lg-10 col-md-10">
-                <h6 class="font-weight-bold">Gracie Monahan</h6>
-                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
-                <a class="btn-floating btn-action ml-auto mr-4 red pull-right" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
-            </div>
-        </div>
-        <hr>
-        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
-    </div>
-
-  <!-- Card footer -->
-    <div class="rounded-bottom green text-center pt-3">
-        <ul class="list-unstyled list-inline font-small">
-            <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>12</a></li>
-            <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"></i>5</a></li>
-            <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"></i>4</a></li>
-            <li class="list-inline-item"><a href="{{ route('post') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>
-        </ul>
-    </div>
-</div>
-<!-- #ends# text Card -->
-
-<!-- slider Card -->
-<div class="card my-4">
-
-    <!-- Card image -->
-    <div class="view overlay mt-4" align="center">
-        <div class="lightgallery">
-            <p><span id="counter0">1</span> of 05</p>
-            <ul class="lightSlider">
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-8.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" />
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-9.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" data-sub-html="Focused client-server ability 14">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" />
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-10.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" data-sub-html="Focused client-server ability 15">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" />
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-11.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-11.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" />
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-13.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" />
-                </li>
-            </ul>
-        </div> 
-    </div>
-
-  <!-- Button -->
-  <a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
-
-    <!-- Card content -->
-    <div class="card-body">
-        <div class="row">
-            <div class="col-xl-1 col-lg-2 col-md-2">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="col-xl-11 col-lg-10 col-md-10">
-                <h6 class="font-weight-bold">Gracie Monahan</h6>
-                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
-            </div>
-        </div>
-        <hr>
-        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
-    </div>
-
-  <!-- Card footer -->
-  <div class="rounded-bottom green text-center pt-3">
-    <ul class="list-unstyled list-inline font-small">
-        <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>12</a></li>
-            <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"></i>5</a></li>
-            <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"></i>4</a></li>
-        <li class="list-inline-item"><a href="{{ route('image') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>
-    </ul>
-  </div>
+<div id="post_list">
 
 </div>
-<!-- #ends# slider Card -->
 
-<!-- slider Card -->
-<div class="card my-4">
 
-    <!-- Card image -->
-    <div class="view overlay mt-4" align="center">
-        <div class="lightgallery">
-            <p><span id="counter1">1</span> of 04</p>
-            <ul class="lightSlider">
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-1.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" />
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-1.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" />
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-3.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" />
-                </li>
-                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-4.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" data-sub-html="Focused client-server ability 10">
-                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" />
-                </li>
-            </ul>
-        </div> 
-    </div>
-
-  <!-- Button -->
-  <a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
-
-    <!-- Card content -->
-    <div class="card-body">
-        <div class="row">
-            <div class="col-xl-1 col-lg-2 col-md-2">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="col-xl-11 col-lg-10 col-md-10">
-                <h6 class="font-weight-bold">Gracie Monahan</h6>
-                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
-            </div>
-        </div>
-        <hr>
-        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
-    </div>
-
-  <!-- Card footer -->
-  <div class="rounded-bottom green text-center pt-3">
-    <ul class="list-unstyled list-inline font-small">
-        <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>12</a></li>
-        <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"></i>5</a></li>
-        <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"></i>4</a></li>
-        <li class="list-inline-item"><a href="{{ route('image') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>
-    </ul>
-  </div>
-
+<div class="row justify-content-center" id="load_more_spinner">
+    <i class="fa fa-spinner fa-spin my-5 content_load"></i>
 </div>
-<!-- #ends# slider Card -->
-
-<!-- slider Card -->
-<div class="card my-4">
-
-    <!-- Card image -->
-    <div class="view overlay mt-4" align="center">
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
-        </div> 
-    </div>
-
-  <!-- Button -->
-  <a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
-
-    <!-- Card content -->
-    <div class="card-body">
-        <div class="row">
-            <div class="col-xl-1 col-lg-2 col-md-2">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="col-xl-11 col-lg-10 col-md-10">
-                <h6 class="font-weight-bold">Gracie Monahan</h6>
-                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
-            </div>
-        </div>
-        <hr>
-        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
-    </div>
-
-  <!-- Card footer -->
-  <div class="rounded-bottom green text-center pt-3">
-    <ul class="list-unstyled list-inline font-small">
-        <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>12</a></li>
-        <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"></i>5</a></li>
-        <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"></i>4</a></li>
-        <li class="list-inline-item"><a href="{{ route('video') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>
-    </ul>
-  </div>
-
-</div>
-<!-- #ends# slider Card -->
 
 <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -299,16 +124,11 @@
 </div>
 
 
-<div class="row justify-content-center">
-    <i class="fa fa-spinner fa-spin my-5 content_load"></i>
-</div>
 
-
-
-<div class="success_messages hidden">
+<!--div class="success_messages hidden">
     <h1>স্বাগতম!</h1>
     <p>আপনি সফলভাবে লগ ইন করেছেন!</p>
-</div>
+</div-->
 
 
 
@@ -318,8 +138,28 @@
     <script>
 
         $(document).ready(function(){
-            getPost(0);
-        })
+            setTimeout(function(){
+                getPost(0);
+            },3000)
+        });
+
+        $(window).on('scroll', function() {
+
+            var eventFired = false,
+            objectPositionTop = $('#load_more_spinner').offset().top;
+
+            var currentPosition = $(document).scrollTop();
+            if (currentPosition > objectPositionTop && eventFired === false) {
+                eventFired = true;
+                alert(currentPosition+" > "+bjectPositionTop);
+            }
+
+        });
+
+        function start_count(){
+            alert('start_count');
+            //Add your code here
+        }
         
         $(document).on('submit', '#text_post_form', function(event){
             event.preventDefault();
@@ -362,6 +202,7 @@
         });
 
         function getPost(last_id){
+            var html = '';
             $.ajax({
                 type: "POST",
                 url: "{{ url('get_post_ajax') }}",
@@ -370,7 +211,125 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                        alert('post list');
+                        /*
+                        *Text post
+                        */
+                        html +='<div class="card my-4">';        
+                            html +='<div class="card-body">';
+                                html +='<div class="row">';
+                                    html +='<div class="col-xl-1 col-lg-2 col-md-2">';
+                                        html +='<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">';
+                                    html +='</div>';
+                                    html +='<div class="col-xl-11 col-lg-10 col-md-10">';
+                                        html +='<h6 class="font-weight-bold">Gracie Monahan</h6>';
+                                        html +='<small class="grey-text">Monday 20 August 2018, 09:50 AM</small>';
+                                        html +='<a class="btn-floating btn-action ml-auto mr-4 red pull-right" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
+                                    html +='</div>';
+                                html +='</div>';
+                                html +='<hr>';
+                                html +='Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.';
+                            html +='</div>';
+
+                            html +='<div class="rounded-bottom green text-center pt-3">';
+                                html +='<ul class="list-unstyled list-inline font-small">';
+                                    html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>12</a></li>';
+                                    html +='<li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"></i>5</a></li>';
+                                    html +='<li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"></i>4</a></li';                html +='<li class="list-inline-item"><a href="{{ route('post') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>';
+                                html +='</ul>';
+                            html +='</div>';
+                        html +='</div>';
+
+                        /*
+                        *Image post
+                        */
+                        html +='<div class="card my-4">';
+                            html +='<div class="view overlay mt-4" align="center">';
+                                html +='<div class="lightgallery">';
+                                    html +='<p><span id="counter0">1</span> of 05</p>';
+                                    html +='<ul class="lightSlider">';
+                                        html +='<li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-8.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" data-sub-html="Focused client-server ability 10">';
+                                            html +='<img src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" />';
+                                        html +='</li>';
+                                        html +='<li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-9.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" data-sub-html="Focused client-server ability 14">';
+                                            html +='<img src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" />';
+                                        html +='</li>';
+                                        html +='<li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-10.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" data-sub-html="Focused client-server ability 15">';
+                                            html +='<img src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" />';
+                                        html +='</li>';
+                                        html +='<li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-11.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-11.jpg" data-sub-html="Focused client-server ability 10">';
+                                            html +='<img src="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" />';
+                                        html +='</li>';
+                                        html +='<li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-13.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" data-sub-html="Focused client-server ability 10">';
+                                            html +='<img src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" />';
+                                        html +='</li>';
+                                    html +='</ul>';
+                                html +='</div> ';
+                            html +='</div>';
+
+                          html +='<a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
+
+                            html +='<div class="card-body">';
+                                html +='<div class="row">';
+                                    html +='<div class="col-xl-11 col-lg-10 col-md-10">';
+                                        html +='<h6 class="font-weight-bold">Gracie Monahan</h6>';
+                                        html +='<small class="grey-text">Monday 20 August 2018, 09:50 AM</small>';
+                                    html +='</div>';
+                                    html +='<div class="col-xl-1 col-lg-2 col-md-2">';
+                                        html +='<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">';
+                                    html +='</div>';
+                                html +='</div>';
+                                html +='<hr>';
+                                html +='Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.';
+                            html +='</div>';
+
+                          html +='<div class="rounded-bottom green text-center pt-3">';
+                            html +='<ul class="list-unstyled list-inline font-small">';
+                                html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>12</a></li>';
+                                    html +='<li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"></i>5</a></li>';
+                                    html +='<li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"></i>4</a></li>';
+                                html +='<li class="list-inline-item"><a href="{{ route('image') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>';
+                            html +='</ul>';
+                          html +='</div>';
+
+                        html +='</div>';
+
+                        /*
+                        * Video post
+                        */
+                        html +='<div class="card my-4">';
+                            html +='<div class="view overlay mt-4" align="center">';
+                                html +='<div class="embed-responsive embed-responsive-16by9">';
+                                    html +='<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>';
+                        html +='<div> ';
+                            html +='</div>';
+                          html +='<a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
+                            
+                            html +='<div class="card-body">';
+                                html +='<div class="row">';
+                                    html +='<div class="col-xl-1 col-lg-2 col-md-2">';
+                                        html +='<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">';
+                                    html +='</div>';
+                                    html +='<div class="col-xl-11 col-lg-10 col-md-10">';
+                                        html +='<h6 class="font-weight-bold">Gracie Monahan</h6>';
+                                        html +='<small class="grey-text">Monday 20 August 2018, 09:50 AM</small>';
+                                    html +='</div>';
+                                html +='</div>';
+                                html +='<hr>';
+                                html +='Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.';
+                            html +='</div>';
+
+                          html +='<div class="rounded-bottom green text-center pt-3">';
+                            html +='<ul class="list-unstyled list-inline font-small">';
+                                html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>12</a></li>';
+                                html +='<li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"></i>5</a></li>';
+                                html +='<li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"></i>4</a></li>';
+                                html +='<li class="list-inline-item"><a href="{{ route('video') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>';
+                            html +='</ul>';
+                          html +='</div>';
+
+                        html +='</div>';
+
+                        $('#post_list').html(html);
                     }
                     else{
                         alert(data);
