@@ -26,6 +26,8 @@ class PostController extends Controller
             }
 
             $posts = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
+            ->with('images')
+            ->with('videos')
             ->with('comments')
             ->with('likes')
             ->join('users','users.id','=','posts.user_id')

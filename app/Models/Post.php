@@ -10,6 +10,19 @@ class Post extends Model
     protected $primaryKey = 'post_id';
     public $timestamps = false;
 
+
+    #one to many detail tabe relation
+    public function images()
+    {
+        return $this->hasMany(PostImage::class,'post_id');
+    }
+
+    #one to many detail tabe relation
+    public function videos()
+    {
+        return $this->hasMany(PostVideo::class,'post_id');
+    }
+
     #one to many detail tabe relation
    	public function comments()
     {
