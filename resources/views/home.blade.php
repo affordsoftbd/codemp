@@ -225,13 +225,6 @@
                                 else{
                                     var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
                                 }
-                                var datetime = new Date(value.created_at);
-                                var datetime = (datetime.getMonth()+1)  + "/"
-                                    + datetime.getDate() + "/"
-                                    + datetime.getFullYear() +" "
-                                    + datetime.getHours() + ":"
-                                    + datetime.getMinutes()+ ":"
-                                    + datetime.getSeconds();
 
                                 html +='<div class="card my-4">';        
                                     html +='<div class="card-body">';
@@ -320,10 +313,10 @@
                             html +='<div class="view overlay mt-4" align="center">';
                                 html +='<div class="embed-responsive embed-responsive-16by9">';
                                     html +='<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>';
-                        html +='<div> ';
+                                html +='</div> ';
                             html +='</div>';
                           html +='<a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
-                            
+
                             html +='<div class="card-body">';
                                 html +='<div class="row">';
                                     html +='<div class="col-xl-1 col-lg-2 col-md-2">';
@@ -337,7 +330,6 @@
                                 html +='<hr>';
                                 html +='Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.';
                             html +='</div>';
-
                           html +='<div class="rounded-bottom green text-center pt-3">';
                             html +='<ul class="list-unstyled list-inline font-small">';
                                 html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>12</a></li>';
