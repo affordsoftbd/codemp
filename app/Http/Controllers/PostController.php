@@ -17,13 +17,8 @@ class PostController extends Controller
             $user = Auth::user();
             $leader_id= $user->parent_id;
             $post_creators = [$user->id,$leader_id];
-            $lastPost = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();
-            if(!empty($lastPost)){
-                $last_id = $lastPost->post_id;
-            }
-            else{
-                $last_id = 0;
-            }
+            $lastPost = Post::orderBy('post_id','desc')->first();
+            $last_id = $request->last_id;
 
             $posts = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
             ->with('images')
@@ -38,7 +33,7 @@ class PostController extends Controller
             ->limit(5)
             ->get();
 
-            return ['status'=>200,'reason'=>'','posts'=>$posts];
+            return ['status'=>200,'reason'=>'','posts'=>$posts,'last_id'=>$last_id];
         }
         catch (\Exception $e) {
             return ['status'=>401, 'reason'=>$e->getMessage()];
