@@ -123,8 +123,26 @@
 <!-- slider Card -->
 <div class="card my-4">
 
+    <!-- Card content -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-1 col-lg-2 col-md-2">
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
+            </div>
+            <div class="col-xl-11 col-lg-10 col-md-10">
+                <h6 class="font-weight-bold">Gracie Monahan</h6>
+                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
+            </div>
+        </div>
+        <hr>
+        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
+    </div>
+
+  <!-- Button -->
+  <a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
+
     <!-- Card image -->
-    <div class="view overlay mt-4" align="center">
+    <div class="view overlay my-4" align="center">
         <div class="lightgallery">
             <p><span id="counter0">1</span> of 05</p>
             <ul class="lightSlider">
@@ -147,24 +165,6 @@
         </div> 
     </div>
 
-  <!-- Button -->
-  <a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
-
-    <!-- Card content -->
-    <div class="card-body">
-        <div class="row">
-            <div class="col-xl-1 col-lg-2 col-md-2">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="col-xl-11 col-lg-10 col-md-10">
-                <h6 class="font-weight-bold">Gracie Monahan</h6>
-                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
-            </div>
-        </div>
-        <hr>
-        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
-    </div>
-
   <!-- Card footer -->
   <div class="rounded-bottom green text-center pt-3">
     <ul class="list-unstyled list-inline font-small">
@@ -181,8 +181,26 @@
 <!-- slider Card -->
 <div class="card my-4">
 
+    <!-- Card content -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-1 col-lg-2 col-md-2">
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
+            </div>
+            <div class="col-xl-11 col-lg-10 col-md-10">
+                <h6 class="font-weight-bold">Gracie Monahan</h6>
+                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
+            </div>
+        </div>
+        <hr>
+        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
+    </div>
+
+  <!-- Button -->
+  <a class="btn-floating btn-action ml-auto mr-4 mb-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
+
     <!-- Card image -->
-    <div class="view overlay mt-4" align="center">
+    <div class="view overlay my-4" align="center">
         <div class="lightgallery">
             <p><span id="counter1">1</span> of 04</p>
             <ul class="lightSlider">
@@ -202,24 +220,6 @@
         </div> 
     </div>
 
-  <!-- Button -->
-  <a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
-
-    <!-- Card content -->
-    <div class="card-body">
-        <div class="row">
-            <div class="col-xl-1 col-lg-2 col-md-2">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="col-xl-11 col-lg-10 col-md-10">
-                <h6 class="font-weight-bold">Gracie Monahan</h6>
-                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
-            </div>
-        </div>
-        <hr>
-        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
-    </div>
-
   <!-- Card footer -->
   <div class="rounded-bottom green text-center pt-3">
     <ul class="list-unstyled list-inline font-small">
@@ -236,16 +236,6 @@
 <!-- slider Card -->
 <div class="card my-4">
 
-    <!-- Card image -->
-    <div class="view overlay mt-4" align="center">
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
-        </div> 
-    </div>
-
-  <!-- Button -->
-  <a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
-
     <!-- Card content -->
     <div class="card-body">
         <div class="row">
@@ -259,6 +249,16 @@
         </div>
         <hr>
         Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
+    </div>
+
+  <!-- Button -->
+  <a class="btn-floating btn-action ml-auto mr-3 mb-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
+
+    <!-- Card image -->
+    <div class="view overlay my-3" align="center">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+        </div> 
     </div>
 
   <!-- Card footer -->
@@ -298,6 +298,10 @@
     </div>
 </div>
 
+<button type="button" class="btn btn-danger" id="appendnewcontainer">Click me To create new slider</button>
+<div id="fotoappendarea">
+    
+</div>
 
 <div class="row justify-content-center">
     <i class="fa fa-spinner fa-spin my-5 content_load"></i>
@@ -319,6 +323,31 @@
 
         $(document).ready(function(){
             getPost(0);
+
+            var imagesarray = [
+                "http://www.planwallpaper.com/static/images/Winter-Tiger-Wild-Cat-Images.jpg",
+                "http://www.gettyimages.ca/gi-resources/images/Homepage/Category-Creative/UK/UK_Creative_462809583.jpg",
+                "http://blog.jimdo.com/wp-content/uploads/2014/01/tree-247122.jpg",
+                "http://i765.photobucket.com/albums/xx291/just-meller/national%20geografic/Birds-national-geographic-6873734-1600-1200.jpg",
+                "http://www.gettyimages.com/gi-resources/images/CreativeImages/Hero-527920799.jpg"
+            ];
+
+            var hiddenimages = "",
+                    albumcover;
+
+            $("#appendnewcontainer").click(function() {
+
+                $("<span />", {
+                    class : "container",
+                    appendTo : $("#fotoappendarea"),
+                    append : $("<span />", {
+                        class : "imagecontiner",
+                        html : "<a class='dfed' href=" + imagesarray[1] + "><img src='" + imagesarray[1] + "' class='_34'/></a>"
+                    }).lightGallery()
+                });
+
+            });
+
         })
         
         $(document).on('submit', '#text_post_form', function(event){

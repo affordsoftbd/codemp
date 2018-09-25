@@ -26,9 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         try {
-            if(!Auth::check()){
+            /*if(!Auth::check()){
                 return redirect('login');
-            }
+            }*/
             return view('home');
         }
         catch (\Exception $e) {

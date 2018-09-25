@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name'); 
             $table->string('email')->unique();
-            $table->string('active_session_id');
+            $table->string('active_session_id')->nullable();
             $table->timestamp('last_login_time')->nullable();
             $table->timestamp('last_logout_time')->nullable();
             $table->string('username')->unique();
