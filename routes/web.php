@@ -35,11 +35,12 @@ Route::post('save_politician_user','AuthController@savePoliticianUser');
 Route::get('/home', 'HomeController@index')->name('home');
 
 /*Post routes*/
-Route::get('/post', 'HomeController@post')->name('post');
-Route::get('/image', 'HomeController@image')->name('image');
-Route::get('/video', 'HomeController@video')->name('video');
+Route::get('/post/{id?}', 'PostController@postDetails')->name('post');
+Route::get('/image/{id?}', 'PostController@imageDetails')->name('image');
+Route::get('/video/{id?}', 'PostController@videoDetails')->name('video');
 Route::post('saveTextPost', 'PostController@saveTextPost');
 Route::post('get_post_ajax', 'PostController@getPostAjax');
+Route::post('save_comment', 'PostController@saveComment');
 
 /*Common routes*/
 Route::post('leader_by_role', 'CommonController@getLeaderByRole');
