@@ -142,8 +142,8 @@
     <script>
 
         $(document).ready(function(){
-            $('#last_load').val({{ $lastPost->post_id }});
-            getPost({{ $lastPost->post_id }});
+            // $('#last_load').val({{ $lastPost->post_id }});
+            // getPost({{ $lastPost->post_id }});
 
              var imagesarray = [
                 "https://www.elastic.co/assets/bltada7771f270d08f6/enhanced-buzz-1492-1379411828-15.jpg",
@@ -153,16 +153,16 @@
             var hiddenimages = "",
                     albumcover;
 
-            $("#appendnewcontainer").click(function() {
-                $("#fotoappendarea").append("<div class='lightgallery my-5'><ul class= 'lightSlider'><li data-thumb=" + imagesarray[0] + " data-src=" + imagesarray[0] + "><img src='" + imagesarray[0] + "' class='_34'/></li><li data-thumb=" + imagesarray[1] + " data-src=" + imagesarray[1] + "><img src='" + imagesarray[1] + "' class='_34'/></li></ul></div>");
-                $('.lightSlider:last').lightSlider({
+            function refreshSlider(){ 
+                $('.lightSlider').each(function (index) {
+                    $(this).lightSlider({
                         gallery: true,
                         item: 1,
                         loop: true,
                         slideMargin: 0,
                         thumbItem: 9,
                         onBeforeSlide: function (el) {
-                            $('#counter' + index).text(el.getCurrentSlideCount());
+                            $('.slidercount:eq('+index+')').text(el.getCurrentSlideCount());
                         },
                         onSliderLoad: function(el) {
                             el.lightGallery({
@@ -170,7 +170,19 @@
                             });
                         }
                     });
-                });
+                });               
+            }   
+
+            var slider = refreshSlider(); 
+
+            $("#appendnewcontainer").click(function() {
+                if($('.lightSlider').length){
+                    $('.lightSlider').lightSlider().destroy();
+                }
+                $("#fotoappendarea").append("<div class='lightgallery my-5'><p><span class='slidercount'>1</span> of "+imagesarray.length+"</p><ul class= 'lightSlider'><li data-thumb=" + imagesarray[0] + " data-src=" + imagesarray[0] + "><img src='" + imagesarray[0] + "' class='_34'/></li><li data-thumb=" + imagesarray[1] + " data-src=" + imagesarray[1] + "><img src='" + imagesarray[1] + "' class='_34'/></li></ul></div>");
+                slider = refreshSlider();
+
+            });
 
             setTimeout(function(){
                 var last_load = $('#last_load').val(); 
