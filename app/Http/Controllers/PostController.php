@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\PostComment;
 use Auth;
 use DB;
 use Session;
@@ -52,5 +53,97 @@ class PostController extends Controller
         catch (\Exception $e) {
             return ['status'=>401, 'reason'=>$e->getMessage()];
         }
+    }
+
+    public function postDetails(Request $request)
+    {
+        try {
+            if(!Auth::check()){                
+                return view('post');
+            }
+            $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
+                ->with('images')
+                ->with('videos')
+                ->with('comments')
+                ->with('likes')
+                ->join('users','users.id','=','posts.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->first();
+            $data['post_comments'] = PostComment::select('post_comments.*','users.first_name','users.last_name','user_details.image_path')
+                ->join('users','users.id','=','post_comments.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->get();
+            return view('post_detail',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function imageDetails(Request $request)
+    {
+        try {
+            if(!Auth::check()){
+                return view('image');
+            }
+            $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
+                ->with('images')
+                ->with('videos')
+                ->with('comments')
+                ->with('likes')
+                ->join('users','users.id','=','posts.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->first();
+            $data['post_comments'] = PostComment::select('post_comments.*','users.first_name','users.last_name','user_details.image_path')
+                ->join('users','users.id','=','post_comments.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->get();
+            return view('image_detail',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function videoDetails(Request $request)
+    {
+        try {
+            if(!Auth::check()){
+                return view('video');
+            }
+            $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
+                ->with('images')
+                ->with('videos')
+                ->with('comments')
+                ->with('likes')
+                ->join('users','users.id','=','posts.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->first();
+            $data['post_comments'] = PostComment::select('post_comments.*','users.first_name','users.last_name','user_details.image_path')
+                ->join('users','users.id','=','post_comments.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->get();
+            return view('video_detail',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function saveComment(Request $request){
+        $comment = NEW PostComment();
+        $comment->parent_id = 0;
+        $comment->comment = $request->comment_text;
+        $comment->post_id = $request->post_id;
+        $comment->user_id = Session::get('user_id');
+        $comment->save();
+
+        return ['status'=>200,'reason'=>'Comment saved successfully'];
     }
 }

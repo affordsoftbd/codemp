@@ -40,43 +40,4 @@ class HomeController extends Controller
             return $e->getMessage();
         }
     }
-
-    public function post()
-    {
-        try {
-            if(!Auth::check()){
-                return view('post');
-            }
-            return view('home');
-        }
-        catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function image()
-    {
-        try {
-            if(!Auth::check()){
-                return view('image');
-            }
-            return view('home');
-        }
-        catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function video()
-    {
-        try {
-            if(!Auth::check()){
-                return view('video');
-            }
-            return view('home');
-        }
-        catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
 }
