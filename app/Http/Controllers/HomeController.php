@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 use Auth;
 use Session;
 
@@ -26,10 +27,14 @@ class HomeController extends Controller
     public function index()
     {
         try {
-            /*if(!Auth::check()){
+            if(!Auth::check()){
                 return redirect('login');
-            }*/
-            return view('home');
+            }
+            $user = Auth::user();
+            $leader_id= $user->parent_id;
+            $post_creators = [$user->id,$leader_id];
+            $data['lastPost'] = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();
+            return view('home',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();

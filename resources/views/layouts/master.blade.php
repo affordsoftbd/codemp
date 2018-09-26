@@ -59,9 +59,9 @@
     <!-- Bootstrap core JavaScript -->
     {{Html::script('js/bootstrap.min.js')}}
 
-    @yield('extra-script')
-
     @include('layouts.partials.scripts')
+
+    @yield('extra-script')
 
   </body>
 
