@@ -102,54 +102,32 @@
 <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="alert alert-success" id="comment_success" style="display:none"></div>
-            <div class="alert alert-danger" id="comment_error" style="display:none"></div>
-            <form id="comment_form" class="login-form" method="post" action="">
-                {{ csrf_field() }}  
-                <input type="hidden" name="post_id" id="post_id" value="">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">আপনার মন্তব্য লিখুন</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            {!! Form::open(['class'=>'md-form']) !!}
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">আপনার মন্তব্য লিখুন</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form">
+                    {!! Form::textarea('address', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'address')) !!}
+                    {!! Form::label('address', 'মন্তব্য') !!}
                 </div>
-                <div class="modal-body mx-3">
-                    <div class="md-form">
-                        {!! Form::textarea('address', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'name'=>'comment_text', 'id'=>'comment_text')) !!}
-                        {!! Form::label('address', 'মন্তব্য') !!}
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    {{ Form::button('পোস্ট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                {{ Form::button('পোস্ট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
 
-<button type="button" class="btn btn-danger" id="appendnewcontainer">Click me To create new slider</button>
-<div id="fotoappendarea">
-    
-</div>
+<!-- <button type="button" class="btn btn-danger" id="appendnewcontainer">Click me To create new slider</button>
+<div id="fotoappendarea"> -->
 
-
-<!--div class="success_messages hidden">
-    <h1>স্বাগতম!</h1>
-    <p>আপনি সফলভাবে লগ ইন করেছেন!</p>
-</div-->
-
-
-
-@endsection
-
-@section('extra-script')
-    <script>
-
-        $(document).ready(function(){
-            $('#last_load').val({{ $lastPost->post_id }});
-            getPost({{ $lastPost->post_id }});
-
-             var imagesarray = [
+<script>
+    /* var imagesarray = [
                 "https://www.elastic.co/assets/bltada7771f270d08f6/enhanced-buzz-1492-1379411828-15.jpg",
                 "https://images.pexels.com/photos/236047/pexels-photo-236047.jpeg?auto=compress&cs=tinysrgb&h=350"
             ];
@@ -187,7 +165,27 @@
                 $("#fotoappendarea").append("<div class='lightgallery my-5'><p><span class='slidercount'>1</span> of "+imagesarray.length+"</p><ul class= 'lightSlider'><li data-thumb=" + imagesarray[0] + " data-src=" + imagesarray[0] + "><img src='" + imagesarray[0] + "' class='_34'/></li><li data-thumb=" + imagesarray[1] + " data-src=" + imagesarray[1] + "><img src='" + imagesarray[1] + "' class='_34'/></li></ul></div>");
                 slider = refreshSlider();
 
-            });
+            });*/
+</script>
+    
+</div>
+
+
+<!--div class="success_messages hidden">
+    <h1>স্বাগতম!</h1>
+    <p>আপনি সফলভাবে লগ ইন করেছেন!</p>
+</div-->
+
+
+
+@endsection
+
+@section('extra-script')
+    <script>
+
+        $(document).ready(function(){
+            // $('#last_load').val({{ $lastPost->post_id }});
+            // getPost({{ $lastPost->post_id }});
 
             setTimeout(function(){
                 var last_load = $('#last_load').val(); 
@@ -253,7 +251,7 @@
                             $('#post_success').html('');
                             $('#post_danger').html('');
 
-                            getPost({{ $lastPost->post_id }});
+                            // getPost({{ $lastPost->post_id }});
                         }
                         else{
                             $('#post_success').hide();
@@ -299,13 +297,13 @@
                                     html +='<div class="card my-4">';        
                                         html +='<div class="card-body">';
                                             html +='<div class="row">';
-                                                html +='<div class="col-xl-1 col-lg-2 col-md-2 post_creator">';
+                                                html +='<div class="col-xl-1 col-lg-2 col-md-2">';
                                                     html +='<img src="'+profile_image+'" class="rounded-circle z-depth-1-half">';
                                                 html +='</div>';
                                                 html +='<div class="col-xl-11 col-lg-10 col-md-10">';
                                                     html +='<h6 class="font-weight-bold">'+value.first_name+' '+value.last_name+'</h6>';
                                                     html +='<small class="grey-text">'+value.created_at+'</small>';
-                                                    html +='<a class="btn-floating btn-action ml-auto mr-4 red pull-right" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
+                                                    html +='<a class="btn-floating btn-action ml-auto mr-4 red pull-right" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
                                                 html +='</div>';
                                             html +='</div>';
                                             html +='<hr>';
@@ -314,8 +312,8 @@
 
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
-                                                html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="fa fa-thumbs-o-up pr-1"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
-                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
+                                                html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>'+value.likes.length+'</a></li>';                
+                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
                                             html +='</ul>';
                                         html +='</div>';
                                     html +='</div>';
@@ -324,10 +322,10 @@
                                     /*
                                     *Image post
                                     */
+                                    image_post = "yes";
                                     html +='<div class="card my-4">';
                                         html +='<div class="view overlay mt-4" align="center">';
                                             html +='<div class="lightgallery">';
-                                                html +='<p><span id="counter0">1</span> of 05</p>';
                                                 html +='<ul class="lightSlider">';
                                                 $.each(value.images, function( index, image ) {
                                                     var image_url = '{{ url('/') }}'+image.image_path
@@ -336,10 +334,11 @@
                                                     html +='</li>';
                                                 });
                                                 html +='</ul>';
+                                                html +='<p class="my-4">'+Object.keys(value.images).length+' Images in this album</p>';
                                             html +='</div> ';
                                         html +='</div>';
 
-                                      html +='<a class="btn-floating btn-action ml-auto mr-4 red"  onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
+                                      html +='<a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
 
                                         html +='<div class="card-body">';
                                             html +='<div class="row">';
@@ -347,7 +346,7 @@
                                                     html +='<h6 class="font-weight-bold">'+value.first_name+' '+value.last_name+'</h6>';
                                                     html +='<small class="grey-text">'+value.created_at+'</small>';
                                                 html +='</div>';
-                                                html +='<div class="col-xl-1 col-lg-2 col-md-2 post_creator">';
+                                                html +='<div class="col-xl-1 col-lg-2 col-md-2">';
                                                     html +='<img src="'+profile_image+'" class="rounded-circle z-depth-1-half">';
                                                 html +='</div>';
                                             html +='</div>';
@@ -357,8 +356,8 @@
 
                                       html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
-                                                html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="fa fa-thumbs-o-up pr-1"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
-                                                html +='<li class="list-inline-item"><a href="{{ route('image') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
+                                                html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>'+value.likes.length+'</a></li>';                
+                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
                                             html +='</ul>';
                                         html +='</div>';
 
@@ -374,11 +373,11 @@
                                                 html +='<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>';
                                             html +='</div> ';
                                         html +='</div>';
-                                      html +='<a class="btn-floating btn-action ml-auto mr-4 red"  onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
+                                      html +='<a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
 
                                         html +='<div class="card-body">';
                                             html +='<div class="row">';
-                                                html +='<div class="col-xl-1 col-lg-2 col-md-2 post_creator">';
+                                                html +='<div class="col-xl-1 col-lg-2 col-md-2">';
                                                     html +='<img src="'+profile_image+'" class="rounded-circle z-depth-1-half">';
                                                 html +='</div>';
                                                 html +='<div class="col-xl-11 col-lg-10 col-md-10">';
@@ -391,8 +390,8 @@
                                         html +='</div>';
                                       html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
-                                                html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="fa fa-thumbs-o-up pr-1"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'<span></a></li>';                
-                                                html +='<li class="list-inline-item"><a href="{{ route('video') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
+                                                html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>'+value.likes.length+'</a></li>';                
+                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
                                             html +='</ul>';
                                         html +='</div>';
 
@@ -401,6 +400,21 @@
                             }); 
 
                             $('#post_list').append(html);
+                            if (image_post == "yes"){
+                                $('.lightSlider:last').lightSlider({
+                                    gallery: true,
+                                    item: 1,
+                                    loop: true,
+                                    slideMargin: 0,
+                                    thumbItem: 9,
+                                    onSliderLoad: function(el) {
+                                        el.lightGallery({
+                                            selector: '.lightgallery .lslide'
+                                        });
+                                    }
+                                });
+                            }
+                            delete image_post;
                         }
                         else{
                             alert(data);
@@ -410,80 +424,6 @@
                     },
                 });
             }
-        }
-
-        function show_comment_box(id){
-            $('#post_id').val(id);
-            $('#modalSubscriptionForm').modal('show');
-        }
-
-
-        $(document).on('submit', '#comment_form', function(event){
-            event.preventDefault();
-            var comment_text = $('#comment_text').val();
-            var validate = '';
-
-            if(comment_text==''){
-                validate = validate+"দয়া করে কিছু লিখুন";
-            }
-
-            if(validate==''){
-
-                var formData = new FormData($('#comment_form')[0]);
-                var url = '{{ url('save_comment') }}';
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: formData,
-                    async: false,
-                    success: function (data) {
-                        if(data.status == 200){
-                            show_success_message(data.reason);
-                            $('#post_id').val('');
-                            $('#comment_text').val('');
-                            $('#modalSubscriptionForm').modal('hide');
-                            setTimeout(function(){
-                                $('#alert-modal').modal('hide');
-                            },2000)
-                        }
-                        else{
-                            $('#comment_success').hide();
-                            $('#comment_error').show();
-                            $('#comment_error').html(data.reason);
-                        }
-                    },
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                });
-            }
-            else{
-                $('#comment_success').hide();
-                $('#comment_error').show();
-                $('#comment_error').html(validate);
-            }
-        });
-
-        function save_post_like(post_id){
-            $.ajax({
-                type: "POST",
-                url: "{{ url('save_post_like') }}",
-                data: { _token: "{{ csrf_token() }}",post_id:post_id},
-                dataType: "json",
-                cache : false,
-                success: function(data){
-                    if(data.status == 200){
-                        var current_like = $('#p_like_'+post_id).text();
-                        var new_like = parseInt(current_like)+data.like;
-                        //$('#p_like_'+post_id).text(new_like);
-                    }
-                    else{
-                        alert(data);
-                    }
-                } ,error: function(xhr, status, error) {
-                    alert(error);
-                },
-            });
         }
     </script>
 @endsection
