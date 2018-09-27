@@ -5,11 +5,11 @@
 @section('content')
 
 <div class="row">
-    <div class="col-xl-1 col-lg-2 col-md-2">
-        @if($post->image_path!=='')
+    <div class="col-xl-1 col-lg-2 col-md-2 post_creator">
+        @if($post->image_path!='')
             <img src="{{ url('/').$post->image_path}}" class="rounded-circle z-depth-1-half">
         @else
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
+            <img src="{{ url('/').'/img/avatar.png'}}" class="rounded-circle z-depth-1-half">
         @endif
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10">
@@ -37,11 +37,11 @@
         <button type="button" class="btn btn-sm btn-gplus"><i class="fa fa-google-plus"></i></button>
     </div-->
     @foreach($post_comments as $comment)
-    <div class="col-xl-1 col-lg-2 col-md-2 my-3">
+    <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
         @if($comment->image_path!='')
             <img src="{{ url('/').$post->image_path}}" class="rounded-circle z-depth-1-half">
         @else
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
+            <img src="{{ url('/').'/img/avatar.png'}}" class="rounded-circle z-depth-1-half">
         @endif
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10 my-3">

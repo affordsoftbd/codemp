@@ -24,6 +24,9 @@ footer {
   padding-top: 50px;
 }
 
+.post_creator img{
+  width: 100%;
+}
 .sticky-top { top: 6em; }
 
 .list-group-item.active {

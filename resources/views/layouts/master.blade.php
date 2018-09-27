@@ -44,6 +44,58 @@
         </div>
     </div>
 
+
+
+<!-- alert message START -->
+<div class="modal fade alert" role="dialog" id="alert-modal" style="z-index: 99999">
+    <div class="modal-dialog" style="width: 350px">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div id="alert-error-msg">
+                    <div>
+                        <i class="material-icons">error_outline</i>
+                    </div>
+                    <p class="text-danger"></p>
+                </div>
+                <div id="alert-success-msg">
+                    <div>
+                        <i class="material-icons">check</i>
+                    </div>
+                    <p class="text-success"></p>
+                </div>
+                <button class="btn btn-primary" data-dismiss="modal" id="alert-ok">ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- alert message End -->
+
+
+
+<!-- warning message START -->
+<div class="modal fade alert" role="dialog" id="warning-modal" style="z-index: 99999">
+    <div class="modal-dialog" style="width: 350px">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div id="alert-error-msg">
+                    <div>
+                        <i class="material-icons">error_outline</i>
+                    </div>
+                    <p class="text-danger">
+                        Are you sure you want to do this?
+                    </p>
+                </div>
+                <button class="btn btn-primary" id="warning_ok">Yes</button>
+                <button class="btn btn-danger" data-dismiss="modal" id="alert-ok">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- alert message End -->
+
   	@include('layouts.partials.alerts')
     @include('layouts.partials.scrolltotop')
 
@@ -62,6 +114,33 @@
     @include('layouts.partials.scripts')
 
     @yield('extra-script')
+
+    <script>      
+
+      function show_success_message($message){
+
+          $('#alert-modal').modal('show');
+
+          $('#alert-error-msg').hide();
+
+          $('#alert-success-msg').show();
+
+          $('#alert-success-msg p').html($message);
+
+      }
+
+      function show_error_message(message){
+
+          $('#alert-modal').modal('show');
+
+          $('#alert-error-msg').show();
+
+          $('#alert-success-msg').hide();
+
+          $('#alert-error-msg p').html(message);
+
+      }
+    </script>
 
   </body>
 

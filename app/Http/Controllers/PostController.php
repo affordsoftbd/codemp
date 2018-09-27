@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\PostComment;
+use App\Models\PostLike;
 use Auth;
 use DB;
 use Session;
@@ -144,6 +145,19 @@ class PostController extends Controller
         $comment->user_id = Session::get('user_id');
         $comment->save();
 
-        return ['status'=>200,'reason'=>'Comment saved successfully'];
+        return ['status'=>200,'reason'=>'মন্তব্য সফলভাবে সংরক্ষিত হয়েছে'];
+    }
+
+    public function savePostLike(Request $request){
+        $oldLike = PostLike::where('post_id',$request->post_id)->where('user_id',Session::get('user_id'))->first();
+        if(!empty($oldLike)){
+            return ['status'=>200,'reason'=>'Already liked','like'=>0];
+        }
+        $like = NEW PostLike();
+        $like->post_id = $request->post_id;
+        $like->user_id = Session::get('user_id');
+        $like->save();
+
+        return ['status'=>200,'reason'=>'New like saved'];
     }
 }
