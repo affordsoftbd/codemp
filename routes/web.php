@@ -41,6 +41,7 @@ Route::get('/video/{id?}', 'PostController@videoDetails')->name('video');
 Route::post('saveTextPost', 'PostController@saveTextPost');
 Route::post('get_post_ajax', 'PostController@getPostAjax');
 Route::post('save_comment', 'PostController@saveComment');
+Route::post('save_post_like', 'PostController@savePostLike');
 
 /*Common routes*/
 Route::post('leader_by_role', 'CommonController@getLeaderByRole');
