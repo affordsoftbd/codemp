@@ -123,8 +123,56 @@
     </div>
 </div>
 
-<!-- <button type="button" class="btn btn-danger" id="appendnewcontainer">Click me To create new slider</button>
-<div id="fotoappendarea"> -->
+<!-- 
+<button type="button" class="btn btn-danger" id="appendnewcontainer">Click me To create new slider</button>
+<div id="fotoappendarea"> 
+
+<div class="card my-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-1 col-lg-2 col-md-2">
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
+            </div>
+            <div class="col-xl-11 col-lg-10 col-md-10">
+                <h6 class="font-weight-bold">Gracie Monahan</h6>
+                <small class="grey-text">Monday 20 August 2018, 09:50 AM</small>
+            </div>
+        </div>
+        <hr>
+        Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
+    </div>
+  <a class="btn-floating btn-action ml-auto mr-4 mb-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
+
+    <div class="view overlay my-4" align="center">
+        <div class="lightgallery">
+            <p><span id="counter1">1</span> of 04</p>
+            <ul class="lightSlider">
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-1.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" />
+                </li>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-1.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" />
+                </li>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-3.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" />
+                </li>
+                <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-4.jpg" data-src="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" data-sub-html="Focused client-server ability 10">
+                    <img src="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" />
+                </li>
+            </ul>
+        </div> 
+    </div>
+  <div class="rounded-bottom green text-center pt-3">
+    <ul class="list-unstyled list-inline font-small">
+        <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>12</a></li>
+        <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-facebook pr-1"></i>5</a></li>
+        <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-twitter pr-1"></i>4</a></li>
+        <li class="list-inline-item"><a href="{{ route('image') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>
+    </ul>
+  </div>
+
+</div>
+-->
 
 <script>
     /* var imagesarray = [
@@ -184,8 +232,8 @@
     <script>
 
         $(document).ready(function(){
-            // $('#last_load').val({{ $lastPost->post_id }});
-            // getPost({{ $lastPost->post_id }});
+            $('#last_load').val({{ $lastPost->post_id }});
+            getPost({{ $lastPost->post_id }});
 
             setTimeout(function(){
                 var last_load = $('#last_load').val(); 
@@ -251,7 +299,7 @@
                             $('#post_success').html('');
                             $('#post_danger').html('');
 
-                            // getPost({{ $lastPost->post_id }});
+                            getPost({{ $lastPost->post_id }});
                         }
                         else{
                             $('#post_success').hide();
@@ -324,6 +372,23 @@
                                     */
                                     image_post = "yes";
                                     html +='<div class="card my-4">';
+
+                                        html +='<div class="card-body">';
+                                            html +='<div class="row">';
+                                                html +='<div class="col-xl-1 col-lg-2 col-md-2">';
+                                                    html +='<img src="'+profile_image+'" class="rounded-circle z-depth-1-half">';
+                                                html +='</div>';
+                                                html +='<div class="col-xl-11 col-lg-10 col-md-10">';
+                                                    html +='<h6 class="font-weight-bold">'+value.first_name+' '+value.last_name+'</h6>';
+                                                    html +='<small class="grey-text">'+value.created_at+'</small>';
+                                                html +='</div>';
+                                            html +='</div>';
+                                            html +='<hr>';
+                                            html +=value.description;
+                                        html +='</div>';
+
+                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
+
                                         html +='<div class="view overlay mt-4" align="center">';
                                             html +='<div class="lightgallery">';
                                                 html +='<ul class="lightSlider">';
@@ -336,22 +401,6 @@
                                                 html +='</ul>';
                                                 html +='<p class="my-4">'+Object.keys(value.images).length+' Images in this album</p>';
                                             html +='</div> ';
-                                        html +='</div>';
-
-                                      html +='<a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
-
-                                        html +='<div class="card-body">';
-                                            html +='<div class="row">';
-                                                html +='<div class="col-xl-11 col-lg-10 col-md-10">';
-                                                    html +='<h6 class="font-weight-bold">'+value.first_name+' '+value.last_name+'</h6>';
-                                                    html +='<small class="grey-text">'+value.created_at+'</small>';
-                                                html +='</div>';
-                                                html +='<div class="col-xl-1 col-lg-2 col-md-2">';
-                                                    html +='<img src="'+profile_image+'" class="rounded-circle z-depth-1-half">';
-                                                html +='</div>';
-                                            html +='</div>';
-                                            html +='<hr>';
-                                            html +=value.description;
                                         html +='</div>';
 
                                       html +='<div class="rounded-bottom green text-center pt-3">';
@@ -368,12 +417,6 @@
                                     * Video post
                                     */
                                     html +='<div class="card my-4">';
-                                        html +='<div class="view overlay mt-4" align="center">';
-                                            html +='<div class="embed-responsive embed-responsive-16by9">';
-                                                html +='<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>';
-                                            html +='</div> ';
-                                        html +='</div>';
-                                      html +='<a class="btn-floating btn-action ml-auto mr-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
 
                                         html +='<div class="card-body">';
                                             html +='<div class="row">';
@@ -388,7 +431,17 @@
                                             html +='<hr>';
                                             html +=value.description;
                                         html +='</div>';
-                                      html +='<div class="rounded-bottom green text-center pt-3">';
+
+                                        
+                                      html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
+
+                                        html +='<div class="view overlay my-3" align="center">';
+                                            html +='<div class="embed-responsive embed-responsive-16by9">';
+                                                html +='<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>';
+                                            html +='</div> ';
+                                        html +='</div>';
+
+                                        html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
                                                 html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>'+value.likes.length+'</a></li>';                
                                                 html +='<li class="list-inline-item"><a href="{{ route('post') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
@@ -413,6 +466,23 @@
                                         });
                                     }
                                 });
+                                /*$('.lightSlider').each(function (index) {
+                                    $(this).lightSlider({
+                                        gallery: true,
+                                        item: 1,
+                                        loop: true,
+                                        slideMargin: 0,
+                                        thumbItem: 9,
+                                        onBeforeSlide: function (el) {
+                                            $('.slidercount:eq('+index+')').text(el.getCurrentSlideCount());
+                                        },
+                                        onSliderLoad: function(el) {
+                                            el.lightGallery({
+                                                selector: '.lightgallery .lslide'
+                                            });
+                                        }
+                                    });
+                                });*/
                             }
                             delete image_post;
                         }
