@@ -171,12 +171,13 @@
                         }
                     });
                 });               
-            }   
+            }  
 
             var slider = refreshSlider(); 
 
             $("#appendnewcontainer").click(function() {
                 if($('.lightSlider').length){
+                    // slider.destroy();  
                     $('.lightSlider').lightSlider().destroy();
                 }
                 $("#fotoappendarea").append("<div class='lightgallery my-5'><p><span class='slidercount'>1</span> of "+imagesarray.length+"</p><ul class= 'lightSlider'><li data-thumb=" + imagesarray[0] + " data-src=" + imagesarray[0] + "><img src='" + imagesarray[0] + "' class='_34'/></li><li data-thumb=" + imagesarray[1] + " data-src=" + imagesarray[1] + "><img src='" + imagesarray[1] + "' class='_34'/></li></ul></div>");
