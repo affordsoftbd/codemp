@@ -11,19 +11,19 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return redirect('/home');
-})->name('welcome');
+})->name('welcome');*/
 
-/*Authentication route*/
+/*Authentication route
 Route::get('login','AuthController@login');
 Route::post('login','AuthController@postLogin');
-Route::get('logout','AuthController@logout');
+Route::get('logout','AuthController@logout');*/
 
 /*Authentication route*/
-Route::get('login','AuthController@login');
-Route::post('login','AuthController@postLogin');
-Route::get('logout','AuthController@logout');
+Route::get('login','AuthController@login')->name('login');
+Route::post('login','AuthController@postLogin')->name('postLogin');
+Route::get('logout','AuthController@logout')->name('logout');
 
 Route::get('/register/politician','AuthController@politicianRegister')->name('register.politician');
 Route::get('/register/public','AuthController@publicRegister')->name('register.public');
@@ -32,7 +32,8 @@ Route::post('save_politician_user','AuthController@savePoliticianUser');
 
 // Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('welcome');
+Route::get('/home', 'HomeController@home')->name('home');
 
 /*Post routes*/
 Route::get('/post/{id?}', 'PostController@postDetails')->name('post');

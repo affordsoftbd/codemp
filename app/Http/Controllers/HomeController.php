@@ -24,7 +24,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
+    {
+        if(Auth::check()){
+            return redirect('home');
+        }
+        return view('auth.login');
+    }
+
+    public function home()
     {
         try {
             if(!Auth::check()){
