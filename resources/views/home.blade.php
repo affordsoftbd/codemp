@@ -47,7 +47,7 @@
             <!--/.Panel 1-->
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel2" role="tabpanel">
-                {!! Form::open(['class'=>'md-form']) !!}
+                {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form']) !!}
                     
                     <div class="md-form">
                       {!! Form::text('album_title', null, array('class' =>'form-control', 'id'=>'album_title')) !!}
@@ -58,7 +58,7 @@
                         <div class="file-field">
                             <div class="btn btn-danger btn-sm float-left">
                             <span>নির্বাচন</span>
-                                {!! Form::file("image", ['class'=>'input_image', 'multiple'=>'true']) !!}
+                                {!! Form::file("image[]", ['class'=>'input_image', 'multiple'=>'true']) !!}
                             </div>
                             <div class="file-path-wrapper">
                                 {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইলগুলো চয়ন করুন']) !!}

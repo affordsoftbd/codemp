@@ -56,6 +56,20 @@ class PostController extends Controller
         }
     }
 
+    public function saveImagePost(Request $request){
+        try {
+            return $request->all();
+            /*$post = NEW Post();
+            $post->user_id = Session::get('user_id');
+            $post->description = $request->post_text;
+            $post->save();*/
+            // return ['status'=>200, 'reason'=>'Your post saved successfully'];
+        }
+        catch (\Exception $e) {
+            return ['status'=>401, 'reason'=>$e->getMessage()];
+        }
+    }
+
     public function postDetails(Request $request)
     {
         try {

@@ -108,6 +108,7 @@ $(document).ready(function(){
   $(".input_image").on("change", function(e) {
     var files = e.target.files,
     filesLength = files.length;
+    $(".preview_input").empty();
     for (var i = 0; i < filesLength; i++) {
       var f = files[i]
       var fileReader = new FileReader();
@@ -116,6 +117,7 @@ $(document).ready(function(){
         $(".preview_input").append("<span class='pip'><img src='"+ e.target.result+"'' title='"+file.name+"'' alt='preview' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove'><i class='fa fa-trash'></i></button></span>");
         $(".remove").click(function(){
           $(this).parent(".pip").remove();
+          // $(".file-path")
         });
       });
       fileReader.readAsDataURL(f);
