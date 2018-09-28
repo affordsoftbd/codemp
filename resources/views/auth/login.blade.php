@@ -26,14 +26,14 @@
                           <!-- Material input text -->
                             <div class="md-form">
                               <i class="fa fa-envelope prefix white-text"></i>
-                              <input class="form-control" id="username" name="username" type="text">
-                              <label for="identity">আপনার নাম</label>
+                              <input class="form-control" id="username" name="username" type="text" style="color:#ffffff;">
+                              <label for="username">আপনার নাম</label>
                             </div>
                           
                           <!-- Material input password -->
                             <div class="md-form">
                               <i class="fa fa-lock prefix white-text"></i>
-                              <input class="form-control" id="password" name="password" type="password" value="">
+                              <input class="form-control" id="password" name="password" type="password" style="color:#ffffff;">
                               <label for="password">আপনার পাসওয়ার্ড</label>
                             </div>
 
