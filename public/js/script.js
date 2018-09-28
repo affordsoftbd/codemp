@@ -108,16 +108,16 @@ $(document).ready(function(){
   $(".input_image").on("change", function(e) {
     var files = e.target.files,
     filesLength = files.length;
-    $(".preview_input").empty();
+    $("#feedback").empty().append("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
     for (var i = 0; i < filesLength; i++) {
-      var f = files[i]
+      var f = files[i];
+      name = f.name; var size = (f.size / 1024); size = (Math.round(size * 100) / 100);
       var fileReader = new FileReader();
       fileReader.onload = (function(e) {
         var file = e.target;
-        $(".preview_input").append("<span class='pip'><img src='"+ e.target.result+"'' title='"+file.name+"'' alt='preview' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove'><i class='fa fa-trash'></i></button></span>");
+        $("#feedback").append("<span class='pip'><img src='"+ file.result+"' alt="+file.name+"' class='img-thumbnail mx-3 my-3' width= '200' data-toggle='tooltip' data-placement='top' title='"+name+", Size: "+size+"KB!'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Remove Preview!'><i class='fa fa-trash'></i></button></span>");
         $(".remove").click(function(){
           $(this).parent(".pip").remove();
-          // $(".file-path")
         });
       });
       fileReader.readAsDataURL(f);
@@ -129,18 +129,28 @@ $(document).ready(function(){
   (function() {
     $('.upload_image').ajaxForm({
       beforeSend: function() {
+        $('#feedback').fadeOut('fast', function() {
+            $(this).html("<div class='my-5' align='center'><div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 0%; height: 20px' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>0%</div></div></div>").fadeIn('slow');
+        });
       },
-      uploadProgress: function() {
-        $(".image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2'>Uploading Image</h5><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>");
+      uploadProgress: function(event, position, total, percentComplete) {
+        percentVal = percentComplete + '%';
+        $('#feedback').html("<div class='my-5' align='center'><div class='progress md-progress my-5' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: "+percentVal+"; height: 20px' aria-valuenow='"+percentVal+"' aria-valuemin='0' aria-valuemax='100'>"+percentVal+"</div></div></div>");
       },
       success: function() {
-        $(".image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 light-green-text'><i class='fa fa-check-circle'></i> Image Uploaded</h5><p class='mt-1 mb-2 deep-orange-text'>Wait till the image is being saved...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
+        $('#feedback').html("<div class='my-5' align='center'><div class='progress md-progress my-5' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%; height: 20px' aria-valuenow='100%' aria-valuemin='0' aria-valuemax='100'>100%</div></div></div>");   
       },
       error: function() {
-       $(".image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 red-text'><i class='fa fa-warning'></i> Image can't be Uploaded!</h5><p class='mt-1 mb-2 light-blue-text'>Something went wrong in the server. Wait till the page refreshes...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
+        $("#feedback").html("<div class='my-5' align='center'><h5 class='mt-1 mb-2 red-text'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p></div>").fadeIn("slow");        
       },
       complete: function(xhr) {
-        location.reload();
+        $(".input_image").val(null);
+        $("#description").empty().val("");
+        $("#selected_texts").empty().val("");
+        $('#feedback').fadeOut('slow', function() {
+            $(this).html("<div class='my-5' align='center'><div class='well'>"+xhr.responseText+"</div></div>").fadeIn('slow');
+            $(this).delay(1000).fadeOut(2000);
+        });
       }
     }); 
   })();

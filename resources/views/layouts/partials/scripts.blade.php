@@ -28,6 +28,9 @@
     <!-- Bootstrap Material Datetime Picker Plugin Js -->
  	{{Html::script('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}
 
+    <!-- DropJone Js -->
+    {{Html::script('js/dropzone.js')}}
+
     <!-- TinyMCE -->
  	{{Html::script('plugins/tinymce/tinymce.min.js')}}
 

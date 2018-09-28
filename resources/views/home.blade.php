@@ -47,11 +47,10 @@
             <!--/.Panel 1-->
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel2" role="tabpanel">
-                {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form']) !!}
-                    
+                {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_image']) !!}
                     <div class="md-form">
-                      {!! Form::text('album_title', null, array('class' =>'form-control', 'id'=>'album_title')) !!}
-                      {!! Form::label('album_title', 'অ্যালবাম শিরনাম') !!}
+                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'name'=>'comment_text', 'id'=>'description')) !!}
+                        {!! Form::label('description', 'অ্যালবাম বিশদ') !!}
                     </div>
 
                     <div class="md-form">
@@ -61,12 +60,12 @@
                                 {!! Form::file("image[]", ['class'=>'input_image', 'multiple'=>'true']) !!}
                             </div>
                             <div class="file-path-wrapper">
-                                {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইলগুলো চয়ন করুন']) !!}
+                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_texts', 'placeholder'=>'আপনার ফাইলগুলো চয়ন করুন']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="preview_input"></div>
+                    <div id="feedback"></div>
                     <div class="text-center mt-4">
                         {{ Form::button('চিত্র আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
@@ -374,7 +373,7 @@
                                     /*
                                     *Image post
                                     */
-                                    image_post = "yes";
+                                    image_post = true;
                                     html +='<div class="card my-4">';
 
                                         html +='<div class="card-body">';
@@ -457,7 +456,7 @@
                             }); 
 
                             $('#post_list').append(html);
-                            if (image_post == "yes"){
+                            if (typeof image_post !== 'undefined'){
                                 $('.lightSlider:last').lightSlider({
                                     gallery: true,
                                     item: 1,
