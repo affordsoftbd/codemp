@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\PostImage;
+use App\Models\PostVideo;
 use App\Models\PostComment;
 use App\Models\PostLike;
 use Auth;
@@ -66,22 +67,48 @@ class PostController extends Controller
                 'images.*.mimes' => 'Only jpg,jpeg,png,bmp images are allowed',
                 'images.*.max' => 'Sorry! Maximum allowed size for an image is 2MB',
         ]);
-
-        $post = NEW Post();
-        $post->user_id = Session::get('user_id');
-        $post->description = $request->description;
-        $post->save();
-        $images = $request->file('images');
-        if($request->hasFile('images'))
-        {
-            foreach ($images as $image) {
-                $imageUpload = $this->uploadImage($image, 'all_images/', 800, 600);
-                $postImage = NEW PostImage();
-                $postImage->image_path = $imageUpload;
-                $postImage->post_id = $post->post_id;
-                $postImage->save();
-                echo "<p class='green-text'>Image uploaded as".$postImage->image_path."!</p>";
+        try {
+            $post = NEW Post();
+            $post->user_id = Session::get('user_id');
+            $post->description = $request->description;
+            $post->save();
+            $images = $request->file('images');
+            if($request->hasFile('images'))
+            {
+                foreach ($images as $image) {
+                    $imageUpload = $this->uploadImage($image, 'all_images/', 800, 600);
+                    $postImage = NEW PostImage();
+                    $postImage->image_path = $imageUpload;
+                    $postImage->post_id = $post->post_id;
+                    $postImage->save();
+                    echo "<p class='green-text'>Image uploaded as <b>".$postImage->image_path."</b>!</p>";
+                }
             }
+        }
+        catch (\Exception $e) {
+            return ['status'=>401, 'reason'=>$e->getMessage()];
+        }
+    }
+
+    public function saveVideoPost(Request $request){
+        $this->validate(request(),[
+            'video_path' => 'required|url',
+            'description' => 'required|string'
+        ]);
+        try {
+            $post = NEW Post();
+            $post->user_id = Session::get('user_id');
+            $post->description = $request->description;
+            $post->save();
+            $postVideo = NEW PostVideo();
+            $postVideo->video_path = $request->video_path;
+            $postVideo->post_id = $post->post_id;
+            $postVideo->save();
+            echo "<p class='green-text'>Video shared successfully!</p>";
+
+        }
+        catch (\Exception $e) {
+            return ['status'=>401, 'reason'=>$e->getMessage()];
         }
     }
 

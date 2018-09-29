@@ -41,6 +41,7 @@ Route::get('/image/{id?}', 'PostController@imageDetails')->name('image');
 Route::get('/video/{id?}', 'PostController@videoDetails')->name('video');
 Route::post('saveTextPost', 'PostController@saveTextPost');
 Route::post('saveImagePost', 'PostController@saveImagePost')->name('image.save');
+Route::post('saveVideoPost', 'PostController@saveVideoPost')->name('video.save');
 Route::post('get_post_ajax', 'PostController@getPostAjax');
 Route::post('save_comment', 'PostController@saveComment');
 Route::post('save_post_like', 'PostController@savePostLike');

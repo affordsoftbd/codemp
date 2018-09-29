@@ -49,8 +49,8 @@
             <div class="tab-pane fade" id="panel2" role="tabpanel">
                 {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_image']) !!}
                     <div class="md-form">
-                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'description')) !!}
-                        {!! Form::label('description', 'অ্যালবাম বিশদ') !!}
+                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'image_description')) !!}
+                        {!! Form::label('image_description', 'অ্যালবাম বিশদ') !!}
                     </div>
 
                     <div class="md-form">
@@ -60,31 +60,37 @@
                                 {!! Form::file("images[]", ['class'=>'input_image', 'multiple'=>'true']) !!}
                             </div>
                             <div class="file-path-wrapper">
-                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_texts', 'placeholder'=>'আপনার ফাইলগুলো চয়ন করুন']) !!}
+                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_texts', 'placeholder'=>'আপনার ফাইলগুলো নির্বাচন করুন']) !!}
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
-                    <div id="feedback"></div>
                     <div class="text-center mt-4">
-                        {{ Form::button('চিত্র আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                        {{ Form::button('চিত্র আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class='my-5 red-text' align='center'>
+                        <div id="image_upload_feedback"></div>
                     </div>
                 {!! Form::close() !!}
             </div>
             <!--/.Panel 2-->
             <!--Panel 3-->
             <div class="tab-pane fade" id="panel3" role="tabpanel">
-                {!! Form::open(['class'=>'md-form']) !!}
+                {!! Form::open(['method' => 'post', 'route' => ['video.save'], 'class'=>'md-form share_video']) !!}
                     <div class="md-form">
-                        {!! Form::text('video_path', null, array('class'=>'form-control', 'id'=>'video_path')) !!}
+                        {!! Form::url('video_path', null, array('class'=>'form-control mt-3', 'id'=>'video_path')) !!}
                         {!! Form::label('video_path', 'ভিডিও লিংক') !!}
                     </div>
                     <div class="md-form">
-                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'description')) !!}
-                        {!! Form::label('description', 'ভিডিও বিবরণ') !!}
+                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'video_description')) !!}
+                        {!! Form::label('video_description', 'ভিডিও বিবরণ') !!}
                     </div>
                     <div class="text-center mt-4">
-                        {{ Form::button('ভিডিও আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                        {{ Form::button('ভিডিও শেয়ার করুন<i class="fa fa-share fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class='my-5 red-text' align='center'>
+                        <div id="video_upload_feedback"></div>
                     </div>
                 {!! Form::close() !!}
             </div>
@@ -575,6 +581,87 @@
                 },
             });
         }
+
+
+
+        //  Show image preview
+      $(".input_image").on("change", function(e) {
+        var files = e.target.files,
+        filesLength = files.length;
+        $("#image_upload_feedback").attr('style', '');
+        $("#image_upload_feedback").html("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
+        for (var i = 0; i < filesLength; i++) {
+          var f = files[i];
+          var fileReader = new FileReader();
+          fileReader.onload = (function(e) {
+            var file = e.target;
+            $("#image_upload_feedback").append("<span class='pip'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Remove Preview!'><i class='fa fa-trash'></i></button></span>");
+            $(".remove").click(function(){
+              $(this).parent(".pip").remove();
+            });
+          });
+          fileReader.readAsDataURL(f);
+        }
+      });
+
+        //  Jquery form for uploading image and showing progress
+
+      (function() {
+        $('.upload_image').ajaxForm({
+          beforeSend: function() {
+            $('#image_upload_feedback').fadeOut('fast', function() {
+                $(this).html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 0%; height: 20px' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>0%</div></div>").fadeIn('slow');
+            });
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+            percentVal = percentComplete + '%';
+            $('#image_upload_feedback').html("<div class='progress md-progress my-5' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: "+percentVal+"; height: 20px' aria-valuenow='"+percentVal+"' aria-valuemin='0' aria-valuemax='100'>"+percentVal+"</div></div>");
+          },
+          success: function() {
+            $('#image_upload_feedback').html("<div class='progress md-progress my-5' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%; height: 20px' aria-valuenow='100%' aria-valuemin='0' aria-valuemax='100'>100%</div></div>");   
+          },
+          error: function() {
+            $("#image_upload_feedback").html("<h5 class='mt-1 mb-2 red-text'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p>").fadeIn("slow");        
+          },
+          complete: function(xhr) {
+            $(".input_image").val(null);
+            $("#image_description").empty().val("");
+            $("#selected_texts").empty().val("");
+            $('#image_upload_feedback').fadeOut('slow', function() {
+                $(this).html(xhr.responseText).fadeIn('slow');
+                $(this).delay(1000).fadeOut(2000);
+            });
+          }
+        }); 
+      })();
+
+
+
+        (function() {
+            $('.share_video').ajaxForm({
+              beforeSend: function() {
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>Connecting with server...</p>");
+              },
+              uploadProgress: function() {
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>Video is being saved! Please wait...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>");
+              },
+              success: function() {
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 green-text'>Video has been saved. Wait till return message..</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>").fadeIn("slow");        
+              },
+              error: function() {
+               $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 red-text'>Something went wrong in the server. Please try again!</p>").fadeIn("slow");        
+              },
+              complete: function(xhr) {
+                $("#video_path").empty().val("");
+                $("#video_description").empty().val("");
+                $('#video_upload_feedback').fadeOut('slow', function() {
+                    $(this).html(xhr.responseText).fadeIn('slow');
+                    $(this).delay(1000).fadeOut(2000);
+                });
+              }
+            }); 
+        })();
+
     </script>
 @endsection
 

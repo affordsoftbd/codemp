@@ -103,58 +103,6 @@ $(document).ready(function(){
       });
   } 
 
-    //  Show image preview
-
-  $(".input_image").on("change", function(e) {
-    var files = e.target.files,
-    filesLength = files.length;
-    $("#feedback").attr('style', '');
-    $("#feedback").html("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
-    for (var i = 0; i < filesLength; i++) {
-      var f = files[i];
-      var fileReader = new FileReader();
-      fileReader.onload = (function(e) {
-        var file = e.target;
-        $("#feedback").append("<span class='pip'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Remove Preview!'><i class='fa fa-trash'></i></button></span>");
-        $(".remove").click(function(){
-          $(this).parent(".pip").remove();
-        });
-      });
-      fileReader.readAsDataURL(f);
-    }
-  });
-
-    //  Jquery form for uploading image and showing progress
-
-  (function() {
-    $('.upload_image').ajaxForm({
-      beforeSend: function() {
-        $('#feedback').fadeOut('fast', function() {
-            $(this).html("<div class='my-5' align='center'><div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 0%; height: 20px' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>0%</div></div></div>").fadeIn('slow');
-        });
-      },
-      uploadProgress: function(event, position, total, percentComplete) {
-        percentVal = percentComplete + '%';
-        $('#feedback').html("<div class='my-5' align='center'><div class='progress md-progress my-5' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: "+percentVal+"; height: 20px' aria-valuenow='"+percentVal+"' aria-valuemin='0' aria-valuemax='100'>"+percentVal+"</div></div></div>");
-      },
-      success: function() {
-        $('#feedback').html("<div class='my-5' align='center'><div class='progress md-progress my-5' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%; height: 20px' aria-valuenow='100%' aria-valuemin='0' aria-valuemax='100'>100%</div></div></div>");   
-      },
-      error: function() {
-        $("#feedback").html("<div class='my-5' align='center'><h5 class='mt-1 mb-2 red-text'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p></div>").fadeIn("slow");        
-      },
-      complete: function(xhr) {
-        $(".input_image").val(null);
-        $("#description").empty().val("");
-        $("#selected_texts").empty().val("");
-        $('#feedback').fadeOut('slow', function() {
-            $(this).html("<div class='my-5 red-text' align='center'><div class='well'>"+xhr.responseText+"</div></div>").fadeIn('slow');
-            $(this).delay(1000).fadeOut(2000);
-        });
-      }
-    }); 
-  })();
-
     //  Sweet alert for warning
 
   $('.form_warning_sweet_alert').on('click',function(e){
