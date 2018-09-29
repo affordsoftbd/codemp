@@ -595,9 +595,11 @@
           var fileReader = new FileReader();
           fileReader.onload = (function(e) {
             var file = e.target;
-            $("#image_upload_feedback").append("<span class='pip'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Remove Preview!'><i class='fa fa-trash'></i></button></span>");
-            $(".remove").click(function(){
-              $(this).parent(".pip").remove();
+            $("#image_upload_feedback").append("<span class='pip'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Hide Preview!'><i class='fa fa-eye-slash'></i></button></span>").hide().fadeIn(500+Math.pow(i, 2));
+            $(".remove").click(function() {
+                $(this).parent(".pip").fadeOut("normal", function() {
+                     $(this).parent(".pip").remove();
+                });
             });
           });
           fileReader.readAsDataURL(f);
