@@ -112,11 +112,10 @@ $(document).ready(function(){
     $("#feedback").html("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
     for (var i = 0; i < filesLength; i++) {
       var f = files[i];
-      name = f.name; var size = (f.size / 1024); size = (Math.round(size * 100) / 100);
       var fileReader = new FileReader();
       fileReader.onload = (function(e) {
         var file = e.target;
-        $("#feedback").append("<span class='pip'><img src='"+ file.result+"' alt="+file.name+"' class='img-thumbnail mx-3 my-3' width= '200' data-toggle='tooltip' data-placement='top' title='"+name+", Size: "+size+"KB!'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Remove Preview!'><i class='fa fa-trash'></i></button></span>");
+        $("#feedback").append("<span class='pip'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Remove Preview!'><i class='fa fa-trash'></i></button></span>");
         $(".remove").click(function(){
           $(this).parent(".pip").remove();
         });
@@ -149,7 +148,7 @@ $(document).ready(function(){
         $("#description").empty().val("");
         $("#selected_texts").empty().val("");
         $('#feedback').fadeOut('slow', function() {
-            $(this).html("<div class='my-5' align='center'><div class='well'>"+xhr.responseText+"</div></div>").fadeIn('slow');
+            $(this).html("<div class='my-5 red-text' align='center'><div class='well'>"+xhr.responseText+"</div></div>").fadeIn('slow');
             $(this).delay(1000).fadeOut(2000);
         });
       }

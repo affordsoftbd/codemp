@@ -49,7 +49,7 @@
             <div class="tab-pane fade" id="panel2" role="tabpanel">
                 {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_image']) !!}
                     <div class="md-form">
-                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'name'=>'comment_text', 'id'=>'description')) !!}
+                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'description')) !!}
                         {!! Form::label('description', 'অ্যালবাম বিশদ') !!}
                     </div>
 
@@ -57,7 +57,7 @@
                         <div class="file-field">
                             <div class="btn btn-danger btn-sm float-left">
                             <span>নির্বাচন</span>
-                                {!! Form::file("image[]", ['class'=>'input_image', 'multiple'=>'true']) !!}
+                                {!! Form::file("images[]", ['class'=>'input_image', 'multiple'=>'true']) !!}
                             </div>
                             <div class="file-path-wrapper">
                                 {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_texts', 'placeholder'=>'আপনার ফাইলগুলো চয়ন করুন']) !!}
