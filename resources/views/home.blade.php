@@ -68,7 +68,7 @@
                         {{ Form::button('চিত্র আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
                     <div class="clearfix"></div>
-                    <div class='my-5 red-text' align='center'>
+                    <div class='my-5 red-text'>
                         <div id="image_upload_feedback"></div>
                     </div>
                 {!! Form::close() !!}
@@ -595,7 +595,7 @@
           var fileReader = new FileReader();
           fileReader.onload = (function(e) {
             var file = e.target;
-            $("#image_upload_feedback").append("<span class='pip'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Hide Preview!'><i class='fa fa-eye-slash'></i></button></span>").hide().fadeIn(500+Math.pow(i, 2));
+            $("#image_upload_feedback").append("<span class='pip' align='center'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Hide Preview!'><i class='fa fa-eye-slash'></i></button></span>").hide().fadeIn(500+Math.pow(i, 2));
             $(".remove").click(function() {
                 $(this).parent(".pip").fadeOut("normal", function() {
                      $(this).parent(".pip").remove();
@@ -623,14 +623,14 @@
             $('#image_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%; height: 20px' aria-valuenow='100%' aria-valuemin='0' aria-valuemax='100'>100%</div></div>");   
           },
           error: function() {
-            $("#image_upload_feedback").html("<h5 class='mt-1 mb-2 red-text'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p>").fadeIn("slow");        
+            $("#image_upload_feedback").html("<h5 class='mt-1 mb-2 red-text text-center'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text text-center'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p>").fadeIn("slow");        
           },
           complete: function(xhr) {
             $(".input_image").val(null);
             $("#image_description").empty().val("");
             $("#selected_texts").empty().val("");
             $('#image_upload_feedback').fadeOut('slow', function() {
-                $(this).html(xhr.responseText).fadeIn('slow');
+                $(this).html("<center>"+xhr.responseText+"</center>").fadeIn('slow');
                 $(this).delay(1000).fadeOut(2000);
             });
           }
