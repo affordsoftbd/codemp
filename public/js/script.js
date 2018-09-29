@@ -108,7 +108,8 @@ $(document).ready(function(){
   $(".input_image").on("change", function(e) {
     var files = e.target.files,
     filesLength = files.length;
-    $("#feedback").empty().append("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
+    $("#feedback").attr('style', '');
+    $("#feedback").html("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
     for (var i = 0; i < filesLength; i++) {
       var f = files[i];
       name = f.name; var size = (f.size / 1024); size = (Math.round(size * 100) / 100);

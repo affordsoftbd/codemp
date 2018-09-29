@@ -60,24 +60,24 @@ class PostController extends Controller
         try {
             return $request->all();
             /*for ($i = 0; $i < count($_FILES['attachment']['name']); $i++) {
-        $directory = 'all_student_files/'.$this->setFoldername().'/';
-        $validextensions = array("pdf", "doc", "docx");  
-        $ext = explode('.', basename($_FILES['attachment']['name'][$i]));
-        $file_extension = end($ext); 
-        $attachment_name = time()."_".md5(uniqid())."_".$this->getFileName()."- ".$i."." . $ext[count($ext) -1];  
-        if (($_FILES["attachment"]["size"][$i] < 2000000) && in_array($file_extension, $validextensions)) {
-          if (move_uploaded_file($_FILES['attachment']['tmp_name'][$i], $directory. $attachment_name)) {
-            $message[] = array('message'=> "<p class='col-green'><i class='fa fa-check-circle'></i> ".$_FILES['attachment']['name'][$i]." has been uploaded successfully!</p>");
-          } 
-          else {
-            $message[] = array('message'=> "<p class='col-red'><i class='fa fa-info-circle'></i> There was something wrong while uploading ".$_FILES['attachment']['name'][$i]."</p>");
-          }
-        } 
-        else {
-          $message[] = array('message'=> "<p class='col-warning'><i class='fa fa-question-circle'></i> Invalid file Size or Type Detected for attachment #".$_FILES['attachment']['name'][$i].". Try uploading only Word and PDF files under 500KB</p>");
-        }
-      }
-      return $message;*/
+                $directory = 'all_student_files/'.$this->setFoldername().'/';
+                $validextensions = array("pdf", "doc", "docx");  
+                $ext = explode('.', basename($_FILES['attachment']['name'][$i]));
+                $file_extension = end($ext); 
+                $attachment_name = time()."_".md5(uniqid())."_".$this->getFileName()."- ".$i."." . $ext[count($ext) -1];  
+                if (($_FILES["attachment"]["size"][$i] < 2000000) && in_array($file_extension, $validextensions)) {
+                  if (move_uploaded_file($_FILES['attachment']['tmp_name'][$i], $directory. $attachment_name)) {
+                    $message[] = array('message'=> "<p class='col-green'><i class='fa fa-check-circle'></i> ".$_FILES['attachment']['name'][$i]." has been uploaded successfully!</p>");
+                  } 
+                  else {
+                    $message[] = array('message'=> "<p class='col-red'><i class='fa fa-info-circle'></i> There was something wrong while uploading ".$_FILES['attachment']['name'][$i]."</p>");
+                  }
+                } 
+                else {
+                  $message[] = array('message'=> "<p class='col-warning'><i class='fa fa-question-circle'></i> Invalid file Size or Type Detected for attachment #".$_FILES['attachment']['name'][$i].". Try uploading only Word and PDF files under 500KB</p>");
+                }
+              }
+              return $message;*/
         }
         catch (\Exception $e) {
             return ['status'=>401, 'reason'=>$e->getMessage()];
