@@ -75,10 +75,13 @@
             <!--Panel 3-->
             <div class="tab-pane fade" id="panel3" role="tabpanel">
                 {!! Form::open(['class'=>'md-form']) !!}
-                    <button type="button" class="btn btn-danger btn-lg btn-block"><i class="fa fa-video-camera fa-sm pr-2"></i>ভিডিওটি শুরু করতে এখানে ক্লিক করুন</button>
                     <div class="md-form">
-                        {!! Form::textarea('address', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'address')) !!}
-                        {!! Form::label('address', 'ভিডিও বিবরণ') !!}
+                        {!! Form::text('video_path', null, array('class'=>'form-control', 'id'=>'video_path')) !!}
+                        {!! Form::label('video_path', 'ভিডিও লিংক') !!}
+                    </div>
+                    <div class="md-form">
+                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'description')) !!}
+                        {!! Form::label('description', 'ভিডিও বিবরণ') !!}
                     </div>
                     <div class="text-center mt-4">
                         {{ Form::button('ভিডিও আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
@@ -296,7 +299,7 @@
                     async: false,
                     success: function (data) {
                         if(data.status == 200){
-                            //tinyMCE.get('#post_text').setContent('');
+                            tinyMCE.activeEditor.setContent('');
                             $('#post_success').hide();
                             $('#post_danger').hide();
                             $('#post_success').html('');
