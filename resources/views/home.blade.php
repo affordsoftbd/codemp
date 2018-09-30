@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "ফিড || ")
+@section('title', "ফিড ||")
 
 @section('content')
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "ভিডিও মন্তব্যসমূহ || ")
+@section('title', "ভিডিও মন্তব্যসমূহ ||")
 
 @section('content')
 

@@ -22,7 +22,7 @@
 
         <!-- Links -->
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item {{ Route::is('home')? 'active':'' }}">
                 <a class="nav-link" href="{{ route('home') }}">
                     <i class="fa fa-rss pr-1"></i>
                     ফিড

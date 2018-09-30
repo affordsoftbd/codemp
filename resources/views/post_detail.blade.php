@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "পোস্ট মন্তব্যসমূহ || ")
+@section('title', "পোস্ট মন্তব্যসমূহ ||")
 
 @section('content')
 

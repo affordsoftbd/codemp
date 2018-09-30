@@ -1,5 +1,8 @@
 <div class="list-group sticky-top">
-    <a href="#" class="list-group-item active waves-effect">
+    <a href="{{ route('home') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('home')? 'active':'' }}">
+        <i class="fa fa-rss fa-sm pr-2"></i>ফিড
+    </a>
+    <a href="#" class="list-group-item list-group-item-action waves-effect">
     	<i class="fa fa-group fa-sm pr-2"></i>গ্রুপ
 	</a>
 	<a href="#" class="list-group-item list-group-item-action waves-effect">
@@ -14,4 +17,7 @@
     <a href="#" class="list-group-item list-group-item-action waves-effect">
     	<i class="fa fa-video-camera fa-sm pr-2"></i>ভিডিও চ্যাট
 	</a>
+    <a href="{{ route('user.profile', 'amar_neta') }}" class="list-group-item list-group-item-action {{Route::is('user.profile')? 'active':''}} waves-effect">
+        <i class="fa fa-user fa-sm pr-2"></i>প্রোফাইল
+    </a>
 </div>
