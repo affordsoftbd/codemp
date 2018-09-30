@@ -379,7 +379,7 @@
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
                                                 html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="fa fa-thumbs-o-up pr-1"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
-                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
+                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
                                             html +='</ul>';
                                         html +='</div>';
                                     html +='</div>';
@@ -405,7 +405,7 @@
                                             html +=value.description;
                                         html +='</div>';
 
-                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
 
                                         html +='<div class="view overlay mt-4" align="center">';
                                             html +='<div class="lightgallery">';
@@ -423,8 +423,8 @@
 
                                       html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
-                                                html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>'+value.likes.length+'</a></li>';                
-                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
+                                                html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="fa fa-thumbs-o-up pr-1"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
+                                                 html +='<li class="list-inline-item"><a href="{{ route('image') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
                                             html +='</ul>';
                                         html +='</div>';
 
@@ -451,7 +451,7 @@
                                         html +='</div>';
 
                                         
-                                      html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>';
+                                      html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
 
                                         html +='<div class="view overlay my-3" align="center">';
                                             html +='<div class="embed-responsive embed-responsive-16by9">';
@@ -461,12 +461,12 @@
 
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
-                                                html +='<li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-thumbs-o-up pr-1"></i>'+value.likes.length+'</a></li>';                
-                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>'+value.comments.length+'</a></li>';
+                                                html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="fa fa-thumbs-o-up pr-1"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
+                                                 html +='<li class="list-inline-item"><a href="{{ route('image') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
                                             html +='</ul>';
                                         html +='</div>';
 
-                                    html +='</div>';
+                                    html +='</div>'; 
                                 }
                             }); 
 
@@ -528,6 +528,7 @@
 
         $(document).on('submit', '#comment_form', function(event){
             event.preventDefault();
+            var post_id = $('#post_id').val();
             var comment_text = $('#comment_text').val();
             var validate = '';
 
@@ -550,6 +551,11 @@
                             $('#post_id').val('');
                             $('#comment_text').val('');
                             $('#modalSubscriptionForm').modal('hide');
+
+                            var current_comment = $('#p_comment_'+post_id).text();
+                            var new_comment = parseInt(current_comment)+1;
+                            $('#p_comment_'+post_id).text(new_comment);
+
                             setTimeout(function(){
                                 $('#alert-modal').modal('hide');
                             },2000)
@@ -583,7 +589,7 @@
                     if(data.status == 200){
                         var current_like = $('#p_like_'+post_id).text();
                         var new_like = parseInt(current_like)+data.like;
-                        //$('#p_like_'+post_id).text(new_like);
+                        $('#p_like_'+post_id).text(new_like);
                     }
                     else{
                         alert(data);
