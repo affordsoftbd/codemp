@@ -55,4 +55,17 @@ class HomeController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function profile()
+    {
+        try {
+            if(!Auth::check()){
+                return redirect('login');
+            }
+            return view('profile.index');
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
