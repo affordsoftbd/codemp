@@ -42,7 +42,13 @@ class HomeController extends Controller
             $user = Auth::user();
             $leader_id= $user->parent_id;
             $post_creators = [$user->id,$leader_id];
-            $data['lastPost'] = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();
+            $lastPost = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();
+            if(count($lastPost)!=0){
+                $data['last_id'] = $lastPost->post_id;
+            }
+            else{
+                $data['last_id'] = 0;
+            }
             return view('home',$data);
         }
         catch (\Exception $e) {

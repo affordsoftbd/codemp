@@ -103,6 +103,7 @@
 </div>
 
 <input type="hidden" name="last_load" id="last_load">
+<input type="hidden" name="last_id" id="last_id">
 <div class="row justify-content-center load_more_spinner" id="load_more_spinner">
     <i class="fa fa-spinner fa-spin my-5 content_load"></i>
 </div>
@@ -244,8 +245,10 @@
     <script>
 
         $(document).ready(function(){
-            $('#last_load').val({{ $lastPost->post_id }});
-            getPost({{ $lastPost->post_id }});
+            var last_post_id = {{ $last_id }};
+            $('#last_load').val(last_post_id);
+            $('#last_id').val(last_post_id);
+            getPost(last_post_id,'init');
 
             setTimeout(function(){
                 var last_load = $('#last_load').val(); 
@@ -311,7 +314,10 @@
                             $('#post_success').html('');
                             $('#post_danger').html('');
 
-                            getPost({{ $lastPost->post_id }});
+                            var last_id = $('#last_id').val();
+                            $('#last_id').val(parseInt(last_id)+1);
+
+                            getPost(parseInt(last_id)+1,'init');
                         }
                         else{
                             $('#post_success').hide();
@@ -331,7 +337,7 @@
             }
         });
 
-        function getPost(last_id){
+        function getPost(last_id,type){
             if(last_id > 0){  
                 var html = '';
                 $.ajax({
@@ -464,7 +470,13 @@
                                 }
                             }); 
 
-                            $('#post_list').append(html);
+                            if(type=='init'){
+                                $('#post_list').html(html);
+                            }
+                            else{
+                                $('#post_list').append(html);
+                            }
+                            
                             if (typeof image_post !== 'undefined'){
                                 $('.lightSlider:last').lightSlider({
                                     gallery: true,
@@ -633,6 +645,11 @@
                 $(this).html("<center>"+xhr.responseText+"</center>").fadeIn('slow');
                 $(this).delay(1000).fadeOut(2000);
             });
+
+            var last_id = $('#last_id').val();
+            $('#last_id').val(parseInt(last_id)+1);
+
+            getPost(parseInt(last_id)+1,'init');
           }
         }); 
       })();
@@ -660,6 +677,11 @@
                     $(this).html(xhr.responseText).fadeIn('slow');
                     $(this).delay(1000).fadeOut(2000);
                 });
+
+                var last_id = $('#last_id').val();
+                $('#last_id').val(parseInt(last_id)+1);
+
+                getPost(parseInt(last_id)+1,'init');
               }
             }); 
         })();

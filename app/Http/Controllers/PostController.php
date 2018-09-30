@@ -71,12 +71,13 @@ class PostController extends Controller
             $post = NEW Post();
             $post->user_id = Session::get('user_id');
             $post->description = $request->description;
+            $post->post_type = 'photo';
             $post->save();
             $images = $request->file('images');
             if($request->hasFile('images'))
             {
                 foreach ($images as $image) {
-                    $imageUpload = $this->uploadImage($image, 'all_images/', 800, 600);
+                    $imageUpload = $this->uploadImage($image, '/uploads/posts/images/', 800, 600);
                     $postImage = NEW PostImage();
                     $postImage->image_path = $imageUpload;
                     $postImage->post_id = $post->post_id;
@@ -99,6 +100,7 @@ class PostController extends Controller
             $post = NEW Post();
             $post->user_id = Session::get('user_id');
             $post->description = $request->description;
+            $post->post_type = 'video';
             $post->save();
             $postVideo = NEW PostVideo();
             $postVideo->video_path = $request->video_path;
