@@ -43,7 +43,7 @@ class HomeController extends Controller
             $leader_id= $user->parent_id;
             $post_creators = [$user->id,$leader_id];
             $lastPost = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();
-            if(count($lastPost)!=0){
+            if(!empty($lastPost){
                 $data['last_id'] = $lastPost->post_id;
             }
             else{

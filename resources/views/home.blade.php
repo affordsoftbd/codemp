@@ -466,7 +466,7 @@
                                             html +='</ul>';
                                         html +='</div>';
 
-                                    html +='</div>';
+                                    html +='</div>'; 
                                 }
                             }); 
 
