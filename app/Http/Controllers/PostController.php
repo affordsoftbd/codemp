@@ -209,13 +209,14 @@ class PostController extends Controller
     public function savePostLike(Request $request){
         $oldLike = PostLike::where('post_id',$request->post_id)->where('user_id',Session::get('user_id'))->first();
         if(!empty($oldLike)){
-            return ['status'=>200,'reason'=>'Already liked','like'=>0];
+            PostLike::where('post_id',$request->post_id)->where('user_id',Session::get('user_id'))->delete();
+            return ['status'=>200,'reason'=>'Already liked','like'=>-1];
         }
         $like = NEW PostLike();
         $like->post_id = $request->post_id;
         $like->user_id = Session::get('user_id');
         $like->save();
 
-        return ['status'=>200,'reason'=>'New like saved'];
+        return ['status'=>200,'reason'=>'New like saved','like'=>1];
     }
 }
