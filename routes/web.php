@@ -38,6 +38,7 @@ Route::get('/{username}', 'HomeController@profilePosts')->name('profile');
 Route::get('/{username}/posts', 'HomeController@profilePosts')->name('profile.posts');
 Route::get('/{username}/albums', 'HomeController@profileAlbums')->name('profile.albums');
 Route::get('/{username}/videos', 'HomeController@profileVideos')->name('profile.videos');
+Route::get('/{username}/update', 'HomeController@editProfile')->name('profile.edit');
 
 /*Post routes*/
 Route::get('/post/{id?}', 'PostController@postDetails')->name('post');

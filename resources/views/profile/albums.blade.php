@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "পরিলেখ ||")
+@section('title', "পরিলেখ || অ্যালবাম ||")
 
 @section('content')
 

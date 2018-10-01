@@ -18,8 +18,8 @@
 			399/1, West Bengal
 		</p>
 		<div class="btn-group my-4" role="group" aria-label="Basic example">
-		    <button type="button" class="btn btn-light-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>হালনাগাদ</button>
-		    <button type="button" class="btn btn-dark-green btn-sm"><i class="fa fa-bank fa-sm pr-2" aria-hidden="true"></i>অর্থাদি</button>
+		    <a type="button" href="{{ route('profile.edit', 'amar_neta') }}" class="btn btn-light-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>হালনাগাদ</a>
+		    <a type="button" href="javascript:void(0)" class="btn btn-dark-green btn-sm"><i class="fa fa-bank fa-sm pr-2" aria-hidden="true"></i>অর্থাদি</a>
 		</div>
     </div>
     <div class="col-xl-4 col-lg-6 col-md-6">

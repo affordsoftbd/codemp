@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "পরিলেখ ||")
+@section('title', "পরিলেখ || ভিডিও ||")
 
 @section('content')
 
