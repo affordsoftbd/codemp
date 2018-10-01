@@ -62,8 +62,117 @@
  </ul>
  <!-- Tab panels -->
  <div class="tab-content">
-	<br>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+	<div class="card mb-4">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-xl-1 col-lg-2 col-md-2 post_creator">
+				<img src="http://localhost:8000null" class="rounded-circle z-depth-1-half"></div>
+				<div class="col-xl-11 col-lg-10 col-md-10">
+					<h6 class="font-weight-bold">Mohiuddin Muhin</h6>
+					<small class="grey-text">2018-09-29 20:31:58</small>
+					<a class="btn-floating btn-action ml-auto mr-4 red pull-right" onclick="show_comment_box(75)">
+						<i class="fa fa-chevron-right pl-1"></i>
+					</a>
+				</div>
+			</div>
+			<hr>
+			asdasd
+			<!-- Card image -->
+		    <div class="view overlay my-3" align="center">
+		        <div class="embed-responsive embed-responsive-16by9">
+		            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+		        </div> 
+		    </div>
+		</div>
+		<div class="rounded-bottom green text-center pt-3">
+			<ul class="list-unstyled list-inline font-small">
+				<li class="list-inline-item pr-2">
+					<a href="javascript:void(0)" class="white-text" onclick="save_post_like(75)">
+						<i class="fa fa-thumbs-o-up pr-1"></i>
+						<span id="p_like_75">0</span></a>
+				</li>
+				<li class="list-inline-item">
+					<a href="http://localhost:8000/post/75" class="white-text">
+							<i class="fa fa-comments-o pr-1"></i><span id="p_comment_75">0</span>
+						</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="card mb-4">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-xl-1 col-lg-2 col-md-2 post_creator">
+				<img src="http://localhost:8000null" class="rounded-circle z-depth-1-half"></div>
+				<div class="col-xl-11 col-lg-10 col-md-10">
+					<h6 class="font-weight-bold">Mohiuddin Muhin</h6>
+					<small class="grey-text">2018-09-29 20:31:58</small>
+					<a class="btn-floating btn-action ml-auto mr-4 red pull-right" onclick="show_comment_box(75)">
+						<i class="fa fa-chevron-right pl-1"></i>
+					</a>
+				</div>
+			</div>
+			<hr>
+			asdasd
+			<!-- Card image -->
+		    <div class="view overlay my-3" align="center">
+		        <div class="embed-responsive embed-responsive-16by9">
+		            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+		        </div> 
+		    </div>
+		</div>
+		<div class="rounded-bottom green text-center pt-3">
+			<ul class="list-unstyled list-inline font-small">
+				<li class="list-inline-item pr-2">
+					<a href="javascript:void(0)" class="white-text" onclick="save_post_like(75)">
+						<i class="fa fa-thumbs-o-up pr-1"></i>
+						<span id="p_like_75">0</span></a>
+				</li>
+				<li class="list-inline-item">
+					<a href="http://localhost:8000/post/75" class="white-text">
+							<i class="fa fa-comments-o pr-1"></i><span id="p_comment_75">0</span>
+						</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="card mb-4">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-xl-1 col-lg-2 col-md-2 post_creator">
+				<img src="http://localhost:8000null" class="rounded-circle z-depth-1-half"></div>
+				<div class="col-xl-11 col-lg-10 col-md-10">
+					<h6 class="font-weight-bold">Mohiuddin Muhin</h6>
+					<small class="grey-text">2018-09-29 20:31:58</small>
+					<a class="btn-floating btn-action ml-auto mr-4 red pull-right" onclick="show_comment_box(75)">
+						<i class="fa fa-chevron-right pl-1"></i>
+					</a>
+				</div>
+			</div>
+			<hr>
+			asdasd
+			<!-- Card image -->
+		    <div class="view overlay my-3" align="center">
+		        <div class="embed-responsive embed-responsive-16by9">
+		            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+		        </div> 
+		    </div>
+		</div>
+		<div class="rounded-bottom green text-center pt-3">
+			<ul class="list-unstyled list-inline font-small">
+				<li class="list-inline-item pr-2">
+					<a href="javascript:void(0)" class="white-text" onclick="save_post_like(75)">
+						<i class="fa fa-thumbs-o-up pr-1"></i>
+						<span id="p_like_75">0</span></a>
+				</li>
+				<li class="list-inline-item">
+					<a href="http://localhost:8000/post/75" class="white-text">
+							<i class="fa fa-comments-o pr-1"></i><span id="p_comment_75">0</span>
+						</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 	<!--Pagination-->
 	<nav aria-label="pagination example">
 	    <ul class="pagination pg-blue">
