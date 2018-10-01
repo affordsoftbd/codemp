@@ -68,4 +68,30 @@ class HomeController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function profileAlbums()
+    {
+        try {
+            if(!Auth::check()){
+                return redirect('login');
+            }
+            return view('profile.albums');
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function profileVideos()
+    {
+        try {
+            if(!Auth::check()){
+                return redirect('login');
+            }
+            return view('profile.videos');
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

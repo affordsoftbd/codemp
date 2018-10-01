@@ -12,6 +12,9 @@ use Session;
 class AuthController extends Controller
 {
     public function politicianRegister(){
+        if(Auth::check()){
+            return redirect('home');
+        }
         $data['divisions'] = DB::table('divisions')->get();
         $data['districts'] = DB::table('districts')->get();
         $data['thanas'] = DB::table('thanas')->get();
@@ -21,6 +24,9 @@ class AuthController extends Controller
     }
 
     public function publicRegister(){        
+        if(Auth::check()){
+            return redirect('home');
+        }
         return view('auth.public_register');
     }
 
