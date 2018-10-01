@@ -56,13 +56,13 @@ class HomeController extends Controller
         }
     }
 
-    public function profile()
+    public function profilePosts()
     {
         try {
             if(!Auth::check()){
                 return redirect('login');
             }
-            return view('profile.index');
+            return view('profile.posts');
         }
         catch (\Exception $e) {
             return $e->getMessage();

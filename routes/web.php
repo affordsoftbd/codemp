@@ -34,7 +34,8 @@ Route::post('save_politician_user','AuthController@savePoliticianUser');
 
 Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@home')->name('home');
-Route::get('/{username}', 'HomeController@profile')->name('profile');
+Route::get('/{username}', 'HomeController@profilePosts')->name('profile');
+Route::get('/{username}/posts', 'HomeController@profilePosts')->name('profile.posts');
 Route::get('/{username}/albums', 'HomeController@profileAlbums')->name('profile.albums');
 Route::get('/{username}/videos', 'HomeController@profileVideos')->name('profile.videos');
 
