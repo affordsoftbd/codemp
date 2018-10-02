@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xl-8 col-lg-6 col-md-6">
+    <div class="col-lg-8 col-md-12">
 		<h1>
 			{{ $user->first_name." ".$user->last_name}}
 		</h1>
@@ -99,7 +99,7 @@
     </div>
 </div>
     </div>
-        <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="col-lg-4 col-md-12">
 		<!-- Card -->
 		<div class="card card-personal">
 
