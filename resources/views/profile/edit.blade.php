@@ -4,14 +4,14 @@
 
 @section('content')
 
-<h3>প্রোফাইল হালনাগাদ</h3>
-<!--small class="grey-text">শেষ হালনাগাদ হয়েছিল <strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong></small-->
+<h3><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>প্রোফাইল হালনাগাদ</h3>
+<small class="grey-text">শেষ হালনাগাদ হয়েছিল <strong>2018-09-29 20:31:58</strong></small>
 <hr>
 <div class="form-row">
     <div class="alert alert-success" id="success_message" style="display:none"></div>
     <div class="alert alert-danger" id="error_message" style="display:none"></div>
 
-    <form id="user_form" class="login-form" method="post" action="">
+    <form id="user_form" method="post" action="">
         {{ csrf_field() }}
     	<div class="row">
             <div class="col-sm-6">
@@ -53,14 +53,6 @@
                 </div>
             </div>
             <div class="col-sm-12">
-                <!-- Phone number -->
-                <div class="md-form">
-                    <input type="text" name="nid" id="nid" class="form-control" value="{{ $user->nid }}">
-                    <label for="nid">জাতীয় আইডি</label>
-                </div>
-            </div>
-            <!--  -->
-            <div class="col-sm-12">
                 <!-- Choose Zip -->
                 <select class="mdb-select" name="leader" id="leader" searchable="এখানে অনুসন্ধান করুন">
                     <option value="" disabled selected>আপনার নেতা</option>
@@ -72,32 +64,12 @@
                     <label for="address">ঠিকানা</label>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="md-form">
-                    <input type="file" name="profile_image" id="profile_image" class="form-control">
-                    <label for="address">প্রোফাইল ছবি পরিবর্তন</label>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="md-form">
-                    <input type="password" name="password" id="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
-                    <label for="password">পাসওয়ার্ড</label>
-                    <small id="password" class="form-text text-muted mb-4">
-                        অন্ততপক্ষে ৮টি বা আরও অক্ষর এবং ১ সংখ্যা
-                    </small>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <!-- Confirm Password -->
-                <div class="md-form">
-                    <input type="password" name="password_confirm" id="password_confirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
-                    <label for="password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
-                </div>
-            </div>
         </div>
 
         <!-- Sign up button -->
-        <button class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">হালনাগাদ</button>
+        <div class="text-center my-4">
+            <button class="btn btn-danger btn-rounded waves-effect text-center" type="submit">হালনাগাদ</button>
+        </div>
     </form>
 </div>
 

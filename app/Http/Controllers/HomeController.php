@@ -118,4 +118,30 @@ class HomeController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function editPoloticanProfile(Request $request)
+    {
+        try {
+            if(!Auth::check()){
+                return redirect('login');
+            }            
+            return view('profile.edit_politician');
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function editProfilePassword(Request $request)
+    {
+        try {
+            if(!Auth::check()){
+                return redirect('login');
+            }            
+            return view('profile.edit_pass');
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

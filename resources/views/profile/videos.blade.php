@@ -5,7 +5,6 @@
 @section('content')
 
 @include('profile.profile')
-
 <!-- Nav tabs -->
  <ul class="nav nav-tabs md-tabs nav-justified red my-5" role="tablist">
      <li class="nav-item">
@@ -160,7 +159,6 @@
 	    </ul>
 	</nav>
  </div>
-
 @endsection
 
 
