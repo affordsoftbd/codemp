@@ -389,11 +389,18 @@
                                     *Image post
                                     */
                                     image_post = true;
+
+                                    if(value.image_path!='' || value.image_path!='null'){
+                                        var profile_image = "{{ url('/')}}"+value.image_path;
+                                    }
+                                    else{
+                                        var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
+                                    }
                                     html +='<div class="card my-4">';
 
                                         html +='<div class="card-body">';
                                             html +='<div class="row">';
-                                                html +='<div class="col-xl-1 col-lg-2 col-md-2">';
+                                                html +='<div class="col-xl-1 col-lg-2 col-md-2 post_creator">';
                                                     html +='<img src="'+profile_image+'" class="rounded-circle z-depth-1-half">';
                                                 html +='</div>';
                                                 html +='<div class="col-xl-11 col-lg-10 col-md-10">';
@@ -434,11 +441,18 @@
                                     /*
                                     * Video post
                                     */
+                                    if(value.image_path!='' || value.image_path!='null'){
+                                        var profile_image = "{{ url('/')}}"+value.image_path;
+                                    }
+                                    else{
+                                        var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
+                                    }
+                                    
                                     html +='<div class="card my-4">';
 
                                         html +='<div class="card-body">';
                                             html +='<div class="row">';
-                                                html +='<div class="col-xl-1 col-lg-2 col-md-2">';
+                                                html +='<div class="col-xl-1 col-lg-2 col-md-2 post_creator">';
                                                     html +='<img src="'+profile_image+'" class="rounded-circle z-depth-1-half">';
                                                 html +='</div>';
                                                 html +='<div class="col-xl-11 col-lg-10 col-md-10">';
