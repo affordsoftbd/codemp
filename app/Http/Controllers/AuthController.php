@@ -59,7 +59,7 @@ class AuthController extends Controller
             $user->password = bcrypt($request->password);
             $user->role_id = $request->role_id;
             $user->status = 'Active';
-            $userDetail->created_at = date('Y-m-d h:i:s');
+            $user->created_at = date('Y-m-d h:i:s');
             $user->save();
             
             /*
@@ -93,7 +93,7 @@ class AuthController extends Controller
         }
         catch (\Exception $e) {
             DB::rollback();
-            return $e->getMessage();
+            return ['status'=>200,'reason'=>$e->getMessage()];
         }
     }
 
@@ -132,7 +132,7 @@ class AuthController extends Controller
             $user->password = bcrypt($request->password);
             $user->role_id = $request->role_id;
             $user->status = 'Pending';
-            $userDetail->created_at = date('Y-m-d h:i:s');
+            $user->created_at = date('Y-m-d h:i:s');
             $user->save();
             
             /*
@@ -171,7 +171,7 @@ class AuthController extends Controller
         }
         catch (\Exception $e) {
             DB::rollback();
-            return $e->getMessage();
+            return ['status'=>200,'reason'=>$e->getMessage()];
         }
     }
 
