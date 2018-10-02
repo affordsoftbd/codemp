@@ -134,7 +134,7 @@
 					{{ $user->address}}
 				</p>
 				<hr>
-				<a class="card-meta"><span><i class="fa fa-user"></i>{{ count($followers)}}জন অনুগামি</span></a>
+				<a class="card-meta"><span><i class="fa fa-user"></i>{{ count($followers)}}জন অনুসারী</span></a>
 			</div>
 			<!-- Card content -->
 

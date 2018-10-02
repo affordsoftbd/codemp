@@ -74,6 +74,9 @@
 </div>
 
 
+
+<a class="btn btn-success waves-effect btn-sm" href="{{ route('profile', Session::get('username')) }}"><i class="fa fa-arrow-circle-left fa-sm pr-2" aria-hidden="true"></i>প্রত্যাবর্তন</a>
+
 @endsection
 
 @section('extra-script')
