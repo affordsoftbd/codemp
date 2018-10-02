@@ -65,4 +65,8 @@ class CommonController extends Controller
             return ['status'=>4001, 'options'=>$e->getMessage()];
         }
     }
+
+    public function error404(){
+        return "Error 404! Page not found";
+    }
 }

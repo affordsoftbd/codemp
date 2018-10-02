@@ -59,6 +59,7 @@ class AuthController extends Controller
             $user->password = bcrypt($request->password);
             $user->role_id = $request->role_id;
             $user->status = 'Active';
+            $userDetail->created_at = date('Y-m-d h:i:s');
             $user->save();
             
             /*
@@ -68,7 +69,6 @@ class AuthController extends Controller
             $userDetail->user_id = $user->id;
             $userDetail->phone = $request->phone;
             $userDetail->address = $request->address;
-            $userDetail->created_at = date('Y-m-d h:i:s');
             $userDetail->save();
             
             DB::commit();
@@ -132,6 +132,7 @@ class AuthController extends Controller
             $user->password = bcrypt($request->password);
             $user->role_id = $request->role_id;
             $user->status = 'Pending';
+            $userDetail->created_at = date('Y-m-d h:i:s');
             $user->save();
             
             /*
@@ -146,7 +147,6 @@ class AuthController extends Controller
             $userDetail->district_id = $request->district;
             $userDetail->thana_id = $request->thana;
             $userDetail->zip_id = $request->zip;
-            $userDetail->created_at = date('Y-m-d h:i:s');
             $userDetail->save();
             
             DB::commit();

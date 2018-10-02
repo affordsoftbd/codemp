@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Post;
 use Auth;
 use Session;
@@ -56,13 +57,20 @@ class HomeController extends Controller
         }
     }
 
-    public function profilePosts()
+    public function profilePosts(Request $request)
     {
         try {
             if(!Auth::check()){
                 return redirect('login');
             }
-            return view('profile.posts');
+            $data['user'] = User::where('username',$request->username)
+                ->join('user_details','user_details.user_id','=','users.id')
+                ->first();
+            $data['followers'] = User::where('parent_id',$data['user']->id)->where('status','Active')->get();
+            if(empty($data['user'])){
+                return redirect('error_404');
+            }
+            return view('profile.posts',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
@@ -95,13 +103,16 @@ class HomeController extends Controller
         }
     }
 
-    public function editProfile()
+    public function editProfile(Request $request)
     {
         try {
             if(!Auth::check()){
                 return redirect('login');
-            }
-            return view('profile.edit');
+            }            
+            $data['user'] = User::where('username',$request->username)
+                ->join('user_details','user_details.user_id','=','users.id')
+                ->first();
+            return view('profile.edit',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();

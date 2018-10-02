@@ -59,3 +59,5 @@ Route::post('leader_by_role', 'CommonController@getLeaderByRole');
 Route::post('district_by_division', 'CommonController@getDistrictByDivision');
 Route::post('thana_by_district', 'CommonController@getThanaByDistrict');
 Route::post('zip_by_thana', 'CommonController@getZipByThana');
+
+Route::post('error_404', 'CommonController@error404');

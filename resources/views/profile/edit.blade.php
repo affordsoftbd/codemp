@@ -12,42 +12,42 @@
         <div class="col-sm-6">
             <!-- First name -->
             <div class="md-form">
-                <input type="text" name="first_name" id="first_name" class="form-control">
+                <input type="text" name="first_name" id="first_name" class="form-control" value="{{ $user->first_name }}">
                 <label for="firstname">নামের প্রথম অংশ</label>
             </div>
         </div>
         <div class="col-sm-6">
             <!-- Last name -->
             <div class="md-form">
-                <input type="text" name="last_name" id="last_name" class="form-control">
+                <input type="text" name="last_name" id="last_name" class="form-control" value="{{ $user->last_name }}">
                 <label for="lastname">নামের শেষাংশ</label>
             </div>
         </div>
         <div class="col-sm-4">
             <!-- Phone number -->
             <div class="md-form">
-                <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                <input type="text" name="username" id="username" class="form-control" value="{{ $user->username }}" aria-describedby="materialRegisterFormPhoneHelpBlock">
                 <label for="phone">ইউসার নাম</label>
             </div>
         </div>
         <div class="col-sm-4">
             <!-- E-mail -->
             <div class="md-form">
-                <input type="email" name="email" id="email" class="form-control">
+                <input type="email" name="email" id="email" class="form-control" value="{{ $user->email }}">
                 <label for="email">ই-মেইল</label>
             </div>
         </div>
         <div class="col-sm-4">
             <!-- Phone number -->
             <div class="md-form">
-                <input type="text" name="phone" id="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                <input type="text" name="phone" id="phone" class="form-control" value="{{ $user->phone }}" aria-describedby="materialRegisterFormPhoneHelpBlock">
                 <label for="phone">ফোন নম্বর</label>
             </div>
         </div>
         <div class="col-sm-12">
             <!-- Phone number -->
             <div class="md-form">
-                <input type="text" name="nid" id="nid" class="form-control">
+                <input type="text" name="nid" id="nid" class="form-control" value="{{ $user->nid }}">
                 <label for="nid">জাতীয় আইডি</label>
             </div>
         </div>
@@ -60,7 +60,7 @@
         </div>
         <div class="col-sm-12">
             <div class="md-form">
-                <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
+                <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2">{{ $user->address }}</textarea>
                 <label for="address">ঠিকানা</label>
             </div>
         </div>
