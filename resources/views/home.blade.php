@@ -391,7 +391,7 @@
                                     image_post = true;
 
                                     if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = "{{ url('/')}}"+value.image_path;
+                                        var profile_image = "{{ asset('value.image_path') }}";
                                     }
                                     else{
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";

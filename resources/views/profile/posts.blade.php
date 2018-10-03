@@ -28,9 +28,6 @@
 				<div class="col-xl-11 col-lg-10 col-md-10">
 					<h6 class="font-weight-bold">Mohiuddin Muhin</h6>
 					<small class="grey-text">2018-09-29 20:31:58</small>
-					<a class="btn-floating btn-action ml-auto mr-4 red pull-right" onclick="show_comment_box(75)">
-						<i class="fa fa-chevron-right pl-1"></i>
-					</a>
 				</div>
 			</div>
 			<hr>asdasd
@@ -38,9 +35,6 @@
 		<div class="rounded-bottom green text-center pt-3">
 			<ul class="list-unstyled list-inline font-small">
 				<li class="list-inline-item pr-2">
-					<a href="javascript:void(0)" class="white-text" onclick="save_post_like(75)">
-						<i class="fa fa-thumbs-o-up pr-1"></i>
-						<span id="p_like_75">0</span></a>
 				</li>
 				<li class="list-inline-item">
 					<a href="http://localhost:8000/post/75" class="white-text">
@@ -58,9 +52,6 @@
 				<div class="col-xl-11 col-lg-10 col-md-10">
 					<h6 class="font-weight-bold">Mohiuddin Muhin</h6>
 					<small class="grey-text">2018-09-29 20:31:58</small>
-					<a class="btn-floating btn-action ml-auto mr-4 red pull-right" onclick="show_comment_box(75)">
-						<i class="fa fa-chevron-right pl-1"></i>
-					</a>
 				</div>
 			</div>
 			<hr>asdasd
@@ -68,9 +59,6 @@
 		<div class="rounded-bottom green text-center pt-3">
 			<ul class="list-unstyled list-inline font-small">
 				<li class="list-inline-item pr-2">
-					<a href="javascript:void(0)" class="white-text" onclick="save_post_like(75)">
-						<i class="fa fa-thumbs-o-up pr-1"></i>
-						<span id="p_like_75">0</span></a>
 				</li>
 				<li class="list-inline-item">
 					<a href="http://localhost:8000/post/75" class="white-text">
@@ -88,9 +76,6 @@
 				<div class="col-xl-11 col-lg-10 col-md-10">
 					<h6 class="font-weight-bold">Mohiuddin Muhin</h6>
 					<small class="grey-text">2018-09-29 20:31:58</small>
-					<a class="btn-floating btn-action ml-auto mr-4 red pull-right" onclick="show_comment_box(75)">
-						<i class="fa fa-chevron-right pl-1"></i>
-					</a>
 				</div>
 			</div>
 			<hr>asdasd
@@ -98,9 +83,6 @@
 		<div class="rounded-bottom green text-center pt-3">
 			<ul class="list-unstyled list-inline font-small">
 				<li class="list-inline-item pr-2">
-					<a href="javascript:void(0)" class="white-text" onclick="save_post_like(75)">
-						<i class="fa fa-thumbs-o-up pr-1"></i>
-						<span id="p_like_75">0</span></a>
 				</li>
 				<li class="list-inline-item">
 					<a href="http://localhost:8000/post/75" class="white-text">

@@ -134,7 +134,7 @@
 					{{ $user->address}}
 				</p>
 				<hr>
-				<a class="card-meta"><span><i class="fa fa-user"></i>{{ count($followers)}}জন অনুসারী</span></a>
+				<a class="card-meta"><span><i class="fa fa-user-circle fa-sm pr-2"></i>{{ count($followers)}}জন অনুসারী</span></a>
 			</div>
 			<!-- Card content -->
 
@@ -173,7 +173,7 @@
                               {!! Form::file("image", ['class'=>'input_image']) !!}
                           </div>
                           <div class="file-path-wrapper">
-                              {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'Choose your file']) !!}
+                              {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইল নির্বাচন করুন']) !!}
                           </div>
                       </div>
                       <div class="text-center mt-4">
