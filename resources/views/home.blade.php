@@ -104,9 +104,22 @@
 
 <input type="hidden" name="last_load" id="last_load">
 <input type="hidden" name="last_id" id="last_id">
-<div class="row justify-content-center load_more_spinner" id="load_more_spinner">
-    <i class="fa fa-spinner fa-spin my-5 content_load"></i>
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <hr>
+        </div>
+        <div class="col-md-4" align="center">
+            <button class="btn btn-md btn-red"><i class="fa fa-refresh fa-sm pr-2"></i>&nbsp;Load More!</button>
+        </div>
+        <div class="col-md-4">
+            <hr>
+        </div>
+    </div>
 </div>
+<!-- <div class="row justify-content-center load_more_spinner" id="load_more_spinner">
+    <i class="fa fa-spinner fa-spin my-5 content_load"></i>
+</div> -->
 
 <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -186,9 +199,8 @@
   </div>
 
 </div> 
--->
-    
-</div>
+ 
+</div> -->
 
 
 <!--div class="success_messages hidden">
