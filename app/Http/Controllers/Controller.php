@@ -23,7 +23,7 @@ class Controller extends BaseController
             $constraint->aspectRatio();                 
         });
         $image_resize->stream(); 
-        Storage::disk('local')->put('public/'.$path.$filename, $image_resize, 'public');
-        return 'storage/'.$path.$filename;
+        Storage::disk('local')->put($path.$filename, $image_resize, 'public');
+        return 'uploads/'.$path.$filename;
     }
 }

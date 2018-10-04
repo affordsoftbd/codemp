@@ -77,7 +77,7 @@ class PostController extends Controller
             if($request->hasFile('images'))
             {
                 foreach ($images as $image) {
-                    $imageUpload = $this->uploadImage($image, '/uploads/posts/images/', 800, 600);
+                    $imageUpload = $this->uploadImage($image, 'posts/images/', 800, 600);
                     $postImage = NEW PostImage();
                     $postImage->image_path = $imageUpload;
                     $postImage->post_id = $post->post_id;
