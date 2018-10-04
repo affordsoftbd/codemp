@@ -136,6 +136,7 @@
     </div>
 </div>
 
+ 
 <!-- 
 <button type="button" class="btn btn-danger" id="appendnewcontainer">Click me To create new slider</button>
 <div id="fotoappendarea"> 
@@ -184,11 +185,27 @@
     </ul>
   </div>
 
-</div>
+</div> 
 -->
+    
+</div>
 
-<script>
-    /* var imagesarray = [
+
+<!--div class="success_messages hidden">
+    <h1>স্বাগতম!</h1>
+    <p>আপনি সফলভাবে লগ ইন করেছেন!</p>
+</div-->
+
+
+
+@endsection
+
+@section('extra-script')
+    <script>
+
+        $(document).ready(function(){
+
+            /*var imagesarray = [
                 "https://www.elastic.co/assets/bltada7771f270d08f6/enhanced-buzz-1492-1379411828-15.jpg",
                 "https://images.pexels.com/photos/236047/pexels-photo-236047.jpeg?auto=compress&cs=tinysrgb&h=350"
             ];
@@ -221,30 +238,14 @@
             $("#appendnewcontainer").click(function() {
                 if($('.lightSlider').length){
                     // slider.destroy();  
-                    $('.lightSlider').lightSlider().destroy();
+                    // $('.lightSlider').lightSlider().destroy();
                 }
                 $("#fotoappendarea").append("<div class='lightgallery my-5'><p><span class='slidercount'>1</span> of "+imagesarray.length+"</p><ul class= 'lightSlider'><li data-thumb=" + imagesarray[0] + " data-src=" + imagesarray[0] + "><img src='" + imagesarray[0] + "' class='_34'/></li><li data-thumb=" + imagesarray[1] + " data-src=" + imagesarray[1] + "><img src='" + imagesarray[1] + "' class='_34'/></li></ul></div>");
                 slider = refreshSlider();
 
             });*/
-</script>
-    
-</div>
 
 
-<!--div class="success_messages hidden">
-    <h1>স্বাগতম!</h1>
-    <p>আপনি সফলভাবে লগ ইন করেছেন!</p>
-</div-->
-
-
-
-@endsection
-
-@section('extra-script')
-    <script>
-
-        $(document).ready(function(){
             var last_post_id = {{ $last_id }};
             $('#last_load').val(last_post_id);
             $('#last_id').val(last_post_id);
@@ -391,7 +392,7 @@
                                     image_post = true;
 
                                     if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = "{{ asset('value.image_path') }}";
+                                        var profile_image = '{{ url('/') }}'+value.image_path;
                                     }
                                     else{
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
@@ -418,7 +419,7 @@
                                             html +='<div class="lightgallery">';
                                                 html +='<ul class="lightSlider">';
                                                 $.each(value.images, function( index, image ) {
-                                                    var image_url = '{{ url('/') }}'+image.image_path
+                                                    var image_url =  '{{ url('/').'/' }}'+image.image_path;
                                                     html +='<li data-thumb="'+image_url+'" data-src="'+image_url+'" data-sub-html="Focused client-server ability 10">';
                                                         html +='<img src="'+image_url+'" />';
                                                     html +='</li>';
@@ -492,19 +493,22 @@
                             }
                             
                             if (typeof image_post !== 'undefined'){
-                                $('.lightSlider:last').lightSlider({
+                                /*$('.lightSlider:last').lightSlider({
                                     gallery: true,
                                     item: 1,
                                     loop: true,
                                     slideMargin: 0,
                                     thumbItem: 9,
+                                    onBeforeSlide: function (el) {
+                                        $('.slidercount:eq('+index+')').text(el.getCurrentSlideCount());
+                                    },
                                     onSliderLoad: function(el) {
                                         el.lightGallery({
                                             selector: '.lightgallery .lslide'
                                         });
                                     }
-                                });
-                                /*$('.lightSlider').each(function (index) {
+                                });*/
+                                $('.lightSlider').each(function (index) {
                                     $(this).lightSlider({
                                         gallery: true,
                                         item: 1,
@@ -520,7 +524,7 @@
                                             });
                                         }
                                     });
-                                });*/
+                                });
                                 delete image_post;
                             }
                         }
