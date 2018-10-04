@@ -47,4 +47,71 @@
 
 @endsection
 
+@section('extra-script')
+    <script>
+        
+
+        $(document).on('submit', '#user_form', function(event){
+            event.preventDefault();
+            var old_password = $('#old_pass').val();
+            var password = $('#password').val();
+            var password_confirm = $('#password_confirm').val();
+            
+            var validate = '';
+            if(old_password.trim()==''){
+                validate = validate+"পুরাতন পাসওয়ার্ড লিখুন</br>";
+            }
+            if(password.trim()==''){
+                validate = validate+"নতুন পাসওয়ার্ড লিখুন</br>";
+            }
+            if(old_password.trim()==''){
+                validate = validate+"পাসওয়ার্ড নিশ্চিত লিখুন</br>";
+            }
+            if(password.trim()!='' && password.trim().length<8){
+                validate = validate+"পাসওয়ার্ড অন্তত ৮ সংখ্যা প্রয়োজন</br>";
+            }
+            var regex = /\d/g;
+            if(password.trim()!='' && !regex.test(password.trim())){
+                validate = validate+"পাসওয়ার্ড অন্তত ১ টি নম্বর থাকতে হবে</br>";
+            }
+            if(password!=password_confirm){
+                validate = validate+"পাসওয়ার্ড এবং পাসওয়ার্ড নিশ্চিত মেলে না";
+            }
+            
+            if(validate==''){
+                var formData = new FormData($('#user_form')[0]);
+                var url = '{{ url('update_user_password') }}';
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formData,
+                    async: false,
+                    success: function (data) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        if(data.status == 200){
+                            $('#success_message').show();
+                            $('#error_message').hide();
+                            $('#success_message').html(data.reason);;
+                        }
+                        else{
+                            $('#success_message').hide();
+                            $('#error_message').show();
+                            $('#error_message').html(data.reason);
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            else{
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('#success_message').hide();
+                $('#error_message').show();
+                $('#error_message').html(validate);
+            }
+        });
+    </script>
+@endsection
+
 

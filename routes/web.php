@@ -36,12 +36,14 @@ Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/{username}', 'HomeController@profilePosts')->name('profile');
 Route::get('/{username}/posts', 'HomeController@profilePosts')->name('profile.posts');
+Route::post('get_user_post_ajax/{id}', 'PostController@getUserPostAjax');
 Route::get('/{username}/albums', 'HomeController@profileAlbums')->name('profile.albums');
 Route::get('/{username}/videos', 'HomeController@profileVideos')->name('profile.videos');
 Route::get('/{username}/update', 'HomeController@editProfile')->name('profile.edit');
 Route::get('/{username}/update/politican', 'HomeController@editPoloticanProfile')->name('profile.edit.politican');
 Route::get('/{username}/update/password', 'HomeController@editProfilePassword')->name('profile.edit.password');
 Route::post('/save_user_profile', 'UserController@saveProfile');
+Route::post('/update_user_password', 'UserController@updatePassword');
 
 /*Post routes*/
 Route::get('/post/{id?}', 'PostController@postDetails')->name('post');

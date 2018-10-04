@@ -110,7 +110,7 @@
             <hr>
         </div>
         <div class="col-md-4" align="center">
-            <button class="btn btn-md btn-red"><i class="fa fa-refresh fa-sm pr-2"></i>&nbsp;Load More!</button>
+            <button class="btn btn-md btn-red load_more_button"><i class="fa fa-refresh fa-sm pr-2"></i>&nbsp;Load More!</button>
         </div>
         <div class="col-md-4">
             <hr>
@@ -263,14 +263,14 @@
             $('#last_id').val(last_post_id);
             getPost(last_post_id,'init');
 
-            setTimeout(function(){
+            $(document).on('click','.load_more_button',function(){
                 var last_load = $('#last_load').val(); 
                 $('#last_load').val(parseInt(last_load)-5);
                 getPost(parseInt(last_load)-5);
-            },5000)
+            });
 
             /*Scroll function starts*/
-            $.fn.is_on_screen = function(){     
+            /*$.fn.is_on_screen = function(){     
                 var win = $(window);             
                 var viewport = {
                     top : win.scrollTop(),
@@ -285,19 +285,7 @@
                  
                 return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
                  
-            };
-            /*$(window).scroll(function(){ // bind window scroll event
-                console.log($('.load_more_spinner').length);
-                if( $('.load_more_spinner').length > 0 ) { // if target element exists in DOM
-                    if( $('.load_more_spinner').is_on_screen() ) { // if target element is visible on screen after DOM loaded
-                        setTimeout(function(){
-                            var last_load = $('#last_load').val(); 
-                            $('#last_load').val(last_load-5);
-                            getPost(last_load-5);
-                        },3000)
-                    }
-                }
-            });*/
+            };*/
             /*Scroll function starts*/
         });
         
@@ -547,6 +535,10 @@
                         alert(error);
                     },
                 });
+            }
+            
+            if(last_id-5<5){
+                $('.load_more_button').hide();
             }
         }
 

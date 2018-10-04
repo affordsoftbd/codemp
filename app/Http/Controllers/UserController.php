@@ -111,4 +111,30 @@ class UserController extends Controller
             return ['status'=>200,'reason'=>$e->getMessage()];
         }
     }
+
+    public function updatePassword(Request $request){
+        try {
+            DB::beginTransaction();
+            
+            $result = Auth::attempt(['username' => Session::get('username'),
+            'password' => $request->old_password
+            ]);
+
+            if(!$result){
+                return ['status'=>401,'reason'=>'Old password is not valid'];
+            }     
+            
+            $user = User::where('id',Session::get('user_id'))->first();  
+            $user->password = bcrypt($request->password);
+            $user->updated_at = date('Y-m-d h:i:s');
+            $user->save();
+            
+            DB::commit();
+            return ['status'=>200,'reason'=>'Password successfully updated'];
+        }
+        catch (\Exception $e) {
+            DB::rollback();
+            return ['status'=>200,'reason'=>$e->getMessage()];
+        }
+    }
 }

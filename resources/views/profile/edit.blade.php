@@ -90,9 +90,9 @@
             var email = $('#email').val();
             var phone = $('#phone').val();
             var username = $('#username').val();
-            var password = $('#password').val();
-            var password_confirm = $('#password_confirm').val();
-            var nid = $('#nid').val();
+            //var password = $('#password').val();
+            //var password_confirm = $('#password_confirm').val();
+            //var nid = $('#nid').val();
             //var division = $('#division').val();
             //var district = $('#district').val();
             //var thana = $('#thana').val();
@@ -113,7 +113,7 @@
             if(username.trim()==''){
                 validate = validate+"username is required</br>";
             }
-            if(password.trim()!='' && password.trim().length<8){
+            /*if(password.trim()!='' && password.trim().length<8){
                 validate = validate+"password needs at least 8 digits</br>";
             }
             var regex = /\d/g;
@@ -122,7 +122,7 @@
             }
             if(password!=password_confirm){
                 validate = validate+"password and password confirm does not match";
-            }
+            }*/
             /*if(division==''){
                 validate = validate+"division is required</br>";
             }

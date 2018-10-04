@@ -70,6 +70,15 @@ class HomeController extends Controller
             if(empty($data['user'])){
                 return redirect('error_404');
             }
+
+            $lastPost = Post::where('posts.user_id',$data['user']->id)->orderBy('post_id','desc')->first();
+            if(!empty($lastPost)){
+                $data['last_id'] = $lastPost->post_id;
+            }
+            else{
+                $data['last_id'] = 0;
+            }
+
             return view('profile.posts',$data);
         }
         catch (\Exception $e) {
@@ -77,26 +86,57 @@ class HomeController extends Controller
         }
     }
 
-    public function profileAlbums()
+    public function profileAlbums(Request $request)
     {
         try {
             if(!Auth::check()){
                 return redirect('login');
             }
-            return view('profile.albums');
+            $data['user'] = User::where('username',$request->username)
+                ->join('user_details','user_details.user_id','=','users.id')
+                ->first();
+            $data['followers'] = User::where('parent_id',$data['user']->id)->where('status','Active')->get();
+            if(empty($data['user'])){
+                return redirect('error_404');
+            }
+
+            $lastPost = Post::where('posts.user_id',$data['user']->id)->where('post_type','photo')->orderBy('post_id','desc')->first();
+            if(!empty($lastPost)){
+                $data['last_id'] = $lastPost->post_id;
+            }
+            else{
+                $data['last_id'] = 0;
+            }
+
+            return view('profile.albums',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
         }
     }
 
-    public function profileVideos()
+    public function profileVideos(Request $request)
     {
         try {
             if(!Auth::check()){
                 return redirect('login');
             }
-            return view('profile.videos');
+            $data['user'] = User::where('username',$request->username)
+                ->join('user_details','user_details.user_id','=','users.id')
+                ->first();
+            $data['followers'] = User::where('parent_id',$data['user']->id)->where('status','Active')->get();
+            if(empty($data['user'])){
+                return redirect('error_404');
+            }
+
+            $lastPost = Post::where('posts.user_id',$data['user']->id)->where('post_type','photo')->orderBy('post_id','desc')->first();
+            if(!empty($lastPost)){
+                $data['last_id'] = $lastPost->post_id;
+            }
+            else{
+                $data['last_id'] = 0;
+            }
+            return view('profile.videos',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
