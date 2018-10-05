@@ -11,6 +11,7 @@ use App\Models\PostComment;
 use App\Models\PostLike;
 use Auth;
 use DB;
+use Validator;
 use Session;
 
 class PostController extends Controller
@@ -87,7 +88,7 @@ class PostController extends Controller
     }
 
     public function saveImagePost(Request $request){
-        $this->validate(request(),[
+        $validator = Validator::make($request->all(), [
             'description' => 'required|string',
             'images.*' => 'required|file|mimes:jpg,jpeg,png,bmp|max:2000'
             ],[
@@ -95,6 +96,9 @@ class PostController extends Controller
                 'images.*.mimes' => 'Only jpg,jpeg,png,bmp images are allowed',
                 'images.*.max' => 'Sorry! Maximum allowed size for an image is 2MB',
         ]);
+        if ($validator->fails()) {
+          return response()->json(['response'=>'error', 'messages'=>implode(" || ",$validator->messages()->all())]);
+        }
         try {
             $post = NEW Post();
             $post->user_id = Session::get('user_id');
@@ -104,14 +108,16 @@ class PostController extends Controller
             $images = $request->file('images');
             if($request->hasFile('images'))
             {
+                $messages = array();
                 foreach ($images as $image) {
                     $imageUpload = $this->uploadImage($image, 'posts/images/', 800, 600);
                     $postImage = NEW PostImage();
                     $postImage->image_path = $imageUpload;
                     $postImage->post_id = $post->post_id;
                     $postImage->save();
-                    echo "<p class='green-text'>Image uploaded as <b>".$postImage->image_path."</b>!</p>";
+                    $messages[] = "Image ".count($images)." uploaded as ".$postImage->image_path;
                 }
+                return json_encode(['response'=>'success', 'messages'=>$messages]);
             }
         }
         catch (\Exception $e) {

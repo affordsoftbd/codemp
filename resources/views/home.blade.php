@@ -47,6 +47,7 @@
             <!--/.Panel 1-->
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel2" role="tabpanel">
+                <div id="image_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_image']) !!}
                     <div class="md-form">
                         {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'image_description')) !!}
@@ -68,9 +69,7 @@
                         {{ Form::button('চিত্র আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
                     <div class="clearfix"></div>
-                    <div class='my-5 red-text'>
-                        <div id="image_upload_feedback"></div>
-                    </div>
+                    <div id="image_upload_feedback" class="my-5"></div>
                 {!! Form::close() !!}
             </div>
             <!--/.Panel 2-->
@@ -548,11 +547,12 @@
         }
       });
 
-        //  Jquery form for uploading image and showing progress
+        //  Jquery form for uploading image and showing progress (image_error_message)
 
       (function() {
         $('.upload_image').ajaxForm({
           beforeSend: function() {
+            $('#image_error_message').delay(5000).empty();
             $('#image_upload_feedback').fadeOut('fast', function() {
                 $(this).html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 0%; height: 20px' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>0%</div></div>").fadeIn('slow');
             });
@@ -572,8 +572,20 @@
             $("#image_description").empty().val("");
             $("#selected_texts").empty().val("");
             $('#image_upload_feedback').fadeOut('slow', function() {
-                $(this).html("<center>"+xhr.responseText+"</center>").fadeIn('slow');
-                $(this).delay(1000).fadeOut(2000);
+                var json = JSON.parse(xhr.responseText);
+                if(json.response == 'error'){
+                    $('#image_error_message').html('<div class="alert alert-danger my-3" role="alert"><center>'+json.messages+'</center></div>');
+                    $(this).empty();
+                }
+                else{
+                    html = '<ul class="green-text">';
+                    for( var i = 0; i<json.messages.length; i++){
+                        html +='<li>'+json.messages[i]+'</li>';
+                    }
+                    html +='</ul>';
+                    $(this).html(html).fadeIn('slow');
+                    $(this).delay(2000).fadeOut('slow');
+                }
             });
 
             var last_id = $('#last_id').val();
