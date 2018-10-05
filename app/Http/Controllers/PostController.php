@@ -127,7 +127,7 @@ class PostController extends Controller
 
     public function saveVideoPost(Request $request){
         $validator = Validator::make($request->all(), [
-            'video'  => 'mimes:mp4,mkv,3gp | max:20000',
+            'video'  => 'mimes:mp4,mkv,3gp | max:10000',
             'description' => 'required|string'
         ]);
         if ($validator->fails()) {

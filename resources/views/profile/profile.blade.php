@@ -48,6 +48,7 @@
             <!--/.Panel 1-->
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel2" role="tabpanel">
+                <div id="image_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_image']) !!}
                     <div class="md-form">
                         {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'image_description')) !!}
@@ -61,7 +62,7 @@
                                 {!! Form::file("images[]", ['class'=>'input_image', 'multiple'=>'true']) !!}
                             </div>
                             <div class="file-path-wrapper">
-                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_texts', 'placeholder'=>'আপনার ফাইলগুলো নির্বাচন করুন']) !!}
+                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_images_names', 'placeholder'=>'আপনার ফাইলগুলো নির্বাচন করুন']) !!}
                             </div>
                         </div>
                     </div>
@@ -69,18 +70,24 @@
                         {{ Form::button('চিত্র আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
                     <div class="clearfix"></div>
-                    <div class='my-5 red-text'>
-                        <div id="image_upload_feedback"></div>
-                    </div>
+                    <div id="image_upload_feedback" class="my-5"></div>
                 {!! Form::close() !!}
             </div>
             <!--/.Panel 2-->
             <!--Panel 3-->
             <div class="tab-pane fade" id="panel3" role="tabpanel">
+                <div id="video_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['video.save'], 'class'=>'md-form share_video']) !!}
                     <div class="md-form">
-                        {!! Form::url('video_path', null, array('class'=>'form-control mt-3', 'id'=>'video_path')) !!}
-                        {!! Form::label('video_path', 'ভিডিও লিংক') !!}
+                        <div class="file-field">
+                            <div class="btn btn-danger btn-sm float-left">
+                            <span>নির্বাচন</span>
+                                {!! Form::file("video", ['class'=>'input_video']) !!}
+                            </div>
+                            <div class="file-path-wrapper">
+                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_video_name', 'placeholder'=>'আপনার ভিডিওটি নির্বাচন করুন']) !!}
+                            </div>
+                        </div>
                     </div>
                     <div class="md-form">
                         {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'video_description')) !!}
@@ -90,9 +97,7 @@
                         {{ Form::button('ভিডিও শেয়ার করুন<i class="fa fa-share fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
                     <div class="clearfix"></div>
-                    <div class='my-5 red-text' align='center'>
-                        <div id="video_upload_feedback"></div>
-                    </div>
+                    <div id="video_upload_feedback" class="my-5" align="center"></div>
                 {!! Form::close() !!}
             </div>
          </div>

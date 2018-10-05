@@ -214,9 +214,9 @@
                                       html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
 
                                         html +='<div class="view overlay my-3" align="center">';
-                                            html +='<div class="embed-responsive embed-responsive-16by9">';
-                                                html +='<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>';
-                                            html +='</div> ';
+                                            html +='<video class="video-fluid z-depth-1" controls width="100%">';
+                                                html +='<source src="'+video_url+'" type="video/mp4" />';
+                                            html +='</video> ';
                                         html +='</div>';
 
                                         html +='<div class="rounded-bottom green text-center pt-3">';

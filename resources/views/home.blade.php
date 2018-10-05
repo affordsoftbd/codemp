@@ -370,7 +370,7 @@
                                         
                                       html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
 
-                                        var video_url =  '{{ url('/').'/' }}'+value.video_path;
+                                        var video_url =  '{{ url('/').'/' }}'+value.videos.video_path;
 
                                         html +='<div class="view overlay my-3" align="center">';
                                             html +='<video class="video-fluid z-depth-1" controls width="100%">';
