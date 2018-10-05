@@ -253,6 +253,53 @@
             }
         }
 
+        (function() {
+        $('.upload_image').ajaxForm({
+          beforeSend: function() {
+            $('#image_error_message').delay(5000).empty();
+            $('#image_upload_feedback').fadeOut('fast', function() {
+                $(this).html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 0%; height: 20px' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>0%</div></div>").fadeIn('slow');
+            });
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+            percentVal = percentComplete + '%';
+            $('#image_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: "+percentVal+"; height: 20px' aria-valuenow='"+percentVal+"' aria-valuemin='0' aria-valuemax='100'>"+percentVal+"</div></div>");
+          },
+          success: function() {
+            $('#image_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%; height: 20px' aria-valuenow='100%' aria-valuemin='0' aria-valuemax='100'>100%</div></div>");   
+          },
+          error: function() {
+            $("#image_upload_feedback").html("<h5 class='mt-1 mb-2 red-text text-center'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text text-center'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p>").fadeIn("slow");        
+          },
+          complete: function(xhr) {
+            $(".input_image").val(null);
+            $("#image_description").empty().val("");
+            $("#selected_images_names").empty().val("");
+            $('#image_upload_feedback').fadeOut('slow', function() {
+                var json = JSON.parse(xhr.responseText);
+                if(json.response == 'error'){
+                    $('#image_error_message').html('<div class="alert alert-danger my-3" role="alert"><center>'+json.message+'</center></div>');
+                    $(this).empty();
+                }
+                else{
+                    html = '<ul class="green-text">';
+                    for( var i = 0; i<json.message.length; i++){
+                        html +='<li>'+json.message[i]+'</li>';
+                    }
+                    html +='</ul>';
+                    $(this).html(html).fadeIn('slow');
+                    $(this).delay(2000).fadeOut('slow');
+                }
+            });
+
+            var last_id = $('#last_id').val();
+            $('#last_id').val(parseInt(last_id)+1);
+
+            getPost(parseInt(last_id)+1,'init');
+          }
+        }); 
+      })();
+
         function show_comment_box(id){
             $('#post_id').val(id);
             $('#modalSubscriptionForm').modal('show');
