@@ -227,8 +227,9 @@
                                         html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
 
                                         html +='<div class="view overlay mt-4" align="center">';
-                                            html +='<div class="lightgallery">';
-                                                html +='<ul class="lightSlider">';
+                                            html +='<div class="lightgallery mb-4">';
+                                                html +='<p><span class="slidercount">1</span> of '+Object.keys(value.images).length+' total images in this album</p>';
+                                                html +='<ul class="lightSlider">'; // slidercount
                                                 $.each(value.images, function( index, image ) {
                                                     var image_url =  '{{ url('/').'/' }}'+image.image_path;
                                                     html +='<li data-thumb="'+image_url+'" data-src="'+image_url+'" data-sub-html="Focused client-server ability 10">';
@@ -236,7 +237,6 @@
                                                     html +='</li>';
                                                 });
                                                 html +='</ul>';
-                                                html +='<p class="my-4">'+Object.keys(value.images).length+' Images in this album</p>';
                                             html +='</div> ';
                                         html +='</div>';
 
@@ -260,22 +260,27 @@
                             
                             if (typeof image_post !== 'undefined'){
                                 $('.lightSlider').each(function (index) {
-                                    $(this).lightSlider({
-                                        gallery: true,
-                                        item: 1,
-                                        loop: true,
-                                        slideMargin: 0,
-                                        thumbItem: 9,
-                                        onBeforeSlide: function (el) {
-                                            $('.slidercount:eq('+index+')').text(el.getCurrentSlideCount());
-                                        },
-                                        onSliderLoad: function(el) {
-                                            el.lightGallery({
-                                                selector: '.lightgallery .lslide'
-                                            });
-                                        }
-                                    });
+                                    if (this.hasAttribute("sliderInstance")) {
+                                    }
+                                    else{
+                                        $(this).lightSlider({
+                                            gallery: true,
+                                            item: 1,
+                                            loop: true,
+                                            slideMargin: 0,
+                                            thumbItem: 9,
+                                            onBeforeSlide: function (el) {
+                                                $('.slidercount:eq('+index+')').text(el.getCurrentSlideCount());
+                                            },
+                                            onSliderLoad: function(el) {
+                                                el.lightGallery({
+                                                    selector: '.lightgallery .lslide'
+                                                });
+                                            }
+                                        });  
+                                    }
                                 });
+                                $('.lightSlider').attr("sliderInstance", "instantiated");
                                 delete image_post;
                             }
                         }

@@ -239,22 +239,27 @@
                             
                             if (typeof image_post !== 'undefined'){
                                 $('.lightSlider').each(function (index) {
-                                    $(this).lightSlider({
-                                        gallery: true,
-                                        item: 1,
-                                        loop: true,
-                                        slideMargin: 0,
-                                        thumbItem: 9,
-                                        onBeforeSlide: function (el) {
-                                            $('.slidercount:eq('+index+')').text(el.getCurrentSlideCount());
-                                        },
-                                        onSliderLoad: function(el) {
-                                            el.lightGallery({
-                                                selector: '.lightgallery .lslide'
-                                            });
-                                        }
-                                    });
+                                    if (this.hasAttribute("sliderInstance")) {
+                                    }
+                                    else{
+                                        $(this).lightSlider({
+                                            gallery: true,
+                                            item: 1,
+                                            loop: true,
+                                            slideMargin: 0,
+                                            thumbItem: 9,
+                                            onBeforeSlide: function (el) {
+                                                $('.slidercount:eq('+index+')').text(el.getCurrentSlideCount());
+                                            },
+                                            onSliderLoad: function(el) {
+                                                el.lightGallery({
+                                                    selector: '.lightgallery .lslide'
+                                                });
+                                            }
+                                        });  
+                                    }
                                 });
+                                $('.lightSlider').attr("sliderInstance", "instantiated");
                                 delete image_post;
                             }
                         }
