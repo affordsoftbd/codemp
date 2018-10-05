@@ -254,6 +254,45 @@
         }
 
         (function() {
+            $('.share_video').ajaxForm({
+              beforeSend: function() {
+                $('#video_error_message').delay(5000).empty();
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>Connecting with server...</p>");
+              },
+              uploadProgress: function() {
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>Video is being saved! Please wait...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>");
+              },
+              success: function() {
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 green-text'>Video has been saved. Wait till return message..</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>").fadeIn("slow");        
+              },
+              error: function() {
+               $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 red-text'>Something went wrong in the server. Wait till return message..</p>").fadeIn("slow");        
+              },
+              complete: function(xhr) {
+                $(".input_video").val(null);
+                $("#selected_video_name").empty().val("");
+                $("#video_description").empty().val("");
+                $('#video_upload_feedback').fadeOut('slow', function() {
+                    var json = JSON.parse(xhr.responseText);
+                    if(json.response == 'error'){
+                        $('#video_error_message').html('<div class="alert alert-danger mt-3 mb-5" role="alert"><center>'+json.message+'</center></div>');
+                        $(this).empty();
+                    }
+                    else{
+                        $(this).html('<p class="green-text">'+json.message+'</p>').fadeIn('slow');
+                        $(this).delay(2000).fadeOut('slow');
+                    }
+                });
+
+                var last_id = $('#last_id').val();
+                $('#last_id').val(parseInt(last_id)+1);
+
+                getPost(parseInt(last_id)+1,'init');
+              }
+            }); 
+        })();
+
+        (function() {
         $('.upload_image').ajaxForm({
           beforeSend: function() {
             $('#image_error_message').delay(5000).empty();
