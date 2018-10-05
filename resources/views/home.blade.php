@@ -22,7 +22,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">
-                    <i class="fa fa-file-movie-o fa-sm pr-2"></i>লাইভ ভিডিও
+                    <i class="fa fa-file-movie-o fa-sm pr-2"></i>ভিডিও
                 </a>
             </li>
         </ul>
@@ -61,7 +61,7 @@
                                 {!! Form::file("images[]", ['class'=>'input_image', 'multiple'=>'true']) !!}
                             </div>
                             <div class="file-path-wrapper">
-                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_texts', 'placeholder'=>'আপনার ফাইলগুলো নির্বাচন করুন']) !!}
+                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_images_names', 'placeholder'=>'আপনার ফাইলগুলো নির্বাচন করুন']) !!}
                             </div>
                         </div>
                     </div>
@@ -75,10 +75,18 @@
             <!--/.Panel 2-->
             <!--Panel 3-->
             <div class="tab-pane fade" id="panel3" role="tabpanel">
+                <div id="video_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['video.save'], 'class'=>'md-form share_video']) !!}
                     <div class="md-form">
-                        {!! Form::url('video_path', null, array('class'=>'form-control mt-3', 'id'=>'video_path')) !!}
-                        {!! Form::label('video_path', 'ভিডিও লিংক') !!}
+                        <div class="file-field">
+                            <div class="btn btn-danger btn-sm float-left">
+                            <span>নির্বাচন</span>
+                                {!! Form::file("video", ['class'=>'input_video']) !!}
+                            </div>
+                            <div class="file-path-wrapper">
+                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_video_name', 'placeholder'=>'আপনার ভিডিওটি নির্বাচন করুন']) !!}
+                            </div>
+                        </div>
                     </div>
                     <div class="md-form">
                         {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'video_description')) !!}
@@ -88,9 +96,7 @@
                         {{ Form::button('ভিডিও শেয়ার করুন<i class="fa fa-share fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
                     <div class="clearfix"></div>
-                    <div class='my-5 red-text' align='center'>
-                        <div id="video_upload_feedback"></div>
-                    </div>
+                    <div id="video_upload_feedback" class="my-5" align="center"></div>
                 {!! Form::close() !!}
             </div>
          </div>
@@ -364,12 +370,13 @@
                                         
                                       html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
 
-                                        html +='<div class="view overlay my-3" align="center">';
-                                            html +='<div class="embed-responsive embed-responsive-16by9">';
-                                                html +='<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>';
-                                            html +='</div> ';
-                                        html +='</div>';
+                                        var video_url =  '{{ url('/').'/' }}'+value.video_path;
 
+                                        html +='<div class="view overlay my-3" align="center">';
+                                            html +='<video class="video-fluid z-depth-1" controls width="100%">';
+                                                html +='<source src="'+video_url+'" type="video/mp4" />';
+                                            html +='</video> ';
+                                        html +='</div>';
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
                                                 html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="fa fa-thumbs-o-up pr-1"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
@@ -570,17 +577,17 @@
           complete: function(xhr) {
             $(".input_image").val(null);
             $("#image_description").empty().val("");
-            $("#selected_texts").empty().val("");
+            $("#selected_images_names").empty().val("");
             $('#image_upload_feedback').fadeOut('slow', function() {
                 var json = JSON.parse(xhr.responseText);
                 if(json.response == 'error'){
-                    $('#image_error_message').html('<div class="alert alert-danger my-3" role="alert"><center>'+json.messages+'</center></div>');
+                    $('#image_error_message').html('<div class="alert alert-danger my-3" role="alert"><center>'+json.message+'</center></div>');
                     $(this).empty();
                 }
                 else{
                     html = '<ul class="green-text">';
-                    for( var i = 0; i<json.messages.length; i++){
-                        html +='<li>'+json.messages[i]+'</li>';
+                    for( var i = 0; i<json.message.length; i++){
+                        html +='<li>'+json.message[i]+'</li>';
                     }
                     html +='</ul>';
                     $(this).html(html).fadeIn('slow');
@@ -601,6 +608,7 @@
         (function() {
             $('.share_video').ajaxForm({
               beforeSend: function() {
+                $('#video_error_message').delay(5000).empty();
                 $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>Connecting with server...</p>");
               },
               uploadProgress: function() {
@@ -613,11 +621,19 @@
                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 red-text'>Something went wrong in the server. Wait till return message..</p>").fadeIn("slow");        
               },
               complete: function(xhr) {
-                $("#video_path").empty().val("");
+                $(".input_video").val(null);
+                $("#selected_video_name").empty().val("");
                 $("#video_description").empty().val("");
                 $('#video_upload_feedback').fadeOut('slow', function() {
-                    $(this).html(xhr.responseText).fadeIn('slow');
-                    $(this).delay(1000).fadeOut(2000);
+                    var json = JSON.parse(xhr.responseText);
+                    if(json.response == 'error'){
+                        $('#video_error_message').html('<div class="alert alert-danger mt-3 mb-5" role="alert"><center>'+json.message+'</center></div>');
+                        $(this).empty();
+                    }
+                    else{
+                        $(this).html('<p class="green-text">'+json.message+'</p>').fadeIn('slow');
+                        $(this).delay(2000).fadeOut('slow');
+                    }
                 });
 
                 var last_id = $('#last_id').val();

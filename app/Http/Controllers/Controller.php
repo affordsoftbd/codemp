@@ -26,4 +26,12 @@ class Controller extends BaseController
         Storage::disk('local')->put($path.$filename, $image_resize, 'public');
         return 'uploads/'.$path.$filename;
     }
+
+    protected function uploadVideo($video, $path)
+    {        
+        $ext = explode('.', $video->getClientOriginalName()); 
+        $filename = md5(uniqid())."." . $ext[count($ext) -1];
+        Storage::disk('local')->put($path, $video, 'public');
+        return 'uploads/'.$path.$filename;
+    }
 }

@@ -97,7 +97,7 @@ class PostController extends Controller
                 'images.*.max' => 'Sorry! Maximum allowed size for an image is 2MB',
         ]);
         if ($validator->fails()) {
-          return response()->json(['response'=>'error', 'messages'=>implode(" || ",$validator->messages()->all())]);
+          return response()->json(['response'=>'error', 'message'=>implode(" || ",$validator->messages()->all())]);
         }
         try {
             $post = NEW Post();
@@ -117,7 +117,7 @@ class PostController extends Controller
                     $postImage->save();
                     $messages[] = "Image ".count($images)." uploaded as ".$postImage->image_path;
                 }
-                return json_encode(['response'=>'success', 'messages'=>$messages]);
+                return json_encode(['response'=>'success', 'message'=>$messages]);
             }
         }
         catch (\Exception $e) {
@@ -126,10 +126,13 @@ class PostController extends Controller
     }
 
     public function saveVideoPost(Request $request){
-        $this->validate(request(),[
-            'video_path' => 'required|url',
+        $validator = Validator::make($request->all(), [
+            'video'  => 'mimes:mp4,mkv,3gp | max:20000',
             'description' => 'required|string'
         ]);
+        if ($validator->fails()) {
+          return response()->json(['response'=>'error', 'message'=>implode(" || ",$validator->messages()->all())]);
+        }
         try {
             $post = NEW Post();
             $post->user_id = Session::get('user_id');
@@ -137,11 +140,10 @@ class PostController extends Controller
             $post->post_type = 'video';
             $post->save();
             $postVideo = NEW PostVideo();
-            $postVideo->video_path = $request->video_path;
+            $postVideo->video_path = $this->uploadVideo($request->video, 'posts/videos/'); // $request->video->store('storage/uploads','public');
             $postVideo->post_id = $post->post_id;
             $postVideo->save();
-            echo "<p class='green-text'>Video shared successfully!</p>";
-
+            return json_encode(['response'=>'success', 'message'=>'Video shared successfully!']);
         }
         catch (\Exception $e) {
             return ['status'=>401, 'reason'=>$e->getMessage()];
