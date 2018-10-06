@@ -145,9 +145,12 @@
 
 		</div>
 		<!-- Card -->
-		@guest          
-            <a type="button" href="{{ route('profile.edit', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>প্রোফাইল</a>
-        @else
+		@guest
+            <div class="btn-group my-5" role="group" aria-label="Basic example">
+              <a href="button" class="btn btn-light-green btn-sm"><i class="fa fa-check fa-sm pr-2"></i>অনুসরণ</a>
+              <a href="button" class="btn btn-dark-green btn-sm"><i class="fa fa-comments fa-sm pr-2"></i>চ্যাট</a>
+            </div>      
+        @else 
     		<h5 class="red-text mt-4 font-weight-bold"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>হালনাগাদ</h5><hr>
     	    <a type="button" href="{{ route('profile.edit', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>প্রোফাইল</a>
     	    <a type="button" href="{{ route('profile.edit.politican', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>রাজনীতিবিদ্ তথ্য</a>

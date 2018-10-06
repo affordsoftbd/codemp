@@ -79,12 +79,17 @@
         <!-- Card content -->
         <div class="card-body">
           <!-- Title-->
-          <a href="{{ route('profile', Session::get('username')) }}"><h4 class="card-title title-one">Clara</h4></a>
+          <a><h4 class="card-title title-one">Clara</h4></a>
           <p class="card-meta">অংশগ্রহন 2013</p>
           <!-- Text -->
-          <p class="card-text">সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
           <hr>
           <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
+          <div class="btn-group mt-3" role="group" aria-label="Basic example">
+              <a href="button" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ"><i class="fa fa-check"></i></a>
+              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
+              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+          </div>
         </div>
         <!-- Card content -->
 
@@ -92,59 +97,61 @@
       <!-- Card -->
 	</div>
 	<div class="col-lg-4 col-md-6 mb-4">
-		<!-- Card -->
-		<div class="card">
+      <!-- Card -->
+      <div class="card card-personal">
 
-		  <!-- Card image -->
-		  <div class="view overlay">
-		    <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
-		    <a href="#!">
-		      <div class="mask rgba-white-slight"></div>
-		    </a>
-		  </div>
+        <!-- Card image-->
+        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
+        <!-- Card image-->
 
-		  <!-- Card content -->
-		  <div class="card-body">
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a><h4 class="card-title title-one">Clara</h4></a>
+          <p class="card-meta">অংশগ্রহন 2013</p>
+          <!-- Text -->
+          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+          <hr>
+          <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
+          <div class="btn-group mt-3" role="group" aria-label="Basic example">
+              <a href="button" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ"><i class="fa fa-check"></i></a>
+              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
+              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+          </div>
+        </div>
+        <!-- Card content -->
 
-		    <!-- Title -->
-		    <h4 class="card-title">Card title</h4>
-		    <!-- Text -->
-		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    <!-- Button -->
-		    <a href="#" class="btn btn-primary">Button</a>
-
-		  </div>
-
-		</div>
-		<!-- Card -->
-	</div>
+      </div>
+      <!-- Card -->
+  </div>
 	<div class="col-lg-4 col-md-6 mb-4">
-		<!-- Card -->
-		<div class="card">
+      <!-- Card -->
+      <div class="card card-personal">
 
-		  <!-- Card image -->
-		  <div class="view overlay">
-		    <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
-		    <a href="#!">
-		      <div class="mask rgba-white-slight"></div>
-		    </a>
-		  </div>
+        <!-- Card image-->
+        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
+        <!-- Card image-->
 
-		  <!-- Card content -->
-		  <div class="card-body">
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a><h4 class="card-title title-one">Clara</h4></a>
+          <p class="card-meta">অংশগ্রহন 2013</p>
+          <!-- Text -->
+          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+          <hr>
+          <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
+          <div class="btn-group mt-3" role="group" aria-label="Basic example">
+              <a href="button" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ"><i class="fa fa-check"></i></a>
+              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
+              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+          </div>
+        </div>
+        <!-- Card content -->
 
-		    <!-- Title -->
-		    <h4 class="card-title">Card title</h4>
-		    <!-- Text -->
-		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    <!-- Button -->
-		    <a href="#" class="btn btn-primary">Button</a>
-
-		  </div>
-
-		</div>
-		<!-- Card -->
-	</div>
+      </div>
+      <!-- Card -->
+  </div>
 </div>
 
 <!--Pagination-->
