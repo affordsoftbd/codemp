@@ -274,6 +274,8 @@
                                     /*
                                     * Video post
                                     */
+                                    video_post = true;
+                                    
                                     if(value.image_path!='' || value.image_path!='null'){
                                         var profile_image = "{{ url('/')}}"+value.image_path;
                                     }
@@ -303,8 +305,8 @@
                                         var video_url =  '{{ url('/').'/' }}'+value.videos.video_path;
 
                                         html +='<div class="view overlay my-3" align="center">';
-                                            html +='<video class="video-fluid z-depth-1" controls width="100%">';
-                                                html +='<source src="'+video_url+'" type="video/mp4" />';
+                                            html +='<video class="video-js z-depth-1" controls style="width:100%">';
+                                                html +='<source src="'+video_url+'" type="video/mp4">';
                                             html +='</video> ';
                                         html +='</div>';
                                         html +='<div class="rounded-bottom green text-center pt-3">';
@@ -349,6 +351,13 @@
                                 });
                                 $('.lightSlider').attr("sliderInstance", "instantiated");
                                 delete image_post;
+                            }
+                            if (typeof video_post !== 'undefined'){
+                                var massVideo = $('.video-js');
+                                for(var i = 0; i < massVideo.length; i++){
+                                  videojs(massVideo[i]).ready(function(){});
+                                }
+                                delete video_post;
                             }
                         }
                         else{

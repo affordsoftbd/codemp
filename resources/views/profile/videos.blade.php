@@ -19,9 +19,6 @@
  </ul>
  <!-- Tab panels -->
  <div class="tab-content">
-    <video class="video-js" controls preload="auto" data-setup="{}" style="width: 100%;">
-        <source src="http://techslides.com/demos/sample-videos/small.mp4" type='video/mp4'>
-    </video>
 
     <div id="post_list">
 
@@ -190,8 +187,8 @@
                                         
                                       html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<div class="view overlay my-3" align="center">';
-                                            html +='<video id="example_video_1" class="video-js video-fluid z-depth-1" controls preload="auto" data-setup="{}" style="width: 100%;">';
-                                                html +='<source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">';
+                                            html +='<video class="video-js z-depth-1" controls style="width:100%">';
+                                                html +='<source src="'+video_url+'" type="video/mp4">';
                                             html +='</video> ';
                                         html +='</div>';
 
@@ -213,13 +210,10 @@
                                 $('#post_list').append(html);
                             }
                             if (typeof video_post !== 'undefined'){
-                                videojs("example_video_1");
-                                /*
-                                    var massVideo = $('.video-js');
-                                    for(var i = 0; i < massVideo.length; i++){
-                                      videojs(massVideo[i]).ready(function(){});
-                                    }
-                                */
+                                var massVideo = $('.video-js');
+                                for(var i = 0; i < massVideo.length; i++){
+                                  videojs(massVideo[i]).ready(function(){});
+                                }
                                 delete video_post;
                             }
                         }
