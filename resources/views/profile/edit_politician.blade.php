@@ -84,8 +84,17 @@
 
 <a class="btn btn-success waves-effect btn-sm" href="{{ route('profile', Session::get('username')) }}"><i class="fa fa-arrow-circle-left fa-sm pr-2" aria-hidden="true"></i>প্রত্যাবর্তন</a>
 
-<h1>home page er code gulo copy korle dropdown show korbe</h1>
+@endsection
 
+@section('extra-script')
+    <script>
+        $(document).ready(function() {
+           $('#division').material_select();
+           $('#district').material_select();
+           $('#thana').material_select();
+           $('#zip').material_select();
+        });
+     </script>
 @endsection
 
 

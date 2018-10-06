@@ -129,7 +129,7 @@ class HomeController extends Controller
                 return redirect('error_404');
             }
 
-            $lastPost = Post::where('posts.user_id',$data['user']->id)->where('post_type','photo')->orderBy('post_id','desc')->first();
+            $lastPost = Post::where('posts.user_id',$data['user']->id)->where('post_type','video')->orderBy('post_id','desc')->first();
             if(!empty($lastPost)){
                 $data['last_id'] = $lastPost->post_id;
             }
@@ -137,6 +137,19 @@ class HomeController extends Controller
                 $data['last_id'] = 0;
             }
             return view('profile.videos',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function politicians()
+    {
+        try {
+            if(!Auth::check()){
+                return redirect('login');
+            }            
+            return view('politicians');
         }
         catch (\Exception $e) {
             return $e->getMessage();

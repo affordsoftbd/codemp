@@ -19,55 +19,28 @@
  </ul>
  <!-- Tab panels -->
  <div class="tab-content">
-	<!--div class="card mb-4">
-		<div class="card-body">
-			<div class="row">
-				<div class="col-xl-1 col-lg-2 col-md-2 post_creator">
-				<img src="http://localhost:8000null" class="rounded-circle z-depth-1-half"></div>
-				<div class="col-xl-11 col-lg-10 col-md-10">
-					<h6 class="font-weight-bold">Mohiuddin Muhin</h6>
-					<small class="grey-text">2018-09-29 20:31:58</small>
-				</div>
-			</div>
-			<hr>
-			asdasd
-		    <div class="view overlay my-3" align="center">
-		        <div class="embed-responsive embed-responsive-16by9">
-		            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
-		        </div> 
-		    </div>
-		</div>
-		<div class="rounded-bottom green text-center pt-3">
-			<ul class="list-unstyled list-inline font-small">
-				<li class="list-inline-item pr-2">
-				</li>
-				<li class="list-inline-item">
-					<a href="http://localhost:8000/post/75" class="white-text">
-							<i class="fa fa-comments-o pr-1"></i><span id="p_comment_75">0</span>
-						</a>
-				</li>
-			</ul>
-		</div>
-	</div-->
+    <video class="video-js" controls preload="auto" data-setup="{}" style="width: 100%;">
+        <source src="http://techslides.com/demos/sample-videos/small.mp4" type='video/mp4'>
+    </video>
 
-	<div id="post_list">
+    <div id="post_list">
 
-	</div>
+    </div>
 
-	<!--Pagination-->
-	<div class="container-fluid my-5">
-	    <div class="row">
-	        <div class="col-md-4">
-	            <hr>
-	        </div>
-	        <div class="col-md-4" align="center">
-	            <button class="btn btn-md btn-red load_more_button"><i class="fa fa-refresh fa-sm pr-2"></i>&nbsp;Load More!</button>
-	        </div>
-	        <div class="col-md-4">
-	            <hr>
-	        </div>
-	    </div>
-	</div>
+    <!--Pagination-->
+    <div class="container-fluid my-5">
+        <div class="row">
+            <div class="col-md-4">
+                <hr>
+            </div>
+            <div class="col-md-4" align="center">
+                <button class="btn btn-md btn-red load_more_button"><i class="fa fa-refresh fa-sm pr-2"></i>&nbsp;Load More!</button>
+            </div>
+            <div class="col-md-4">
+                <hr>
+            </div>
+        </div>
+    </div>
  </div>
 
 <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -187,12 +160,16 @@
                                     /*
                                     * Video post
                                     */
+                                    video_post = true;
+
                                     if(value.image_path!='' || value.image_path!='null'){
                                         var profile_image = "{{ url('/')}}"+value.image_path;
                                     }
                                     else{
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
                                     }
+                                    
+                                    var video_url =  '{{ url('/').'/' }}'+value.videos.video_path;
                                     
                                     html +='<div class="card my-4">';
 
@@ -212,10 +189,9 @@
 
                                         
                                       html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
-
                                         html +='<div class="view overlay my-3" align="center">';
-                                            html +='<video class="video-fluid z-depth-1" controls width="100%">';
-                                                html +='<source src="'+video_url+'" type="video/mp4" />';
+                                            html +='<video class="video-js video-fluid z-depth-1" controls preload="auto" data-setup="{}" style="width: 100%;">';
+                                                html +='<source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">';
                                             html +='</video> ';
                                         html +='</div>';
 
@@ -236,31 +212,12 @@
                             else{
                                 $('#post_list').append(html);
                             }
-                            
-                            if (typeof image_post !== 'undefined'){
-                                $('.lightSlider').each(function (index) {
-                                    if (this.hasAttribute("sliderInstance")) {
-                                    }
-                                    else{
-                                        $(this).lightSlider({
-                                            gallery: true,
-                                            item: 1,
-                                            loop: true,
-                                            slideMargin: 0,
-                                            thumbItem: 9,
-                                            onBeforeSlide: function (el) {
-                                                $('.slidercount:eq('+index+')').text(el.getCurrentSlideCount());
-                                            },
-                                            onSliderLoad: function(el) {
-                                                el.lightGallery({
-                                                    selector: '.lightgallery .lslide'
-                                                });
-                                            }
-                                        });  
-                                    }
-                                });
-                                $('.lightSlider').attr("sliderInstance", "instantiated");
-                                delete image_post;
+                            if (typeof video_post !== 'undefined'){
+                                var massVideo = $('.video-js');
+                                /*for(var i = 0; i < massVideo.length; i++){
+                                  videojs(massVideo[i]).ready(function(){});
+                                }*/
+                                delete video_post;
                             }
                         }
                         else{

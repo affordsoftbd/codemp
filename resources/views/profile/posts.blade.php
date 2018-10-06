@@ -5,20 +5,26 @@
 @section('content')
 
 @include('profile.profile')
-<!-- Nav tabs -->
- <ul class="nav nav-tabs md-tabs nav-justified red my-5" role="tablist">
-     <li class="nav-item">
-         <a class="nav-link active" data-toggle="tab" href="javascript:void(0)" role="tab"><i class="fa fa-edit fa-sm pr-2"></i> পোস্ট সমূহ</a>
-     </li>
-     <li class="nav-item">
-         <a class="nav-link" href="{{ route('profile.albums', Session::get('username')) }}" role="tab"><i class="fa fa-file-image-o fa-sm pr-2"></i> অ্যালবাম সমূহ</a>
-     </li>
-     <li class="nav-item">
-         <a class="nav-link" href="{{ route('profile.videos', Session::get('username')) }}" role="tab"><i class="fa fa-file-movie-o fa-sm pr-2"></i> ভিডিও সমূহ</a>
-     </li>
- </ul>
- <!-- Tab panels -->
- <div class="tab-content">
+
+@guest          
+
+@else
+    <!-- Nav tabs -->
+     <ul class="nav nav-tabs md-tabs nav-justified red my-5" role="tablist">
+         <li class="nav-item">
+             <a class="nav-link active" data-toggle="tab" href="javascript:void(0)" role="tab"><i class="fa fa-edit fa-sm pr-2"></i> পোস্ট সমূহ</a>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link" href="{{ route('profile.albums', Session::get('username')) }}" role="tab"><i class="fa fa-file-image-o fa-sm pr-2"></i> অ্যালবাম সমূহ</a>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link" href="{{ route('profile.videos', Session::get('username')) }}" role="tab"><i class="fa fa-file-movie-o fa-sm pr-2"></i> ভিডিও সমূহ</a>
+         </li>
+     </ul>
+     <!-- Tab panels -->
+@endguest
+
+<div class="tab-content">
 
 	<!--div class="card mb-4">
 		<div class="card-body">

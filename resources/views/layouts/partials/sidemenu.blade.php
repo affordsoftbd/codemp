@@ -17,6 +17,9 @@
     <a href="#" class="list-group-item list-group-item-action waves-effect">
     	<i class="fa fa-video-camera fa-sm pr-2"></i>ভিডিও চ্যাট
 	</a>
+    <a href="{{ route('politicians') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('politicians*')? 'active':'' }}">
+        <i class="fa fa-certificate fa-sm pr-2"></i>নেতা/কর্মীগণ
+    </a>
     <a href="{{ route('profile', Session::get('username')) }}" class="list-group-item list-group-item-action {{Route::is('profile*')? 'active':''}} waves-effect">
         <i class="fa fa-user fa-sm pr-2"></i>প্রোফাইল
     </a>

@@ -145,12 +145,15 @@
 
 		</div>
 		<!-- Card -->
-		
-		<h5 class="red-text mt-4 font-weight-bold"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>হালনাগাদ</h5><hr>
-	    <a type="button" href="{{ route('profile.edit', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>প্রোফাইল</a>
-	    <a type="button" href="{{ route('profile.edit.politican', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>রাজনীতিবিদ্ তথ্য</a>
-	    <a type="button" href="{{ route('profile.edit.password', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>পাসওয়ার্ড</a>
-		<a type="button" href="javascript:void(0)" class="btn btn-dark-green btn-sm"><i class="fa fa-bank fa-sm pr-2" aria-hidden="true"></i>অর্থাদি</a>
+		@guest          
+            <a type="button" href="{{ route('profile.edit', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>প্রোফাইল</a>
+        @else
+    		<h5 class="red-text mt-4 font-weight-bold"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>হালনাগাদ</h5><hr>
+    	    <a type="button" href="{{ route('profile.edit', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>প্রোফাইল</a>
+    	    <a type="button" href="{{ route('profile.edit.politican', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>রাজনীতিবিদ্ তথ্য</a>
+    	    <a type="button" href="{{ route('profile.edit.password', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>পাসওয়ার্ড</a>
+    		<a type="button" href="javascript:void(0)" class="btn btn-dark-green btn-sm"><i class="fa fa-bank fa-sm pr-2" aria-hidden="true"></i>অর্থাদি</a>
+        @endguest
     </div>
 </div>
 
