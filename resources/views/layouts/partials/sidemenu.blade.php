@@ -2,7 +2,7 @@
     <a href="{{ route('home') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('home')? 'active':'' }}">
         <i class="fa fa-rss fa-sm pr-2"></i>ফিড
     </a>
-    <a href="#" class="list-group-item list-group-item-action waves-effect">
+    <a href="{{ route('news') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('news')? 'active':'' }}">
         <i class="fa fa-newspaper-o fa-sm pr-2"></i>খবর
     </a>
     <a href="#" class="list-group-item list-group-item-action waves-effect">

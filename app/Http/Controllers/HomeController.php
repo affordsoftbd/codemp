@@ -57,6 +57,16 @@ class HomeController extends Controller
         }
     }
 
+    public function news()
+    {
+        try {
+            return view('news.index');
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function profilePosts(Request $request)
     {
         try {
