@@ -24,12 +24,12 @@ class Controller extends BaseController
         });
         $image_resize->stream(); 
         Storage::disk('local')->put($path.$filename, $image_resize, 'public');
-        return 'uploads/'.$path.$filename;
+        return '/uploads/'.$path.$filename;
     }
 
     protected function uploadVideo($video, $path)
     {         
         $file = Storage::disk('local')->put($path, $video, 'public');
-        return 'uploads/'.$file;
+        return '/uploads/'.$file;
     }
 }

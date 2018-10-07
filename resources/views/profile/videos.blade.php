@@ -166,17 +166,12 @@
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
                                     }
                                     
-                                    html +='<div class="card my-4">';
+                                    html +='<div class="card my-4 news-card">';
 
                                         html +='<div class="card-body">';
-                                            html +='<div class="row">';
-                                                html +='<div class="col-xl-1 col-lg-2 col-md-2 post_creator">';
-                                                    html +='<img src="'+profile_image+'" class="rounded-circle z-depth-1-half">';
-                                                html +='</div>';
-                                                html +='<div class="col-xl-11 col-lg-10 col-md-10">';
-                                                    html +='<h6 class="font-weight-bold">'+value.first_name+' '+value.last_name+'</h6>';
-                                                    html +='<small class="grey-text">'+value.created_at+'</small>';
-                                                html +='</div>';
+                                            html +='<div class="content">';
+                                                html +='<div class="right-side-meta">'+value.created_at+'</div>';
+                                                html +='<img src="'+profile_image+'" class="rounded-circle profile-image-thumbnile avatar-img z-depth-1-half"><strong>'+value.first_name+' '+value.last_name+'</strong>';
                                             html +='</div>';
                                             html +='<hr>';
                                             html +=value.description;
@@ -186,7 +181,7 @@
                                       html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
 
                                         $.each(value.videos, function( index, video ) {
-                                            var video_url =  '{{ url('/').'/' }}'+video.video_path;
+                                            var video_url =  '{{ url('/') }}'+video.video_path;
 
                                             html +='<div class="view overlay my-3" align="center">';
                                                 html +='<video class="video-js z-depth-1" controls style="width:100%">';

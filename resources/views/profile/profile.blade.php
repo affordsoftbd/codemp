@@ -110,7 +110,7 @@
 
 			<!-- Card image-->			
 			@if($user->image_path!='')
-	            <img class="card-img-top" src="{{ url('/').'/'.$user->image_path}}" alt="Card image cap">
+	            <img class="card-img-top" src="{{ url('/').$user->image_path}}" alt="Card image cap">
 	        @else
 	            <img class="card-img-top"  src="{{ url('/').'/img/avatar.png'}}" alt="Card image cap">
 	        @endif

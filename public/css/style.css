@@ -40,6 +40,11 @@ div.mce-fullscreen {
     z-index: 1050;
 }
 
+.profile-image-thumbnile{
+  min-width: 50px;
+  min-height: 50px;
+}
+
 .bootstrap-tagsinput {
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;

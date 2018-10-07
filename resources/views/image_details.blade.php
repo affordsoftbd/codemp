@@ -27,8 +27,8 @@
             <ul id="content-slider" class="content-slider">
                 @foreach($post->images as $image)
                 <li>
-                    <a href="{{ url('/').'/'.$image->image_path }}" data-sub-html="Focused client-server ability 1"> 
-                        <img class="img-fluid" src="{{ url('/').'/'.$image->image_path }}" alt="Photo">
+                    <a href="{{ url('/').$image->image_path }}" data-sub-html="Focused client-server ability 1"> 
+                        <img class="img-fluid" src="{{ url('/').$image->image_path }}" alt="Photo">
                     </a>
                 </li>
                 @endforeach
