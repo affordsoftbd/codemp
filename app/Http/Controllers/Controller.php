@@ -28,10 +28,8 @@ class Controller extends BaseController
     }
 
     protected function uploadVideo($video, $path)
-    {        
-        $ext = explode('.', $video->getClientOriginalName()); 
-        $filename = md5(uniqid())."." . $ext[count($ext) -1];
-        Storage::disk('local')->put($path, $video, 'public');
-        return 'uploads/'.$path.$filename;
+    {         
+        $file = Storage::disk('local')->put($path, $video, 'public');
+        return 'uploads/'.$file;
     }
 }

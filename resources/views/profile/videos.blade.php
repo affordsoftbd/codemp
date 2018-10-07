@@ -166,8 +166,6 @@
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
                                     }
                                     
-                                    var video_url =  '{{ url('/').'/' }}'+value.videos.video_path;
-                                    
                                     html +='<div class="card my-4">';
 
                                         html +='<div class="card-body">';
@@ -186,11 +184,16 @@
 
                                         
                                       html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
-                                        html +='<div class="view overlay my-3" align="center">';
-                                            html +='<video class="video-js z-depth-1" controls style="width:100%">';
-                                                html +='<source src="'+video_url+'" type="video/mp4">';
-                                            html +='</video> ';
-                                        html +='</div>';
+
+                                        $.each(value.videos, function( index, video ) {
+                                            var video_url =  '{{ url('/').'/' }}'+video.video_path;
+
+                                            html +='<div class="view overlay my-3" align="center">';
+                                                html +='<video class="video-js z-depth-1" controls style="width:100%">';
+                                                    html +='<source src="'+video_url+'" type="video/mp4">';
+                                                html +='</video> ';
+                                            html +='</div>';
+                                        });
 
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
