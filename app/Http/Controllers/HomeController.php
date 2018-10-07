@@ -67,6 +67,16 @@ class HomeController extends Controller
         }
     }
 
+    public function newsDetails($headline)
+    {
+        try {
+            return view('news.details');
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function profilePosts(Request $request)
     {
         try {

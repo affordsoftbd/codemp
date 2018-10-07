@@ -35,6 +35,7 @@ Route::post('save_politician_user','AuthController@savePoliticianUser');
 Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/news', 'HomeController@news')->name('news');
+Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');
 Route::get('/{username}', 'HomeController@profilePosts')->name('profile');
 Route::get('/{username}/posts', 'HomeController@profilePosts')->name('profile.posts');
