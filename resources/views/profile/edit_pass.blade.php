@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "পরিলেখ || পাসওয়ার্ড হালনাগাদ ||")
+@section('title', "প্রোফাইল || পাসওয়ার্ড হালনাগাদ ||")
 
 @section('content')
 

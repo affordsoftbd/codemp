@@ -112,6 +112,16 @@ class UserController extends Controller
         }
     }
 
+    public function updatePhoto(Request $request){
+        try {
+            
+        }
+        catch (\Exception $e) {
+            DB::rollback();
+            return ['status'=>200,'reason'=>$e->getMessage()];
+        }
+    }
+
     public function updatePassword(Request $request){
         try {
             DB::beginTransaction();

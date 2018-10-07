@@ -197,7 +197,7 @@ class PostController extends Controller
                 ->join('user_details','users.id','=','user_details.user_id')
                 ->where('post_id',$request->id)
                 ->get();
-            return view('image_detail',$data);
+            return view('image_details',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();

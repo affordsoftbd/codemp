@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "পরিলেখ || রাজনীতিবিদ্ তথ্য হালনাগাদ ||")
+@section('title', "প্রোফাইল || রাজনীতিবিদ্ তথ্য হালনাগাদ ||")
 
 @section('content')
 

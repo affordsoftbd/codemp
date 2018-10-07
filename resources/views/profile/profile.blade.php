@@ -5,7 +5,7 @@
 		</h1>
 		<small class="grey-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</small>
 		<hr>
-		<h4>আপনি কি ভাবছেন?</h4><hr>
+		<h4><i class="fa fa-share-alt"></i> আপনি কি ভাবছেন?</h4><hr>
 
 <div class="card border message_area border-light mb-5">
     <div class="card-body">
@@ -153,50 +153,50 @@
         @else 
     		<h5 class="red-text mt-4 font-weight-bold"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>হালনাগাদ</h5><hr>
     	    <a type="button" href="{{ route('profile.edit', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>প্রোফাইল</a>
+            <a type="button" href="{{ route('profile.edit.password', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>পাসওয়ার্ড</a>
     	    <a type="button" href="{{ route('profile.edit.politican', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>রাজনীতিবিদ্ তথ্য</a>
-    	    <a type="button" href="{{ route('profile.edit.password', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>পাসওয়ার্ড</a>
     		<a type="button" href="javascript:void(0)" class="btn btn-dark-green btn-sm"><i class="fa fa-bank fa-sm pr-2" aria-hidden="true"></i>অর্থাদি</a>
         @endguest
     </div>
 </div>
 
 <!-- Update Image -->
-    <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
-            <!--Content-->
-            <div class="modal-content image_modal">
+<div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+        <!--Content-->
+        <div class="modal-content image_modal">
 
-                <!--Header-->
-                <div class="modal-header">
-                    <img src="http://via.placeholder.com/200" alt="avatar" class="rounded-circle img-responsive preview_input">
-                </div>
-                <!--Body-->
-                <div class="modal-body text-center mb-1">
+            <!--Header-->
+            <div class="modal-header">
+                <img src="http://via.placeholder.com/200" alt="avatar" class="rounded-circle img-responsive preview_input">
+            </div>
+            <!--Body-->
+            <div class="modal-body text-center mb-1">
 
-                    <h5 class="mt-1 mb-2">প্রোফাইল ছবি আপডেট করুন</h5>
-                    <p class="dark-grey-text">সর্বাধিক অনুমোদিত আকার: 500 কেবি</p>
+                <h5 class="mt-1 mb-2">প্রোফাইল ছবি আপডেট করুন</h5>
+                <p class="dark-grey-text">সর্বাধিক অনুমোদিত আকার: 500 কেবি</p>
 
-                    {!! Form::open(['class'=>'md-form upload_image', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['class'=>'md-form upload_image', 'enctype' => 'multipart/form-data']) !!}
 
-                      <div class="file-field">
-                          <div class="btn btn-success btn-sm float-left">
-                              <span>নির্বাচন</span>
-                              {!! Form::file("image", ['class'=>'input_image']) !!}
-                          </div>
-                          <div class="file-path-wrapper">
-                              {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইল নির্বাচন করুন']) !!}
-                          </div>
+                  <div class="file-field">
+                      <div class="btn btn-success btn-sm float-left">
+                          <span>নির্বাচন</span>
+                          {!! Form::file("image", ['class'=>'input_image']) !!}
                       </div>
-                      <div class="text-center mt-4">
-                          {{ Form::button('চিত্র আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-red mt-1 btn-md'] ) }}
+                      <div class="file-path-wrapper">
+                          {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইল নির্বাচন করুন']) !!}
                       </div>
+                  </div>
+                  <div class="text-center mt-4">
+                      {{ Form::button('চিত্র আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-red mt-1 btn-md'] ) }}
+                  </div>
 
-                    {!! Form::close() !!}
-
-                </div>
+                {!! Form::close() !!}
 
             </div>
-            <!--/.Content-->
+
         </div>
+        <!--/.Content-->
     </div>
-    <!-- Update Image -->
+</div>
+<!-- Update Image -->

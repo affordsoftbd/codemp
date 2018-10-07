@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "পরিলেখ || অ্যালবাম ||")
+@section('title', "প্রোফাইল || অ্যালবাম ||")
 
 @section('content')
 
@@ -252,6 +252,28 @@
                 $('.load_more_button').hide();
             }
         }
+
+            //  Show image preview
+        $(".input_image").on("change", function(e) {
+        var files = e.target.files,
+        filesLength = files.length;
+        $("#image_upload_feedback").attr('style', '');
+        $("#image_upload_feedback").html("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
+        for (var i = 0; i < filesLength; i++) {
+          var f = files[i];
+          var fileReader = new FileReader();
+          fileReader.onload = (function(e) {
+            var file = e.target;
+            $("#image_upload_feedback").append("<span class='pip' align='center'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Hide Preview!'><i class='fa fa-eye-slash'></i></button></span>").hide().fadeIn(500+Math.pow(i, 2));
+            $(".remove").click(function() {
+                $(this).parent(".pip").fadeOut("normal", function() {
+                     $(this).parent(".pip").remove();
+                });
+            });
+          });
+          fileReader.readAsDataURL(f);
+        }
+        });
 
         (function() {
             $('.share_video').ajaxForm({
