@@ -82,21 +82,20 @@ class UserController extends Controller
             /*
             * Update profile image
             */ 
-            if($request->hasFile('profile_image')){
+            /*if($request->hasFile('profile_image')){
                 $profile_image = $request->file('profile_image');
 
-                /*Save original image*/
+                // Save original image
                 $destinationPath = 'public/uploads/users/';
                 $extension = $profile_image->getClientOriginalExtension();
                 $file_name = rand(11111, 99999) . '.' . $extension;
                 $file_path = "/".$destinationPath."/".$file_name;
                 $profile_image->move($destinationPath, $file_name);
-                /*Save original image*/
 
                 $photo = UserDetail::where('user_id',Session::get('user_id'))->first();
                 $photo->image_path = $file_path;
                 $photo->save();
-            }
+            }*/
             
             DB::commit();
             
@@ -112,12 +111,16 @@ class UserController extends Controller
         }
     }
 
-    public function updatePhoto(Request $request){
+    public function updateProfileImage(Request $request, $id){
         try {
-            
+            $this->validate(request(),[
+                'profile_image'  => 'required|image|dimensions:min_width=100,min_height=200|max:500',
+            ]);
+            $imageUpload = $this->uploadImage($request->file('profile_image'), 'users/', 640, 480);
+            DB::table('user_details')->where('user_id', $id)->update(['image_path' => $imageUpload]);    
+            return ['status'=>200,'reason'=>'Successfully updated'];
         }
         catch (\Exception $e) {
-            DB::rollback();
             return ['status'=>200,'reason'=>$e->getMessage()];
         }
     }

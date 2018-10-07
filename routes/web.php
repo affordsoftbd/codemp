@@ -45,6 +45,7 @@ Route::get('/{username}/update/politican', 'HomeController@editPoloticanProfile'
 Route::get('/{username}/update/password', 'HomeController@editProfilePassword')->name('profile.edit.password');
 Route::post('/save_user_profile', 'UserController@saveProfile');
 Route::post('/update_user_password', 'UserController@updatePassword');
+Route::put('/update_profile_image/{id}', 'UserController@updateProfileImage')->name('profile.update.image');
 
 /*Post routes*/
 Route::get('/post/{id?}', 'PostController@postDetails')->name('post');

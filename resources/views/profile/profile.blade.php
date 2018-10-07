@@ -5,7 +5,7 @@
 		</h1>
 		<small class="grey-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</small>
 		<hr>
-		<h4><i class="fa fa-share-alt"></i> আপনি কি ভাবছেন?</h4><hr>
+		<h4><i class="fa fa-share-alt fa-sm pr-2"></i>আপনি কি ভাবছেন?</h4><hr>
 
 <div class="card border message_area border-light mb-5">
     <div class="card-body">
@@ -110,7 +110,7 @@
 
 			<!-- Card image-->			
 			@if($user->image_path!='')
-	            <img class="card-img-top" src="{{ url('/').$user->image_path}}" alt="Card image cap">
+	            <img class="card-img-top" src="{{ url('/').'/'.$user->image_path}}" alt="Card image cap">
 	        @else
 	            <img class="card-img-top"  src="{{ url('/').'/img/avatar.png'}}" alt="Card image cap">
 	        @endif
@@ -164,11 +164,11 @@
 <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
         <!--Content-->
-        <div class="modal-content image_modal">
+        <div class="modal-content profile_image_modal">
 
             <!--Header-->
             <div class="modal-header">
-                <img src="http://via.placeholder.com/200" alt="avatar" class="rounded-circle img-responsive preview_input">
+                <img src="http://via.placeholder.com/200" alt="avatar" class="rounded-circle img-responsive preview_profile_input">
             </div>
             <!--Body-->
             <div class="modal-body text-center mb-1">
@@ -176,20 +176,20 @@
                 <h5 class="mt-1 mb-2">প্রোফাইল ছবি আপডেট করুন</h5>
                 <p class="dark-grey-text">সর্বাধিক অনুমোদিত আকার: 500 কেবি</p>
 
-                {!! Form::open(['class'=>'md-form upload_image', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['class'=>'md-form upload_profile_image', 'method' => 'put', 'route' => ['profile.update.image', Auth::user()->id], 'enctype' => 'multipart/form-data']) !!}
 
-                  <div class="file-field">
+                    <div class="file-field">
                       <div class="btn btn-success btn-sm float-left">
                           <span>নির্বাচন</span>
-                          {!! Form::file("image", ['class'=>'input_image']) !!}
+                          {!! Form::file("profile_image", ['class'=>'input_profile_image']) !!}
                       </div>
                       <div class="file-path-wrapper">
                           {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইল নির্বাচন করুন']) !!}
                       </div>
-                  </div>
-                  <div class="text-center mt-4">
+                    </div>
+                    <div class="text-center mt-4">
                       {{ Form::button('চিত্র আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-red mt-1 btn-md'] ) }}
-                  </div>
+                    </div>
 
                 {!! Form::close() !!}
 

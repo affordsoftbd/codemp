@@ -124,12 +124,60 @@ $(document).ready(function(){
       });
   });
 
+    //  Show profile image preview
+
+  $('.input_profile_image').change(function() {
+      readURL(this, $(this).index());
+  });
+
+    //  Refresh preview on modal close
+
+  $('#updateimage').on('hidden.bs.modal', function (e) {
+    $('input[name=profile_image]').empty().val('');
+    $('.file-path').empty().val('');
+    $('.preview_profile_input').attr('src', 'http://placehold.it/200');
+  });
+
+    //  Jquery form for uploading profile image and showing progress
+
+  (function() {
+    $('.upload_profile_image').ajaxForm({
+      beforeSend: function() {
+      },
+      uploadProgress: function() {
+        $(".profile_image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2'>Uploading Image</h5><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>");
+      },
+      success: function() {
+        $(".profile_image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 light-green-text'><i class='fa fa-check-circle'></i> Image Uploaded</h5><p class='mt-1 mb-2 deep-orange-text'>Wait till the image is being saved...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
+      },
+      error: function() {
+       $(".profile_image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 red-text'><i class='fa fa-warning'></i> Image can't be Uploaded!</h5><p class='mt-1 mb-2 light-blue-text'>Something went wrong in the server. Wait till the page refreshes...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
+      },
+      complete: function(xhr) {
+        location.reload();
+      }
+    }); 
+  })();
+
 
 });
 
 /*==================== end of document ready functions  ====================*/
 
 /*==================== start of individual functions  ====================*/
+
+// Function for showing image preview
+
+function readURL(input, i) {
+    i = i-1;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('.preview_profile_input').eq(i).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
   // Function for aligning footer
 

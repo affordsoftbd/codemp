@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h4>আপনি কি ভাবছেন?</h4><hr>
+<h4><i class="fa fa-share-alt fa-sm pr-2"></i>আপনি কি ভাবছেন?</h4><hr>
 
 <div class="card border message_area border-light">
     <div class="card-body">
