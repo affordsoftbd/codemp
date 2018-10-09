@@ -14,7 +14,7 @@ class CommonController extends Controller
 
     public function getLeaderByRole(Request $request){
         try {
-            $leaders = User::where('role_id', $request->role_id-1)->where('status','Active')->get();
+            $leaders = User::where('role_id', $request->role_id-1)->where('role_id','!=',1)->where('status','Active')->get();
             $options = '<option disabled selected value="">আপনার নেতা</option>';
             foreach($leaders as $leader){
                 $options .='<option value="'.$leader->id.'">'.$leader->first_name.' '.$leader->last_name.'</option>';

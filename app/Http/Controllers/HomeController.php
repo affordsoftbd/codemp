@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use Auth;
+use DB;
 use Session;
 
 class HomeController extends Controller
@@ -197,8 +198,14 @@ class HomeController extends Controller
         try {
             if(!Auth::check()){
                 return redirect('login');
-            }            
-            return view('profile.edit_politician');
+            }          
+
+            $data['user'] = User::where('username',$request->username)
+                ->join('user_details','user_details.user_id','=','users.id')
+                ->first();
+            $data['divisions'] = DB::table('divisions')->get();  
+            $data['roles'] = DB::table('roles')->where('role_id','!=',1)->get();
+            return view('profile.edit_politician',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
