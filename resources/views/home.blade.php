@@ -29,6 +29,20 @@
          <!-- Tab panels -->
          <div class="tab-content">
             <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                    
+                    <div align="right">
+                        <!-- Material inline 1 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
+                          <label class="form-check-label" for="materialInline1">Public</label>
+                        </div>
+
+                        <!-- Material inline 2 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
+                          <label class="form-check-label" for="materialInline2">Followers</label>
+                        </div>
+                    </div>
 
                 <div class="alert alert-success" id="post_success" style="display:none"></div>
                 <div class="alert alert-danger" id="post_danger" style="display:none"></div>
@@ -49,6 +63,21 @@
             <div class="tab-pane fade" id="panel2" role="tabpanel">
                 <div id="image_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_image']) !!}
+                    
+                    <div align="right">
+                        <!-- Material inline 1 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
+                          <label class="form-check-label" for="materialInline1">Public</label>
+                        </div>
+
+                        <!-- Material inline 2 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
+                          <label class="form-check-label" for="materialInline2">Followers</label>
+                        </div>
+                    </div>
+
                     <div class="md-form">
                         {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'image_description')) !!}
                         {!! Form::label('image_description', 'অ্যালবাম বিশদ') !!}
@@ -77,6 +106,20 @@
             <div class="tab-pane fade" id="panel3" role="tabpanel">
                 <div id="video_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['video.save'], 'class'=>'md-form share_video']) !!}
+                    
+                    <div align="right">
+                        <!-- Material inline 1 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
+                          <label class="form-check-label" for="materialInline1">Public</label>
+                        </div>
+
+                        <!-- Material inline 2 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
+                          <label class="form-check-label" for="materialInline2">Followers</label>
+                        </div>
+                    </div>
                     <div class="md-form">
                         <div class="file-field">
                             <div class="btn btn-danger btn-sm float-left">
