@@ -24,31 +24,8 @@
 
     <!-- Custom styles for this template -->
     {{ Html::style('css/style.css') }}
-    
-    <style>
-        .intro-2 {
-            background-image: linear-gradient(#ffffff, #f2f2f2);
-            /*background: linear-gradient(45deg, rgba(0, 120, 0, 0.8), rgba(120, 0, 0, 0.8) 100%),
-            url("https://i.imgur.com/x707Z9F.jpg")no-repeat center center;*/
-            background-size: cover;
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
 
-        .p2p {
-          max-width: 100%;
-          height: auto;
-        }
-
-        a {
-            color: green;
-        }
-
-        /* mouse over link */
-        a:hover {
-            color: red;
-        }
-    </style>
+  	@yield('extra-style')
 
   </head>
   <!-- #ENDS# Header -->
@@ -172,7 +149,7 @@
         }
     </script>
 
-  @yield('extra-script')
+  	@yield('extra-script')
 
   </body>
 

@@ -1,10 +1,6 @@
-
-
- 
 <!-- 
 <button type="button" class="btn btn-danger" id="appendnewcontainer">Click me To create new slider</button>
 <div id="fotoappendarea"> 
-
 <div class="card my-4">
     <div class="card-body">
         <div class="row">
@@ -20,7 +16,6 @@
         Doloremque doloremque fuga nostrum harum. Omnis totam id alias dolorum qui. Recusandae assumenda adipisci ut enim rerum aut repudiandae. Nihil quia temporibus quam sapiente ut. Accusamus tenetur labore fuga incidunt. Recusandae porro ipsam cumque ut consequatur. Non et sed et quisquam ipsa et praesentium. Odit aut culpa earum consequatur sit quis. Consequatur est error mollitia ex aliquid. Quia tempore quae qui adipisci quidem laboriosam voluptates.
     </div>
   <a class="btn-floating btn-action ml-auto mr-4 mb-4 red" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fa fa-edit pl-1"></i></a>
-
     <div class="view overlay my-4" align="center">
         <div class="lightgallery">
             <p><span id="counter1">1</span> of 04</p>
@@ -48,7 +43,6 @@
         <li class="list-inline-item"><a href="{{ route('image') }}" class="white-text"><i class="fa fa-comments-o pr-1"></i>12</a></li>
     </ul>
   </div>
-
 </div> 
  
 </div> -->
@@ -64,10 +58,8 @@
                 "https://www.elastic.co/assets/bltada7771f270d08f6/enhanced-buzz-1492-1379411828-15.jpg",
                 "https://images.pexels.com/photos/236047/pexels-photo-236047.jpeg?auto=compress&cs=tinysrgb&h=350"
             ];
-
             var hiddenimages = "",
                     albumcover;
-
             function refreshSlider(){ 
                 $('.lightSlider').each(function (index) {
                     $(this).lightSlider({
@@ -87,9 +79,7 @@
                     });
                 });               
             }  
-
             var slider = refreshSlider(); 
-
             $("#appendnewcontainer").click(function() {
                 if($('.lightSlider').length){
                     // slider.destroy();  
@@ -97,6 +87,5 @@
                 }
                 $("#fotoappendarea").append("<div class='lightgallery my-5'><p><span class='slidercount'>1</span> of "+imagesarray.length+"</p><ul class= 'lightSlider'><li data-thumb=" + imagesarray[0] + " data-src=" + imagesarray[0] + "><img src='" + imagesarray[0] + "' class='_34'/></li><li data-thumb=" + imagesarray[1] + " data-src=" + imagesarray[1] + "><img src='" + imagesarray[1] + "' class='_34'/></li></ul></div>");
                 slider = refreshSlider();
-
             });*/
 </script>

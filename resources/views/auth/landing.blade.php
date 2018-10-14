@@ -1,8 +1,24 @@
 @extends('auth.layout')
 
+@section('extra-style')
+    <style>
+        .intro-2 {
+            background-image: linear-gradient(#ffffff, #f2f2f2);
+            background-size: cover;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .p2p {
+          max-width: 100%;
+          height: auto;
+        }
+    </style>
+@endsection
+
 @section('content')    
 
- <nav class="navbar navbar-expand-lg navbar-dark green">
+    <nav class="navbar navbar-expand-lg navbar-dark green">
 
         <div class="container container-fluid">
         
