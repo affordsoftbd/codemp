@@ -1,8 +1,8 @@
 @extends('auth.layout')
 
-@section('title', "পুনরুদ্ধার || ")
+@section('title', "পুনরায় চেষ্টা  || ")
 
-@section('content')    
+@section('content')      
 
 <nav class="navbar navbar-expand-lg navbar-dark green">
 

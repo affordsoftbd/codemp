@@ -11,6 +11,30 @@ use Session;
 
 class AuthController extends Controller
 {
+    public function retry()
+    {
+        if(Auth::check()){
+            return redirect('home');
+        }
+        return view ('auth.retry');
+    }
+
+    public function recovery()
+    {
+        if(Auth::check()){
+            return redirect('home');
+        }
+        return view ('auth.passwords.email');
+    }
+
+    public function reset()
+    {
+        if(Auth::check()){
+            return redirect('home');
+        }
+        return view ('auth.passwords.reset');
+    }
+
     public function politicianRegister(){
         if(Auth::check()){
             return redirect('home');

@@ -32,7 +32,7 @@ class HomeController extends Controller
         if(Auth::check()){
             return redirect('home');
         }
-        return view('auth.login');
+        return view ('auth.landing');
     }
 
     public function home()

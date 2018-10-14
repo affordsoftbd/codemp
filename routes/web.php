@@ -11,16 +11,9 @@
 |
 */
 
-/*Route::get('/', function () {
-    return redirect('/home');
-})->name('welcome');*/
-
-/*Authentication route
-Route::get('login','AuthController@login');
-Route::post('login','AuthController@postLogin');
-Route::get('logout','AuthController@logout');*/
-
 /*Authentication route*/
+Route::post('retry','AuthController@retry')->name('retry');
+Route::get('recovery','AuthController@recovery')->name('recovery');
 Route::get('login','AuthController@login')->name('login');
 Route::post('login','AuthController@postLogin')->name('postLogin');
 Route::get('logout','AuthController@logout')->name('logout');
