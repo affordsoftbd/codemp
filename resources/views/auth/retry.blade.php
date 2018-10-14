@@ -8,6 +8,14 @@
           	max-width: 50%;
           	height: auto;
         }
+		.popover-header {
+		    color:  #ffffff;
+		    background-color: #ff0000;
+		}
+		.popover-body {
+		    color: #ffffff;
+		    background-color: #ff6666;
+		}
     </style>
 @endsection
 
@@ -31,19 +39,27 @@
         <!--Card content-->
         	<div class="card-body px-lg-5 pt-0 my-5">
 
-	            <h4 class="green-text text-center"><i class="fa fa-hand-o-right fa-sm pr-2" aria-hidden="true"></i>মাহাদি হাসান হিসাবে লগ ইন করুন!</h4><hr>
+	            <h4 class="green-text text-center"><i class="fa fa-hand-o-right fa-sm pr-2" aria-hidden="true"></i>মাহাদি হাসান হিসাবে লগ ইন!</h4><hr>
 
 	            <center>
 	            	{{ Html::image('img/avatar.png', 'Mahadi Hasan', array('class' => 'avatar img-fluid z-depth-1 my-5')) }}
 	        	</center>
 
 	            <form class="login-form" method="post" action="">
+                                {{ csrf_field() }}
                     <!-- Confirm Password -->
                     <div class="md-form">
-                        <input type="password" name="password_confirm" id="password_confirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                        <i class="fa fa-lock prefix red-text"></i>
+						<input type="password" name="password_confirm" id="password_confirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" data-toggle="popover" data-placement="right" title="ভুল পাসওয়ার্ড"
+						data-content="আপনি যে পাসওয়ার্ডটি প্রবেশ করেছেন সেটি ভুল!">
                         <label for="password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
                     </div>
-                    <button type="button" class="btn btn-lg btn-primary" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+                    <div class="text-center mt-4">
+                        <input class="btn btn-danger btn-sm" type="submit" value="লগ ইন">
+                    </div>
+                    <div class="text-center mt-4">
+                    	<a href="{{ route('recovery') }}">পাসওয়ার্ড রিসেট করতে এখানে ক্লিক করুন</a>
+                    </div>
 	            </form>
 	            <!-- Form -->
 
@@ -61,10 +77,8 @@
 
     		// popovers Initialization
 			$(function () {
-			    $('.example-popover').popover({
-			        container: 'body'
-			    })
-			})
+			    $('[data-toggle="popover"]').popover('show');
+			});
 			
         });
     </script>
