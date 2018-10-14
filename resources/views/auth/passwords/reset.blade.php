@@ -24,7 +24,7 @@
 
                 <h4 class="green-text"><i class="fa fa-hand-o-right fa-sm pr-2" aria-hidden="true"></i>পাসওয়ার্ড রিসেট করুন!</h4><hr>
 
-                <form class="login-form" method="post" action="">
+                <form class="login-form" methpd="get" action="{{ route('welcome') }}">
                                 {{ csrf_field() }}
                     <!-- Confirm Password -->
                     <div class="md-form">

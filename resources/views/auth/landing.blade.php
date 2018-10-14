@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h1 class="display-5 font-weight-bold green-text">আপনাকে স্বাগতম!</h1><hr>
-                    <p class="red-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+                    <!-- <p class="red-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p> -->
                     {{ Html::image('img/p2p.png', 'Peer to peer', array('class' => 'p2p img-responsive my-5')) }}
                 </div>
                 <div class="col-md-6">
@@ -147,6 +147,15 @@
                                     <div class="col-sm-12">
                                         <!-- Choose Role -->
                                         <select class="mdb-select" name="role_id" id="role_id">
+                                            <option value="" disabled selected>আপনি কি হিসাবে নিবন্ধন করতে চান?</option>
+                                            <option value="0">Division 1</option>
+                                            <option value="0">Division 1</option>
+                                            <option value="0">Division 1</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <!-- Choose Role -->
+                                        <select class="mdb-select" name="party_id" id="party_id">
                                             <option value="" disabled selected>আপনার রাজনৈতিক দল</option>
                                             <option value="0">Division 1</option>
                                             <option value="0">Division 1</option>
@@ -154,9 +163,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-12">
-                                        
                                         <a href="javascript:void(0)" class="pull-right"><i class="fa fa-hand-o-right fa-sm pr-2" aria-hidden="true"></i>নতুন রাজনৈতিক দল যোগ করুন</a>
-
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="md-form">
@@ -182,6 +189,10 @@
                                     </div>
                                 </div>
 
+                                <div class="col-sm-12">                                
+                                    {{ Html::image('https://developers.google.com/recaptcha/images/newCaptchaAnchor.gif', 'Captcha', array('class' => 'img-fluid my-3 mx-5', 'height' => '300', 'width' => '300')) }}
+                                </div>
+
                                 <!-- Sign up button -->
                                 <button class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
 
@@ -205,6 +216,15 @@
 
 @section('extra-script')
     <script>
+        $(document).ready(function(){
+            $('#division').material_select();
+            $('#district').material_select();
+            $('#thana').material_select();
+            $('#zip').material_select();
+            $('#party_id').material_select();
+            $('#role_id').material_select();
+        });
+
         $(document).on('submit', '#login_form', function(event){
             event.preventDefault();
             var username = $('#username').val();

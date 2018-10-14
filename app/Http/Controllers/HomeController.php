@@ -33,6 +33,7 @@ class HomeController extends Controller
             return redirect('home');
         }
         return view ('auth.landing');
+        // return view ('olds.login');
     }
 
     public function home()

@@ -1,6 +1,6 @@
-@extends('welcome')
+@extends('auth.layout')
 
-@section('content')    
+@section('content')
     <!-- Page Content -->
     <div class="intro-2">
     <div class="container mb-5">
@@ -26,14 +26,14 @@
                           <!-- Material input text -->
                             <div class="md-form">
                               <i class="fa fa-envelope prefix white-text"></i>
-                              <input class="form-control" id="username" name="username" type="text" style="color:#ffffff;">
+                              <input class="form-control" id="username" name="username" type="text">
                               <label for="username">আপনার নাম</label>
                             </div>
                           
                           <!-- Material input password -->
                             <div class="md-form">
                               <i class="fa fa-lock prefix white-text"></i>
-                              <input class="form-control" id="password" name="password" type="password" style="color:#ffffff;">
+                              <input class="form-control" id="password" name="password" type="password">
                               <label for="password">আপনার পাসওয়ার্ড</label>
                             </div>
 
@@ -117,6 +117,7 @@
 
 @endsection
 
+
 @section('extra-script')
     <script>
         $(document).on('submit', '#login_form', function(event){
@@ -164,4 +165,5 @@
             }
         });
     </script>
+
 @endsection

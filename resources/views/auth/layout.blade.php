@@ -131,12 +131,6 @@
                 // Align footer
             footerAlign();
 
-            $('#division').material_select();
-            $('#district').material_select();
-            $('#thana').material_select();
-            $('#zip').material_select();
-            $('#role_id').material_select();
-
                 // Set when the loading screen will stop
             setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
         });

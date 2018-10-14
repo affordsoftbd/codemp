@@ -28,8 +28,13 @@
         </ul>
          <!-- Tab panels -->
          <div class="tab-content">
-            <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
-                    
+            <!--Panel 1-->
+            <div class="tab-pane fade in show active" id="panel1" role="tabpanel">                
+
+                <div class="alert alert-success" id="post_success" style="display:none"></div>
+                <div class="alert alert-danger" id="post_danger" style="display:none"></div>
+
+                {!! Form::open(['method' => 'post', 'id' => 'text_post_form', 'class'=>'md-form login-form']) !!}
                     <div align="right">
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
@@ -44,19 +49,13 @@
                         </div>
                     </div>
 
-                <div class="alert alert-success" id="post_success" style="display:none"></div>
-                <div class="alert alert-danger" id="post_danger" style="display:none"></div>
-                <form id="text_post_form" class="login-form" method="post" action="">
-                    {{ csrf_field() }}
-
                     <div class="md-form">
                         {!! Form::textarea('additional_details', null, array('class'=>'editor','name'=>'post_text','id'=>'post_text')) !!}
                     </div>
                     <div class="text-center my-4">
-                        {!! Form::button('অবস্থা হালনাগাদ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm pull-right')) !!}
+                        {!! Form::button('অবস্থা হালনাগাদ করুন<i class="fa fa-share fa-sm pl-2"></i>', array('type' => 'submit', 'class' =>'btn btn-danger btn-md pull-right')) !!}
                     </div>
-                </form>
-                <div class="clearfix"></div>
+                {!! Form::close() !!}
             </div>
             <!--/.Panel 1-->
             <!--Panel 2-->
