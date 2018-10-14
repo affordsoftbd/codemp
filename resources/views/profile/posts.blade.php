@@ -239,7 +239,7 @@
 
                                         html +='<div class="view overlay mt-4" align="center">';
                                             html +='<div class="lightgallery mb-4">';
-                                                html +='<p><span class="slidercount">1</span> of '+Object.keys(value.images).length+' total images in this album</p>';
+                                                html +='<p>এই অ্যালবামের মোট '+Object.keys(value.images).length+'টি ছবি থেকে <span class="slidercount">1</span>নং ছবি</p>';
                                                 html +='<ul class="lightSlider">'; // slidercount
                                                 $.each(value.images, function( index, image ) {
                                                     var image_url =  '{{ url('/') }}'+image.image_path;

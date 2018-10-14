@@ -39,13 +39,13 @@
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
                           <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
-                          <label class="form-check-label" for="materialInline1">Public</label>
+                          <label class="form-check-label" for="materialInline1">সর্বজনীন</label>
                         </div>
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
                           <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
-                          <label class="form-check-label" for="materialInline2">Followers</label>
+                          <label class="form-check-label" for="materialInline2">অনুসারীগণ</label>
                         </div>
                     </div>
 
@@ -67,13 +67,13 @@
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
                           <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
-                          <label class="form-check-label" for="materialInline1">Public</label>
+                          <label class="form-check-label" for="materialInline1">সর্বজনীন</label>
                         </div>
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
                           <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
-                          <label class="form-check-label" for="materialInline2">Followers</label>
+                          <label class="form-check-label" for="materialInline2">অনুসারীগণ</label>
                         </div>
                     </div>
 
@@ -105,20 +105,21 @@
             <div class="tab-pane fade" id="panel3" role="tabpanel">
                 <div id="video_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['video.save'], 'class'=>'md-form share_video']) !!}
-                    
+
                     <div align="right">
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
-                          <label class="form-check-label" for="materialInline1">Public</label>
+                          <input type="radio" class="form-check-input radio-custom" id="privacy1" name="privacy" checked>
+                          <label class="form-check-label" for="privacy1">সর্বজনীন</label>
                         </div>
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
-                          <label class="form-check-label" for="materialInline2">Followers</label>
+                          <input type="radio" class="form-check-input radio-custom" id="privacy2" name="privacy">
+                          <label class="form-check-label" for="privacy2">অনুসারীগণ</label>
                         </div>
                     </div>
+
                     <div class="md-form">
                         <div class="file-field">
                             <div class="btn btn-danger btn-sm float-left">
@@ -157,7 +158,7 @@
             <hr>
         </div>
         <div class="col-md-4" align="center">
-            <button class="btn btn-md btn-red load_more_button"><i class="fa fa-refresh fa-sm pr-2"></i>&nbsp;Load More!</button>
+            <button class="btn btn-md btn-red load_more_button"><i class="fa fa-refresh fa-sm pr-2"></i>&nbsp;আরো দেখুন!</button>
         </div>
         <div class="col-md-4">
             <hr>
@@ -353,7 +354,7 @@
 
                                         html +='<div class="view overlay mt-4" align="center">';
                                             html +='<div class="lightgallery mb-4">';
-                                                html +='<p><span class="slidercount">1</span> of '+Object.keys(value.images).length+' total images in this album</p>';
+                                                html +='<p>এই অ্যালবামের মোট '+Object.keys(value.images).length+'টি ছবি থেকে <span class="slidercount">1</span>নং ছবি</p>';
                                                 html +='<ul class="lightSlider">'; // slidercount
                                                 $.each(value.images, function( index, image ) {
                                                     var image_url =  '{{ url('/') }}'+image.image_path;
