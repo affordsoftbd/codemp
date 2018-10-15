@@ -145,15 +145,6 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-12">
-                                        <!-- Choose Role -->
-                                        <select class="mdb-select" name="role_id" id="role_id">
-                                            <option value="" disabled selected>আপনি কি হিসাবে নিবন্ধন করতে চান?</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-12">
                                         <select class="mdb-select" name="party_id" id="party_id">
                                             <option value="" disabled selected>আপনার রাজনৈতিক দল</option>
                                             <option value="0">Division 1</option>
@@ -166,6 +157,15 @@
                                         <a href="javascript:void(0)" class="pull-right"><i class="fa fa-hand-o-right fa-sm pr-2" aria-hidden="true"></i>নতুন রাজনৈতিক দল যোগ করুন</a>
                                     </div> 
                                     -->
+                                    <div class="col-sm-12">
+                                        <!-- Choose Role -->
+                                        <select class="mdb-select" name="role_id" id="role_id">
+                                            <option value="" disabled selected>আপনি কি হিসাবে নিবন্ধন করতে চান?</option>
+                                            <option value="0">Division 1</option>
+                                            <option value="0">Division 1</option>
+                                            <option value="0">Division 1</option>
+                                        </select>
+                                    </div>
                                     <div class="col-sm-12">
                                         <div class="md-form">
                                             <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
@@ -222,7 +222,7 @@
             $('#district').material_select();
             $('#thana').material_select();
             $('#zip').material_select();
-            // $('#party_id').material_select();
+            $('#party_id').material_select();
             $('#role_id').material_select();
         });
 
