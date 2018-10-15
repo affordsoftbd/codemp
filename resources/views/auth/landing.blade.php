@@ -153,7 +153,7 @@
                                             <option value="0">Division 1</option>
                                         </select>
                                     </div>
-                                    <!-- <div class="col-sm-12">
+                                    <div class="col-sm-12">
                                         <select class="mdb-select" name="party_id" id="party_id">
                                             <option value="" disabled selected>আপনার রাজনৈতিক দল</option>
                                             <option value="0">Division 1</option>
@@ -161,9 +161,11 @@
                                             <option value="0">Division 1</option>
                                         </select>
                                     </div>
+                                    <!-- 
                                     <div class="col-sm-12">
                                         <a href="javascript:void(0)" class="pull-right"><i class="fa fa-hand-o-right fa-sm pr-2" aria-hidden="true"></i>নতুন রাজনৈতিক দল যোগ করুন</a>
-                                    </div> -->
+                                    </div> 
+                                    -->
                                     <div class="col-sm-12">
                                         <div class="md-form">
                                             <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
