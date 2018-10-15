@@ -11,6 +11,14 @@ use Session;
 
 class AuthController extends Controller
 {
+    public function login()
+    {
+        if(Auth::check()){
+            return redirect('home');
+        }
+        return view ('auth.login');
+    }
+
     public function retry()
     {
         if(Auth::check()){
@@ -198,13 +206,7 @@ class AuthController extends Controller
             return ['status'=>200,'reason'=>$e->getMessage()];
         }
     }
-
-    public function login(){
-        if(Auth::check()){
-            return redirect('home');
-        }
-        return view('auth.login');
-    }
+    
     public function postLogin(Request $request){
         $result = Auth::attempt(['username' => trim($request->username),
             'password' => $request->password
