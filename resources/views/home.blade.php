@@ -78,11 +78,6 @@
                     </div>
 
                     <div class="md-form">
-                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'image_description')) !!}
-                        {!! Form::label('image_description', 'অ্যালবাম বিশদ') !!}
-                    </div>
-
-                    <div class="md-form">
                         <div class="file-field">
                             <div class="btn btn-danger btn-sm float-left">
                             <span>নির্বাচন</span>
@@ -93,6 +88,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="md-form">
+                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'image_description')) !!}
+                        {!! Form::label('image_description', 'অ্যালবাম বিশদ') !!}
+                    </div>
+                    
                     <div class="text-center mt-4">
                         {{ Form::button('চিত্র আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>

@@ -26,7 +26,7 @@
             <form class="form-inline" method="post" action="{{ route('retry') }}">
                 {{ csrf_field() }}
                 <div class="md-form mt-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="আপনার নাম">
+                    <input class="form-control mr-sm-2" type="text" placeholder="আপনার ই-মেইল">
                 </div>
                 <div class="md-form mt-0">
                     <input class="form-control mr-sm-2" type="password" placeholder="আপনার পাসওয়ার্ড">

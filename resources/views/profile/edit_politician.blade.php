@@ -13,13 +13,6 @@
 <form id="user_form" method="post" action="">
     {{ csrf_field() }}
     <div class="row">
-       <div class="col-sm-12">
-            <!-- Phone number -->
-            <div class="md-form">
-                <input type="text" name="nid" id="nid" class="form-control" value="{{ $user->nid}}">
-                <label for="nid">জাতীয় আইডি</label>
-            </div>
-        </div>
         <div class="col-sm-12">
             <!-- Choose Division -->
             <select class="mdb-select" name="division" id="division">

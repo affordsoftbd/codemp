@@ -178,6 +178,21 @@ class HomeController extends Controller
         }
     }
 
+    public function requests()
+    {
+        return view('requests');
+    }
+
+    public function following()
+    {
+        return view('following');
+    }
+
+    public function followers()
+    {
+        return view('followers');
+    }
+
     public function editProfile(Request $request)
     {
         try {
@@ -187,6 +202,8 @@ class HomeController extends Controller
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
+            $data['divisions'] = DB::table('divisions')->get();  
+            $data['roles'] = DB::table('roles')->where('role_id','!=',1)->get();
             return view('profile.edit',$data);
         }
         catch (\Exception $e) {

@@ -26,7 +26,13 @@
     <a href="{{ route('profile', Session::get('username')) }}" class="list-group-item list-group-item-action {{Route::is('profile*')? 'active':''}} waves-effect">
         <i class="fa fa-user fa-sm pr-2"></i>প্রোফাইল
     </a>
-    <a href="#" class="list-group-item list-group-item-action waves-effect">
+    <a href="{{ route('requests') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('requests*')? 'active':'' }}">
+        <i class="fa fa-user-plus fa-sm pr-2"></i>আবেদন
+    </a>
+    <a href="{{ route('following') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('following*')? 'active':'' }}">
+        <i class="fa fa fa-exchange fa-sm pr-2"></i>অনুসরণ
+    </a>
+    <a href="{{ route('followers') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('followers*')? 'active':'' }}">
         <i class="fa fa-user-circle fa-sm pr-2"></i>অনুসারী
     </a>
 </div>

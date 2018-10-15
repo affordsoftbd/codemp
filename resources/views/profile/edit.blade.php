@@ -52,10 +52,50 @@
                     <label for="phone">ফোন নম্বর</label>
                 </div>
             </div>
+           <div class="col-sm-12">
+                <!-- Phone number -->
+                <div class="md-form">
+                    <input type="text" name="nid" id="nid" class="form-control" value="{{ $user->nid}}">
+                    <label for="nid">জাতীয় আইডি</label>
+                </div>
+            </div>
             <div class="col-sm-12">
+            <!-- Choose Division -->
+            <select class="mdb-select" name="division" id="division">
+                <option value="" disabled selected>আপনার বিভাগ</option>
+                @foreach($divisions as $division)
+                    <option value="{{ $division->division_id }}" @if($division->division_id == $user->division_id) selected @endif>{{ $division->division_name }}</option>
+                @endforeach
+            </select>
+            </div>
+            <div class="col-sm-4">
+                <!-- Choose District -->
+                <select class="mdb-select" name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
+                    <option value="" disabled selected>আপনার জেলা</option>
+                    
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <!-- Choose Thana -->
+                <select class="mdb-select" name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
+                    <option value="" disabled selected>আপনার থানা</option>
+                    <
+                </select>
+            </div>
+            <div class="col-sm-4">
                 <!-- Choose Zip -->
-                <select class="mdb-select" name="leader" id="leader" searchable="এখানে অনুসন্ধান করুন">
-                    <option value="" disabled selected>আপনার নেতা</option>
+                <select class="mdb-select" name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
+                    <option value="" disabled selected>আপনার জিপ</option>
+                    
+                </select>
+            </div>
+            <div class="col-sm-12">
+                <!-- Choose Role -->
+                <select class="mdb-select" name="role_id" id="role_id">
+                    <option value="" disabled selected>আপনি কি হিসাবে নিবন্ধন করতে চান</option>
+                    @foreach($roles as $role)
+                        <option value="{{ $role->role_id }}" @if($role->role_id == $user->role_id) selected @endif>{{ $role->role_name }}</option>
+                    @endforeach                
                 </select>
             </div>
             <div class="col-sm-12">
@@ -82,6 +122,19 @@
 @section('extra-script')
     <script>
         
+        $(document).ready(function() {
+           $('#division').material_select();
+           $('#district').material_select();
+           $('#thana').material_select();
+           $('#zip').material_select();
+           $('#role_id').material_select();
+           $('#leader').material_select();
+
+           set_district('{{ $user->division_id }}','{{ $user->district_id }}');
+           set_thana('{{ $user->district_id }}','{{ $user->thana_id }}');
+           set_zip('{{ $user->thana_id }}','{{ $user->zip_id }}');
+           set_leader('{{ $user->role_id }}','{{ $user->parent_id }}');
+        });
 
         $(document).on('submit', '#user_form', function(event){
             event.preventDefault();

@@ -23,36 +23,59 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">
-                    <i class="fa fa-file-movie-o fa-sm pr-2"></i>লাইভ ভিডিও
+                    <i class="fa fa-file-movie-o fa-sm pr-2"></i>ভিডিও
                 </a>
             </li>
         </ul>
          <!-- Tab panels -->
          <div class="tab-content">
-            <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+            <!--Panel 1-->
+            <div class="tab-pane fade in show active" id="panel1" role="tabpanel">                
 
                 <div class="alert alert-success" id="post_success" style="display:none"></div>
                 <div class="alert alert-danger" id="post_danger" style="display:none"></div>
-                <form id="text_post_form" class="login-form" method="post" action="">
-                    {{ csrf_field() }}
+
+                {!! Form::open(['method' => 'post', 'id' => 'text_post_form', 'class'=>'md-form login-form']) !!}
+                    <div align="right">
+                        <!-- Material inline 1 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
+                          <label class="form-check-label" for="materialInline1">সর্বজনীন</label>
+                        </div>
+
+                        <!-- Material inline 2 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
+                          <label class="form-check-label" for="materialInline2">অনুসারীগণ</label>
+                        </div>
+                    </div>
 
                     <div class="md-form">
                         {!! Form::textarea('additional_details', null, array('class'=>'editor','name'=>'post_text','id'=>'post_text')) !!}
                     </div>
                     <div class="text-center my-4">
-                        {!! Form::button('অবস্থা হালনাগাদ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm pull-right')) !!}
+                        {!! Form::button('অবস্থা হালনাগাদ করুন<i class="fa fa-share fa-sm pl-2"></i>', array('type' => 'submit', 'class' =>'btn btn-danger btn-md pull-right')) !!}
                     </div>
-                </form>
-                <div class="clearfix"></div>
+                {!! Form::close() !!}
             </div>
             <!--/.Panel 1-->
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel2" role="tabpanel">
                 <div id="image_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_image']) !!}
-                    <div class="md-form">
-                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'image_description')) !!}
-                        {!! Form::label('image_description', 'অ্যালবাম বিশদ') !!}
+                    
+                    <div align="right">
+                        <!-- Material inline 1 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
+                          <label class="form-check-label" for="materialInline1">সর্বজনীন</label>
+                        </div>
+
+                        <!-- Material inline 2 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
+                          <label class="form-check-label" for="materialInline2">অনুসারীগণ</label>
+                        </div>
                     </div>
 
                     <div class="md-form">
@@ -66,6 +89,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="md-form">
+                        {!! Form::textarea('description', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'image_description')) !!}
+                        {!! Form::label('image_description', 'অ্যালবাম বিশদ') !!}
+                    </div>
+                    
                     <div class="text-center mt-4">
                         {{ Form::button('চিত্র আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
@@ -78,6 +107,21 @@
             <div class="tab-pane fade" id="panel3" role="tabpanel">
                 <div id="video_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['video.save'], 'class'=>'md-form share_video']) !!}
+
+                    <div align="right">
+                        <!-- Material inline 1 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input radio-custom" id="privacy1" name="privacy" checked>
+                          <label class="form-check-label" for="privacy1">সর্বজনীন</label>
+                        </div>
+
+                        <!-- Material inline 2 -->
+                        <div class="form-check form-check-inline">
+                          <input type="radio" class="form-check-input radio-custom" id="privacy2" name="privacy">
+                          <label class="form-check-label" for="privacy2">অনুসারীগণ</label>
+                        </div>
+                    </div>
+
                     <div class="md-form">
                         <div class="file-field">
                             <div class="btn btn-danger btn-sm float-left">
@@ -154,7 +198,6 @@
     		<h5 class="red-text mt-4 font-weight-bold"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>হালনাগাদ</h5><hr>
     	    <a type="button" href="{{ route('profile.edit', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>প্রোফাইল</a>
             <a type="button" href="{{ route('profile.edit.password', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>পাসওয়ার্ড</a>
-    	    <a type="button" href="{{ route('profile.edit.politican', $user->username) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>রাজনীতিবিদ্ তথ্য</a>
     		<a type="button" href="javascript:void(0)" class="btn btn-dark-green btn-sm"><i class="fa fa-bank fa-sm pr-2" aria-hidden="true"></i>অর্থাদি</a>
         @endguest
     </div>
