@@ -191,7 +191,7 @@
                                 </div>
 
                                 <div class="col-sm-12">                                
-                                    {{ Html::image('https://developers.google.com/recaptcha/images/newCaptchaAnchor.gif', 'Captcha', array('class' => 'img-fluid my-3 mx-5', 'height' => '300', 'width' => '300')) }}
+                                    {{-- Html::image('https://developers.google.com/recaptcha/images/newCaptchaAnchor.gif', 'Captcha', array('class' => 'img-fluid my-3 mx-5', 'height' => '300', 'width' => '300')) --}}
                                 </div>
 
                                 <!-- Sign up button -->
