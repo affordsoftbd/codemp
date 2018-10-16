@@ -36,6 +36,7 @@ class HomeController extends Controller
         $data['districts'] = DB::table('districts')->get();
         $data['thanas'] = DB::table('thanas')->get();
         $data['zips'] = DB::table('zips')->get();
+        $data['parties'] = DB::table('parties')->get();
         $data['roles'] = DB::table('roles')->get();
         return view ('auth.landing',$data);
         // return view ('olds.login');
