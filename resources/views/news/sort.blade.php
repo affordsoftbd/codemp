@@ -1,3 +1,4 @@
+<div class="sticky-top">
 <!-- Search by keyword -->
   <h5 class="green-text font-weight-bold">সন্ধান করুন</h5><hr>
   <form method="GET" action="https://buyandtravel.000webhostapp.com/orders" accept-charset="UTF-8">
@@ -50,3 +51,4 @@
     <li><a href="javascript:void('0')" class="red-text">Re-contextualized</a><hr></li>
   </ul>
 <!-- Search by date -->
+</div>

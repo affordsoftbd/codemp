@@ -1,20 +1,36 @@
 @extends('layouts.master')
 
-@section('title', "ভিডিও মন্তব্যসমূহ ||")
+@section('title', "ভিডিও বিস্তারিত ||")
 
 @section('content')
 
 <div class="row">
     <div class="col-xl-1 col-lg-2 col-md-2 post_creator">
         @if($post->image_path!='')
-            <img src="{{ url('/').$post->image_path}}" class="rounded-circle z-depth-1-half">
+            <img src="{{ url('/').$post->image_path}}" class="img-fluid rounded-circle z-depth-1-half">
         @else
-            <img src="{{ url('/').'/img/avatar.png'}}" class="rounded-circle z-depth-1-half">
+            <img src="{{ url('/').'/img/avatar.png'}}" class="img-fluid rounded-circle z-depth-1-half">
         @endif
+        
     </div>
-    <div class="col-xl-11 col-lg-10 col-md-10">
+    <div class="col-xl-7 col-lg-5 col-md-4">
         <h6 class="font-weight-bold">{{ $post->first_name." ".$post->last_name}}</h6>
         <small class="grey-text">{{ $post->created_at}}</small>
+    </div>
+    <div class="col-xl-4 col-lg-5 col-md-6" align="right">
+        <a href="javascript:void(0)" class="btn btn-light-green btn-sm">
+            <i class="fa fa-edit"></i>
+        </a>
+        <!--Likes-->
+        <button type="button" class="btn btn-green btn-sm">
+            <i class="fa fa-thumbs-o-up"></i>
+        </button>
+        <span class="counter">22</span>
+        <!--Comments-->
+        <button type="button" class="btn btn-red btn-sm">
+            <i class="fa fa-comments"></i>
+        </button>
+        <span class="counter">22</span>
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
         <hr>
