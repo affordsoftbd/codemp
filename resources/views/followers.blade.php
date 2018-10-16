@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "অনুসরণ ||")
+@section('title', "অনুসারী ||")
 
 @section('content')
 
