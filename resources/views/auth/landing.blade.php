@@ -3,7 +3,7 @@
 @section('extra-style')
     <style>
         .intro-2 {
-            background-image: linear-gradient(#ffffff, #f2f2f2);
+            background-image: linear-gradient(#ffffff, #e6ffe6);
             background-size: cover;
             padding-top: 50px;
             padding-bottom: 50px;
@@ -26,7 +26,7 @@
             <form class="form-inline" method="post" action="{{ route('postLogin') }}">
                 {{ csrf_field() }}
                 <div class="md-form mt-0">
-                    <input class="form-control mr-sm-2" name="username" id="username" type="text" placeholder="আপনার ই-মেইল">
+                    <input class="form-control mr-sm-2" name="username" id="usernametop" type="text" placeholder="আপনার ই-মেইল">
                 </div>
                 <div class="md-form mt-0">
                     <input class="form-control mr-sm-2" name="password" id="password" type="password" placeholder="আপনার পাসওয়ার্ড">
@@ -44,12 +44,12 @@
     <div class="intro-2">
         <div class="container mb-5">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h1 class="display-5 font-weight-bold green-text">আপনাকে স্বাগতম!</h1><hr>
                     <!-- <p class="red-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p> -->
                     {{ Html::image('img/p2p.png', 'Peer to peer', array('class' => 'p2p img-responsive my-5')) }}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="card wow h-100" data-wow-delay="0.3s">
                         <div class="card-body">
 
@@ -62,49 +62,55 @@
                                 {{ csrf_field() }}
 
                                 <div class="form-row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <!-- First name -->
                                         <div class="md-form">
                                             <input type="text" name="first_name" id="first_name" class="form-control">
                                             <label for="firstname">নামের প্রথম অংশ</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <!-- Last name -->
                                         <div class="md-form">
                                             <input type="text" name="last_name" id="last_name" class="form-control">
                                             <label for="lastname">নামের শেষাংশ</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
                                         <!-- Phone number -->
                                         <div class="md-form">
                                             <input type="text" name="username" id="reg_username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
                                             <label for="username">ইউসার নাম</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
                                         <!-- E-mail -->
                                         <div class="md-form">
                                             <input type="email" name="email" id="reg_email" class="form-control">
                                             <label for="email">ই-মেইল</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
                                         <!-- Phone number -->
                                         <div class="md-form">
                                             <input type="text" name="phone" id="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
                                             <label for="phone">ফোন নম্বর</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <!-- Phone number -->
                                         <div class="md-form">
                                             <input type="text" name="nid" id="nid" class="form-control" maxlength="16">
                                             <label for="nid">জাতীয় আইডি</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <div class="md-form">
+                                            <input type="text" name="address" id="address" class="form-control" maxlength="16">
+                                            <label for="address">ঠিকানা</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
                                         <!-- Choose Division -->
                                         <select class="mdb-select" name="division" id="division">
                                             <option value="" disabled selected>আপনার বিভাগ</option>
@@ -113,39 +119,34 @@
                                             @endforeach                                            
                                         </select>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <!-- Choose District -->
                                         <select class="mdb-select" name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
                                             <option value="" disabled selected>আপনার জেলা</option>
                                             
                                         </select>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <!-- Choose Thana -->
                                         <select class="mdb-select" name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
                                             <option value="" disabled selected>আপনার থানা</option>
                                             
                                         </select>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <!-- Choose Zip -->
                                         <select class="mdb-select" name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
                                             <option value="" disabled selected>আপনার জিপ</option>
                                             
                                         </select>
                                     </div>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <select class="mdb-select" name="party_id" id="party_id">
                                             <option value="" disabled selected>আপনার রাজনৈতিক দল</option>
                                             
                                         </select>
                                     </div>
-                                    <!-- 
-                                    <div class="col-sm-12">
-                                        <a href="javascript:void(0)" class="pull-right"><i class="fa fa-hand-o-right fa-sm pr-2" aria-hidden="true"></i>নতুন রাজনৈতিক দল যোগ করুন</a>
-                                    </div> 
-                                    -->
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <!-- Choose Role -->
                                         <select class="mdb-select" name="role_id" id="role_id">
                                             <option value="" disabled selected>আপনি কি হিসাবে নিবন্ধন করতে চান?</option>
@@ -153,12 +154,6 @@
                                                 <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="md-form">
-                                            <textarea type="text" name="address" id="address" class="md-textarea form-control" rows="2"></textarea>
-                                            <label for="address">ঠিকানা</label>
-                                        </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="md-form">
@@ -183,7 +178,7 @@
                                 </div>
 
                                 <!-- Sign up button -->
-                                <button class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
+                                <button class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
 
                                 <hr>
                                 <center>

@@ -117,7 +117,8 @@ class UserController extends Controller
                 'profile_image'  => 'required|image|dimensions:min_width=100,min_height=200|max:500',
             ]);
             $imageUpload = $this->uploadImage($request->file('profile_image'), 'users/', 640, 480);
-            DB::table('user_details')->where('user_id', $id)->update(['image_path' => $imageUpload]);    
+            DB::table('user_details')->where('user_id', $id)->update(['image_path' => $imageUpload]);  
+            Session::put('image_path', $imageUpload);  
             return ['status'=>200,'reason'=>'Successfully updated'];
         }
         catch (\Exception $e) {

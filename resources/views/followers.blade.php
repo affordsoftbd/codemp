@@ -136,7 +136,7 @@
         <div class="col-sm-10">
           <div class="md-form">
             <input class="form-control" id="keyword" name="keyword" type="text">
-            <label for="keyword">আপনার নেতাকে অনুসন্ধান করুন</label>
+            <label for="keyword">নেতা/কর্মী অনুসন্ধান করুন</label>
           </div>
         </div>
         <div class="col-sm-2">

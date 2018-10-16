@@ -4,31 +4,92 @@
 
 @section('content')
 
+<div class="row">
+  <div class="col-lg-4 mb-4">
+    <!-- Card -->
+      <div class="card card-personal">
 
-<div class="media">
-  <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-  <div class="media-body">
-      <h5 class="mt-0 font-weight-bold">Media heading</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-      Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-      nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        <!-- Card image-->
+        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
+        <!-- Card image-->
+
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a><h4 class="card-title title-one">Clara</h4></a>
+          <p class="card-meta">অংশগ্রহন 2013</p>
+          <!-- Text -->
+          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+          <hr>
+          <div class="btn-group mt-3" role="group" aria-label="Basic example">
+              <a href="button" class="btn btn-orange btn-sm" data-toggle="tooltip" data-placement="right" title="অনুমোদন"><i class="fa fa-thumbs-up"></i></a>
+              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
+              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+          </div>
+        </div>
+        <!-- Card content -->
+
+      </div>
+      <!-- Card -->
   </div>
-</div>
+  <div class="col-lg-4 mb-4">
+    <!-- Card -->
+      <div class="card card-personal">
 
-<hr>
+        <!-- Card image-->
+        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
+        <!-- Card image-->
 
-<div class="media">
-  <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-  <div class="media-body">
-      <h5 class="mt-0 font-weight-bold">Media heading</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-      Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-      nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a><h4 class="card-title title-one">Clara</h4></a>
+          <p class="card-meta">অংশগ্রহন 2013</p>
+          <!-- Text -->
+          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+          <hr>
+          <div class="btn-group mt-3" role="group" aria-label="Basic example">
+              <a href="button" class="btn btn-orange btn-sm" data-toggle="tooltip" data-placement="right" title="অনুমোদন"><i class="fa fa-thumbs-up"></i></a>
+              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
+              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+          </div>
+        </div>
+        <!-- Card content -->
+
+      </div>
+      <!-- Card -->
+  </div>
+  <div class="col-lg-4 mb-4">
+    <!-- Card -->
+      <div class="card card-personal">
+
+        <!-- Card image-->
+        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
+        <!-- Card image-->
+
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a><h4 class="card-title title-one">Clara</h4></a>
+          <p class="card-meta">অংশগ্রহন 2013</p>
+          <!-- Text -->
+          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+          <hr>
+          <div class="btn-group mt-3" role="group" aria-label="Basic example">
+              <a href="button" class="btn btn-orange btn-sm" data-toggle="tooltip" data-placement="right" title="অনুমোদন"><i class="fa fa-thumbs-up"></i></a>
+              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
+              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+          </div>
+        </div>
+        <!-- Card content -->
+
+      </div>
+      <!-- Card -->
   </div>
 </div>
 
 <!--Pagination-->
-    <nav aria-label="pagination example">
+    <nav aria-label="pagination example my-5">
         <ul class="pagination pg-blue">
 
             <!--Arrow left-->

@@ -21,6 +21,11 @@ a:hover {
     color: red;
 }
 
+[type=radio]:checked+label:after {
+    border-color: #ff0000;
+    background-color: #ff0000;
+}
+
 .hidden {
     visibility: hidden;
 }

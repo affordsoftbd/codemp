@@ -214,12 +214,14 @@ class AuthController extends Controller
 
         if($result){
             $user = Auth::user();
+            $user_details = DB::table('user_details')->where('user_id', $user->id)->get();
             Session::put('role_id',$user->role_id);
             Session::put('user_id',$user->id);
             Session::put('username',$user->username);
             Session::put('email',$user->email);
             Session::put('first_name',$user->first_name);
             Session::put('last_name',$user->last_name);
+            Session::put('image_path',$user_details->first()->image_path);
             return redirect('/home');
         }
         else{
