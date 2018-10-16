@@ -52,7 +52,7 @@
                 <div class="dropdown-menu dropdown-wide dropdown-success">
                   <p class="text-center h6">বার্তা</p>
                   <div class="dropdown-divider"></div>
-                  <div id="all_new_messages"></div>
+                  <div id="all_new_messages">{{ print_r(session()->all()) }}</div>
                   <a class="dropdown-item" href="javascript:void(0)">সব বার্তা প্রদর্শন করতে এখানে ক্লিক করুন</a>
                 </div>
             </li>
@@ -60,7 +60,7 @@
             <!-- Dropdown -->
             <li class="nav-item avatar dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
+                    <img src="{{ (Session::get('image_path')!='') ? url('/').Session::get('image_path') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-0">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-success" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-dashboard fa-sm pr-2"></i>সংক্ষিপ্তসার</a>
