@@ -32,7 +32,12 @@ class HomeController extends Controller
         if(Auth::check()){
             return redirect('home');
         }
-        return view ('auth.landing');
+        $data['divisions'] = DB::table('divisions')->get();
+        $data['districts'] = DB::table('districts')->get();
+        $data['thanas'] = DB::table('thanas')->get();
+        $data['zips'] = DB::table('zips')->get();
+        $data['roles'] = DB::table('roles')->get();
+        return view ('auth.landing',$data);
         // return view ('olds.login');
     }
 

@@ -23,13 +23,13 @@
         <div class="container container-fluid">
         
             <a class="navbar-brand" href="javascript:void(0)"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i>আমারনেতা</a>
-            <form class="form-inline" method="post" action="{{ route('retry') }}">
+            <form class="form-inline" method="post" action="{{ route('postLogin') }}">
                 {{ csrf_field() }}
                 <div class="md-form mt-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="আপনার ই-মেইল">
+                    <input class="form-control mr-sm-2" name="username" id="username" type="text" placeholder="আপনার ই-মেইল">
                 </div>
                 <div class="md-form mt-0">
-                    <input class="form-control mr-sm-2" type="password" placeholder="আপনার পাসওয়ার্ড">
+                    <input class="form-control mr-sm-2" name="password" id="password" type="password" placeholder="আপনার পাসওয়ার্ড">
                 </div>
                 <button class="btn btn-outline-white btn-md my-2 my-sm-0 mx-3" type="submit">লগ ইন</button>
                 <a class="white-text" href="{{ route('recovery') }}">পাসওয়ার্ড ভুলে গেছেন?</a>
@@ -55,8 +55,8 @@
 
                             <h5 class="red-text"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>রেজিস্টার করুন</h5><hr>
 
-                                <div class="alert alert-success" id="login_success" style="display:none"></div>
-                                <div class="alert alert-danger" id="login_danger" style="display:none"></div>
+                                <div class="alert alert-success" id="success_message" style="display:none"></div>
+                                <div class="alert alert-danger" id="error_message" style="display:none"></div>
 
                                 <form id="registration_form" class="login-form" method="post" action="">
                                 {{ csrf_field() }}
@@ -79,14 +79,14 @@
                                     <div class="col-sm-4">
                                         <!-- Phone number -->
                                         <div class="md-form">
-                                            <input type="text" name="username" id="username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                                            <input type="text" name="username" id="reg_username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
                                             <label for="username">ইউসার নাম</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <!-- E-mail -->
                                         <div class="md-form">
-                                            <input type="email" name="email" id="email" class="form-control">
+                                            <input type="email" name="email" id="reg_email" class="form-control">
                                             <label for="email">ই-মেইল</label>
                                         </div>
                                     </div>
@@ -100,7 +100,7 @@
                                     <div class="col-sm-12">
                                         <!-- Phone number -->
                                         <div class="md-form">
-                                            <input type="text" name="nid" id="nid" class="form-control">
+                                            <input type="text" name="nid" id="nid" class="form-control" maxlength="16">
                                             <label for="nid">জাতীয় আইডি</label>
                                         </div>
                                     </div>
@@ -108,48 +108,36 @@
                                         <!-- Choose Division -->
                                         <select class="mdb-select" name="division" id="division">
                                             <option value="" disabled selected>আপনার বিভাগ</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
+                                            @foreach($divisions as $division)
+                                                <option value="{{ $division->division_id }}">{{ $division->division_name }}</option>
+                                            @endforeach                                            
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
                                         <!-- Choose District -->
                                         <select class="mdb-select" name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
                                             <option value="" disabled selected>আপনার জেলা</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
+                                            
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
                                         <!-- Choose Thana -->
                                         <select class="mdb-select" name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
                                             <option value="" disabled selected>আপনার থানা</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
+                                            
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
                                         <!-- Choose Zip -->
                                         <select class="mdb-select" name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
                                             <option value="" disabled selected>আপনার জিপ</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
+                                            
                                         </select>
                                     </div>
                                     <div class="col-sm-12">
                                         <select class="mdb-select" name="party_id" id="party_id">
                                             <option value="" disabled selected>আপনার রাজনৈতিক দল</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
+                                            
                                         </select>
                                     </div>
                                     <!-- 
@@ -161,9 +149,9 @@
                                         <!-- Choose Role -->
                                         <select class="mdb-select" name="role_id" id="role_id">
                                             <option value="" disabled selected>আপনি কি হিসাবে নিবন্ধন করতে চান?</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
-                                            <option value="0">Division 1</option>
+                                            @foreach($roles as $role)
+                                                <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-sm-12">
@@ -174,7 +162,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="md-form">
-                                            <input type="password" name="password" id="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                                            <input type="password" name="password" id="reg_password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                                             <label for="password">পাসওয়ার্ড</label>
                                             <small id="password" class="form-text text-muted mb-4">
                                                 অন্ততপক্ষে ৮টি বা আরও অক্ষর এবং ১ সংখ্যা
@@ -184,7 +172,7 @@
                                     <div class="col-sm-6">
                                         <!-- Confirm Password -->
                                         <div class="md-form">
-                                            <input type="password" name="password_confirm" id="password_confirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                                            <input type="password" name="password_confirm" id="reg_password_confirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                                             <label for="password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
                                         </div>
                                     </div>
@@ -226,37 +214,203 @@
             $('#role_id').material_select();
         });
 
-        $(document).on('submit', '#login_form', function(event){
+        
+
+        $(document).on('change','#division', function(){
+            var division_id = $(this).val();
+            set_district(division_id,'');
+        });
+
+        $(document).on('change','#district', function(){
+            var district_id = $(this).val();
+            set_thana(district_id,'');
+        });
+
+        $(document).on('change','#thana', function(){
+            var thana_id = $(this).val();
+            set_zip(thana_id,'');
+        });
+
+        $(document).on('change','#role_id', function(){
+            var role_id = $(this).val();
+            set_leader(role_id);
+        });
+
+        function set_district(division_id,district_id){   
+            $.ajax({
+                type: "POST",
+                url: "{{ url('district_by_division') }}",
+                data: { _token: "{{ csrf_token() }}",division_id:division_id},
+                dataType: "json",
+                cache : false,
+                success: function(data){
+                    if(data.status == 200){
+                        $('#district').material_select('destroy');
+                        $('#district').html(data.options);
+                        $('#district').val(district_id);
+                        $('#district').material_select();
+                    }
+                    else{
+                        alert(data);
+                    }
+                } ,error: function(xhr, status, error) {
+                    alert(error);
+                },
+            });
+        }
+
+        function set_thana(district_id,thana_id){
+            $.ajax({
+                type: "POST",
+                url: "{{ url('thana_by_district') }}",
+                data: { _token: "{{ csrf_token() }}",district_id:district_id},
+                dataType: "json",
+                cache : false,
+                success: function(data){
+                    if(data.status == 200){
+                        $('#thana').material_select('destroy');
+                        $('#thana').html(data.options);
+                        $('#thana').val(thana_id);
+                        $('#thana').material_select();
+                    }
+                    else{
+                        alert(data);
+                    }
+                } ,error: function(xhr, status, error) {
+                    alert(error);
+                },
+            });
+        }
+
+        function set_zip(thana_id,address_type,zip_id){
+            $.ajax({
+                type: "POST",
+                url: "{{ url('zip_by_thana') }}",
+                data: { _token: "{{ csrf_token() }}",thana_id:thana_id},
+                dataType: "json",
+                cache : false,
+                success: function(data){
+                    if(data.status == 200){
+                        $('#zip').material_select('destroy');
+                        $('#zip').html(data.options);
+                        $('#zip').val(zip_id);
+                        $('#zip').material_select();
+                    }
+                    else{
+                        alert(data);
+                    }
+                } ,error: function(xhr, status, error) {
+                    alert(error);
+                },
+            });
+        }
+
+        function set_leader(role_id){   
+            $.ajax({
+                type: "POST",
+                url: "{{ url('leader_by_role') }}",
+                data: { _token: "{{ csrf_token() }}",role_id:role_id},
+                dataType: "json",
+                cache : false,
+                success: function(data){
+                    if(data.status == 200){
+                        $('#leader').material_select('destroy');
+                        $('#leader').html(data.options);
+                        // $('#leader').val(zip_id);
+                        $('#leader').material_select();
+                    }
+                    else{
+                        alert(data);
+                    }
+                } ,error: function(xhr, status, error) {
+                    alert(error);
+                },
+            });
+        }
+
+        $(document).on('submit', '#registration_form', function(event){
             event.preventDefault();
-            var username = $('#username').val();
-            var password = $('#password').val();
+            var first_name = $('#first_name').val();
+            var last_name = $('#last_name').val();
+            var email = $('#reg_email').val();
+            var phone = $('#phone').val();
+            var username = $('#reg_username').val();
+            var password = $('#reg_password').val();
+            var password_confirm = $('#reg_password_confirm').val();
+            var nid = $('#nid').val();
+            var division = $('#division').val();
+            var district = $('#district').val();
+            var thana = $('#thana').val();
+            var zip = $('#zip').val();
+            var party = $('#party_id').val();
+            var role = $('#role_id').val();
             var validate = '';
 
-            if(username==''){
+            if(first_name.trim()==''){
+                validate = validate+"first name is required</br>";
+            }
+            if(phone.trim()==''){
+                validate = validate+"phone is required</br>";
+            }
+            var re = /\S+@\S+\.\S+/;
+            if(email.trim()!='' && !re.test(email)){
+                validate = validate+"invalid email address</br>";
+            }
+            if(username.trim()==''){
                 validate = validate+"username is required</br>";
             }
-
-            if(password==''){
-                validate = validate+"password is required";
+            if(password.trim()==''){
+                validate = validate+"password is required</br>";
+            }
+            if(password.trim()!='' && password.trim().length<8){
+                validate = validate+"password needs at least 8 digits</br>";
+            }
+            var regex = /\d/g;
+            if(password.trim()!='' && !regex.test(password.trim())){
+                validate = validate+"password should contain at least 1 number</br>";
+            }
+            if(password_confirm.trim()==''){
+                validate = validate+"password confirm is required</br>";
+            }
+            if(password.trim()!='' && password_confirm.trim()!='' && password!=password_confirm){
+                validate = validate+"Password and password confirm does not match";
+            }
+            if(division==''){
+                validate = validate+"Division is required</br>";
+            }
+            if(district==''){
+                validate = validate+"District is required</br>";
+            }
+            if(thana==''){
+                validate = validate+"Thana is required</br>";
+            }
+            if(zip==''){
+                validate = validate+"Zip is required</br>";
+            }
+            if(party==''){
+                validate = validate+"Party is required</br>";
+            }
+            if(role==''){
+                validate = validate+"Role is required</br>";
             }
 
             if(validate==''){
-
-                var formData = new FormData($('#login_form')[0]);
-                var url = '{{ url('login') }}';
+                var formData = new FormData($('#registration_form')[0]);
+                var url = '{{ url('save_public_user') }}';
                 $.ajax({
                     type: "POST",
                     url: url,
                     data: formData,
                     async: false,
                     success: function (data) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         if(data.status == 200){
                             window.location.href="{{ url('/home') }}";
                         }
                         else{
-                            $('#login_success').hide();
-                            $('#login_danger').show();
-                            $('#login_danger').html(data.reason);
+                            $('#success_message').hide();
+                            $('#error_message').show();
+                            $('#error_message').html(data.reason);
                         }
                     },
                     cache: false,
@@ -265,9 +419,10 @@
                 });
             }
             else{
-                $('#login_success').hide();
-                $('#login_danger').show();
-                $('#login_danger').html(validate);
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('#success_message').hide();
+                $('#error_message').show();
+                $('#error_message').html(validate);
             }
         });
     </script>

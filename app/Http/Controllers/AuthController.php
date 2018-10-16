@@ -220,10 +220,10 @@ class AuthController extends Controller
             Session::put('email',$user->email);
             Session::put('first_name',$user->first_name);
             Session::put('last_name',$user->last_name);
-            return ['status'=>200,'reason'=>'Successfully Authenticated'];
+            return redirect('/home');
         }
         else{
-            return ['status'=>401,'reason'=>'Invalid credentials'];
+            return redirect('login?res=err');
         }
     }
 

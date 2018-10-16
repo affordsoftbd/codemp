@@ -41,20 +41,20 @@
 
 	            <h4 class="green-text"><i class="fa fa-sign-in fa-sm pr-2" aria-hidden="true"></i>আমার নেতা লগ ইন!</h4><hr>
 
-	            <form class="login-form" method="post" action="">
+	            <form class="login-form" method="post" action="{{ route('postLogin') }}">
                                 {{ csrf_field() }}
 
                      <!-- Confirm Email -->
                     <div class="md-form">
                         <i class="fa fa-envelope prefix red-text"></i>
-                        <input type="text" name="email" id="email" class="form-control" data-toggle="popover" data-placement="right" title="ভুল লগইন ক্রেডেনশিয়াল" data-content="আপনার প্রদত্ত লগইন ক্রেডেনশিয়াল খুঁজে পাওয়া  যাচ্ছে না!">
+                        <input type="text" name="username" id="username" class="form-control" data-toggle="popover" data-placement="right" title="ভুল লগইন ক্রেডেনশিয়াল" data-content="আপনার প্রদত্ত লগইন ক্রেডেনশিয়াল খুঁজে পাওয়া  যাচ্ছে না!">
                         <label for="email">ইমেইল নিশ্চিত করুন</label>
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="md-form">
                         <i class="fa fa-lock prefix red-text"></i>
-						<input type="password" name="password_confirm" id="password_confirm" class="form-control">
+						<input type="password" name="password" id="password" class="form-control">
                         <label for="password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
                     </div>
                     <div class="text-center mt-4">
@@ -80,7 +80,12 @@
 
     		// popovers Initialization
 			$(function () {
+                @if(isset($_GET['res']))
 			    $('[data-toggle="popover"]').popover('show');
+                @endif
+                setTimeout(function(){
+                    $('[data-toggle="popover"]').popover('hide');
+                },3000)
 			});
 			
         });
