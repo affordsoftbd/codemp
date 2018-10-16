@@ -143,6 +143,9 @@
                                     <div class="col-sm-6">
                                         <select class="mdb-select" name="party_id" id="party_id">
                                             <option value="" disabled selected>আপনার রাজনৈতিক দল</option>
+                                            @foreach($parties as $party)
+                                                <option value="{{ $party->party_id }}">{{ $party->party_name }}</option>
+                                            @endforeach
                                             
                                         </select>
                                     </div>
@@ -370,28 +373,28 @@
             if(password.trim()!='' && password_confirm.trim()!='' && password!=password_confirm){
                 validate = validate+"Password and password confirm does not match";
             }
-            if(division==''){
+            if(division===null){
                 validate = validate+"Division is required</br>";
             }
-            if(district==''){
+            if(district===null){
                 validate = validate+"District is required</br>";
             }
-            if(thana==''){
+            if(thana===null){
                 validate = validate+"Thana is required</br>";
             }
-            if(zip==''){
+            if(zip===null){
                 validate = validate+"Zip is required</br>";
             }
-            if(party==''){
+            if(party===null){
                 validate = validate+"Party is required</br>";
             }
-            if(role==''){
+            if(role===null){
                 validate = validate+"Role is required</br>";
             }
 
             if(validate==''){
                 var formData = new FormData($('#registration_form')[0]);
-                var url = '{{ url('save_public_user') }}';
+                var url = '{{ url('save_user') }}';
                 $.ajax({
                     type: "POST",
                     url: url,

@@ -62,7 +62,8 @@ class AuthController extends Controller
         return view('auth.public_register');
     }
 
-    public function savePublicUser(Request $request){
+
+    public function saveUser(Request $request){
         try {
             DB::beginTransaction();
             
@@ -83,85 +84,13 @@ class AuthController extends Controller
             }
             
             $user = NEW User();
-            $user->parent_id = 0;          
+            $user->parent_id = 0;         
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->email = $request->email;
             $user->username = $request->username;
             $user->password = bcrypt($request->password);
-            $user->role_id = $request->role_id;
-            $user->status = 'Active';
-            $user->created_at = date('Y-m-d h:i:s');
-            $user->save();
-            
-            /*
-            * Save user details
-            */
-            $userDetail = NEW UserDetail();
-            $userDetail->user_id = $user->id;
-            $userDetail->phone = $request->phone;
-            $userDetail->address = $request->address;
-            $userDetail->save();
-            
-            DB::commit();
-            
-            /*
-            * Now auto login user
-            */
-            $result = Auth::attempt(['username' => trim($request->username),
-                'password' => $request->password
-            ]);
-    
-            if($result){
-                $user = Auth::user();
-                Session::put('role_id',$user->role_id);
-                Session::put('user_id',$user->id);
-                Session::put('email',$user->email);
-                Session::put('first_name',$user->first_name);
-                Session::put('last_name',$user->last_name);
-            }
-    
-            return ['status'=>200,'reason'=>'Successfully saved'];
-        }
-        catch (\Exception $e) {
-            DB::rollback();
-            return ['status'=>200,'reason'=>$e->getMessage()];
-        }
-    }
-
-
-    public function savePoliticianUser(Request $request){
-        try {
-            DB::beginTransaction();
-            
-            if($request->email!=''){
-                $emailCheck = User::where('email',$request->email)->first();
-                if(!empty($emailCheck)){
-                    return ['status'=>401,'reason'=>'Duplicate email address'];
-                }
-            }
-            $usernameCheck = User::where('username',$request->username)->first();
-            if(!empty($usernameCheck)){
-                return ['status'=>401,'reason'=>'Duplicate username'];
-            }
-            
-            $phoneCheck = UserDetail::where('phone',$request->phone)->first();
-            if(!empty($phoneCheck)){
-                return ['status'=>401,'reason'=>'Duplicate phone number'];
-            }
-            
-            $user = NEW User();
-            if($request->role_id==2){
-                $user->parent_id = 0;
-            }
-            else{
-                $user->parent_id = $request->leader;
-            }            
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->email = $request->email;
-            $user->username = $request->username;
-            $user->password = bcrypt($request->password);
+            $user->party_id = $request->party_id;
             $user->role_id = $request->role_id;
             $user->status = 'Pending';
             $user->created_at = date('Y-m-d h:i:s');
@@ -194,6 +123,7 @@ class AuthController extends Controller
                 $user = Auth::user();
                 Session::put('role_id',$user->role_id);
                 Session::put('user_id',$user->id);
+                Session::put('username',$user->username);
                 Session::put('email',$user->email);
                 Session::put('first_name',$user->first_name);
                 Session::put('last_name',$user->last_name);
@@ -234,6 +164,7 @@ class AuthController extends Controller
 
         Session::forget('role_id');
         Session::forget('user_id');
+        Session::forget('username');
         Session::forget('email');
         Session::forget('first_name');
         Session::forget('last_name');

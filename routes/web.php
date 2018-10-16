@@ -22,8 +22,7 @@ Route::get('logout','AuthController@logout')->name('logout');
 
 Route::get('/register/politician','AuthController@politicianRegister')->name('register.politician');
 Route::get('/register/public','AuthController@publicRegister')->name('register.public');
-Route::post('save_public_user','AuthController@savePublicUser');
-Route::post('save_politician_user','AuthController@savePoliticianUser');
+Route::post('save_user','AuthController@saveUser');
 
 // Auth::routes();
 
