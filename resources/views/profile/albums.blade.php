@@ -174,7 +174,7 @@
                                             html +=value.description;
                                         html +='</div>';
 
-                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
 
                                         html +='<div class="view overlay mt-4" align="center">';
                                             html +='<div class="lightgallery mb-4">';

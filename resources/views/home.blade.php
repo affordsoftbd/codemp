@@ -320,6 +320,8 @@
                                             html +=value.description;
                                         html +='</div>';
 
+                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
+
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
                                                 html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="fa fa-thumbs-o-up pr-1"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
@@ -351,7 +353,7 @@
                                             html +=value.description;
                                         html +='</div>';
 
-                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
 
                                         html +='<div class="view overlay mt-4" align="center">';
                                             html +='<div class="lightgallery mb-4">';
@@ -401,7 +403,7 @@
                                         html +='</div>';
 
                                         
-                                      html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
+                                      html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
 
                                         $.each(value.videos, function( index, video ) {
                                             var video_url =  '{{ url('/') }}'+video.video_path;

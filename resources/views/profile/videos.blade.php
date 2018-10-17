@@ -178,7 +178,7 @@
                                         html +='</div>';
 
                                         
-                                      html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-edit pl-1"></i></a>';
+                                      html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
 
                                         $.each(value.videos, function( index, video ) {
                                             var video_url =  '{{ url('/') }}'+video.video_path;
