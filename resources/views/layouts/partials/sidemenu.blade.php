@@ -12,7 +12,7 @@
     	<i class="fa fa-video-camera fa-sm pr-2"></i>ভিডিও চ্যাট
 	</a> -->
     <a href="#" class="list-group-item list-group-item-action waves-effect">
-        <i class="fa fa-group fa-sm pr-2"></i>গ্রুপ
+        <i class="fa fa-calendar fa-sm pr-2"></i>ইভেন্টস
     </a>
     <a href="#" class="list-group-item list-group-item-action waves-effect">
         <i class="fa fa-envelope fa-sm pr-2"></i>বার্তা
@@ -30,9 +30,9 @@
         <i class="fa fa-user-plus fa-sm pr-2"></i>আবেদন
     </a>
     <a href="{{ route('following') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('following*')? 'active':'' }}">
-        <i class="fa fa-exchange fa-sm pr-2"></i>অনুসরণ
+        <i class="fa fa-check-circle fa-sm pr-2"></i>অনুসরণ
     </a>
     <a href="{{ route('followers') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('followers*')? 'active':'' }}">
-        <i class="fa fa-user-circle fa-sm pr-2"></i>অনুসারী
+        <i class="fa fa-group fa-sm pr-2"></i>অনুসারী
     </a>
 </div>
