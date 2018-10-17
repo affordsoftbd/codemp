@@ -53,7 +53,7 @@
                         {!! Form::textarea('additional_details', null, array('class'=>'editor','name'=>'post_text','id'=>'post_text')) !!}
                     </div>
                     <div class="text-center my-4">
-                        {!! Form::button('অবস্থা হালনাগাদ করুন<i class="fa fa-share fa-sm pl-2"></i>', array('type' => 'submit', 'class' =>'btn btn-danger btn-md pull-right')) !!}
+                        {!! Form::button('শেয়ার<i class="fa fa-share fa-sm pl-2"></i>', array('type' => 'submit', 'class' =>'btn btn-danger btn-md pull-right')) !!}
                     </div>
                 {!! Form::close() !!}
             </div>
@@ -84,7 +84,7 @@
                                 {!! Form::file("images[]", ['class'=>'input_image', 'multiple'=>'true']) !!}
                             </div>
                             <div class="file-path-wrapper">
-                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_images_names', 'placeholder'=>'আপনার ফাইলগুলো নির্বাচন করুন']) !!}
+                                {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_images_names', 'placeholder'=>'আপনার চিত্রগুলো নির্বাচন করুন']) !!}
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     </div>
                     
                     <div class="text-center mt-4">
-                        {{ Form::button('চিত্র আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                        {{ Form::button('আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
                     <div class="clearfix"></div>
                     <div id="image_upload_feedback" class="my-5"></div>
@@ -137,7 +137,7 @@
                         {!! Form::label('video_description', 'ভিডিও বিবরণ') !!}
                     </div>
                     <div class="text-center mt-4">
-                        {{ Form::button('ভিডিও শেয়ার করুন<i class="fa fa-share fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                        {{ Form::button('আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
                     <div class="clearfix"></div>
                     <div id="video_upload_feedback" class="my-5" align="center"></div>
