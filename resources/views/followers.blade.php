@@ -150,7 +150,7 @@
           <hr>
           <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
           <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-green btn-sm disabled" data-toggle="tooltip" data-placement="right" title="অনুসরণ"><i class="fa fa-check"></i></a>
+              <a href="button" class="btn btn-red btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ বাতিল"><i class="fa fa-close"></i></a>
               <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
               <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
           </div>
