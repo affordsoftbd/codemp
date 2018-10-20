@@ -320,7 +320,11 @@
                                             html +=value.description;
                                         html +='</div>';
 
-                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
+                                        html +='<div class="ml-auto mr-4 mb-4 ">';
+                                        html +='<a class="btn-floating btn-action light-green" href="javascript:void(0)"><i class="fa fa-edit pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action deep-orange" href="javascript:void(0)"><i class="fa fa-trash pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
+                                        html +='</div>';
 
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
@@ -353,7 +357,11 @@
                                             html +=value.description;
                                         html +='</div>';
 
-                                        html +='<a class="btn-floating btn-action ml-auto mr-4 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
+                                        html +='<div class="ml-auto mr-4 mb-4 ">';
+                                        html +='<a class="btn-floating btn-action light-green" href="javascript:void(0)"><i class="fa fa-edit pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action deep-orange" href="javascript:void(0)"><i class="fa fa-trash pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
+                                        html +='</div>';
 
                                         html +='<div class="view overlay mt-4" align="center">';
                                             html +='<div class="lightgallery mb-4">';
@@ -403,7 +411,11 @@
                                         html +='</div>';
 
                                         
-                                      html +='<a class="btn-floating btn-action ml-auto mr-3 mb-4 red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
+                                      html +='<div class="ml-auto mr-4 mb-4 ">';
+                                        html +='<a class="btn-floating btn-action light-green" href="javascript:void(0)"><i class="fa fa-edit pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action deep-orange" href="javascript:void(0)"><i class="fa fa-trash pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
+                                        html +='</div>';
 
                                         $.each(value.videos, function( index, video ) {
                                             var video_url =  '{{ url('/') }}'+video.video_path;
