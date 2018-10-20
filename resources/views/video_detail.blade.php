@@ -13,13 +13,16 @@
         @endif
         
     </div>
-    <div class="col-xl-7 col-lg-5 col-md-4">
+    <div class="col-xl-6 col-lg-4 col-md-4">
         <h6 class="font-weight-bold">{{ $post->first_name." ".$post->last_name}}</h6>
         <small class="grey-text">{{ $post->created_at}}</small>
     </div>
-    <div class="col-xl-4 col-lg-5 col-md-6" align="right">
+    <div class="col-xl-5 col-lg-6 col-md-6" align="right">
         <a href="javascript:void(0)" class="btn btn-light-green btn-sm">
             <i class="fa fa-edit"></i>
+        </a>
+        <a href="javascript:void(0)" class="btn btn-deep-orange btn-sm">
+            <i class="fa fa-trash"></i>
         </a>
         <!--Likes-->
         <button type="button" class="btn btn-green btn-sm">
@@ -37,10 +40,9 @@
         <?php echo htmlspecialchars_decode($post->description); ?>
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
-        <hr>
-        <div class="embed-responsive embed-responsive-16by9">
+        <div class="view overlay my-3">
             @foreach($post->videos as $video)
-            <video width="400" controls>
+            <video id="my-video" class="video-js" preload="auto" controls data-setup="{}" style="width:100%">
               <source src="{{ url('/').$video->video_path}}" type="video/mp4">
             </video>
             @endforeach
@@ -76,7 +78,7 @@
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য পোস্ট করুন</h4>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2">
-        
+        <img src="{{ (Session::get('image_path')!='') ? url('/').Session::get('image_path') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 my-5">
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10">
         <div class="alert alert-success" id="comment_success" style="display:none"></div>
