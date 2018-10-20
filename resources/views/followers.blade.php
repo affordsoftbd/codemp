@@ -4,7 +4,9 @@
 
 @section('content')
 
-<form>
+<h4 class="red-text">মোট অনুসারী: 25 জন</h4>
+
+<form class="md-form">
   <div class="row">
     <div class="col-sm-10">
       <div class="md-form">
@@ -19,7 +21,7 @@
     </div>
   </div>
 </form>
-<form id="user_form" method="post" action="">
+<form class="form-horizontal" id="user_form" method="post" action="">
     {{ csrf_field() }}
      <div class="form-row">
         <div class="col-sm-3">

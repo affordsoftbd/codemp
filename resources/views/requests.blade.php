@@ -4,7 +4,9 @@
 
 @section('content')
 
-<div class="row">
+<h4 class="red-text">মোট আবেদন: 25টি</h4>
+
+<div class="row my-5">
   <div class="col-lg-4 mb-4">
     <!-- Card -->
       <div class="card card-personal">

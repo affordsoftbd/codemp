@@ -29,9 +29,6 @@
     <a href="{{ route('requests') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('requests*')? 'active':'' }}">
         <i class="fa fa-user-plus fa-sm pr-2"></i>আবেদন
     </a>
-    <a href="{{ route('following') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('following*')? 'active':'' }}">
-        <i class="fa fa-check-circle fa-sm pr-2"></i>অনুসরণ
-    </a>
     <a href="{{ route('followers') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('followers*')? 'active':'' }}">
         <i class="fa fa-group fa-sm pr-2"></i>অনুসারী
     </a>

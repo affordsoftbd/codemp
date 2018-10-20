@@ -30,7 +30,6 @@ Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/news', 'HomeController@news')->name('news');
 Route::get('/requests', 'HomeController@requests')->name('requests');
-Route::get('/following', 'HomeController@following')->name('following');
 Route::get('/followers', 'HomeController@followers')->name('followers');
 Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');

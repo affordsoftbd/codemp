@@ -189,11 +189,6 @@ class HomeController extends Controller
         return view('requests');
     }
 
-    public function following()
-    {
-        return view('following');
-    }
-
     public function followers()
     {
         return view('followers');
