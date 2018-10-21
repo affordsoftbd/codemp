@@ -28,7 +28,7 @@
         <button type="button" class="btn btn-green btn-sm">
             <i class="fa fa-thumbs-o-up"></i>
         </button>
-        <span class="counter">22</span>
+        <span class="counter">{{ count($post->likes) }}</span>
         <!--Comments-->
         <button type="button" class="btn btn-red btn-sm">
             <i class="fa fa-comments"></i>
@@ -47,9 +47,15 @@
                     <a href="{{ url('/').$image->image_path }}" data-sub-html="Focused client-server ability 1"> 
                         <img class="img-fluid" src="{{ url('/').$image->image_path }}" alt="Photo">
                     </a>
+                    {!! Form::open(['route' => ['image.delete', $image->post_image_id], 'method'=>'delete']) !!}
+                        {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'This image can not be recovered!', 'confirmButtonText'=>'Yes, delete image!', 'type'=>'submit')) !!}
+                    {!! Form::close() !!}
                 </li>
                 @endforeach
             </ul>
+            <button type="button" class="btn green btn-sm" data-toggle="modal" data-target="#updateimage">
+              <i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ যোগ করুন
+            </button>
             <hr>
         </div>
         <h5 class="grey-text font-weight-bold" id="total_comments">Total Comments: {{ count($post_comments) }}</h5>
@@ -103,6 +109,42 @@
     </div>
 
 </div>
+
+<!-- Image Modal -->
+    <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">অ্যালবামে ছবি যোগ করুন</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body image_modal">
+                  <div class="text-center">
+                    <img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
+                    <p class="text-center mt-4">সর্বাধিক অনুমোদিত আকার:: 2 MB</p>
+                  </div>
+                    {!! Form::open(['class'=>'md-form upload_image', 'method' => 'post', 'route' => ['image.add'], 'enctype' => 'multipart/form-data']) !!}
+                      {!! Form::hidden('post_id', $post->post_id) !!}
+                      <div class="file-field">
+                          <div class="btn btn-success btn-sm float-left">
+                              <span>নির্বাচন</span>
+                              {!! Form::file("image", ['class'=>'input_image']) !!}
+                          </div>
+                          <div class="file-path-wrapper">
+                              {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার চিত্রগুলো নির্বাচন করুন']) !!}
+                          </div>
+                      </div>
+                      <div class="text-center mt-4">
+                          {{ Form::button('আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                      </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Image Modal -->
 
 @endsection
 

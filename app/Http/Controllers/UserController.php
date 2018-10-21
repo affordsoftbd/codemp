@@ -114,9 +114,9 @@ class UserController extends Controller
     public function updateProfileImage(Request $request, $id){
         try {
             $this->validate(request(),[
-                'profile_image'  => 'required|image|dimensions:min_width=100,min_height=200|max:500',
+                'image'  => 'required|image|dimensions:min_width=100,min_height=200|max:500',
             ]);
-            $imageUpload = $this->uploadImage($request->file('profile_image'), 'users/', 640, 480);
+            $imageUpload = $this->uploadImage($request->file('image'), 'users/', 640, 480);
             DB::table('user_details')->where('user_id', $id)->update(['image_path' => $imageUpload]);  
             Session::put('image_path', $imageUpload);  
             return ['status'=>200,'reason'=>'Successfully updated'];

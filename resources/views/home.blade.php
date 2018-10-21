@@ -166,9 +166,12 @@
         </div>
     </div>
 </div>
-<!-- <div class="row justify-content-center load_more_spinner" id="load_more_spinner">
+
+<!-- 
+<div class="row justify-content-center load_more_spinner" id="load_more_spinner">
     <i class="fa fa-spinner fa-spin my-5 content_load"></i>
-</div> -->
+</div> 
+-->
 
 <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

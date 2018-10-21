@@ -50,7 +50,7 @@ Route::get('/post/{id?}', 'PostController@postDetails')->name('post');
 Route::get('/post/{id}/edit', 'PostController@editPostDetails')->name('post.edit');
 Route::put('/post/{id}/update', 'PostController@updatePostDetails')->name('post.update');
 Route::get('/image/{id?}', 'PostController@imageDetails')->name('image');
-Route::post('/image/{id}/add', 'PostController@addImage')->name('image.add');
+Route::post('/image/add', 'PostController@addImage')->name('image.add');
 Route::delete('/image/{id}/delete', 'PostController@deleteImage')->name('image.delete');
 Route::get('/video/{id?}', 'PostController@videoDetails')->name('video');
 Route::post('saveTextPost', 'PostController@saveTextPost');

@@ -198,13 +198,13 @@ class PostController extends Controller
             $post = Post::findOrFail($id);
             $post->update($input);
             if($post->post_type == 'photo'){
-                return redirect()->route('image', $id)->with('success', array('Success'=>'Album details has been updated!'));
+                return redirect()->route('image', $id)->with('success', array('সফল!'=>'অ্যালবাম বিস্তারিত আপডেট করা হয়েছে!'));
             }
             elseif($post->post_type == 'video'){
-                return redirect()->route('video', $id)->with('success', array('Success'=>'Video details has been updated!'));
+                return redirect()->route('video', $id)->with('success', array('সফল!'=>'ভিডিও বিবরণ আপডেট করা হয়েছে!'));
             }
             else{
-                return redirect()->route('post', $id)->with('success', array('Success'=>'Post has been updated!'));
+                return redirect()->route('post', $id)->with('success', array('সফল!'=>'পোস্ট আপডেট করা হয়েছে!'));
             }
         }
         catch (\Exception $e) {
@@ -242,24 +242,15 @@ class PostController extends Controller
     public function addImage(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return view('image');
-            }
-            $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
-                ->with('images')
-                ->with('videos')
-                ->with('comments')
-                ->with('likes')
-                ->join('users','users.id','=','posts.user_id')
-                ->join('user_details','users.id','=','user_details.user_id')
-                ->where('post_id',$request->id)
-                ->first();
-            $data['post_comments'] = PostComment::select('post_comments.*','users.first_name','users.last_name','user_details.image_path')
-                ->join('users','users.id','=','post_comments.user_id')
-                ->join('user_details','users.id','=','user_details.user_id')
-                ->where('post_id',$request->id)
-                ->get();
-            return view('posts.image_edit',$data);
+            $this->validate(request(),[
+                'image'  => 'required|image|dimensions:min_width=100,min_height=200|max:2000',
+            ]);
+            $imageUpload = $this->uploadImage($request->file('image'), 'posts/images/', 960, 720);
+            $postImage = NEW PostImage();
+            $postImage->image_path = $imageUpload;
+            $postImage->post_id = $request->post_id;
+            $postImage->save();
+            Session::flash('success', array('নতুন ছবি যোগ করা হয়েছে!'=>''));
         }
         catch (\Exception $e) {
             return $e->getMessage();
@@ -269,7 +260,10 @@ class PostController extends Controller
     public function deleteImage($id)
     {
         try {
-            // return view('posts.image_edit',$data);
+            $postImage = NEW PostImage();
+            $deleteImage = $postImage->findOrFail($id);
+            $deleteImage->delete();
+            return redirect()->back()->with('success', array('সফল!'=>'ছবি অ্যালবাম থেকে মুছে ফেলা হয়েছে!'));
         }
         catch (\Exception $e) {
             return $e->getMessage();

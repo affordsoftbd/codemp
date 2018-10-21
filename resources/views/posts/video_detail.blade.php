@@ -28,7 +28,7 @@
         <button type="button" class="btn btn-green btn-sm">
             <i class="fa fa-thumbs-o-up"></i>
         </button>
-        <span class="counter">22</span>
+        <span class="counter">{{ count($post->likes) }}</span>
         <!--Comments-->
         <button type="button" class="btn btn-red btn-sm">
             <i class="fa fa-comments"></i>
