@@ -170,7 +170,44 @@ class PostController extends Controller
                 ->join('user_details','users.id','=','user_details.user_id')
                 ->where('post_id',$request->id)
                 ->get();
-            return view('post_detail',$data);
+            return view('posts.post_detail',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function editPostDetails($id)
+    {
+        try {
+            if(!Auth::check()){                
+                return view('post');
+            }
+            $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
+                ->with('images')
+                ->with('videos')
+                ->with('comments')
+                ->with('likes')
+                ->join('users','users.id','=','posts.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->first();
+            $data['post_comments'] = PostComment::select('post_comments.*','users.first_name','users.last_name','user_details.image_path')
+                ->join('users','users.id','=','post_comments.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->get();
+            return view('posts.post_edit',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function updatePostDetails(Request $request)
+    {
+        try {
+            // return view('posts.post_edit',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
@@ -197,7 +234,44 @@ class PostController extends Controller
                 ->join('user_details','users.id','=','user_details.user_id')
                 ->where('post_id',$request->id)
                 ->get();
-            return view('image_details',$data);
+            return view('posts.image_details',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function editImageDetails($id)
+    {
+        try {
+            if(!Auth::check()){
+                return view('image');
+            }
+            $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
+                ->with('images')
+                ->with('videos')
+                ->with('comments')
+                ->with('likes')
+                ->join('users','users.id','=','posts.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->first();
+            $data['post_comments'] = PostComment::select('post_comments.*','users.first_name','users.last_name','user_details.image_path')
+                ->join('users','users.id','=','post_comments.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->get();
+            return view('posts.image_edit',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function updateImageDetails(Request $request)
+    {
+        try {
+            // return view('posts.image_edit',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
@@ -224,7 +298,44 @@ class PostController extends Controller
                 ->join('user_details','users.id','=','user_details.user_id')
                 ->where('post_id',$request->id)
                 ->get();
-            return view('video_detail',$data);
+            return view('posts.video_detail',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function editVideoDetails($id)
+    {
+        try {
+            if(!Auth::check()){
+                return view('image');
+            }
+            $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
+                ->with('images')
+                ->with('videos')
+                ->with('comments')
+                ->with('likes')
+                ->join('users','users.id','=','posts.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->first();
+            $data['post_comments'] = PostComment::select('post_comments.*','users.first_name','users.last_name','user_details.image_path')
+                ->join('users','users.id','=','post_comments.user_id')
+                ->join('user_details','users.id','=','user_details.user_id')
+                ->where('post_id',$request->id)
+                ->get();
+            return view('posts.image_edit',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function updateVideoDetails(Request $request)
+    {
+        try {
+            // return view('posts.image_edit',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
