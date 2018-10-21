@@ -183,21 +183,8 @@ class PostController extends Controller
             if(!Auth::check()){                
                 return view('post');
             }
-            $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
-                ->with('images')
-                ->with('videos')
-                ->with('comments')
-                ->with('likes')
-                ->join('users','users.id','=','posts.user_id')
-                ->join('user_details','users.id','=','user_details.user_id')
-                ->where('post_id',$request->id)
-                ->first();
-            $data['post_comments'] = PostComment::select('post_comments.*','users.first_name','users.last_name','user_details.image_path')
-                ->join('users','users.id','=','post_comments.user_id')
-                ->join('user_details','users.id','=','user_details.user_id')
-                ->where('post_id',$request->id)
-                ->get();
-            return view('posts.post_edit',$data);
+            $post = Post::findOrFail($id);
+            return view('posts.post_edit', compact('post'));
         }
         catch (\Exception $e) {
             return $e->getMessage();

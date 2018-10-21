@@ -18,7 +18,7 @@
         <small class="grey-text">{{ $post->created_at}}</small>
     </div>
     <div class="col-xl-5 col-lg-6 col-md-6" align="right">
-        <a href="javascript:void(0)" class="btn btn-light-green btn-sm">
+        <a href="{{ route('post.edit', $post->post_id) }}" class="btn btn-light-green btn-sm">
             <i class="fa fa-edit"></i>
         </a>
         <a href="javascript:void(0)" class="btn btn-deep-orange btn-sm">

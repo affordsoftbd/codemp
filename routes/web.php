@@ -47,14 +47,14 @@ Route::put('/update_profile_image/{id}', 'UserController@updateProfileImage')->n
 
 /*Post routes*/
 Route::get('/post/{id?}', 'PostController@postDetails')->name('post');
-Route::get('/post/{id?}/edit', 'PostController@editPostDetails')->name('post.edit');
-Route::put('/post/{id?}/update', 'PostController@updatePostDetails')->name('post.update');
+Route::get('/post/{id}/edit', 'PostController@editPostDetails')->name('post.edit');
+Route::put('/post/{id}/update', 'PostController@updatePostDetails')->name('post.update');
 Route::get('/image/{id?}', 'PostController@imageDetails')->name('image');
-Route::get('/image/{id?}/edit', 'PostController@editImageDetails')->name('image.edit');
-Route::put('/image/{id?}/update', 'PostController@updateImageDetails')->name('image.update');
+Route::get('/image/{id}/edit', 'PostController@editImageDetails')->name('image.edit');
+Route::put('/image/{id}/update', 'PostController@updateImageDetails')->name('image.update');
 Route::get('/video/{id?}', 'PostController@videoDetails')->name('video');
-Route::get('/video/{id?}/edit', 'PostController@editVideoDetails')->name('video.edit');
-Route::put('/video/{id?}/update', 'PostController@updateVideoDetails')->name('video.update');
+Route::get('/video/{id}/edit', 'PostController@editVideoDetails')->name('video.edit');
+Route::put('/video/{id}/update', 'PostController@updateVideoDetails')->name('video.update');
 Route::post('saveTextPost', 'PostController@saveTextPost');
 Route::post('saveImagePost', 'PostController@saveImagePost')->name('image.save');
 Route::post('saveVideoPost', 'PostController@saveVideoPost')->name('video.save');
