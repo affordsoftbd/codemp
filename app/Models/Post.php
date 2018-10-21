@@ -10,6 +10,8 @@ class Post extends Model
     protected $primaryKey = 'post_id';
     public $timestamps = false;
 
+    protected $fillable = ['description'];
+
 
     #one to many detail tabe relation
     public function images()

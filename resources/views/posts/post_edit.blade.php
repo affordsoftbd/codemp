@@ -4,17 +4,27 @@
 
 @section('content')
 
-
-<h6 class="font-weight-bold">{{ $post->first_name." ".$post->last_name}}</h6>
-<small class="grey-text">{{ $post->created_at}}</small>
-
+<h6 class="font-weight-bold">Update {{ ucwords($post->post_type) }} Post</h6>
+<small class="grey-text"><b>Post Added:</b> {{ $post->created_at }}</small>,
+<small class="grey-text"><b>Last Updated:</b> {{ (empty($post->updated_at))? 'Not updated yet!' : $post->updated_at }}</small>
 <hr>
 
-{!! Form::open(['method' => 'post', 'id' => 'text_post_form', 'class'=>'md-form login-form']) !!}
-
-{!! Form::textarea('additional_details', $post->description, array('class'=>'editor','name'=>'comment_text','id'=>'comment_text')) !!}
-
+{!! Form::open(['method' => 'put', 'route' => ['post.update', $post->post_id], 'class'=>'md-form login-form']) !!}
+    <div class="md-form">
+        {!! Form::textarea('description', $post->description, array('class'=>'editor')) !!}
+    </div>
+    <div class="text-center my-4">
+        {!! Form::button('হালনাগাদ', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+    </div>
 {!! Form::close() !!}
+
+@if($post->post_type == 'photo')
+    <a class="btn btn-success waves-effect btn-sm" href="{{ route('image', $post->post_id) }}"><i class="fa fa-arrow-circle-left fa-sm pr-2" aria-hidden="true"></i>প্রত্যাবর্তন</a>
+@elseIf($post->post_type == 'video')
+    <a class="btn btn-success waves-effect btn-sm" href="{{ route('video', $post->post_id) }}"><i class="fa fa-arrow-circle-left fa-sm pr-2" aria-hidden="true"></i>প্রত্যাবর্তন</a>
+@else
+    <a class="btn btn-success waves-effect btn-sm" href="{{ route('post', $post->post_id) }}"><i class="fa fa-arrow-circle-left fa-sm pr-2" aria-hidden="true"></i>প্রত্যাবর্তন</a>
+@endIf
 
 @endsection
 

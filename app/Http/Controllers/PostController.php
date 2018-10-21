@@ -191,10 +191,21 @@ class PostController extends Controller
         }
     }
 
-    public function updatePostDetails(Request $request)
+    public function updatePostDetails(Request $request, $id)
     {
         try {
-            // return view('posts.post_edit',$data);
+            $input = $request->all();
+            $post = Post::findOrFail($id);
+            $post->update($input);
+            if($post->post_type == 'photo'){
+                return redirect()->route('image', $id)->with('success', array('Success'=>'Album details has been updated!'));
+            }
+            elseif($post->post_type == 'video'){
+                return redirect()->route('video', $id)->with('success', array('Success'=>'Video details has been updated!'));
+            }
+            else{
+                return redirect()->route('post', $id)->with('success', array('Success'=>'Post has been updated!'));
+            }
         }
         catch (\Exception $e) {
             return $e->getMessage();
