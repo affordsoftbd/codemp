@@ -48,7 +48,7 @@
                         <img class="img-fluid" src="{{ url('/').$image->image_path }}" alt="Photo">
                     </a>
                     {!! Form::open(['route' => ['image.delete', $image->post_image_id], 'method'=>'delete']) !!}
-                        {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'This image can not be recovered!', 'confirmButtonText'=>'Yes, delete image!', 'type'=>'submit')) !!}
+                        {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই ছবি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, ছবি মুছে দিন!', 'type'=>'submit')) !!}
                     {!! Form::close() !!}
                 </li>
                 @endforeach

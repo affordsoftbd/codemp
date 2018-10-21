@@ -118,6 +118,7 @@ $(document).ready(function(){
           showCancelButton: true,
           confirmButtonColor: "#ff0000",
           confirmButtonText: confirmButtonText,
+          cancelButtonText: 'বাতিল',
           closeOnConfirm: false
       }, function(isConfirm){
           if (isConfirm) form.submit();

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "পোস্ট বিস্তারিত ||")
+@section('title', "পোস্ট সম্পাদনা ||")
 
 @section('content')
 
