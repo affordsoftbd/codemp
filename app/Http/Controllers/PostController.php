@@ -228,7 +228,7 @@ class PostController extends Controller
         }
     }
 
-    public function editImageDetails($id)
+    public function addImage(Request $request)
     {
         try {
             if(!Auth::check()){
@@ -255,7 +255,7 @@ class PostController extends Controller
         }
     }
 
-    public function updateImageDetails(Request $request)
+    public function deleteImage($id)
     {
         try {
             // return view('posts.image_edit',$data);
@@ -286,43 +286,6 @@ class PostController extends Controller
                 ->where('post_id',$request->id)
                 ->get();
             return view('posts.video_detail',$data);
-        }
-        catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function editVideoDetails($id)
-    {
-        try {
-            if(!Auth::check()){
-                return view('image');
-            }
-            $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
-                ->with('images')
-                ->with('videos')
-                ->with('comments')
-                ->with('likes')
-                ->join('users','users.id','=','posts.user_id')
-                ->join('user_details','users.id','=','user_details.user_id')
-                ->where('post_id',$request->id)
-                ->first();
-            $data['post_comments'] = PostComment::select('post_comments.*','users.first_name','users.last_name','user_details.image_path')
-                ->join('users','users.id','=','post_comments.user_id')
-                ->join('user_details','users.id','=','user_details.user_id')
-                ->where('post_id',$request->id)
-                ->get();
-            return view('posts.image_edit',$data);
-        }
-        catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function updateVideoDetails(Request $request)
-    {
-        try {
-            // return view('posts.image_edit',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();

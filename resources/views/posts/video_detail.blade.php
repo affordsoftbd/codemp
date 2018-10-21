@@ -48,6 +48,7 @@
             @endforeach
             <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe-->
         </div> 
+        <hr>
     </div>
     <!--div class="col-xl-12 col-lg-12 col-md-12 my-5">
         <button type="button" class="btn btn-sm btn-fb"><i class="fa fa-facebook"></i></button>
