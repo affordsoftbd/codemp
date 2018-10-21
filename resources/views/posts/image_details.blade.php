@@ -33,14 +33,14 @@
         <button type="button" class="btn btn-red btn-sm">
             <i class="fa fa-comments"></i>
         </button>
-        <span class="counter">22</span>
+        <span class="counter">{{ count($post_comments) }}</span>
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
         <hr>
         <?php echo htmlspecialchars_decode($post->description); ?>
     </div>
-    <div class="col-xl-12 col-lg-12 col-md-12" align="center">
-        <div class="item my-4" id="aniimated-thumbnials">
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="item my-4" id="aniimated-thumbnials" align="center">
             <ul id="content-slider" class="content-slider">
                 @foreach($post->images as $image)
                 <li>
@@ -52,6 +52,7 @@
             </ul>
             <hr>
         </div>
+        <h5 class="grey-text font-weight-bold" id="total_comments">Total Comments: {{ count($post_comments) }}</h5>
     </div>
     <!--div class="col-xl-12 col-lg-12 col-md-12 my-5">
         <button type="button" class="btn btn-sm btn-fb"><i class="fa fa-facebook"></i></button>

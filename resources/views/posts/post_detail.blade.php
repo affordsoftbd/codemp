@@ -30,15 +30,16 @@
         </button>
         <span class="counter">22</span>
         <!--Comments-->
-        <button type="button" class="btn btn-red btn-sm">
+        <a href="#total_comments" class="btn btn-red btn-sm">
             <i class="fa fa-comments"></i>
-        </button>
-        <span class="counter">22</span>
+        </a>
+        <span class="counter">{{ count($post_comments) }}</span>
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
         <hr>
-        <?php echo htmlspecialchars_decode($post->description); ?>
+            <?php echo htmlspecialchars_decode($post->description); ?>
         <hr>
+        <h5 class="grey-text font-weight-bold" id="total_comments">Total Comments: {{ count($post_comments) }}</h5>
     </div>
 
     @foreach($post_comments as $comment)
