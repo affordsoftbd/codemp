@@ -177,6 +177,7 @@
                                         html +='<div class="ml-auto mr-4 mb-4 ">';
                                         html +='<a class="btn-floating btn-action light-green" href="javascript:void(0)"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action deep-orange" href="javascript:void(0)"><i class="fa fa-trash pl-1"></i></a>';
+                                        html +='<a class="btn-floating btn-action green" href="{{ route('image') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
                                         html +='</div>';
 
