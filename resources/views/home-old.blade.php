@@ -166,9 +166,12 @@
         </div>
     </div>
 </div>
-<!-- <div class="row justify-content-center load_more_spinner" id="load_more_spinner">
+
+<!-- 
+<div class="row justify-content-center load_more_spinner" id="load_more_spinner">
     <i class="fa fa-spinner fa-spin my-5 content_load"></i>
-</div> -->
+</div> 
+-->
 
 <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -320,7 +323,6 @@
                                             html +=value.description;
                                         html +='</div>';
 
-                                        
                                         html +='<div class="ml-auto mr-4 mb-4 ">';
                                         html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action green" href="{{ route('post') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
@@ -412,7 +414,7 @@
                                         html +='</div>';
 
                                         
-                                        html +='<div class="ml-auto mr-4 mb-4 ">';
+                                      html +='<div class="ml-auto mr-4 mb-4 ">';
                                         html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action green" href="{{ route('video') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
