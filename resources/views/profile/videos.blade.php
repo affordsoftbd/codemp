@@ -178,7 +178,7 @@
                                         html +='</div>';
 
                                         
-                                      html +='<div class="ml-auto mr-4 mb-4 ">';
+                                        html +='<div class="ml-auto mr-4 mb-4 ">';
                                         html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action green" href="{{ route('video') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
@@ -313,18 +313,18 @@
             });
         }
 
-            //  Show image preview
-        $(".input_image").on("change", function(e) {
+         //  Show image preview
+      $(".input_album").on("change", function(e) {
         var files = e.target.files,
         filesLength = files.length;
-        $("#image_upload_feedback").attr('style', '');
-        $("#image_upload_feedback").html("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
+        $("#album_upload_feedback").attr('style', '');
+        $("#album_upload_feedback").html("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
         for (var i = 0; i < filesLength; i++) {
           var f = files[i];
           var fileReader = new FileReader();
           fileReader.onload = (function(e) {
             var file = e.target;
-            $("#image_upload_feedback").append("<span class='pip' align='center'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Hide Preview!'><i class='fa fa-eye-slash'></i></button></span>").hide().fadeIn(500+Math.pow(i, 2));
+            $("#album_upload_feedback").append("<span class='pip' align='center'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Hide Preview!'><i class='fa fa-eye-slash'></i></button></span>").hide().fadeIn(500+Math.pow(i, 2));
             $(".remove").click(function() {
                 $(this).parent(".pip").fadeOut("normal", function() {
                      $(this).parent(".pip").remove();
@@ -333,31 +333,31 @@
           });
           fileReader.readAsDataURL(f);
         }
-        });
+      });
 
         (function() {
-        $('.upload_image').ajaxForm({
+        $('.upload_album').ajaxForm({
           beforeSend: function() {
             $('#image_error_message').delay(5000).empty();
-            $('#image_upload_feedback').fadeOut('fast', function() {
+            $('#album_upload_feedback').fadeOut('fast', function() {
                 $(this).html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 0%; height: 20px' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>0%</div></div>").fadeIn('slow');
             });
           },
           uploadProgress: function(event, position, total, percentComplete) {
             percentVal = percentComplete + '%';
-            $('#image_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: "+percentVal+"; height: 20px' aria-valuenow='"+percentVal+"' aria-valuemin='0' aria-valuemax='100'>"+percentVal+"</div></div>");
+            $('#album_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: "+percentVal+"; height: 20px' aria-valuenow='"+percentVal+"' aria-valuemin='0' aria-valuemax='100'>"+percentVal+"</div></div>");
           },
           success: function() {
-            $('#image_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%; height: 20px' aria-valuenow='100%' aria-valuemin='0' aria-valuemax='100'>100%</div></div>");   
+            $('#album_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%; height: 20px' aria-valuenow='100%' aria-valuemin='0' aria-valuemax='100'>100%</div></div>");   
           },
           error: function() {
-            $("#image_upload_feedback").html("<h5 class='mt-1 mb-2 red-text text-center'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text text-center'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p>").fadeIn("slow");        
+            $("#album_upload_feedback").html("<h5 class='mt-1 mb-2 red-text text-center'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text text-center'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p>").fadeIn("slow");        
           },
           complete: function(xhr) {
-            $(".input_image").val(null);
+            $(".input_album").val(null);
             $("#image_description").empty().val("");
             $("#selected_images_names").empty().val("");
-            $('#image_upload_feedback').fadeOut('slow', function() {
+            $('#album_upload_feedback').fadeOut('slow', function() {
                 var json = JSON.parse(xhr.responseText);
                 if(json.response == 'error'){
                     $('#image_error_message').html('<div class="alert alert-danger my-3" role="alert"><center>'+json.message+'</center></div>');

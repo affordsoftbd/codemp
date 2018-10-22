@@ -62,7 +62,7 @@
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel2" role="tabpanel">
                 <div id="image_error_message"></div>
-                {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_image']) !!}
+                {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_album']) !!}
                     
                     <div align="right">
                         <!-- Material inline 1 -->
@@ -82,7 +82,7 @@
                         <div class="file-field">
                             <div class="btn btn-danger btn-sm float-left">
                             <span>নির্বাচন</span>
-                                {!! Form::file("images[]", ['class'=>'input_image', 'multiple'=>'true']) !!}
+                                {!! Form::file("images[]", ['class'=>'input_album', 'multiple'=>'true']) !!}
                             </div>
                             <div class="file-path-wrapper">
                                 {!! Form::text('', null, ['class'=>'file-path validate', 'id'=>'selected_images_names', 'placeholder'=>'আপনার চিত্রগুলো নির্বাচন করুন']) !!}
@@ -99,7 +99,7 @@
                         {{ Form::button('আপলোড<i class="fa fa-upload fa-sm pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                     </div>
                     <div class="clearfix"></div>
-                    <div id="image_upload_feedback" class="my-5"></div>
+                    <div id="album_upload_feedback" class="my-5"></div>
                 {!! Form::close() !!}
             </div>
             <!--/.Panel 2-->
