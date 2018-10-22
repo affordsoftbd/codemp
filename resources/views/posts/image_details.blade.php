@@ -40,7 +40,7 @@
         <?php echo htmlspecialchars_decode($post->description); ?>
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
-        <div class="item my-4" id="aniimated-thumbnials" align="center">
+        <div class="item" id="aniimated-thumbnials" align="center">
             <ul id="content-slider" class="content-slider">
                 @foreach($post->images as $image)
                 <li>
@@ -53,7 +53,7 @@
                 </li>
                 @endforeach
             </ul>
-            <button type="button" class="btn green btn-sm" data-toggle="modal" data-target="#updateimage">
+            <button type="button" class="btn green btn-sm my-5" data-toggle="modal" data-target="#updateimage">
               <i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ যোগ করুন
             </button>
             <hr>
