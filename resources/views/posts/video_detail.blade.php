@@ -18,22 +18,22 @@
         <small class="grey-text">{{ $post->created_at}}</small>
     </div>
     <div class="col-xl-5 col-lg-6 col-md-6" align="right">
-        <a href="{{ route('post.edit', $post->post_id) }}" class="btn btn-light-green btn-sm">
-            <i class="fa fa-edit"></i>
-        </a>
-        <a href="javascript:void(0)" class="btn btn-deep-orange btn-sm">
-            <i class="fa fa-trash"></i>
-        </a>
-        <!--Likes-->
-        <button type="button" class="btn btn-green btn-sm">
-            <i class="fa fa-thumbs-o-up"></i>
-        </button>
-        <span class="counter">{{ count($post->likes) }}</span>
-        <!--Comments-->
-        <button type="button" class="btn btn-red btn-sm">
-            <i class="fa fa-comments"></i>
-        </button>
-        <span class="counter">{{ count($post_comments) }}</span>
+         {!! Form::open(['route' => ['post.delete', $post->post_id], 'method'=>'delete']) !!}
+            <a href="{{ route('post.edit', $post->post_id) }}" class="btn btn-light-green btn-sm">
+                <i class="fa fa-edit"></i>
+            </a>
+            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
+            <!--Likes-->
+            <button type="button" class="btn btn-green btn-sm">
+                <i class="fa fa-thumbs-o-up"></i>
+            </button>
+            <span class="counter">{{ count($post->likes) }}</span>
+            <!--Comments-->
+            <a href="#total_comments" class="btn btn-red btn-sm">
+                <i class="fa fa-comments"></i>
+            </a>
+            <span class="counter">{{ count($post_comments) }}</span>
+        {!! Form::close() !!}
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
         <hr>

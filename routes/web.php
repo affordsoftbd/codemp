@@ -59,6 +59,7 @@ Route::post('saveVideoPost', 'PostController@saveVideoPost')->name('video.save')
 Route::post('get_post_ajax', 'PostController@getPostAjax');
 Route::post('save_comment', 'PostController@saveComment');
 Route::post('save_post_like', 'PostController@savePostLike');
+Route::delete('/post/{id?}/delete', 'PostController@deletePost')->name('post.delete');
 
 /*Profile route*/
 // Route::get('/{id}', 'PostController@postDetails')->name('profile'); 

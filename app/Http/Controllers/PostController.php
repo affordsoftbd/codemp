@@ -321,4 +321,17 @@ class PostController extends Controller
 
         return ['status'=>200,'reason'=>'New like saved','like'=>1];
     }
+
+    public function deletePost($id)
+    {
+        try {
+            $post = NEW Post();
+            $deletePost = $post->findOrFail($id);
+            $deletePost->delete();
+            return redirect()->route('home')->with('success', array('সফল!'=>'পোস্টটি মুছে ফেলা হয়েছে!'));
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
