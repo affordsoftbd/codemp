@@ -58,7 +58,7 @@
             </button>
             <hr>
         </div>
-        <h5 class="grey-text font-weight-bold" id="total_comments">Total Comments: {{ count($post_comments) }}</h5>
+        <h5 class="grey-text font-weight-bold" id="total_comments">মোট মন্তব্য: {{ count($post_comments) }}</h5>
     </div>
     <!--div class="col-xl-12 col-lg-12 col-md-12 my-5">
         <button type="button" class="btn btn-sm btn-fb"><i class="fa fa-facebook"></i></button>

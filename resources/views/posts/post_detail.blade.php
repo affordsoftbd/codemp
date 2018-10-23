@@ -39,7 +39,7 @@
         <hr>
             <?php echo htmlspecialchars_decode($post->description); ?>
         <hr>
-        <h5 class="grey-text font-weight-bold" id="total_comments">Total Comments: {{ count($post_comments) }}</h5>
+        <h5 class="grey-text font-weight-bold" id="total_comments">মোট মন্তব্য: {{ count($post_comments) }}</h5>
     </div>
 
     @foreach($post_comments as $comment)
