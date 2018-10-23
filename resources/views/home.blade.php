@@ -370,7 +370,8 @@
                                                 html +='<ul class="lightSlider">'; // slidercount
                                                 $.each(value.images, function( index, image ) {
                                                     var image_url =  '{{ url('/') }}'+image.image_path;
-                                                    html +='<li data-thumb="'+image_url+'" data-src="'+image_url+'" data-sub-html="Focused client-server ability 10">';
+                                                    var sub_html = index + 1;
+                                                    html +='<li data-thumb="'+image_url+'" data-src="'+image_url+'" data-sub-html="চিত্র '+sub_html+'">';
                                                         html +='<img src="'+image_url+'" />';
                                                     html +='</li>';
                                                 });

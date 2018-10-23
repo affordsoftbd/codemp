@@ -40,7 +40,7 @@
         <?php echo htmlspecialchars_decode($post->description); ?>
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
-        <div class="item" id="aniimated-thumbnials" align="center">
+        <div class="item mt-5" id="aniimated-thumbnials" align="center">
             <ul id="content-slider" class="content-slider">
                 @foreach($post->images as $image)
                 <li>
