@@ -24,10 +24,14 @@
             </a>
             {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
             <!--Likes-->
-            <button type="button" class="btn btn-green btn-sm">
-                <i class="fa fa-thumbs-o-up"></i>
+            <button type="button" class="btn btn-green btn-sm" onclick="save_post_like({{ $post->post_id }})">
+                @if($my_like==0)
+                <i id="like_icon" class="fa fa-thumbs-o-up"></i>
+                @else
+                <i id="like_icon" class="fa fa-thumbs-o-down"></i>
+                @endif
             </button>
-            <span class="counter">{{ count($post->likes) }}</span>
+            <span class="counter" id="p_like_{{ $post->post_id }}">{{ count($post->likes) }}</span>
             <!--Comments-->
             <a href="#total_comments" class="btn btn-red btn-sm">
                 <i class="fa fa-comments"></i>
@@ -104,6 +108,35 @@
 
 @section('extra-script')
     <script>
+
+        function save_post_like(post_id){
+            $.ajax({
+                type: "POST",
+                url: "{{ url('save_post_like') }}",
+                data: { _token: "{{ csrf_token() }}",post_id:post_id},
+                dataType: "json",
+                cache : false,
+                success: function(data){
+                    if(data.status == 200){
+                        var current_like = $('#p_like_'+post_id).text();
+                        var new_like = parseInt(current_like)+data.like;
+                        $('#p_like_'+post_id).text(new_like);
+                        if(data.like<1){
+                            $('#like_icon').removeClass('fa-thumbs-o-down').addClass('fa-thumbs-o-up');
+                        }
+                        else{
+                            $('#like_icon').removeClass('fa-thumbs-o-up').addClass('fa-thumbs-o-down');
+                        }
+                    }
+                    else{
+                        alert(data);
+                    }
+                } ,error: function(xhr, status, error) {
+                    alert(error);
+                },
+            });
+        }
+        
         $(document).on('submit', '#comment_form', function(event){
             event.preventDefault();
             var comment_text = $('#comment_text').val();

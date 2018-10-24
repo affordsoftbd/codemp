@@ -170,6 +170,13 @@ class PostController extends Controller
                 ->join('user_details','users.id','=','user_details.user_id')
                 ->where('post_id',$request->id)
                 ->get();
+            $my_like = PostLike::where('post_id',$request->id)->where('user_id',Session::get('user_id'))->first();
+            if(!empty($my_like)){
+                $data['my_like'] = 1;
+            }
+            else{
+                $data['my_like'] = 0;
+            }
             return view('posts.post_detail',$data);
         }
         catch (\Exception $e) {
@@ -232,6 +239,14 @@ class PostController extends Controller
                 ->join('user_details','users.id','=','user_details.user_id')
                 ->where('post_id',$request->id)
                 ->get();
+            $my_like = PostLike::where('post_id',$request->id)->where('user_id',Session::get('user_id'))->first();
+            if(!empty($my_like)){
+                $data['my_like'] = 1;
+            }
+            else{
+                $data['my_like'] = 0;
+            }
+
             return view('posts.image_details',$data);
         }
         catch (\Exception $e) {
@@ -290,6 +305,14 @@ class PostController extends Controller
                 ->join('user_details','users.id','=','user_details.user_id')
                 ->where('post_id',$request->id)
                 ->get();
+            $my_like = PostLike::where('post_id',$request->id)->where('user_id',Session::get('user_id'))->first();
+            if(!empty($my_like)){
+                $data['my_like'] = 1;
+            }
+            else{
+                $data['my_like'] = 0;
+            }
+            
             return view('posts.video_detail',$data);
         }
         catch (\Exception $e) {
