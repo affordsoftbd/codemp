@@ -24,13 +24,8 @@
             </a>
             {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
             <!--Likes-->
-            <button type="button" class="btn btn-green btn-sm" onclick="save_post_like({{ $post->post_id }})">
-                @if($my_like==0)
-                <i id="like_icon" class="fa fa-thumbs-o-up"></i>
-                @else
-                <i id="like_icon" class="fa fa-thumbs-o-down"></i>
-                @endif
-            </button>
+            <button id="like_btn" type="button" class="btn {{ ($my_like==0)? 'btn-green' : 'btn-yellow' }} btn-sm" 
+            onclick="save_post_like({{ $post->post_id }})"><i class="fa fa-thumbs-o-up"></i></button>
             <span class="counter" id="p_like_{{ $post->post_id }}">{{ count($post->likes) }}</span>
             <!--Comments-->
             <a href="#total_comments" class="btn btn-red btn-sm">
@@ -90,7 +85,7 @@
     </div>
     @endforeach
 
-    <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center">
+    <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center" id="add_comment">
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য পোস্ট করুন</h4>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2">
@@ -168,10 +163,10 @@
                         var new_like = parseInt(current_like)+data.like;
                         $('#p_like_'+post_id).text(new_like);
                         if(data.like<1){
-                            $('#like_icon').removeClass('fa-thumbs-o-down').addClass('fa-thumbs-o-up');
+                            $('#like_btn').removeClass('btn-yellow').addClass('btn-green');
                         }
                         else{
-                            $('#like_icon').removeClass('fa-thumbs-o-up').addClass('fa-thumbs-o-down');
+                            $('#like_btn').removeClass('btn-green').addClass('btn-yellow');
                         }
                     }
                     else{
