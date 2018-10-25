@@ -337,7 +337,7 @@
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
                                                 html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="'+like_icon+' pr-1" id="p_like_ico_'+value.post_id+'"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
-                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
+                                                html +='<li class="list-inline-item"><a href="{{ route('post') }}/'+value.post_id+'#add_comment" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
                                             html +='</ul>';
                                         html +='</div>';
                                     html +='</div>';
@@ -397,7 +397,7 @@
                                       html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
                                                 html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="'+like_icon+' pr-1" id="p_like_ico_'+value.post_id+'"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
-                                                 html +='<li class="list-inline-item"><a href="{{ route('image') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
+                                                 html +='<li class="list-inline-item"><a href="{{ route('image') }}/'+value.post_id+'#add_comment" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
                                             html +='</ul>';
                                         html +='</div>';
 
@@ -454,7 +454,7 @@
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
                                                 html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="'+like_icon+' pr-1" id="p_like_ico_'+value.post_id+'"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
-                                                 html +='<li class="list-inline-item"><a href="{{ route('video') }}/'+value.post_id+'" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
+                                                 html +='<li class="list-inline-item"><a href="{{ route('video') }}/'+value.post_id+'#add_comment" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
                                             html +='</ul>';
                                         html +='</div>';
 
