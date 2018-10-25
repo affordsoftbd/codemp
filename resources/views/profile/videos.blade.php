@@ -166,11 +166,14 @@
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
                                     }
 
-                                    if(value.likes.length == 0){
-                                        var like_icon = "fa fa-thumbs-o-up";
-                                    }
-                                    else{
-                                        var like_icon = "fa fa-thumbs-up";
+                                    var like_icon = "fa fa-thumbs-o-up";
+                                    if(value.likes.length > 0){
+                                        for (var i = 0; i < value.likes.length; i++) {
+                                            if(value.likes[i]['user_id'] == {{ Session::get('user_id') }}){
+                                                var like_icon = "fa fa-thumbs-up";
+                                            }
+                                            break; 
+                                        }
                                     }
                                     
                                     html +='<div class="card my-4 news-card">';
