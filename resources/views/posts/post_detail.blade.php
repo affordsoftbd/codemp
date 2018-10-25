@@ -61,7 +61,7 @@
     </div>
     @endforeach
 
-    <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center" id="add_comment">
+    <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center">
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য পোস্ট করুন</h6>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2">
