@@ -60,7 +60,7 @@
 	            <hr>
 	        </div>
 	        <div class="col-md-4" align="center">
-	            <button class="btn btn-md btn-red load_more_button"><i class="fa fa-refresh fa-sm pr-2"></i>&nbsp;Load More!</button>
+                <button class="btn btn-md btn-red load_more_button"><i class="fa fa-refresh fa-sm pr-2"></i>আরো দেখুন!</button>
 	        </div>
 	        <div class="col-md-4">
 	            <hr>
