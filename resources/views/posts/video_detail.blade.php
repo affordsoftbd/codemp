@@ -24,7 +24,7 @@
             </a>
             {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
             <!--Likes-->
-            <button id="like_btn" type="button" class="btn {{ ($my_like==0)? 'btn-green' : 'btn-yellow' }} btn-sm" 
+            <button id="like_btn" type="button" class="btn {{ ($my_like==0)? 'btn-yellow' : 'btn-green' }} btn-sm" 
             onclick="save_post_like({{ $post->post_id }})"><i class="fa fa-thumbs-o-up"></i></button>
             <span class="counter" id="p_like_{{ $post->post_id }}">{{ count($post->likes) }}</span>
             <!--Comments-->
@@ -117,10 +117,10 @@
                         var new_like = parseInt(current_like)+data.like;
                         $('#p_like_'+post_id).text(new_like);
                         if(data.like<1){
-                            $('#like_btn').removeClass('btn-yellow').addClass('btn-green');
+                            $('#like_btn').removeClass('btn-green').addClass('btn-yellow');
                         }
                         else{
-                            $('#like_btn').removeClass('btn-green').addClass('btn-yellow');
+                            $('#like_btn').removeClass('btn-yellow').addClass('btn-green');
                         }
                     }
                     else{
