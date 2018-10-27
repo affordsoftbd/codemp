@@ -11,6 +11,9 @@
 |
 */
 
+/*Message routes*/
+Route::resource('messages', 'MessageController');
+
 /*Authentication route*/
 Route::get('login','AuthController@login')->name('login');
 Route::post('retry','AuthController@retry')->name('retry');

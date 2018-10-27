@@ -14,7 +14,7 @@
     <a href="#" class="list-group-item list-group-item-action waves-effect">
         <i class="fa fa-calendar fa-sm pr-2"></i>ইভেন্টস
     </a>
-    <a href="#" class="list-group-item list-group-item-action waves-effect">
+    <a href="{{ route('messages.index') }}" class="list-group-item list-group-item-action {{ Route::is('messages*')? 'active':'' }} waves-effect">
         <i class="fa fa-envelope fa-sm pr-2"></i>বার্তা
     </a>
     <a href="#" class="list-group-item list-group-item-action waves-effect">
