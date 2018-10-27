@@ -53,7 +53,7 @@
                   <p class="text-center h6">বার্তা</p>
                   <div class="dropdown-divider"></div>
                   <div id="all_new_messages">{{ print_r(session()->all()) }}</div>
-                  <a class="dropdown-item" href="javascript:void(0)">সব বার্তা প্রদর্শন করতে এখানে ক্লিক করুন</a>
+                  <a class="dropdown-item" href="{{ route('messages.index') }}">সব বার্তা প্রদর্শন করতে এখানে ক্লিক করুন</a>
                 </div>
             </li>
 
