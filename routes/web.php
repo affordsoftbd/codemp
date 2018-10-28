@@ -37,6 +37,7 @@ Route::get('/requests', 'HomeController@requests')->name('requests');
 Route::get('/followers', 'HomeController@followers')->name('followers');
 Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');
+Route::get('public_profile', 'HomeController@publicProfile');
 Route::get('/{username}', 'HomeController@profilePosts')->name('profile');
 Route::get('/{username}/posts', 'HomeController@profilePosts')->name('profile.posts');
 Route::post('get_user_post_ajax/{id}', 'PostController@getUserPostAjax');

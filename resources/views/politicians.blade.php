@@ -88,174 +88,41 @@
 
 <div class="row my-5">
 
-  <div class="col-lg-4 mb-4">
-      <!-- Card -->
-      <div class="card card-personal">
+  @foreach($leaders as $leader)
+    <div class="col-lg-4 mb-4">
+        <!-- Card -->
+        <div class="card card-personal">
 
-        <!-- Card image-->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
-        <!-- Card image-->
+          <!-- Card image-->
 
-        <!-- Card content -->
-        <div class="card-body">
-          <!-- Title-->
-          <a><h4 class="card-title title-one">Clara</h4></a>
-          <p class="card-meta">অংশগ্রহন 2013</p>
-          <!-- Text -->
-          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
-          <hr>
-          <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
-          <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ"><i class="fa fa-check"></i></a>
-              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
-              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+        @if($leader->image_path!='')
+            <img src="{{ url('/').$leader->image_path}}" class="card-img-top" alt="Card image cap">
+        @else
+            <img src="{{ url('/').'/img/avatar.png'}}" class="card-img-top" alt="Card image cap">
+        @endif
+          <!-- Card image-->
+
+          <!-- Card content -->
+          <div class="card-body">
+            <!-- Title-->
+            <a><h4 class="card-title title-one">{{ $leader->first_name." ".$leader->last_name}}</h4></a>
+            <p class="card-meta">অংশগ্রহন {{ date('Y',strtotime($leader->created_at))}}</p>
+            <!-- Text -->
+            <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+            <hr>
+            <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($leader->followers) }} জন অনুসারী</span></a>
+            <div class="btn-group mt-3" role="group" aria-label="Basic example">
+                <a href="button" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ"><i class="fa fa-check"></i></a>
+                <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
+                <a href="{{ url('public_profile?user='.$leader->username) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+            </div>
           </div>
+          <!-- Card content -->
+
         </div>
-        <!-- Card content -->
-
-      </div>
-      <!-- Card -->
-  </div>
-  <div class="col-lg-4 mb-4">
-      <!-- Card -->
-      <div class="card card-personal">
-
-        <!-- Card image-->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
-        <!-- Card image-->
-
-        <!-- Card content -->
-        <div class="card-body">
-          <!-- Title-->
-          <a><h4 class="card-title title-one">Clara</h4></a>
-          <p class="card-meta">অংশগ্রহন 2013</p>
-          <!-- Text -->
-          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
-          <hr>
-          <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
-          <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ"><i class="fa fa-check"></i></a>
-              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
-              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
-          </div>
-        </div>
-        <!-- Card content -->
-
-      </div>
-      <!-- Card -->
-  </div>
-  <div class="col-lg-4 mb-4">
-      <!-- Card -->
-      <div class="card card-personal">
-
-        <!-- Card image-->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
-        <!-- Card image-->
-
-        <!-- Card content -->
-        <div class="card-body">
-          <!-- Title-->
-          <a><h4 class="card-title title-one">Clara</h4></a>
-          <p class="card-meta">অংশগ্রহন 2013</p>
-          <!-- Text -->
-          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
-          <hr>
-          <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
-          <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-red btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ বাতিল"><i class="fa fa-close"></i></a>
-              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
-              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
-          </div>
-        </div>
-        <!-- Card content -->
-
-      </div>
-      <!-- Card -->
-  </div>
-  <div class="col-lg-4 mb-4">
-      <!-- Card -->
-      <div class="card card-personal">
-
-        <!-- Card image-->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
-        <!-- Card image-->
-
-        <!-- Card content -->
-        <div class="card-body">
-          <!-- Title-->
-          <a><h4 class="card-title title-one">Clara</h4></a>
-          <p class="card-meta">অংশগ্রহন 2013</p>
-          <!-- Text -->
-          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
-          <hr>
-          <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
-          <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-red btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ বাতিল"><i class="fa fa-close"></i></a>
-              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
-              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
-          </div>
-        </div>
-        <!-- Card content -->
-
-      </div>
-      <!-- Card -->
-  </div>
-  <div class="col-lg-4 mb-4">
-      <!-- Card -->
-      <div class="card card-personal">
-
-        <!-- Card image-->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
-        <!-- Card image-->
-
-        <!-- Card content -->
-        <div class="card-body">
-          <!-- Title-->
-          <a><h4 class="card-title title-one">Clara</h4></a>
-          <p class="card-meta">অংশগ্রহন 2013</p>
-          <!-- Text -->
-          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
-          <hr>
-          <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
-          <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-red btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ বাতিল"><i class="fa fa-close"></i></a>
-              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
-              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
-          </div>
-        </div>
-        <!-- Card content -->
-
-      </div>
-      <!-- Card -->
-  </div>
-  <div class="col-lg-4 mb-4">
-      <!-- Card -->
-      <div class="card card-personal">
-
-        <!-- Card image-->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
-        <!-- Card image-->
-
-        <!-- Card content -->
-        <div class="card-body">
-          <!-- Title-->
-          <a><h4 class="card-title title-one">Clara</h4></a>
-          <p class="card-meta">অংশগ্রহন 2013</p>
-          <!-- Text -->
-          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
-          <hr>
-          <a class="card-meta"><span><i class="fa fa-user"></i>22 জন অনুসারী</span></a>
-          <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ"><i class="fa fa-check"></i></a>
-              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
-              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
-          </div>
-        </div>
-        <!-- Card content -->
-
-      </div>
-      <!-- Card -->
-  </div>
+        <!-- Card -->
+    </div>
+  @endforeach
 </div>
 
 <!--Pagination-->
@@ -263,27 +130,7 @@
     <ul class="pagination pg-blue">
 
         <!--Arrow left-->
-        <li class="page-item disabled">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-
-        <li class="page-item active">
-            <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
+        {{ $leaders->render()}}
     </ul>
 </nav>
 
