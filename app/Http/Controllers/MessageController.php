@@ -11,6 +11,22 @@ use App\Models\MessageViewer;
 
 class MessageController extends Controller
 {
+    protected $user;
+    protected $message;
+    protected $messageSubject;
+    protected $messageReceipent;
+    protected $messageView;
+
+    public function __construct(Message $message, MessageSubject $messageSubject, MessageReceipent $messageReceipent, MessageViewer $messageView, User $user)
+    {
+        $this->middleware('auth');
+        $this->message = $message;
+        $this->messageSubject = $messageSubject;
+        $this->messageReceipent = $messageReceipent;
+        $this->messageView = $messageView;
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,13 +47,23 @@ class MessageController extends Controller
         return view ('messages.create');
     }
 
-    public function addMessageSubject()
+    public function addMessageSubject(Request $request)
     {
         $this->validate(request(),[
             'subject_text' => 'required|string|max:1000',
             'message_text' => 'required|string|max:1000'
         ]);
-        return "added";
+        $messageSubject = $this->messageSubject;
+        $messageSubject->subject_text = $request->subject_text;
+        $messageSubject->author = $request->session()->get('user_id');
+        $messageSubject->save();
+        $message = $this->message;
+        $message->message_subject_id = $messageSubject->id;
+        $message->message_text = $request->message_text;
+        $message->user_id = $request->session()->get('user_id');
+        $message->save();
+        // return redirect()->route('messages.show', $request->message_subject_id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
+        return redirect()->route('messages.index')->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
 
     /**
