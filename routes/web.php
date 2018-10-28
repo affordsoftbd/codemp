@@ -13,6 +13,7 @@
 
 /*Message routes*/
 Route::resource('messages', 'MessageController');
+Route::post('/message/subject/add', 'MessageController@addMessageSubject')->name('message.subject.add');
 
 /*Authentication route*/
 Route::get('login','AuthController@login')->name('login');

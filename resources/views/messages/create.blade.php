@@ -6,7 +6,7 @@
 
 <h4>নতুন বার্তা তৈরি করুন</h4><hr>
 
-{!! Form::open(['class'=>'md-form login-form']) !!}
+{!! Form::open(['method' => 'post', 'route' => ['message.subject.add'], 'class'=>'md-form login-form']) !!}
     <div align="right">
         <!-- Material inline 1 -->
         <div class="form-check form-check-inline">
@@ -40,7 +40,7 @@
         <p class="red-text">{{ $errors->first('message_text') }}</p>
     @endif
     <div class="text-center my-4">
-        {!! Form::button('হালনাগাদ', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+        {!! Form::button('<i class="fa fa-send pr-2"></i>পাঠান', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
     </div>
 {!! Form::close() !!}
 

@@ -26,6 +26,11 @@ class MessageController extends Controller
         return view ('messages.create');
     }
 
+    public function addMessageSubject()
+    {
+        return "added";
+    }
+
     /**
      * Store a newly created resource in storage.
      *
