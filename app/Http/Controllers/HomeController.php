@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Follower;
 use Auth;
 use DB;
 use Session;
@@ -94,7 +95,7 @@ class HomeController extends Controller
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
-            $data['followers'] = User::where('parent_id',$data['user']->id)->where('status','Active')->get();
+            $data['followers'] = Follower::where('leader_id',$data['user']->id)->get();
             if(empty($data['user'])){
                 return redirect('error_404');
             }
@@ -123,7 +124,7 @@ class HomeController extends Controller
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
-            $data['followers'] = User::where('parent_id',$data['user']->id)->where('status','Active')->get();
+            $data['followers'] = Follower::where('leader_id',$data['user']->id)->get();
             if(empty($data['user'])){
                 return redirect('error_404');
             }
@@ -152,7 +153,7 @@ class HomeController extends Controller
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
-            $data['followers'] = User::where('parent_id',$data['user']->id)->where('status','Active')->get();
+            $data['followers'] = Follower::where('leader_id',$data['user']->id)->get();
             if(empty($data['user'])){
                 return redirect('error_404');
             }
@@ -171,13 +172,48 @@ class HomeController extends Controller
         }
     }
 
+
+    public function publicProfile(Request $request)
+    {
+        try {
+            if(!Auth::check()){
+                return redirect('login');
+            }
+            $data['user'] = User::where('username',$request->user)
+                ->join('user_details','user_details.user_id','=','users.id')
+                ->first();
+            $data['followers'] = Follower::where('leader_id',$data['user']->id)->get();
+            if(empty($data['user'])){
+                return redirect('error_404');
+            }
+
+            $lastPost = Post::where('posts.user_id',$data['user']->id)->orderBy('post_id','desc')->first();
+            if(!empty($lastPost)){
+                $data['last_id'] = $lastPost->post_id;
+            }
+            else{
+                $data['last_id'] = 0;
+            }
+
+            return view('public_profile',$data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function politicians()
     {
         try {
             if(!Auth::check()){
                 return redirect('login');
             }            
-            return view('politicians');
+            $data['leaders'] = User::with('followers')
+                ->where('role_id',1)
+                ->where('status','Active')
+                ->join('user_details','user_details.user_id','users.id')
+                ->paginate(12);
+            return view('politicians',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
