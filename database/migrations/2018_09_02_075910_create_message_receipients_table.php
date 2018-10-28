@@ -14,11 +14,11 @@ class CreateMessageReceipientsTable extends Migration
     public function up()
     {
         Schema::create('message_receipients', function (Blueprint $table) {
-            $table->increments('message_receipient_id');
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('message_subject_id')->unsigned();
-            $table->foreign('message_subject_id')->references('message_subject_id')->on('message_subjects');
+            $table->foreign('message_subject_id')->references('id')->on('message_subjects');
             $table->timestamps();
             $table->softDeletes();
         });

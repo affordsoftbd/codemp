@@ -26,10 +26,10 @@
             <form class="form-inline" method="post" action="{{ route('postLogin') }}">
                 {{ csrf_field() }}
                 <div class="md-form mt-0">
-                    <input class="form-control mr-sm-2" name="username" id="usernametop" type="text" placeholder="আপনার ই-মেইল">
+                    <input class="form-control mr-sm-2" name="username" type="text" placeholder="আপনার ই-মেইল">
                 </div>
                 <div class="md-form mt-0">
-                    <input class="form-control mr-sm-2" name="password" id="password" type="password" placeholder="আপনার পাসওয়ার্ড">
+                    <input class="form-control mr-sm-2" name="password" type="password" placeholder="আপনার পাসওয়ার্ড">
                 </div>
                 <button class="btn btn-outline-white btn-md my-2 my-sm-0 mx-3" type="submit">লগ ইন</button>
                 <a class="white-text" href="{{ route('recovery') }}">পাসওয়ার্ড ভুলে গেছেন?</a>
@@ -80,7 +80,7 @@
                                         <!-- Phone number -->
                                         <div class="md-form">
                                             <input type="text" name="username" id="reg_username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
-                                            <label for="username">ইউসার নাম</label>
+                                            <label for="reg_username">ইউসার নাম</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -161,8 +161,8 @@
                                     <div class="col-sm-6">
                                         <div class="md-form">
                                             <input type="password" name="password" id="reg_password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
-                                            <label for="password">পাসওয়ার্ড</label>
-                                            <small id="password" class="form-text text-muted mb-4">
+                                            <label for="reg_password">পাসওয়ার্ড</label>
+                                            <small id="reg_password" class="form-text text-muted mb-4">
                                                 অন্ততপক্ষে ৮টি বা আরও অক্ষর এবং ১ সংখ্যা
                                             </small>
                                         </div>
@@ -171,7 +171,7 @@
                                         <!-- Confirm Password -->
                                         <div class="md-form">
                                             <input type="password" name="password_confirm" id="reg_password_confirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
-                                            <label for="password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
+                                            <label for="reg_password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
                                         </div>
                                     </div>
                                 </div>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<button type="button" class="btn btn-outline-danger btn-rounded waves-effect"><i class="fa fa-plus pr-2"></i>নতুন বার্তা যোগ করুন</button>
+<a href="{{ route('messages.create') }}" class="btn btn-outline-danger btn-rounded waves-effect"><i class="fa fa-plus pr-2"></i>নতুন বার্তা যোগ করুন</a>
 <!-- Grid row -->
 <div class="row">
 

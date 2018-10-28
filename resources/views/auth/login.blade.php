@@ -55,7 +55,7 @@
                     <div class="md-form">
                         <i class="fa fa-lock prefix red-text"></i>
 						<input type="password" name="password" id="password" class="form-control">
-                        <label for="password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
+                        <label for="password">পাসওয়ার্ড নিশ্চিত করুন</label>
                     </div>
                     <div class="text-center mt-4">
                         <input class="btn btn-danger btn-sm" type="submit" value="লগ ইন">
