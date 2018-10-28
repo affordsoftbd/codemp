@@ -8,7 +8,7 @@ class MessageViewer extends Model
 {
     protected $table = "message_viewers";
 
-    protected $fillable = ['message_id', 'user_id'];
+    protected $fillable = ['message_id', 'viewer'];
 
     	
     	// Each MessageViewer belongs to a message

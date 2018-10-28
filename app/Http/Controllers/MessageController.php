@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\MessageSubject;
+use App\Models\Message;
+use App\Models\MessageReceipent;
+use App\Models\MessageViewer;
 
 class MessageController extends Controller
 {
@@ -28,6 +33,10 @@ class MessageController extends Controller
 
     public function addMessageSubject()
     {
+        $this->validate(request(),[
+            'subject_text' => 'required|string|max:1000',
+            'message_text' => 'required|string|max:1000'
+        ]);
         return "added";
     }
 

@@ -8,7 +8,7 @@ class MessageSubject extends Model
 {
     protected $table = "message_subjects";
 
-    protected $fillable = ['subject'];
+    protected $fillable = ['subject_text', 'author'];
 
     use SoftDeletes;
 
@@ -27,9 +27,9 @@ class MessageSubject extends Model
         return $this->hasMany(Message::class);
     }
 
-        // A MessageSubject has many participants
-    public function participants()
+        // A MessageSubject has many receipents
+    public function receipents()
     {
-        return $this->hasMany(MessageParticipant::class);
+        return $this->hasMany(MessageReceipent::class);
     }
 }

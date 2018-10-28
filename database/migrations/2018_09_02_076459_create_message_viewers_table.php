@@ -15,7 +15,6 @@ class CreateMessageViewersTable extends Migration
     {
         Schema::create('message_viewers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('subject_text');
             $table->integer('viewer')->unsigned();
             $table->foreign('viewer')->references('id')->on('users'); 
             $table->integer('message_id')->unsigned();
