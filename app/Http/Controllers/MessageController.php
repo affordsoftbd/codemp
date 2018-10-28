@@ -63,7 +63,7 @@ class MessageController extends Controller
         $message->user_id = $request->session()->get('user_id');
         $message->save();
         // return redirect()->route('messages.show', $request->message_subject_id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
-        return redirect()->route('messages.index')->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
+        return redirect()->route('messages.show', $messageSubject->id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
 
     /**
@@ -85,7 +85,12 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        $conversation = $this->messageSubject->findOrFail($id);
+        $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(15);
+        /*if($messages->onFirstPage() && $messages->isNotEmpty() && !$messages->first()->viewers->contains('user_id', Auth::user()->id)){
+            $this->saveViewer($messages->first()->id, Auth::user()->id);
+        }*/ 
+        return view('messages.show', compact('conversation', 'messages'));
     }
 
     /**
