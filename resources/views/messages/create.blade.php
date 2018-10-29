@@ -37,7 +37,7 @@
         <p class="red-text">{{ $errors->first('message_text') }}</p>
     @endif
     <div class="text-center my-4">
-        {!! Form::button('<i class="fa fa-send pr-2"></i>পাঠান', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+        {!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
     </div>
 {!! Form::close() !!}
 

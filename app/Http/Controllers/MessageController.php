@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\MessageSubject;
@@ -34,7 +34,12 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return view ('messages.index');
+        $search = \Request::get('search');
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        $subjects = $user->messageSubjects()->withCount(['messages as latest_message' => function($query) {
+                                                $query->select(DB::raw('max(messages.created_at)'));
+                                            }])->search($search)->orderByDesc('latest_message')->paginate(30);
+        return view('messages.index', compact('user', 'subjects', 'search'));
     }
 
     /**
@@ -62,7 +67,10 @@ class MessageController extends Controller
         $message->message_text = $request->message_text;
         $message->user_id = $request->session()->get('user_id');
         $message->save();
-        // return redirect()->route('messages.show', $request->message_subject_id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
+        $messageReceipent = $this->messageReceipent;
+        $messageReceipent->message_subject_id = $messageSubject->id;
+        $messageReceipent->user_id = $request->session()->get('user_id');
+        $messageReceipent->save();
         return redirect()->route('messages.show', $messageSubject->id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
 
