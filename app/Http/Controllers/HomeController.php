@@ -202,17 +202,57 @@ class HomeController extends Controller
         }
     }
 
-    public function politicians()
+    public function politicians(Request $request)
     {
         try {
             if(!Auth::check()){
                 return redirect('login');
-            }            
-            $data['leaders'] = User::with('followers')
+            }        
+            $data['divisions'] = DB::table('divisions')->get();    
+            $data['leaders'] = User::with('followers')->select('users.*','user_details.*','divisions.division_name','districts.district_name','thanas.thana_name','zips.zip_code')
                 ->where('role_id',1)
                 ->where('status','Active')
                 ->join('user_details','user_details.user_id','users.id')
+                ->leftJoin('divisions','divisions.division_id','user_details.division_id')
+                ->leftJoin('districts','districts.district_id','user_details.district_id')
+                ->leftJoin('thanas','thanas.thana_id','user_details.thana_id')
+                ->leftJoin('zips','zips.zip_id','user_details.zip_id')
                 ->paginate(12);
+
+
+            $data['leaders'] = User::query();
+            $data['leaders'] = $data['leaders']->with('followers');
+            $data['leaders'] = $data['leaders']->select('users.*','user_details.*','divisions.division_name','districts.district_name','thanas.thana_name','zips.zip_code');
+            $data['leaders'] = $data['leaders']->join('user_details','user_details.user_id','users.id');
+            $data['leaders'] = $data['leaders']->leftJoin('divisions','divisions.division_id','user_details.division_id');
+            $data['leaders'] = $data['leaders']->leftJoin('districts','districts.district_id','user_details.district_id');
+            $data['leaders'] = $data['leaders']->leftJoin('thanas','thanas.thana_id','user_details.thana_id');
+            $data['leaders'] = $data['leaders']->leftJoin('zips','zips.zip_id','user_details.zip_id');
+            $data['leaders'] = $data['leaders']->where('role_id',1);
+            $data['leaders'] = $data['leaders']->where('status','Active');
+
+            if($request->following=='true'){
+                $data['leaders'] = $data['leaders']->join('followers','followers.leader_id','users.id');
+                $data['leaders'] = $data['leaders']->where('followers.follower_user_id',Session::get('user_id'));
+            }
+
+            if($request->keyword){
+                $data['leaders'] = $data['leaders']->where('users.first_name','LIKE','%'.$request->keyword.'%');
+            }
+            if($request->division){
+                $data['leaders'] = $data['leaders']->where('user_details.division_id',$request->division);
+            }
+            if($request->district){
+                $data['leaders'] = $data['leaders']->where('user_details.district_id',$request->district);
+            }
+            if($request->thana){
+                $data['leaders'] = $data['leaders']->where('user_details.thana_id',$request->thana);
+            }
+            if($request->zip){
+                $data['leaders'] = $data['leaders']->where('user_details.zip_id',$request->zip);
+            }
+            $data['leaders'] = $data['leaders']->paginate(12);
+
             return view('politicians',$data);
         }
         catch (\Exception $e) {
@@ -277,6 +317,34 @@ class HomeController extends Controller
         }
         catch (\Exception $e) {
             return $e->getMessage();
+        }
+    }
+
+    public function followLeader(Request $request)
+    {
+        try {
+            $follower = NEW FOLLOWER();
+            $follower->leader_id = $request->leader_id;
+            $follower->follower_user_id = Session::get('user_id');
+            $follower->save();
+            return ['status'=>200,'reason'=>'Successfully followed'];
+        }
+        catch (\Exception $e) {
+            //return $e->getMessage();
+            return ['status'=>401,'reason'=>'Some error occured'];
+        }
+    }
+
+    public function unFollowLeader(Request $request)
+    {
+        try {
+            FOLLOWER::where('leader_id',$request->leader_id)->where('follower_user_id',Session::get('user_id'))->delete();
+            
+            return ['status'=>200,'reason'=>'Successfully unfollowed'];
+        }
+        catch (\Exception $e) {
+            //return $e->getMessage();
+            return ['status'=>401,'reason'=>'Some error occured'];
         }
     }
 }
