@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\MyLeader;
 use App\Models\Follower;
 use Auth;
 use DB;
@@ -50,8 +51,10 @@ class HomeController extends Controller
                 return redirect('login');
             }
             $user = Auth::user();
-            $leader_id= $user->parent_id;
-            $post_creators = [$user->id,$leader_id];
+            $my_leaders = MyLeader::select('leader_id')->where('worker_id',$user->id)->pluck('leader_id')->toArray();
+            $followings = Follower::select('leader_id')->where('follower_user_id',$user->id)->pluck('leader_id')->toArray();
+            $post_creators = array_merge($my_leaders,$followings);
+            array_push($post_creators,$user->id);
             $lastPost = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();
             if(!empty($lastPost)){
                 $data['last_id'] = $lastPost->post_id;

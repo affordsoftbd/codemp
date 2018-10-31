@@ -9,6 +9,8 @@ use App\Models\PostImage;
 use App\Models\PostVideo;
 use App\Models\PostComment;
 use App\Models\PostLike;
+use App\Models\MyLeader;
+use App\Models\Follower;
 use Auth;
 use DB;
 use Validator;
@@ -20,8 +22,9 @@ class PostController extends Controller
     public function getPostAjax(Request $request){
         try {
             $user = Auth::user();
-            $leader_id= $user->parent_id;
-            $post_creators = [$user->id,$leader_id];
+            $my_leaders = MyLeader::select('leader_id')->where('worker_id',$user->id)->pluck('leader_id')->toArray();
+            $followings = Follower::select('leader_id')->where('follower_user_id',$user->id)->pluck('leader_id')->toArray();
+            $post_creators = array_merge($my_leaders,$followings);            array_push($post_creators,$user->id);
             $lastPost = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();
             $last_id = $request->last_id;
 

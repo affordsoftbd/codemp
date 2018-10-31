@@ -92,7 +92,7 @@
             <hr>
             <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($follower->followers) }} জন অনুসারী</span></a>
             <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ" onclick="remove_follower({{ $follower->id }})"><i class="fa fa-close"></i></a>               
+              <a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অপসারণ" onclick="remove_follower({{ $follower->id }})"><i class="fa fa-close"></i></a>               
               <a href="#" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
               <a href="{{ url('public_profile?user='.$follower->username) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
             </div>
