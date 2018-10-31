@@ -265,9 +265,41 @@ class HomeController extends Controller
         return view('requests');
     }
 
-    public function followers()
+    public function followers(Request $request)
     {
-        return view('followers');
+        $data['divisions'] = DB::table('divisions')->get();   
+
+        $data['followers'] = User::query();
+        $data['followers'] = $data['followers']->with('followers');
+        $data['followers'] = $data['followers']->select('users.*','user_details.*','divisions.division_name','districts.district_name','thanas.thana_name','zips.zip_code','followers.leader_id','followers.follower_user_id');
+        $data['followers'] = $data['followers']->join('user_details','user_details.user_id','users.id');
+        $data['followers'] = $data['followers']->join('followers','followers.follower_user_id','users.id');
+        $data['followers'] = $data['followers']->leftJoin('divisions','divisions.division_id','user_details.division_id');
+        $data['followers'] = $data['followers']->leftJoin('districts','districts.district_id','user_details.district_id');
+        $data['followers'] = $data['followers']->leftJoin('thanas','thanas.thana_id','user_details.thana_id');
+        $data['followers'] = $data['followers']->leftJoin('zips','zips.zip_id','user_details.zip_id');
+        $data['followers'] = $data['followers']->where('status','Active');
+        $data['followers'] = $data['followers']->where('followers.leader_id',Session::get('user_id'));
+        //$data['followers'] = $data['followers']->where('followers.follower_user_id','users.id');
+
+        if($request->keyword){
+            $data['followers'] = $data['followers']->where('users.first_name','LIKE','%'.$request->keyword.'%');
+        }
+        if($request->division){
+            $data['followers'] = $data['followers']->where('user_details.division_id',$request->division);
+        }
+        if($request->district){
+            $data['followers'] = $data['followers']->where('user_details.district_id',$request->district);
+        }
+        if($request->thana){
+            $data['followers'] = $data['followers']->where('user_details.thana_id',$request->thana);
+        }
+        if($request->zip){
+            $data['followers'] = $data['followers']->where('user_details.zip_id',$request->zip);
+        }
+        $data['followers'] = $data['followers']->paginate(12);
+
+        return view('followers',$data);
     }
 
     public function editProfile(Request $request)
