@@ -302,6 +302,11 @@ class HomeController extends Controller
         return view('followers',$data);
     }
 
+    public function removeFollowers(Request $request){
+        //Follower::where('leader_id',Session::get('user_id'))->where('follower_user_id',$request->follower_id)->delete();
+        return ['status'=>200,'reason'=>'সফলভাবে অপসারিত হয়েছে'];
+    }
+
     public function editProfile(Request $request)
     {
         try {

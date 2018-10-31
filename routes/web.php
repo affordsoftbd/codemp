@@ -35,6 +35,7 @@ Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/news', 'HomeController@news')->name('news');
 Route::get('/requests', 'HomeController@requests')->name('requests');
 Route::get('/followers', 'HomeController@followers')->name('followers');
+Route::post('/remove_follower', 'HomeController@removeFollowers')->name('remove_follower');
 Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');
 Route::get('public_profile', 'HomeController@publicProfile');

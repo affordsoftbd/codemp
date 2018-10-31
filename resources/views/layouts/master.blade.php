@@ -86,6 +86,7 @@
                     <p class="text-danger">
                         Are you sure you want to do this?
                     </p>
+                    <input type="hidden" id="item_id">
                 </div>
                 <button class="btn btn-primary" id="warning_ok">Yes</button>
                 <button class="btn btn-danger" data-dismiss="modal" id="alert-ok">No</button>

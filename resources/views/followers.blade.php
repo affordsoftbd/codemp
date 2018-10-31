@@ -124,5 +124,56 @@
            $('#thana').material_select();
            $('#zip').material_select();
         });
+
+        function remove_follower(follower_id){
+            $('#item_id').val(follower_id);
+            $('.text-danger').text('আপনি এই অনুসারীকে অপসারণ করতে চান?');
+            $('#warning-modal').modal('show');
+        }
+
+        $(document).on('click','#warning_ok',function(){
+          var follower_id = $('#item_id').val();
+          $.ajax({
+              type: "POST",
+              url: "{{ url('remove_follower') }}",
+              data: {follower_id:follower_id,_token: "{{ csrf_token() }}"},
+              dataType: "JSON",
+              cache : false,
+              beforeSend: function() {
+              },
+
+              success: function(data){
+                  $('#warning-modal').modal('hide');
+                  if(data.status == 200){
+                      show_success_message(data.reason);
+
+                      setTimeout(function(){
+                          $('#wish_success').hide();
+                          $('#wish_error').hide();
+                          location.reload();
+                      }, 2000);
+
+                  }
+
+                  else{
+                      show_error_message(data.reason);;
+                  }
+
+                  setTimeout(function(){
+                      location.reload();
+                  }, 5000);
+
+              },
+
+              error: function(xhr, status, error) {
+
+                  alert(error);
+
+              },
+
+          });
+
+      })
+
      </script>
 @endsection
