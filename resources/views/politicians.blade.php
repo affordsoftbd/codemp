@@ -4,24 +4,19 @@
 
 @section('content')
 
+<h4>রাজনীতিজ্ঞদের তালিকা</h4>
+<p class="red-text">মোট নেতা/কর্মীগণ: {{ count($leaders) }} জন</p>
+<hr>
 
-<div class="row">  
-  <div class="col-sm-6">
-      <h4 class="red-text">মোট নেতা/কর্মীগণ: {{ count($leaders) }} জন</h4>
-      <!--p class="grey-text">অনুসরণ: 5 জন</p-->
-  </div>
-  <div class="col-sm-6">
-    @if(request()->get('following')=='true')
-      <button type="button" class="btn btn-dark-green btn-sm pull-right" onclick="show_all_leaders()">
-          <i class="fa fa-exclamation-circle fa-sm pr-2"></i> সকল নেতাদের প্রদর্শনী করুন
-      </button>
-    @else    
-      <button type="button" class="btn btn-dark-green btn-sm pull-right" onclick="show_following_leaders()">
-          <i class="fa fa-exclamation-circle fa-sm pr-2"></i> শুধুমাত্র ফলোইং নেতাদের প্রদর্শনী করুন
-      </button>
-    @endif
-  </div>
-</div>
+@if(request()->get('following')=='true')
+  <button type="button" class="btn btn-dark-green btn-sm pull-right" onclick="show_all_leaders()">
+      <i class="fa fa-exclamation-circle fa-sm pr-2"></i> সকল নেতাদের প্রদর্শনী করুন
+  </button>
+@else    
+  <button type="button" class="btn btn-dark-green btn-sm pull-right" onclick="show_following_leaders()">
+      <i class="fa fa-exclamation-circle fa-sm pr-2"></i> শুধুমাত্র ফলোইং নেতাদের প্রদর্শনী করুন
+  </button>
+@endif
 
 <form class="md-form" method="get" action="">
   <div class="row">

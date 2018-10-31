@@ -4,6 +4,8 @@
 
 @section('content')
 
+<h4>খবর এর তালিকা</h4><hr>
+
 <!-- Grid row -->
   <div class="row">
 

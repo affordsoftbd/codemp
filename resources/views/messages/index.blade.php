@@ -5,8 +5,7 @@
 @section('content')
 
 
-<h2>{{ empty($search) ? 'List of ' : 'Search' }} Participated Messages</h2>
-<p>Following are the list of messages {{ empty($search) ? 'you have participated in' : 'based on your search' }}.</p>
+<h4>অংশগ্রহণিত বার্তা{{ empty($search) ? ' এর তালিকা' : ' অনুসন্ধান' }} </h4><hr>
 
 @if(empty($search))
 <a href="{{ route('messages.create') }}" class="btn btn-outline-danger btn-rounded waves-effect"><i class="fa fa-plus pr-2"></i>নতুন বার্তা যোগ করুন</a>
@@ -40,7 +39,7 @@
 	    <div class="col-lg-11">
 	      <div class="card">
 	        <div class="card-body {{ $subject->receipents->first()->user->id == $user->id ? 'green'  : 'red' }} white-text">
-	          {{ $subject->subject }} 
+	          {{ $subject->subject_text }} 
 	        </div>
 	      </div> 
 	    </div>

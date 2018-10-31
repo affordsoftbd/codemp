@@ -4,7 +4,9 @@
 
 @section('content')
 
-<h4 class="red-text">মোট আবেদন: 25টি</h4>
+<h4>আবেদনকারীদের তালিকা</h4>
+<p class="red-text">মোট আবেদন: 25টি</p>
+<hr>
 
 <div class="row my-5">
   <div class="col-lg-4 mb-4">
