@@ -34,6 +34,8 @@ Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/news', 'HomeController@news')->name('news');
 Route::get('/requests', 'HomeController@requests')->name('requests');
+Route::post('/accept_request', 'HomeController@acceptRequests')->name('accept_request');
+Route::post('/reject_request', 'HomeController@rejectRequests')->name('reject_request');
 Route::get('/followers', 'HomeController@followers')->name('followers');
 Route::post('/remove_follower', 'HomeController@removeFollowers')->name('remove_follower');
 Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');

@@ -22,7 +22,7 @@ class PostController extends Controller
     public function getPostAjax(Request $request){
         try {
             $user = Auth::user();
-            $my_leaders = MyLeader::select('leader_id')->where('worker_id',$user->id)->pluck('leader_id')->toArray();
+            $my_leaders = MyLeader::select('leader_id')->where('worker_id',$user->id)->where('status','active')->pluck('leader_id')->toArray();
             $followings = Follower::select('leader_id')->where('follower_user_id',$user->id)->pluck('leader_id')->toArray();
             $post_creators = array_merge($my_leaders,$followings);            array_push($post_creators,$user->id);
             $lastPost = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();

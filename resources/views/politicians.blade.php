@@ -114,7 +114,9 @@
                 <a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ" onclick="follow_leader({{ $leader->id }})"><i class="fa fa-check"></i></a>
               @else
                 <a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনানুসরণ" onclick="un_follow_leader({{ $leader->id }})"><i class="fa fa-close"></i></a>
-              @endif                
+              @endif      
+                <a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="আপনার নেতা হিসেবে আবেদন পাঠান" onclick="send_request({{ $leader->id }})"><i class="fa fa-user-plus"></i></a>    
+                <!--a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="আপনার নেতা হিসেবে আবেদন বাতিল করুন" onclick="cancel_request({{ $leader->id }})"><i class="fa fa-user-minus"></i></a-->        
                 <a href="#" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
                 <a href="{{ url('public_profile?user='.$leader->username) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
             </div>

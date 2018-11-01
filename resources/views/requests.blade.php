@@ -5,121 +5,132 @@
 @section('content')
 
 <h4>আবেদনকারীদের তালিকা</h4>
-<p class="red-text">মোট আবেদন: 25টি</p>
+<p class="red-text">মোট আবেদন: {{ count($applicants)}}টি</p>
 <hr>
 
 <div class="row my-5">
-  <div class="col-lg-4 mb-4">
-    <!-- Card -->
-      <div class="card card-personal">
+  @foreach($applicants as $applicant)
+    <div class="col-lg-4 mb-4">
+        <!-- Card -->
+        <div class="card card-personal">
 
-        <!-- Card image-->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
-        <!-- Card image-->
+          <!-- Card image-->
 
-        <!-- Card content -->
-        <div class="card-body">
-          <!-- Title-->
-          <a><h4 class="card-title title-one">Clara</h4></a>
-          <p class="card-meta">অংশগ্রহন 2013</p>
-          <!-- Text -->
-          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
-          <hr>
-          <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-orange btn-sm" data-toggle="tooltip" data-placement="right" title="অনুমোদন"><i class="fa fa-thumbs-up"></i></a>
-              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
-              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+        @if($applicant->image_path!='')
+            <img src="{{ url('/').$applicant->image_path}}" class="card-img-top" alt="Card image cap">
+        @else
+            <img src="{{ url('/').'/img/avatar.png'}}" class="card-img-top" alt="Card image cap">
+        @endif
+          <!-- Card image-->
+
+          <!-- Card content -->
+          <div class="card-body">
+            <!-- Title-->
+            <a><h4 class="card-title title-one">{{ $applicant->first_name." ".$applicant->last_name}}</h4></a>
+            <p class="card-meta">অংশগ্রহন {{ date('Y',strtotime($applicant->created_at))}}</p>
+            <!-- Text -->
+            <p class="card-text"><strong>{{ $applicant->division_name}} > {{ $applicant->district_name}} > {{ $applicant->thana_name}} > {{ $applicant->zip_code}}</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+            <hr>
+            <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($applicant->applicants) }} জন অনুসারী</span></a>  
+            <div class="btn-group mt-3" role="group" aria-label="Basic example">
+              <a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="গ্রহণ করুন" onclick="accept_request({{ $applicant->my_leader_id }})"><i class="fa fa-check"></i></a>              
+              <a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="মুছে দিন" onclick="rject_request({{ $applicant->my_leader_id }})"><i class="fa fa-close"></i></a>
+              <a href="{{ url('public_profile?user='.$applicant->username) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
+            </div>
           </div>
+          <!-- Card content -->
+
         </div>
-        <!-- Card content -->
-
-      </div>
-      <!-- Card -->
-  </div>
-  <div class="col-lg-4 mb-4">
-    <!-- Card -->
-      <div class="card card-personal">
-
-        <!-- Card image-->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
-        <!-- Card image-->
-
-        <!-- Card content -->
-        <div class="card-body">
-          <!-- Title-->
-          <a><h4 class="card-title title-one">Clara</h4></a>
-          <p class="card-meta">অংশগ্রহন 2013</p>
-          <!-- Text -->
-          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
-          <hr>
-          <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-orange btn-sm" data-toggle="tooltip" data-placement="right" title="অনুমোদন"><i class="fa fa-thumbs-up"></i></a>
-              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
-              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
-          </div>
-        </div>
-        <!-- Card content -->
-
-      </div>
-      <!-- Card -->
-  </div>
-  <div class="col-lg-4 mb-4">
-    <!-- Card -->
-      <div class="card card-personal">
-
-        <!-- Card image-->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
-        <!-- Card image-->
-
-        <!-- Card content -->
-        <div class="card-body">
-          <!-- Title-->
-          <a><h4 class="card-title title-one">Clara</h4></a>
-          <p class="card-meta">অংশগ্রহন 2013</p>
-          <!-- Text -->
-          <p class="card-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
-          <hr>
-          <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="button" class="btn btn-orange btn-sm" data-toggle="tooltip" data-placement="right" title="অনুমোদন"><i class="fa fa-thumbs-up"></i></a>
-              <a href="button" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
-              <a href="{{ route('profile', Session::get('username')) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
-          </div>
-        </div>
-        <!-- Card content -->
-
-      </div>
-      <!-- Card -->
-  </div>
+        <!-- Card -->
+    </div>
+  @endforeach
 </div>
 
 <!--Pagination-->
-    <nav aria-label="pagination example my-5">
+    <nav aria-label="pagination example">
         <ul class="pagination pg-blue">
 
             <!--Arrow left-->
-            <li class="page-item disabled">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-
-            <li class="page-item active">
-                <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
+            {{ $applicants->render()}}
         </ul>
     </nav>
 
 
+@endsection
+
+@section('extra-script')
+    <script>
+
+        function accept_request(request_id){
+            $.ajax({
+                type: "POST",
+                url: "{{ route('accept_request') }}",
+                data: { _token: "{{ csrf_token() }}",request_id:request_id},
+                dataType: "json",
+                cache : false,
+                success: function(data){
+                    if(data.status == 200){
+                      show_success_message(data.reason);
+                        
+                      setTimeout(function(){
+                          location.reload();
+                      }, 3000);
+                    }
+                    else{
+                        alert(data);
+                    }
+                } ,error: function(xhr, status, error) {
+                    alert(error);
+                },
+            });
+        }        
+
+        function rject_request(request_id){
+            $('#item_id').val(request_id);
+            $('.text-danger').text('আপনি এই আবেদনকে অপসারণ করতে চান?');
+            $('#warning-modal').modal('show');
+        }
+
+        $(document).on('click','#warning_ok',function(){
+          var request_id = $('#item_id').val();
+          $.ajax({
+              type: "POST",
+              url: "{{ url('reject_request') }}",
+              data: {request_id:request_id,_token: "{{ csrf_token() }}"},
+              dataType: "JSON",
+              cache : false,
+              beforeSend: function() {
+              },
+
+              success: function(data){
+                  $('#warning-modal').modal('hide');
+                  if(data.status == 200){
+                      show_success_message(data.reason);
+
+                      setTimeout(function(){
+                          location.reload();
+                      }, 2000);
+
+                  }
+
+                  else{
+                      show_error_message(data.reason);;
+                  }
+
+                  setTimeout(function(){
+                      location.reload();
+                  }, 3000);
+
+              },
+
+              error: function(xhr, status, error) {
+
+                  alert(error);
+
+              },
+
+          });
+
+      })
+     </script>
 @endsection

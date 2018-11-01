@@ -51,7 +51,7 @@ class HomeController extends Controller
                 return redirect('login');
             }
             $user = Auth::user();
-            $my_leaders = MyLeader::select('leader_id')->where('worker_id',$user->id)->pluck('leader_id')->toArray();
+            $my_leaders = MyLeader::select('leader_id')->where('worker_id',$user->id)->where('status','active')->pluck('leader_id')->toArray();
             $followings = Follower::select('leader_id')->where('follower_user_id',$user->id)->pluck('leader_id')->toArray();
             $post_creators = array_merge($my_leaders,$followings);
             array_push($post_creators,$user->id);
@@ -265,7 +265,33 @@ class HomeController extends Controller
 
     public function requests()
     {
-        return view('requests');
+        $data['applicants'] = User::query();
+        $data['applicants'] = $data['applicants']->select('users.*','user_details.*','divisions.division_name','districts.district_name','thanas.thana_name','zips.zip_code','my_leaders.my_leader_id','my_leaders.leader_id','my_leaders.worker_id');
+        $data['applicants'] = $data['applicants']->join('user_details','user_details.user_id','users.id');
+        $data['applicants'] = $data['applicants']->join('my_leaders','my_leaders.worker_id','users.id');
+        $data['applicants'] = $data['applicants']->leftJoin('divisions','divisions.division_id','user_details.division_id');
+        $data['applicants'] = $data['applicants']->leftJoin('districts','districts.district_id','user_details.district_id');
+        $data['applicants'] = $data['applicants']->leftJoin('thanas','thanas.thana_id','user_details.thana_id');
+        $data['applicants'] = $data['applicants']->leftJoin('zips','zips.zip_id','user_details.zip_id');
+        $data['applicants'] = $data['applicants']->where('users.status','Active');
+        $data['applicants'] = $data['applicants']->where('my_leaders.status','pending');
+        $data['applicants'] = $data['applicants']->where('my_leaders.leader_id',Session::get('user_id'));
+        //$data['followers'] = $data['followers']->where('followers.follower_user_id','users.id');
+
+        $data['applicants'] = $data['applicants']->paginate(12);
+        return view('requests',$data);
+    }
+
+    public function acceptRequests(Request $request){
+        $myLeader = MyLeader::where('my_leader_id',$request->request_id)->first();
+        $myLeader->status = 'active';
+        $myLeader->save();
+        return ['status'=>200,'reason'=>'সফলভাবে গৃহীত হয়েছে'];
+    }
+
+    public function rejectRequests(Request $request){
+        MyLeader::where('my_leader_id',$request->request_id)->delete();
+        return ['status'=>200,'reason'=>'সফলভাবে অপসারিত হয়েছে'];
     }
 
     public function followers(Request $request)
@@ -306,7 +332,7 @@ class HomeController extends Controller
     }
 
     public function removeFollowers(Request $request){
-        //Follower::where('leader_id',Session::get('user_id'))->where('follower_user_id',$request->follower_id)->delete();
+        Follower::where('leader_id',Session::get('user_id'))->where('follower_user_id',$request->follower_id)->delete();
         return ['status'=>200,'reason'=>'সফলভাবে অপসারিত হয়েছে'];
     }
 

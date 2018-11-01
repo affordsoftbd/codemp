@@ -148,8 +148,6 @@
                       show_success_message(data.reason);
 
                       setTimeout(function(){
-                          $('#wish_success').hide();
-                          $('#wish_error').hide();
                           location.reload();
                       }, 2000);
 
@@ -161,7 +159,7 @@
 
                   setTimeout(function(){
                       location.reload();
-                  }, 5000);
+                  }, 3000);
 
               },
 
