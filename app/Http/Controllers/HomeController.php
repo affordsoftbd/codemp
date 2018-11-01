@@ -282,6 +282,20 @@ class HomeController extends Controller
         return view('requests',$data);
     }
 
+    public function saveRequests(Request $request){
+        $myLeader = NEW MyLeader();
+        $myLeader->leader_id = $request->leader_id;
+        $myLeader->worker_id = Session::get('user_id');
+        $myLeader->status = 'pending';
+        $myLeader->save();
+        return ['status'=>200,'reason'=>'আবেদন সফলভাবে পাঠানো হয়েছে'];
+    }
+
+    public function cancelRequests(Request $request){
+        $myLeader = MyLeader::where('leader_id',$request->leader_id)->where('worker_id',Session::get('user_id'))->delete();
+        return ['status'=>200,'reason'=>'আবেদন সফলভাবে বাতিল করা হয়েছে'];
+    }
+
     public function acceptRequests(Request $request){
         $myLeader = MyLeader::where('my_leader_id',$request->request_id)->first();
         $myLeader->status = 'active';
