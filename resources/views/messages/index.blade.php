@@ -5,7 +5,7 @@
 @section('content')
 
 
-<h4>বার্তা{{ empty($search) ? ' এর তালিকা' : ' অনুসন্ধান' }} </h4>
+<h4 class="font-weight-bold green-text">বার্তা{{ empty($search) ? ' এর তালিকা' : ' অনুসন্ধান' }} </h4>
 <small class="red-text">{{ empty($search) ? 'আপনার অংশগ্রহনকৃত' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} বার্তা তালিকা</small>
 <hr>
 

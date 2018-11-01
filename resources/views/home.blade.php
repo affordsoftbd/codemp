@@ -4,10 +4,10 @@
 
 @section('content')
 
-<h4><i class="fa fa-share-alt fa-sm pr-2"></i>আপনি কি ভাবছেন?</h4><hr>
 
 <div class="card border message_area border-light">
     <div class="card-body">
+        <h4><i class="fa fa-share-alt fa-sm pr-2"></i>আপনি কি ভাবছেন?</h4><hr>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs md-tabs nav-justified green" role="tablist">
             <li class="nav-item">

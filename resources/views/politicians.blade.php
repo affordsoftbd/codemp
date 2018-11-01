@@ -12,7 +12,7 @@
       <i class="fa fa-exclamation-circle fa-sm pr-2"></i> শুধুমাত্র ফলোইং নেতাদের প্রদর্শনী করুন
   </button>
 @endif
-<h4>রাজনীতিজ্ঞদের তালিকা</h4>
+<h4 class="font-weight-bold green-text">রাজনীতিজ্ঞদের তালিকা</h4>
 <small class="red-text">মোট নেতা/কর্মীগণ: {{ count($leaders) }} জন</small>
 <hr>
 

@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-lg-8 col-md-12">
-		<h4>
+		<h4 class="font-weight-bold green-text">
 			{{ $user->first_name." ".$user->last_name}}
 		</h4>
 		<small class="red-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</small>
 		<hr>
-		<h4><i class="fa fa-share-alt fa-sm pr-2"></i>আপনি কি ভাবছেন?</h4><hr>
 
 <div class="card border message_area border-light">
     <div class="card-body">
+        <h4><i class="fa fa-share-alt fa-sm pr-2"></i>আপনি কি ভাবছেন?</h4><hr>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs md-tabs nav-justified green" role="tablist">
             <li class="nav-item">

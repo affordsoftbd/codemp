@@ -14,8 +14,8 @@
         
     </div>
     <div class="col-xl-6 col-lg-4 col-md-4">
-        <h6 class="font-weight-bold">{{ $post->first_name." ".$post->last_name}}</h6>
-        <small class="grey-text">{{ $post->created_at}}</small>
+        <h4 class="font-weight-bold green-text">{{ $post->first_name." ".$post->last_name}}</h4>
+        <small class="red-text">{{ $post->created_at}}</small>
     </div>
     <div class="col-xl-5 col-lg-6 col-md-6" align="right">
         {!! Form::open(['route' => ['post.delete', $post->post_id], 'method'=>'delete']) !!}

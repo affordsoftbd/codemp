@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h4>আবেদনকারীদের তালিকা</h4>
+<h4 class="font-weight-bold green-text">আবেদনকারীদের তালিকা</h4>
 <small class="red-text">মোট আবেদন: {{ count($applicants)}}টি</small>
 <hr>
 

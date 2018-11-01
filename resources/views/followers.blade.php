@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h4>অনুসারীদের তালিকা</h4>
+<h4 class="font-weight-bold green-text">অনুসারীদের তালিকা</h4>
 <small class="red-text">মোট অনুসারী: {{ count($followers)}} জন</small>
 <hr>
 

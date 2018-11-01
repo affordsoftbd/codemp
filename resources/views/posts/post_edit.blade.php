@@ -4,9 +4,9 @@
 
 @section('content')
 
-<h6 class="font-weight-bold">Update {{ ucwords($post->post_type) }} Post</h6>
-<small class="grey-text"><b>Post Added:</b> {{ $post->created_at }}</small>,
-<small class="grey-text"><b>Last Updated:</b> {{ (empty($post->updated_at))? 'Not updated yet!' : $post->updated_at }}</small>
+<h4 class="font-weight-bold green-text">Update {{ ucwords($post->post_type) }} Post</h4>
+<small class="red-text"><b>Post Added:</b> {{ $post->created_at }}</small>,
+<small class="red-text"><b>Last Updated:</b> {{ (empty($post->updated_at))? 'Not updated yet!' : $post->updated_at }}</small>
 <hr>
 
 {!! Form::open(['method' => 'put', 'route' => ['post.update', $post->post_id], 'class'=>'md-form login-form']) !!}
