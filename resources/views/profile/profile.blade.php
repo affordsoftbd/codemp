@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-lg-8 col-md-12">
-		<h1>
+		<h4>
 			{{ $user->first_name." ".$user->last_name}}
-		</h1>
-		<small class="grey-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</small>
+		</h4>
+		<small class="red-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</small>
 		<hr>
 		<h4><i class="fa fa-share-alt fa-sm pr-2"></i>আপনি কি ভাবছেন?</h4><hr>
 

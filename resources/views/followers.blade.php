@@ -4,7 +4,9 @@
 
 @section('content')
 
-<h4 class="red-text">মোট অনুসারী: {{ count($followers)}} জন</h4>
+<h4>অনুসারীদের তালিকা</h4>
+<small class="red-text">মোট অনুসারী: {{ count($followers)}} জন</small>
+<hr>
 
 <form class="md-form" method="get" action="">
   <div class="row">

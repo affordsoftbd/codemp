@@ -4,7 +4,9 @@
 
 @section('content')
 
-<h4>খবর এর তালিকা</h4><hr>
+<h4>খবর এর তালিকা</h4>
+<small class="red-text">{{ empty($search) ? 'সকল' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} খবর</small>
+<hr>
 
 <!-- Grid row -->
   <div class="row">

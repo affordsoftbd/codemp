@@ -5,7 +5,9 @@
 @section('content')
 
 
-<h4>অংশগ্রহণিত বার্তা{{ empty($search) ? ' এর তালিকা' : ' অনুসন্ধান' }} </h4><hr>
+<h4>বার্তা{{ empty($search) ? ' এর তালিকা' : ' অনুসন্ধান' }} </h4>
+<small class="red-text">{{ empty($search) ? 'আপনার অংশগ্রহনকৃত' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} বার্তা তালিকা</small>
+<hr>
 
 @if(empty($search))
 <a href="{{ route('messages.create') }}" class="btn btn-outline-danger btn-rounded waves-effect"><i class="fa fa-plus pr-2"></i>নতুন বার্তা যোগ করুন</a>

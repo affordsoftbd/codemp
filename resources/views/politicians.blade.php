@@ -3,11 +3,6 @@
 @section('title', "নেতা/কর্মীগণ ||")
 
 @section('content')
-
-<h4>রাজনীতিজ্ঞদের তালিকা</h4>
-<p class="red-text">মোট নেতা/কর্মীগণ: {{ count($leaders) }} জন</p>
-<hr>
-
 @if(request()->get('following')=='true')
   <button type="button" class="btn btn-dark-green btn-sm pull-right" onclick="show_all_leaders()">
       <i class="fa fa-exclamation-circle fa-sm pr-2"></i> সকল নেতাদের প্রদর্শনী করুন
@@ -17,6 +12,9 @@
       <i class="fa fa-exclamation-circle fa-sm pr-2"></i> শুধুমাত্র ফলোইং নেতাদের প্রদর্শনী করুন
   </button>
 @endif
+<h4>রাজনীতিজ্ঞদের তালিকা</h4>
+<small class="red-text">মোট নেতা/কর্মীগণ: {{ count($leaders) }} জন</small>
+<hr>
 
 <form class="md-form" method="get" action="">
   <div class="row">
