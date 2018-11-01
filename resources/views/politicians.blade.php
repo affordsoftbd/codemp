@@ -165,9 +165,8 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                      alert('leader followed successfully');
-                        //show_success_message(data.reason);
-                        location.reload();
+                      show_success_message('leader followed successfully';
+                      location.reload();
                     }
                     else{
                         alert(data);
@@ -187,8 +186,7 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                      alert('leader un-followed successfully');
-                        //show_success_message(data.reason);
+                        show_success_message('leader un-followed successfully');
                         location.reload();
                     }
                     else{
