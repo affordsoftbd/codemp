@@ -4,9 +4,8 @@
 
 @section('content')
 
-<h4 class="font-weight-bold green-text">Update {{ ucwords($post->post_type) }} Post</h4>
-<small class="red-text"><b>Post Added:</b> {{ $post->created_at }}</small>,
-<small class="red-text"><b>Last Updated:</b> {{ (empty($post->updated_at))? 'Not updated yet!' : $post->updated_at }}</small>
+<h4 class="red-text">পোস্ট আপডেট করুন</h4>
+<small class="grey-text"><b>সর্বশেষ সংষ্করণ:</b> {{ (empty($post->updated_at))? 'এখনো আপডেট করা হয় নি!' : $post->updated_at }}</small>
 <hr>
 
 {!! Form::open(['method' => 'put', 'route' => ['post.update', $post->post_id], 'class'=>'md-form login-form']) !!}

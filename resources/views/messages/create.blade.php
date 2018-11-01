@@ -4,8 +4,7 @@
 
 @section('content')
 
-<h4 class="font-weight-bold green-text">নতুন বার্তা</h4>
-<small class="red-text">একটি নতুন বার্তা তৈরি করুন</small>
+<h4 class="red-text">একটি নতুন বার্তা তৈরি করুন</h4>
 <hr>
 
 {!! Form::open(['method' => 'post', 'route' => ['message.subject.add'], 'class'=>'md-form login-form']) !!}
