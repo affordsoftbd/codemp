@@ -44,10 +44,20 @@ class MessageController extends Controller
     {
         $search = \Request::get('search');
         $user = $this->user->find(\Request::session()->get('user_id'));
-        $allParticipating = $user->participating()->withCount(['messages as latest_message' => function($query) {
+        $messages = $user->participating()->withCount(['messages as latest_message' => function($query) {
                                                 $query->select(DB::raw('max(messages.created_at)'));
                                             }])->search($search)->orderByDesc('latest_message')->paginate(30);
-        return view('messages.index', compact('user', 'allParticipating', 'search'));
+        return view('messages.index', compact('user', 'messages', 'search'));
+    }
+
+    public function administratedMessages()
+    {
+        $search = \Request::get('search');
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        $messages = $user->authored()->withCount(['messages as latest_message' => function($query) {
+                                                $query->select(DB::raw('max(messages.created_at)'));
+                                            }])->search($search)->orderByDesc('latest_message')->paginate(30);
+        return view('messages.index', compact('user', 'messages', 'search'));
     }
 
     /**

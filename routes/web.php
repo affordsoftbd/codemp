@@ -12,8 +12,9 @@
 */
 
 /*Message routes*/
+Route::get('/messages/administrated/', 'MessageController@administratedMessages')->name('messages.administrated');
 Route::resource('messages', 'MessageController');
-Route::post('/message/subject/add', 'MessageController@addMessageSubject')->name('message.subject.add');
+Route::post('/messages/subject/add', 'MessageController@addMessageSubject')->name('messages.subject.add');
 
 /*Authentication route*/
 Route::get('login','AuthController@login')->name('login');
