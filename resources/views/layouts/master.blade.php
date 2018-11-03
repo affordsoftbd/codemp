@@ -143,7 +143,7 @@
       }
 
       $(document).ready(function(){
-          set_new_request_count();
+          set_new_request_count(); 
       });
 
 
