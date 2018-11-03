@@ -23,9 +23,9 @@ class MessageSubject extends Model
     }
 
         // A MessageSubject has a creator 
-    public function author()
+    public function subjectAuthor()
     {
-        return $this->hasOne(User::class, 'author');
+        return $this->belongsTo(User::class, 'author');
     }
 
         // A MessageSubject has many messages

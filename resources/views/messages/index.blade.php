@@ -35,16 +35,16 @@
 	</div>
 {!! Form::close() !!}
 
-@foreach($subjects as $subject)
-	<a href="{{ route('messages.show', $subject->id) }}" target="_blank">
+@foreach($allParticipating as $participating)
+	<a href="{{ route('messages.show', $participating->id) }}" target="_blank">
 	  <div class="row mb-5">
 	    <div class="col-lg-1">
-	     <img src="{{ file_exists($subject->participants->first()->user->detail->image_path) ? asset($subject->participants->first()->user->detail->image_path) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
+	     <img src="{{ file_exists($participating->subjectAuthor->detail->image_path) ? asset($participating->subjectAuthor->detail->image_path) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
 	    </div>
 	    <div class="col-lg-11">
 	      <div class="card">
-	        <div class="card-body {{ $subject->receipents->first()->user->id == $user->id ? 'green'  : 'red' }} white-text">
-	          {{ $subject->subject_text }} 
+	        <div class="card-body {{ $participating->author == $user->id ? 'green'  : 'red' }} white-text">
+	          {{ $participating->subject_text }} 
 	        </div>
 	      </div> 
 	    </div>
@@ -56,7 +56,7 @@
 <nav aria-label="Page navigation example" class="table-responsive">
   <ul class="pagination pg-blue justify-content-end">
     <ul class="pagination pg-blue">
-        {{ $subjects->links() }}                 
+        {{ $allParticipating->links() }}                 
     </ul>
   </ul>
 </nav>
