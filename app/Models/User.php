@@ -10,6 +10,11 @@ class User extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+    public function detail()
+    {
+        return $this->hasOne(UserDetail::class, 'user_detail_id');
+    }
+
     	// one to many detail tabe relation
     public function followers()
     {

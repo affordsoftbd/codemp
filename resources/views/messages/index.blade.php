@@ -4,6 +4,9 @@
 
 @section('content')
 
+<a href="button" class="btn btn-dark-green btn-sm pull-right">
+  <i class="fa fa-exclamation-circle fa-sm pr-2"></i>শুধুমাত্র আপনার অ্যাডমিনিস্ট্রেটকৃত বার্তাসমূহ প্রদর্শন করুন
+</a>
 
 <h4 class="font-weight-bold green-text">বার্তা{{ empty($search) ? ' এর তালিকা' : ' অনুসন্ধান' }} </h4>
 <small class="red-text">{{ empty($search) ? 'আপনার অংশগ্রহনকৃত' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} বার্তা তালিকা</small>
