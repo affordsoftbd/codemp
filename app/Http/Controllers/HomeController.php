@@ -282,6 +282,25 @@ class HomeController extends Controller
         return view('requests',$data);
     }
 
+    public function newRequestsAjax()
+    {
+        $data['applicants'] = User::query();
+        $data['applicants'] = $data['applicants']->select('users.*','user_details.*','divisions.division_name','districts.district_name','thanas.thana_name','zips.zip_code','my_leaders.my_leader_id','my_leaders.leader_id','my_leaders.worker_id');
+        $data['applicants'] = $data['applicants']->join('user_details','user_details.user_id','users.id');
+        $data['applicants'] = $data['applicants']->join('my_leaders','my_leaders.worker_id','users.id');
+        $data['applicants'] = $data['applicants']->leftJoin('divisions','divisions.division_id','user_details.division_id');
+        $data['applicants'] = $data['applicants']->leftJoin('districts','districts.district_id','user_details.district_id');
+        $data['applicants'] = $data['applicants']->leftJoin('thanas','thanas.thana_id','user_details.thana_id');
+        $data['applicants'] = $data['applicants']->leftJoin('zips','zips.zip_id','user_details.zip_id');
+        $data['applicants'] = $data['applicants']->where('users.status','Active');
+        $data['applicants'] = $data['applicants']->where('my_leaders.status','pending');
+        $data['applicants'] = $data['applicants']->where('my_leaders.leader_id',Session::get('user_id'));
+        //$data['followers'] = $data['followers']->where('followers.follower_user_id','users.id');
+
+        $data['applicants'] = $data['applicants']->get();
+        return ['status'=>200,'new_request'=>count($data['applicants'])];
+    }
+
     public function saveRequests(Request $request){
         $myLeader = NEW MyLeader();
         $myLeader->leader_id = $request->leader_id;

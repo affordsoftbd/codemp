@@ -142,6 +142,10 @@
 
       }
 
+      $(document).ready(function(){
+          set_new_request_count();
+      });
+
 
       $(document).on('change','#division', function(){
           var division_id = $(this).val();
@@ -220,6 +224,34 @@
                   }
                   else{
                       alert(data);
+                  }
+              } ,error: function(xhr, status, error) {
+                  alert(error);
+              },
+          });
+      }
+
+
+      function set_new_request_count(){   
+          $.ajax({
+              type: "POST",
+              url: "{{ url('new_request_ajax') }}",
+              data: { _token: "{{ csrf_token() }}"},
+              dataType: "json",
+              cache : false,
+              success: function(data){
+                  if(data.status == 200){
+                    if(data.new_request !=0){
+                      $('#request_count').show();
+                      $('#request_count').html(data.new_request);
+                    }
+                    else{
+                      $('#request_count').hide();
+                      $('#request_count').html(0);
+                    }
+                  }
+                  else{
+                      
                   }
               } ,error: function(xhr, status, error) {
                   alert(error);

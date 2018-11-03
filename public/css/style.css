@@ -242,5 +242,13 @@ div.mce-fullscreen {
   }
 }
 
+.new_count {
+  color: red;
+    border: 1px solid red;
+    border-radius: 15px;
+    padding: 2px;
+    font-size: 13px;
+}
+
 
 /* Preloaders ================================== */

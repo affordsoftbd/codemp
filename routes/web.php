@@ -38,6 +38,7 @@ Route::post('/send_request', 'HomeController@saveRequests')->name('send_request'
 Route::post('/cancel_request', 'HomeController@cancelRequests')->name('cancel_request');
 Route::post('/accept_request', 'HomeController@acceptRequests')->name('accept_request');
 Route::post('/reject_request', 'HomeController@rejectRequests')->name('reject_request');
+Route::post('/new_request_ajax', 'HomeController@newRequestsAjax')->name('new_request_ajax');
 Route::get('/followers', 'HomeController@followers')->name('followers');
 Route::post('/remove_follower', 'HomeController@removeFollowers')->name('remove_follower');
 Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
