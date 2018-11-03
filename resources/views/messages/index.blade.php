@@ -43,8 +43,9 @@
 	    </div>
 	    <div class="col-lg-11">
 	      <div class="card">
-	        <div class="card-body {{ $participating->author == $user->id ? 'green'  : 'red' }} white-text">
+	        <div class="card-body {{ $participating->messages->last()->viewers->contains('viewer', $user->id) ? 'green'  : 'red' }} white-text">
 	          {{ $participating->subject_text }} 
+	          <small class="pull-right">{{ $participating->author == $user->id ? 'authering'  : '' }}</small>
 	        </div>
 	      </div> 
 	    </div>
