@@ -22,6 +22,12 @@ class MessageSubject extends Model
         }
     }
 
+        // A MessageSubject has a creator 
+    public function author()
+    {
+        return $this->hasOne(User::class, 'author');
+    }
+
         // A MessageSubject has many messages
     public function messages()
     {
@@ -31,6 +37,6 @@ class MessageSubject extends Model
         // A MessageSubject has many receipents
     public function receipents()
     {
-        return $this->hasMany(MessageReceipent::class);
+        return $this->belongsToMany(User::class, 'message_receipients');
     }
 }

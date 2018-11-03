@@ -39,7 +39,7 @@
 	<a href="{{ route('messages.show', $subject->id) }}" target="_blank">
 	  <div class="row mb-5">
 	    <div class="col-lg-1">
-	     <img src="http://via.placeholder.com/450" class="img-fluid rounded-circle z-depth-0">
+	     <img src="{{ file_exists($subject->participants->first()->user->detail->image_path) ? asset($subject->participants->first()->user->detail->image_path) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
 	    </div>
 	    <div class="col-lg-11">
 	      <div class="card">
