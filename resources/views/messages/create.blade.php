@@ -7,7 +7,7 @@
 <h4 class="red-text">একটি নতুন বার্তা তৈরি করুন</h4>
 <hr>
 
-{!! Form::open(['method' => 'post', 'route' => ['message.subject.add'], 'class'=>'md-form login-form']) !!}
+{!! Form::open(['method' => 'post', 'route' => ['messages.subject.add'], 'class'=>'md-form login-form']) !!}
     <!-- <div align="right">
         <div class="form-check form-check-inline">
           <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
@@ -41,6 +41,9 @@
         {!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
     </div>
 {!! Form::close() !!}
+
+
+<a class="btn btn-success waves-effect btn-sm" href="{{ route('messages.index') }}"><i class="fa fa-arrow-circle-left fa-sm pr-2" aria-hidden="true"></i>প্রত্যাবর্তন</a>
 
 
 @endsection
