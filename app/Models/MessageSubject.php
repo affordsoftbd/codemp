@@ -18,7 +18,7 @@ class MessageSubject extends Model
         if (empty($search)) {
             return $query;
         } else {
-            return $query->where('subject', 'LIKE', '%' . $search . '%');
+            return $query->where('subject_text', 'LIKE', '%' . $search . '%');
         }
     }
 

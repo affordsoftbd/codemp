@@ -21,6 +21,6 @@ class MessageViewer extends Model
     	// Each MessageViewer belongs to a user
 	public function user()
 	{
-		return $this->belongsTo(User::class);
+		return $this->belongsTo(User::class, 'viewer');
 	}
 }

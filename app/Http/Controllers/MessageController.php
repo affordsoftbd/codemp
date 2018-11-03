@@ -27,6 +27,14 @@ class MessageController extends Controller
         $this->user = $user;
     }
 
+
+    private function saveViewer($message_id, $user_id){
+        $view = $this->messageView;
+        $view->message_id = $message_id;
+        $view->viewer = $user_id;
+        $view->save();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -91,13 +99,13 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $conversation = $this->messageSubject->findOrFail($id);
         $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(15);
-        /*if($messages->onFirstPage() && $messages->isNotEmpty() && !$messages->first()->viewers->contains('user_id', Auth::user()->id)){
-            $this->saveViewer($messages->first()->id, Auth::user()->id);
-        }*/ 
+        if($messages->onFirstPage() && $messages->isNotEmpty() && !$messages->first()->viewers->contains('viewer', $request->session()->get('user_id'))){
+            $this->saveViewer($messages->first()->id, $request->session()->get('user_id'));
+        }
         return view('messages.show', compact('conversation', 'messages'));
     }
 
