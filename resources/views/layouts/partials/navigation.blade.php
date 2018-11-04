@@ -14,9 +14,10 @@
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="basicExampleNav">
 
-        <form class="form-inline mr-auto">
+        <form class="form-inline mr-auto" method="get" action="{{ route('politicians') }}">
             <div class="md-form my-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="খুজুন" aria-label="Search">
+                <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="খুজুন" aria-label="Search">
+                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-search"></i></button>
             </div>
         </form>
 
