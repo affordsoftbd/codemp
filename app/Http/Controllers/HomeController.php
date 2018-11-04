@@ -89,6 +89,16 @@ class HomeController extends Controller
         }
     }
 
+    public function summeries()
+    {
+        try {
+            return view('summeries');
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function profilePosts(Request $request)
     {
         try {

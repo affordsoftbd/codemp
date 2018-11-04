@@ -34,6 +34,7 @@ Route::post('save_user','AuthController@saveUser');
 Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/news', 'HomeController@news')->name('news');
+Route::get('/summeries', 'HomeController@summeries')->name('summeries');
 Route::get('/requests', 'HomeController@requests')->name('requests');
 Route::post('/send_request', 'HomeController@saveRequests')->name('send_request');
 Route::post('/cancel_request', 'HomeController@cancelRequests')->name('cancel_request');

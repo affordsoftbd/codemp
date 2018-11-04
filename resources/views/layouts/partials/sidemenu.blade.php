@@ -17,7 +17,7 @@
     <a href="{{ route('messages.index') }}" class="list-group-item list-group-item-action {{ Route::is('messages*')? 'active':'' }} waves-effect">
         <i class="fa fa-envelope fa-sm pr-2"></i>বার্তা
     </a>
-    <a href="#" class="list-group-item list-group-item-action waves-effect">
+    <a href="{{ route('summeries') }}" class="list-group-item list-group-item-action {{Route::is('summeries*')? 'active':''}} waves-effect">
         <i class="fa fa-dashboard fa-sm pr-2"></i>সংক্ষিপ্তসার
     </a>
     <a href="{{ route('profile', Session::get('username')) }}" class="list-group-item list-group-item-action {{Route::is('profile*')? 'active':''}} waves-effect">
