@@ -17,7 +17,7 @@
         <form class="form-inline mr-auto" method="get" action="{{ route('politicians') }}">
             <div class="md-form my-0">
                 <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="খুজুন" aria-label="Search">
-                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-search"></i></button>
+                <button type="submit" class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit"><i class="fa fa-search"></i></button>
             </div>
         </form>
 

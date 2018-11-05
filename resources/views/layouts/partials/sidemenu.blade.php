@@ -26,8 +26,9 @@
     <a href="{{ route('politicians') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('politicians*')? 'active':'' }}">
         <i class="fa fa-certificate fa-sm pr-2"></i>নেতা/কর্মীগণ
     </a>
-    <a href="{{ route('requests') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('requests*')? 'active':'' }}">
-        <i class="fa fa-user-plus fa-sm pr-2"></i>আবেদন <span style="display:none" class="new_count" id="request_count">0</span> 
+    <a href="{{ route('requests') }}" class="list-group-item list-group-item-action justify-content-between align-items-center waves-effect {{ Route::is('requests*')? 'active':'' }}">
+        <i class="fa fa-user-plus fa-sm pr-2"></i>আবেদন 
+        <span class="badge badge-danger badge-pill new_count" style="display:none" id="request_count">0</span>
     </a>
     <a href="{{ route('followers') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('followers*')? 'active':'' }}">
         <i class="fa fa-group fa-sm pr-2"></i>অনুসারী
