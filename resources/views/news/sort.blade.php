@@ -1,7 +1,7 @@
 <div class="sticky-top">
 <!-- Search by keyword -->
   <h5 class="green-text font-weight-bold">সন্ধান করুন</h5><hr>
-  <form method="GET" action="" accept-charset="UTF-8">
+  <form method="GET" action="{{ route('news') }}" accept-charset="UTF-8">
     <div class="row">
       <div class="col-xl-8 col-lg-8 col-md-9 col-sm-12 col-12">
         <div class="md-form">
@@ -20,7 +20,7 @@
 
 <!-- Search by date -->
   <h5 class="green-text font-weight-bold mt-4">সাজান</h5><hr>
-  <form method="GET" action="" accept-charset="UTF-8">
+  <form method="GET" action="{{ route('news') }}" accept-charset="UTF-8">
     <input name="keyword" type="hidden">
     <input name="product_type" type="hidden">
     <div class="md-form">

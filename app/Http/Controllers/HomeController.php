@@ -93,10 +93,11 @@ class HomeController extends Controller
         }
     }
 
-    public function newsDetails($headline)
+    public function newsDetails($id)
     {
         try {
-            return view('news.details');
+            $data['news'] = News::where('global_news_id',$id)->first();
+            return view('news.details',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
