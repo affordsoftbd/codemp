@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\MyLeader;
 use App\Models\Follower;
+use App\Models\News;
 use Auth;
 use DB;
 use Session;
@@ -69,10 +70,23 @@ class HomeController extends Controller
         }
     }
 
-    public function news()
+    public function news(Request $request)
     {
         try {
-            return view('news.index');
+            $data['news'] = News::query();
+
+            if($request->start_date){
+                $data['news'] = $data['news']->where('created_at','>=',date('Y-m-d',strtotime($request->start_date)));
+            }
+            if($request->end_date){
+                $data['news'] = $data['news']->where('created_at','<=',date('Y-m-d',strtotime($request->end_date)));
+            }
+
+            if($request->keyword){
+                $data['news'] = $data['news']->where('description','LIKE','%'.$request->keyword.'%');
+            }
+            $data['news'] = $data['news']->paginate(10);
+            return view('news.index',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
@@ -92,7 +106,23 @@ class HomeController extends Controller
     public function summeries()
     {
         try {
-            return view('summeries');
+            $data['followers'] = User::with('followers')
+                ->join('followers','followers.follower_user_id','users.id')
+                ->where('status','Active')
+                ->where('followers.leader_id',Session::get('user_id'))
+                ->get();
+
+            $data['new_applicants'] = User::where('users.status','Active')
+                ->join('my_leaders','my_leaders.worker_id','users.id')
+                ->where('my_leaders.status','pending')
+                ->where('my_leaders.leader_id',Session::get('user_id'))
+                ->get();
+
+            $data['all_applicants'] = User::where('users.status','Active')
+                ->join('my_leaders','my_leaders.worker_id','users.id')
+                ->where('my_leaders.leader_id',Session::get('user_id'))
+                ->get();
+            return view('summeries',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();

@@ -27,7 +27,7 @@
 	    <div class="col-lg-11">
 	      <div class="card">
 	        <div class="card-body green white-text">
-	          Total Followers:
+	          Total Followers: {{ count($followers)}}
 	        </div>
 	      </div> 
 	    </div>
@@ -42,7 +42,7 @@
 	    <div class="col-lg-11">
 	      <div class="card">
 	        <div class="card-body green white-text">
-	          New Applicants:
+	          New Applicants: {{ count($new_applicants)}}
 	        </div>
 	      </div> 
 	    </div>
@@ -57,7 +57,7 @@
 	    <div class="col-lg-11">
 	      <div class="card">
 	        <div class="card-body green white-text">
-	          Total Applicants:
+	          Total Applicants: {{ count($all_applicants)}}
 	        </div>
 	      </div> 
 	    </div>

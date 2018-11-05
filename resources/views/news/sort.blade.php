@@ -1,7 +1,7 @@
 <div class="sticky-top">
 <!-- Search by keyword -->
   <h5 class="green-text font-weight-bold">সন্ধান করুন</h5><hr>
-  <form method="GET" action="https://buyandtravel.000webhostapp.com/orders" accept-charset="UTF-8">
+  <form method="GET" action="" accept-charset="UTF-8">
     <div class="row">
       <div class="col-xl-8 col-lg-8 col-md-9 col-sm-12 col-12">
         <div class="md-form">
@@ -20,17 +20,17 @@
 
 <!-- Search by date -->
   <h5 class="green-text font-weight-bold mt-4">সাজান</h5><hr>
-  <form method="GET" action="https://buyandtravel.000webhostapp.com/orders" accept-charset="UTF-8">
+  <form method="GET" action="" accept-charset="UTF-8">
     <input name="keyword" type="hidden">
     <input name="product_type" type="hidden">
     <div class="md-form">
       <i class="fa fa-sort-desc prefix grey-text"></i>
-      <input class="form-control datepicker" id="from" name="from" type="text">
+      <input class="form-control datepicker" id="from" name="start_date" type="text">
       <label for="from">শুরু</label>
     </div>
     <div class="md-form">
       <i class="fa fa-sort-asc prefix grey-text"></i>
-      <input class="form-control datepicker" id="to" name="to" type="text">
+      <input class="form-control datepicker" id="to" name="end_date" type="text">
       <label for="to">শেষ</label>
     </div>
     <div class="text-center mt-4">
