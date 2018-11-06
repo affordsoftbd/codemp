@@ -50,13 +50,15 @@
 	<a href="{{ route('messages.show', $message->id) }}" target="_blank">
 	  <div class="row mb-5">
 	    <div class="col-lg-1">
-	     <img src="{{ !empty(url('/').$message->subjectAuthor->detail->image_path) ? url('/').$message->subjectAuthor->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
+	     <img src="{{ !empty(url('/').$message->messages->last()->user->detail->image_path) ? url('/').$message->messages->last()->user->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
 	    </div>
 	    <div class="col-lg-11">
 	      <div class="card">
 	        <div class="card-body {{ $message->messages->last()->viewers->contains('viewer', $user->id) ? 'green'  : 'red' }} white-text">
-	          {{ $message->subject_text }} 
+	          <strong>{{ $message->subject_text }}</strong>
 	          <small class="pull-right">{{ $message->author == $user->id ? 'authering'  : '' }}</small>
+	          <br>
+	          {{ substr(strip_tags($message->messages->last()->message_text), 0, 50) }}...
 	        </div>
 	      </div> 
 	    </div>

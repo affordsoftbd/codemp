@@ -89,6 +89,10 @@ class MessageController extends Controller
         $messageReceipent->message_subject_id = $messageSubject->id;
         $messageReceipent->user_id = $request->session()->get('user_id');
         $messageReceipent->save();
+        $messageView = $this->messageView;
+        $messageView->message_id = $messageSubject->id;
+        $messageView->viewer = $request->session()->get('user_id');
+        $messageView->save();
         return redirect()->route('messages.show', $messageSubject->id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
 
