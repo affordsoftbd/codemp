@@ -44,6 +44,7 @@ Route::post('/new_request_ajax', 'HomeController@newRequestsAjax')->name('new_re
 Route::get('/followers', 'HomeController@followers')->name('followers');
 Route::post('/remove_follower', 'HomeController@removeFollowers')->name('remove_follower');
 Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
+Route::post('/save_news_comment', 'HomeController@saveNewsComment')->name('save_news_comment');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');
 Route::get('public_profile', 'HomeController@publicProfile');
 Route::post('/follow_leader', 'HomeController@followLeader')->name('follow_leader');

@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\MyLeader;
 use App\Models\Follower;
 use App\Models\News;
+use App\Models\NewsComment;
 use Auth;
 use DB;
 use Session;
@@ -97,11 +98,25 @@ class HomeController extends Controller
     {
         try {
             $data['news'] = News::where('global_news_id',$id)->first();
+            $data['news_comments'] = NewsComment::select('global_news_comments.comment','global_news_comments.created_at','users.first_name','users.last_name','user_details.image_path')
+                ->where('news_id',$id)
+                ->join('users','users.id','=','global_news_comments.user_id')
+                ->join('user_details','user_details.user_id','=','users.id')
+                ->get();
             return view('news.details',$data);
         }
         catch (\Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    public function saveNewsComment(Request $request){
+        $comment = NEW NewsComment();
+        $comment->user_id = Session::get('user_id');
+        $comment->news_id = $request->news_id;
+        $comment->comment = $request->comment_text;
+        $comment->save();
+        return ['status'=>200,'reason'=>'Comment successfully saved'];
     }
 
     public function summeries()
