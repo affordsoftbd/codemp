@@ -89,10 +89,7 @@ class MessageController extends Controller
         $messageReceipent->message_subject_id = $messageSubject->id;
         $messageReceipent->user_id = $request->session()->get('user_id');
         $messageReceipent->save();
-        $messageView = $this->messageView;
-        $messageView->message_id = $messageSubject->id;
-        $messageView->viewer = $request->session()->get('user_id');
-        $messageView->save();
+        $this->saveViewer($message->id, $request->session()->get('user_id'));
         return redirect()->route('messages.show', $messageSubject->id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
 
@@ -115,12 +112,13 @@ class MessageController extends Controller
      */
     public function show(Request $request, $id)
     {
+        $user = $this->user->find(\Request::session()->get('user_id'));
         $conversation = $this->messageSubject->findOrFail($id);
         $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(15);
         if($messages->onFirstPage() && $messages->isNotEmpty() && !$messages->first()->viewers->contains('viewer', $request->session()->get('user_id'))){
             $this->saveViewer($messages->first()->id, $request->session()->get('user_id'));
         }
-        return view('messages.show', compact('conversation', 'messages'));
+        return view('messages.show', compact('conversation', 'messages', 'user'));
     }
 
     /**
