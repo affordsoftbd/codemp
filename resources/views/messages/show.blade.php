@@ -51,17 +51,11 @@
 				  <div class="social-meta">
 				    {!! $message->message_text !!}
 				    <hr>
+				    @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
                       {!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
                         <div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
                           <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button" data-toggle="modal" data-target="#edit_message_modal" data-message-id="{{ $message->id }}"><i class="fa fa-edit"" aria-hidden="true"></i></button>
                           {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your message will disappear!', 'confirmButtonText'=>'Yes, delete message!', 'type'=>'submit')) !!}
-                        </div>
-                      {!! Form::close() !!} 
-				    @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
-                      {!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
-                        <div class="btn-group mb-3 mx-3" role="group" aria-label="Basic example">
-                          <button type="button" class="btn btn-indigo btn-sm btn-rounded edit_message_button" data-toggle="modal" data-target="#edit_message_modal" data-message-id="{{ $message->id }}"><i class="fa fa-edit"" aria-hidden="true"></i></button>
-                          {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-unique btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your message will disappear!', 'confirmButtonText'=>'Yes, delete message!', 'type'=>'submit')) !!}
                         </div>
                       {!! Form::close() !!} 
                     @endif
@@ -71,22 +65,23 @@
 			</div>
 			<!-- Card -->
         @endforeach
-
-        {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
-	        {!! Form::hidden('user_id', $user->id) !!}
-	        {!! Form::hidden('message_subject_id', $conversation->id) !!}
-	        <p class="font-weight-bold my-3">বার্তা যুক্ত করুন</p>
-	        @if ($errors->has('message_text'))
-	          <p class="red-text">{{ $errors->first('message_text') }}</p>
-	        @endif
-	        <!-- Material Editor -->
-	        <div class="md-form">
-	          {!! Form::textarea('message_text', null, array('class'=>'editor')) !!}
-	        </div>
-	        <div class="text-center my-4">
-	        	{!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
-	        </div>
-	    {!! Form::close() !!}  
+        @if($messages->isEmpty() || $messages->onFirstPage() && $messages->isNotEmpty() && $messages->first()->user->id != $user->id)
+	        {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
+		        {!! Form::hidden('user_id', $user->id) !!}
+		        {!! Form::hidden('message_subject_id', $conversation->id) !!}
+		        <p class="font-weight-bold my-3">বার্তা যুক্ত করুন</p>
+		        @if ($errors->has('message_text'))
+		          <p class="red-text">{{ $errors->first('message_text') }}</p>
+		        @endif
+		        <!-- Material Editor -->
+		        <div class="md-form">
+		          {!! Form::textarea('message_text', null, array('class'=>'editor')) !!}
+		        </div>
+		        <div class="text-center my-4">
+		        	{!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+		        </div>
+		    {!! Form::close() !!}  
+        @endif 
     </div>
 
     <!-- Participants -->

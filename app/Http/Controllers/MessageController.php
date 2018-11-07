@@ -158,6 +158,8 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $message = $this->message->findOrFail($id);
+        $message->delete();
+        return redirect()->route('messages.show', $message->message_subject->id)->with('success', array('সাফল্য'=>'বার্তা মুছে ফেলা হয়েছে!'));
     }
 }
