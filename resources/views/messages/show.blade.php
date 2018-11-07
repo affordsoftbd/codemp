@@ -37,7 +37,7 @@
         </nav>
         @foreach($messages->reverse() as $message)
 			<!-- Card -->
-			<div class="card news-card mb-5">
+			<div class="card news-card {{ $message->user->id == $user->id ? 'border-success'  : 'border-danger' }} mb-5">
 				<!-- Heading-->
 				<div class="card-body">
 				  <div class="content">
@@ -71,6 +71,22 @@
 			</div>
 			<!-- Card -->
         @endforeach
+
+        {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
+	        {!! Form::hidden('user_id', $user->id) !!}
+	        {!! Form::hidden('message_subject_id', $conversation->id) !!}
+	        <p class="font-weight-bold my-3">বার্তা যুক্ত করুন</p>
+	        @if ($errors->has('message_text'))
+	          <p class="red-text">{{ $errors->first('message_text') }}</p>
+	        @endif
+	        <!-- Material Editor -->
+	        <div class="md-form">
+	          {!! Form::textarea('message_text', null, array('class'=>'editor')) !!}
+	        </div>
+	        <div class="text-center my-4">
+	        	{!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+	        </div>
+	    {!! Form::close() !!}  
     </div>
 
     <!-- Participants -->

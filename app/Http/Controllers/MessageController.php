@@ -101,7 +101,13 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(),[
+            'message_text' => 'required|max:50000'
+        ]);
+        $input = $request->all();
+        $this->message->create($input);
+        $this->saveViewer($this->message->orderBy('created_at', 'DESC')->first()->id, $request->session()->get('user_id'));
+        return redirect()->route('messages.show', $request->message_subject_id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
 
     /**
