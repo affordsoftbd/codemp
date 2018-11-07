@@ -65,7 +65,10 @@
           <div class="card-body">
             <!-- Social meta-->
             <div class="social-meta">
-              <p>{{ $comment->comment}}</p>
+              <p>
+              <?php echo htmlspecialchars_decode($comment->comment); ?>
+                
+              </p>
             </div>
           </div>
         </div>
