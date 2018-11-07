@@ -46,7 +46,7 @@
 				  </div>
 				</div>
 				<!-- Card content -->
-				<div class="card-body">
+				<div class="card-body" data-message-id="{{ $message->id }}">
 				  <!-- Social meta-->
 				  <div class="social-meta">
 				    {!! $message->message_text !!}
@@ -81,7 +81,10 @@
 		        	{!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
 		        </div>
 		    {!! Form::close() !!}  
-        @endif 
+        @endif
+
+
+
     </div>
 
     <!-- Participants -->
@@ -89,9 +92,99 @@
         <h5>অংশগ্রাহীরা</h5><hr>
     </div>
 
-</div>
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centralModalSm">
+	  Launch demo modal
+	</button>
+	<div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-lg" role="document">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+		          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		            <span aria-hidden="true">&times;</span>
+		          </button>
+		        </div>
+		        <div class="modal-body">
+		          ...
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+		          <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+		        </div>
+	  		</div>
+		</div>
+	</div> -->
 
+</div>
 
 @endsection
 
+@section('extra-script')
+<div id='parent'>
+    <textarea>txt1</textarea>
+    <textarea>txt2</textarea>
+    <textarea>txt3</textarea>
+</div>
+<button onClick="addBox()">add textarea</button>
+<input type='button' value='Toggle Editor' id='but_toggle'>
+
+<div id="TheContainer">
+    <div class="MyClass">My Class</div>
+    <div class="SomeClass">Not My Class</div>
+    <div class="SomeOtherClass">Not My Class</div>
+    <div class="SomeClass">Not My Class</div>
+    <div class="MyClass">My Class</div>
+    <div class="SomeOtherClass">Not My Class</div>
+    <div class="SomeClass">Not My Class</div>
+    <div class="MyClass">My Class</div>
+</div>
+
+<div>
+  <textarea id='editor' style='width: 99%; height: 200px;'></textarea>
+</div>
+
+<script type="text/javascript">
+addBox = function(){
+    var textBox = document.createElement("textarea");
+    document.getElementById("parent").appendChild(textBox);
+}
+$(document).ready(function(){
+
+    $('#TheContainer').on('click', '.MyClass', function () {
+        alert( $(this).index('.MyClass') );
+    });
+
+  // Add TinyMCE
+  addTinyMCE();
+
+  // Toggle Editor
+  $('#but_toggle').click(function(){
+
+   // Check TinyMCE initialized or not
+   if(tinyMCE.get('editor')){
+
+     // Remove instance by id
+     tinymce.remove('#editor');
+   }else{
+
+     // Add TinyMCE
+     addTinyMCE();
+   }
+ 
+  });
+});
+
+// Add TinyMCE
+function addTinyMCE(){
+  // Initialize
+  tinymce.init({
+    selector: '#editor',
+    themes: 'modern',
+    height: 200
+  });
+}
+
+</script>>
+
+@endsection
 
