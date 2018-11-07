@@ -267,16 +267,7 @@ class HomeController extends Controller
             if(!Auth::check()){
                 return redirect('login');
             }        
-            $data['divisions'] = DB::table('divisions')->get();    
-            $data['leaders'] = User::with('followers')->select('users.*','user_details.*','divisions.division_name','districts.district_name','thanas.thana_name','zips.zip_code')
-                ->where('role_id',1)
-                ->where('status','Active')
-                ->join('user_details','user_details.user_id','users.id')
-                ->leftJoin('divisions','divisions.division_id','user_details.division_id')
-                ->leftJoin('districts','districts.district_id','user_details.district_id')
-                ->leftJoin('thanas','thanas.thana_id','user_details.thana_id')
-                ->leftJoin('zips','zips.zip_id','user_details.zip_id')
-                ->paginate(12);
+            $data['divisions'] = DB::table('divisions')->get(); 
 
 
             $data['leaders'] = User::query();
