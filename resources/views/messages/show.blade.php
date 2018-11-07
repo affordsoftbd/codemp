@@ -55,7 +55,7 @@
                       {!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
                         <div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
                           <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button" data-toggle="modal" data-target="#edit_message_modal" data-message-id="{{ $message->id }}"><i class="fa fa-edit"" aria-hidden="true"></i></button>
-                          {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your message will disappear!', 'confirmButtonText'=>'Yes, delete message!', 'type'=>'submit')) !!}
+                          {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার বার্তা হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, বার্তা মুছে দিন!', 'type'=>'submit')) !!}
                         </div>
                       {!! Form::close() !!} 
                     @endif
