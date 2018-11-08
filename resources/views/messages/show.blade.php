@@ -120,71 +120,50 @@
 @endsection
 
 @section('extra-script')
-<div id='parent'>
-    <textarea>txt1</textarea>
-    <textarea>txt2</textarea>
-    <textarea>txt3</textarea>
-</div>
-<button onClick="addBox()">add textarea</button>
-<input type='button' value='Toggle Editor' id='but_toggle'>
-
-<div id="TheContainer">
-    <div class="MyClass">My Class</div>
-    <div class="SomeClass">Not My Class</div>
-    <div class="SomeOtherClass">Not My Class</div>
-    <div class="SomeClass">Not My Class</div>
-    <div class="MyClass">My Class</div>
-    <div class="SomeOtherClass">Not My Class</div>
-    <div class="SomeClass">Not My Class</div>
-    <div class="MyClass">My Class</div>
-</div>
 
 <div>
-  <textarea id='editor' style='width: 99%; height: 200px;'></textarea>
+If no background color is set on the Element, or its background color is set to 'transparent', the default end value will be white.
 </div>
+<button class='btn'>Edit</button>
+<div>Element shortcut method for tweening the background color. Immediately transitions an Element's background color to a specified highlight color then back to its set background color.</div>
+<button class='btn'>Edit</button>
+<div>Element shortcut method which immediately transitions any single CSS property of an Element from one value to another.</div>
+<button class='btn'>Edit</button>
+
+<button class='remove'>Remove</button>
 
 <script type="text/javascript">
-addBox = function(){
-    var textBox = document.createElement("textarea");
-    document.getElementById("parent").appendChild(textBox);
+
+function divClicked() {
+    var divHtml = $(this).prev('div').html();
+    var editableText = $("<textarea class='editor' />");
+    editableText.val(divHtml);
+    $(this).prev('div').replaceWith(editableText);
+    setTinyMce();
+    editableText.focus();
+    editableText.blur(editableTextBlurred);
 }
+
+function editableTextBlurred() {
+    var html = $(this).val();
+    var viewableText = $("<div>");
+    viewableText.html(html);
+    tinymce.remove('.editor');
+    $(this).replaceWith(viewableText);
+    viewableText.click(divClicked);
+}
+
 $(document).ready(function(){
 
-    $('#TheContainer').on('click', '.MyClass', function () {
-        alert( $(this).index('.MyClass') );
-    });
+  $(".btn").click(divClicked);
 
-  // Add TinyMCE
-  addTinyMCE();
-
-  // Toggle Editor
-  $('#but_toggle').click(function(){
-
-   // Check TinyMCE initialized or not
-   if(tinyMCE.get('editor')){
-
-     // Remove instance by id
-     tinymce.remove('#editor');
-   }else{
-
-     // Add TinyMCE
-     addTinyMCE();
-   }
- 
+  $(".remove").click(function(){
+    tinymce.remove(".editor");
   });
+
 });
 
-// Add TinyMCE
-function addTinyMCE(){
-  // Initialize
-  tinymce.init({
-    selector: '#editor',
-    themes: 'modern',
-    height: 200
-  });
-}
-
-</script>>
+</script>
 
 @endsection
 
