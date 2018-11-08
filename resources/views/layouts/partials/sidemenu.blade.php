@@ -33,4 +33,7 @@
     <a href="{{ route('followers') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('followers*')? 'active':'' }}">
         <i class="fa fa-group fa-sm pr-2"></i>অনুসারী
     </a>
+    <a href="{{ route('groups') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('followers*')? 'active':'' }}">
+        <i class="fa fa-group fa-sm pr-2"></i>গ্রুপ সমূহ
+    </a>
 </div>

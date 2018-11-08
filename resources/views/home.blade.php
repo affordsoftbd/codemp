@@ -37,13 +37,13 @@
                     <div align="right">
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
+                          <input type="radio" class="form-check-input" id="materialInline1" name="post_privacy" value="public" checked>
                           <label class="form-check-label" for="materialInline1">সর্বজনীন</label>
                         </div>
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
+                          <input type="radio" class="form-check-input red" id="materialInline2" name="post_privacy" value="followers">
                           <label class="form-check-label" for="materialInline2">অনুসারীগণ</label>
                         </div>
                     </div>
@@ -65,13 +65,13 @@
                     <div align="right">
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
+                          <input type="radio" class="form-check-input" id="materialInline1" name="post_privacy" value="public" checked>
                           <label class="form-check-label" for="materialInline1">সর্বজনীন</label>
                         </div>
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input red" id="materialInline2" name="inlineMaterialRadiosExample">
+                          <input type="radio" class="form-check-input red" id="materialInline2" name="post_privacy" value="followers">
                           <label class="form-check-label" for="materialInline2">অনুসারীগণ</label>
                         </div>
                     </div>
@@ -109,13 +109,13 @@
                     <div align="right">
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input radio-custom" id="privacy1" name="privacy" checked>
+                          <input type="radio" class="form-check-input radio-custom" id="privacy1" name="post_privacy" value="public" checked>
                           <label class="form-check-label" for="privacy1">সর্বজনীন</label>
                         </div>
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input radio-custom" id="privacy2" name="privacy">
+                          <input type="radio" class="form-check-input radio-custom" id="privacy2" name="post_privacy" value="public">
                           <label class="form-check-label" for="privacy2">অনুসারীগণ</label>
                         </div>
                     </div>

@@ -81,6 +81,7 @@ class PostController extends Controller
             $post = NEW Post();
             $post->user_id = Session::get('user_id');
             $post->description = $request->post_text;
+            $post->privacy = $request->post_privacy;
             $post->save();
 
             return ['status'=>200, 'reason'=>'Your post saved successfully'];
@@ -91,6 +92,7 @@ class PostController extends Controller
     }
 
     public function saveImagePost(Request $request){
+        return 'privacy='.$request->post_privacy;
         $validator = Validator::make($request->all(), [
             'description' => 'required|string',
             'images.*' => 'required|file|mimes:jpg,jpeg,png,bmp|max:2000'
@@ -107,6 +109,7 @@ class PostController extends Controller
             $post->user_id = Session::get('user_id');
             $post->description = $request->description;
             $post->post_type = 'photo';
+            $post->privacy = $request->post_privacy;
             $post->save();
             $images = $request->file('images');
             if($request->hasFile('images'))
@@ -141,6 +144,7 @@ class PostController extends Controller
             $post->user_id = Session::get('user_id');
             $post->description = $request->description;
             $post->post_type = 'video';
+            $post->privacy = $request->post_privacy;
             $post->save();
             $postVideo = NEW PostVideo();
             $postVideo->video_path = $this->uploadVideo($request->video, 'posts/videos/'); // $request->video->store('storage/uploads','public');
