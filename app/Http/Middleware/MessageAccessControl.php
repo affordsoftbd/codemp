@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\MessageSubject;
+use App\Models\MessageReceipent;
 
-class SubjectAuthorOnly
+class MessageAccessControl
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,12 @@ class SubjectAuthorOnly
      */
     public function handle($request, Closure $next)
     {
-        $id = $request->id;
+        $id = $request->route('message');
 
-        $message = MessageSubject::where('id', $id)->where('author', $request->session()->get('user_id'))->first();
+        $message = MessageReceipent::where('message_subject_id', $id)->where('user_id', $request->session()->get('user_id'))->first();
 
         if($message) return $next($request); 
 
-        return redirect()->back();
+        return redirect()->back(); 
     }
 }
