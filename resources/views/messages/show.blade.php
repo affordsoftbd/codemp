@@ -54,7 +54,7 @@
 				    <div class="message-div" data-message-id="{{ $message->id }}" data-url-edit="{{ route('messages.get.message', $message->id) }}" data-url-update="{{ route('messages.update.message', $message->id) }}">
 				    	{!! $message->message_text !!}
 					</div>
-					{{-- @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time()) --}}
+					@if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
 				    <div class="message_options">
 					    <hr>
 						{!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
@@ -64,7 +64,7 @@
 							</div>
 						{!! Form::close() !!} 
 	                </div>
-	                {{-- @endif --}}
+	                @endif
 				  </div>
 				</div>
 				<!-- Card content -->
@@ -112,8 +112,8 @@ $(document).ready(function(){
 
   	$(document).on('click', '.edit_message_button', function(){
 		var url = $(this).closest('div.social-meta').find('.message-div').data("url-edit");
-		var html = '<textarea class="editor" name="message_text"></textarea><button class="btn btn-sm btn-danger my-3 save_message">Update</button>';
 		var div = $(this).closest('div.social-meta').find('.message-div');
+		var html = '';
 		$.ajaxSetup({
 	      headers: {
 	        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
@@ -127,9 +127,8 @@ $(document).ready(function(){
 	      	div.html("<center><h1><i class='fa fa-spinner fa-spin my-5'></i></h1></center>");
 	      },
 	      success:function(response){
-		    div.html(html);
+		    div.hide().html('<textarea class="editor" name="message_text">'+response+'</textarea><button class="btn btn-sm btn-danger my-3 save_message">Update</button>').fadeIn('slow');
 		    setTinyMce();
-			tinyMCE.activeEditor.setContent(response);
 		    $(".message_options").hide();
 		    $(".add_message").hide();
 	      }
@@ -161,7 +160,7 @@ $(document).ready(function(){
     		showNotification("সাফল্য!", "বার্তা হালনাগাদ করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
 	      },
 	      error: function(response){
-	      	div.html('<textarea class="editor" name="message_text">'+tinyMCE.activeEditor.getContent()+'</textarea><button class="btn btn-sm btn-danger save_message">Update</button>');
+	      	div.hide().html('<textarea class="editor" name="message_text">'+tinyMCE.activeEditor.getContent()+'</textarea><button class="btn btn-sm btn-danger save_message">Update</button>').fadeIn('slow');
 		    setTinyMce();
     		showNotification("আপডেট করার সময় ত্রুটি!", "আপনার বার্তা আপডেট করা যাবে না! আপনার বার্তা খালি না তা নিশ্চিত করুন!", "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
 	      }
