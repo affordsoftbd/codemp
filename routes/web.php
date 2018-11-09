@@ -17,6 +17,7 @@ Route::get('/messages/message/{id}/get', 'MessageController@getMessage')->name('
 Route::resource('messages', 'MessageController');
 Route::post('/messages/subject/add', 'MessageController@addMessageSubject')->name('messages.subject.add');
 Route::put('/messages/message/{id}/update', 'MessageController@updateMessage')->name('messages.update.message');
+Route::delete('/messages/message/{id}/delete', 'MessageController@deleteMessage')->name('messages.delete.message');
 
 
 /*Authentication route*/

@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title', "নতুন বার্তা ||")
+@section('title', "বার্তা হালনাগাদ ||")
 
 @section('content')
 
 <h4 class="red-text">একটি নতুন বার্তা তৈরি করুন</h4>
 <hr>
 
-{!! Form::open(['method' => 'post', 'route' => ['messages.subject.add'], 'class'=>'md-form login-form']) !!}
+{!! Form::open(['method' => 'put', 'route' => ['messages.subject.add'], 'class'=>'md-form login-form']) !!}
     <div class="md-form">
         {!! Form::textarea('subject_text', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'subject_text')) !!}
         {!! Form::label('subject_text', 'বার্তা বিষয়') !!}
@@ -15,14 +15,8 @@
     @if ($errors->has('subject_text'))
         <p class="red-text">{{ $errors->first('subject_text') }}</p>
     @endif
-    <div class="md-form">
-        {!! Form::textarea('message_text', null, array('class'=>'editor')) !!}
-    </div>
-    @if ($errors->has('message_text'))
-        <p class="red-text">{{ $errors->first('message_text') }}</p>
-    @endif
     <div class="text-center my-4">
-        {!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+        {!! Form::button('<i class="fa fa-plus pr-2"></i>হালনাগাদ', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
     </div>
 {!! Form::close() !!}
 

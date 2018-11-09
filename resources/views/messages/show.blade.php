@@ -43,7 +43,7 @@
 				<!-- Heading-->
 				<div class="card-body">
 				  <div class="content">
-				    <div class="right-side-meta">{{ $message->created_at->format('l d F Y, h:i A') }}</div>
+				    <div class="right-side-meta">{{ $message->created_at }}</div>
 				    <img src="{{ file_exists($message->user->avatar) ? url('/').$message->user->avatar : 'http://via.placeholder.com/450' }}" class="rounded-circle avatar-img z-depth-1-half">{{ $message->user->first_name }}
 				  </div>
 				</div>
@@ -56,7 +56,7 @@
 					</div>
 					@if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
 				    <div class="message_options">
-						{!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
+						{!! Form::open(['method' => 'delete', 'route' => ['messages.delete.message', $message->id]]) !!}
 							<div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
 							  <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
 							  {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার বার্তা হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, বার্তা মুছে দিন!', 'type'=>'submit')) !!}
