@@ -18,12 +18,14 @@
 				<small class="red-text">{{ $conversation->created_at->format('l d F Y, h:i A') }}</small>
 		    </div>
 		    <div class="col-xl-5 col-lg-6 col-md-6" align="right">
-		        {!! Form::open(['route' => ['messages.destroy', $conversation->id], 'method'=>'delete']) !!}
-		            <a href="#" class="btn btn-light-green btn-sm">
-		                <i class="fa fa-edit"></i>
-		            </a>
-		            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
-		        {!! Form::close() !!}
+		        @if($conversation->author == $user->id)
+			        {!! Form::open(['route' => ['messages.destroy', $conversation->id], 'method'=>'delete']) !!}
+			            <a href="#" class="btn btn-light-green btn-sm">
+			                <i class="fa fa-edit"></i>
+			            </a>
+			            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
+			        {!! Form::close() !!}
+        		@endif
 		    </div>
 		</div>
         <hr>
@@ -48,18 +50,20 @@
 				<!-- Card content -->
 				<div class="card-body">
 				  <!-- Social meta-->
-				  <div class="social-meta" data-message-id="{{ $message->id }}">
-				    {!! $message->message_text !!}
+				  <div class="social-meta">
+				    <div class="message-div" data-message-id="{{ $message->id }}" data-url-edit="{{ route('messages.get.message', $message->id) }}" data-url-update="{{ route('messages.update.message', $message->id) }}">
+				    	{!! $message->message_text !!}
+					</div>
 					{{-- @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time()) --}}
-					    <div class="message_options">
-						    <hr>
-							{!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
-								<div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
-								  <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
-								  {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার বার্তা হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, বার্তা মুছে দিন!', 'type'=>'submit')) !!}
-								</div>
-							{!! Form::close() !!} 
-		                </div>
+				    <div class="message_options">
+					    <hr>
+						{!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
+							<div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
+							  <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
+							  {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার বার্তা হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, বার্তা মুছে দিন!', 'type'=>'submit')) !!}
+							</div>
+						{!! Form::close() !!} 
+	                </div>
 	                {{-- @endif --}}
 				  </div>
 				</div>
@@ -102,36 +106,66 @@
 
 @section('extra-script')
 
-<div>
-If no background color is set on the Element, or its background color is set to 'transparent', the default end value will be white.
-</div>
-<button class='btn'>Edit</button>
-<div>Element shortcut method for tweening the background color. Immediately transitions an Element's background color to a specified highlight color then back to its set background color.</div>
-<button class='btn'>Edit</button>
-<div>Element shortcut method which immediately transitions any single CSS property of an Element from one value to another.</div>
-<button class='btn'>Edit</button>
-
-<button class='remove'>Remove</button>
-
 <script type="text/javascript">
 
 $(document).ready(function(){
 
   	$(document).on('click', '.edit_message_button', function(){
-		var messageId = $(this).closest('div[class^="social-meta"]').data("message-id");
-		alert(messageId);
-	    $(this).closest('div[class^="social-meta"]').html("<textarea class='editor' /><button class='btn save_message'>save</button>");;
-	    setTinyMce();
-	    $(".message_options").hide();
-	    $(".add_message").hide();
+		var url = $(this).closest('div.social-meta').find('.message-div').data("url-edit");
+		var html = '<textarea class="editor" name="message_text"></textarea><button class="btn btn-sm btn-danger my-3 save_message">Update</button>';
+		var div = $(this).closest('div.social-meta').find('.message-div');
+		$.ajaxSetup({
+	      headers: {
+	        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+	      }
+	    });
+	    $.ajax({
+	      url: url,
+	      type: 'GET',
+	      dataType: 'JSON',
+	      beforeSend: function(){
+	      	div.html("<center><h1><i class='fa fa-spinner fa-spin my-5'></i></h1></center>");
+	      },
+	      success:function(response){
+		    div.html(html);
+		    setTinyMce();
+			tinyMCE.activeEditor.setContent(response);
+		    $(".message_options").hide();
+		    $(".add_message").hide();
+	      }
+	    });
   	});
 
   	$(document).on('click', '.save_message', function(){
-	    var editor = $(this).closest('div[class^="editor"]');
-	    alert(tinyMCE.activeEditor.getContent());
-	    $(this).closest('div[class^="social-meta"]').html("<button class='btn edit_message_button'>edit</button>");
-	    $(".message_options").show();
-	    $(".add_message").show();
+		var url = $(this).closest('div.social-meta').find('.message-div').data("url-update");
+		var div = $(this).closest('div.social-meta').find('.message-div');
+	    $.ajaxSetup({
+	      headers: {
+	        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+	      }
+	    });
+	    $.ajax({
+	      url: url,
+	      type: 'PUT',
+	      data: {
+	        'message_text': tinyMCE.activeEditor.getContent()
+	      },
+	      dataType: 'JSON',
+	      beforeSend: function(){
+	      	div.html("<center><h1><i class='fa fa-spinner fa-spin my-5'></i></h1></center>");
+	      },
+	      success:function(response){
+		    div.html(response);
+		    $(".message_options").show();
+		    $(".add_message").show();
+    		showNotification("সাফল্য!", "বার্তা হালনাগাদ করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
+	      },
+	      error: function(response){
+	      	div.html('<textarea class="editor" name="message_text">'+tinyMCE.activeEditor.getContent()+'</textarea><button class="btn btn-sm btn-danger save_message">Update</button>');
+		    setTinyMce();
+    		showNotification("আপডেট করার সময় ত্রুটি!", "আপনার বার্তা আপডেট করা যাবে না! আপনার বার্তা খালি না তা নিশ্চিত করুন!", "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
+	      }
+	    });
   	});
 
 });

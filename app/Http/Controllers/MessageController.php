@@ -138,6 +138,12 @@ class MessageController extends Controller
         //
     }
 
+    public function getMessage($id)
+    {
+        $message = $this->message->find($id);
+        return json_encode($message->message_text);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -148,6 +154,17 @@ class MessageController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function updateMessage(Request $request, $id)
+    {
+        $this->validate(request(),[
+            'message_text' => 'required|string|max:1000'
+        ]);
+        $input = $request->all();
+        $message = $this->message->findOrFail($id);
+        $message->update($input);
+        return json_encode($request->message_text);
     }
 
     /**
