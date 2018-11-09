@@ -56,7 +56,6 @@
 					</div>
 					@if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
 				    <div class="message_options">
-					    <hr>
 						{!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
 							<div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
 							  <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
