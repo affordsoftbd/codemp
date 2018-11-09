@@ -49,10 +49,10 @@
 @foreach($messages as $message)
 	<a href="{{ route('messages.show', $message->id) }}" target="_blank">
 	  <div class="row mb-5">
-	    <div class="col-lg-1">
-	     <img src="{{ file_exists(url('/').$message->messages->last()->user->detail->image_path) ? url('/').$message->messages->last()->user->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
+	    <div class="col-md-1">
+	     <img src="{{ file_exists(url('/').$message->messages->last()->user->detail->image_path) ? url('/').$message->messages->last()->user->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0 image-thumbnail my-3">
 	    </div>
-	    <div class="col-lg-11">
+	    <div class="col-md-11">
 	      <div class="card">
 	        <div class="card-body {{ $message->messages->last()->viewers->contains('viewer', $user->id) ? 'green'  : 'red' }} white-text">
 	          <strong>{{ $message->subject_text }}</strong>

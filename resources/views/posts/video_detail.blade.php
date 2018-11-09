@@ -7,9 +7,9 @@
 <div class="row">
     <div class="col-xl-1 col-lg-2 col-md-2 post_creator">
         @if($post->image_path!='')
-            <img src="{{ url('/').$post->image_path}}" class="img-fluid rounded-circle z-depth-1-half">
+            <img src="{{ url('/').$post->image_path}}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">
         @else
-            <img src="{{ url('/').'/img/avatar.png'}}" class="img-fluid rounded-circle z-depth-1-half">
+            <img src="{{ url('/').'/img/avatar.png'}}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">
         @endif
         
     </div>
@@ -58,9 +58,9 @@
     @foreach($post_comments as $comment)
     <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
         @if($comment->image_path!='')
-            <img src="{{ url('/').$post->image_path}}" class="rounded-circle z-depth-1-half">
+            <img src="{{ url('/').$post->image_path}}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
         @else
-            <img src="{{ url('/').'/img/avatar.png'}}" class="rounded-circle z-depth-1-half">
+            <img src="{{ url('/').'/img/avatar.png'}}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
         @endif
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10 my-3">
@@ -79,7 +79,7 @@
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য পোস্ট করুন</h4>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2">
-        <img src="{{ (Session::get('image_path')!='') ? url('/').Session::get('image_path') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 my-5">
+        <img src="{{ (Session::get('image_path')!='') ? url('/').Session::get('image_path') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10">
         <div class="alert alert-success" id="comment_success" style="display:none"></div>

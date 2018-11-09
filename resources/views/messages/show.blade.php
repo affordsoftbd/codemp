@@ -11,7 +11,7 @@
     <div class="col-lg-9 mb-4">
 		<div class="row">
 		    <div class="col-xl-1 col-lg-2 col-md-2 post_creator">
-		        <img src="{{ file_exists($conversation->subjectAuthor->detail->image_path) ? url('/').$conversation->subjectAuthor->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-1-half">		        
+		        <img src="{{ file_exists($conversation->subjectAuthor->detail->image_path) ? url('/').$conversation->subjectAuthor->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">		        
 		    </div>
 		    <div class="col-xl-6 col-lg-4 col-md-4">
 		        <h4>{{ $conversation->subject_text }}</h4>
