@@ -46,19 +46,19 @@
 				  </div>
 				</div>
 				<!-- Card content -->
-				<div class="card-body" data-message-id="{{ $message->id }}">
+				<div class="card-body">
 				  <!-- Social meta-->
-				  <div class="social-meta">
+				  <div class="social-meta" data-message-id="{{ $message->id }}">
 				    {!! $message->message_text !!}
 				    <hr>
-				    @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
+				    {{-- @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time()) --}}
                       {!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
                         <div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
-                          <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button" data-toggle="modal" data-target="#edit_message_modal" data-message-id="{{ $message->id }}"><i class="fa fa-edit"" aria-hidden="true"></i></button>
+                          <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
                           {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার বার্তা হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, বার্তা মুছে দিন!', 'type'=>'submit')) !!}
                         </div>
                       {!! Form::close() !!} 
-                    @endif
+                    {{-- @endif --}}
 				  </div>
 				</div>
 				<!-- Card content -->
@@ -92,7 +92,8 @@
         <h5>অংশগ্রাহীরা</h5><hr>
     </div>
 
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centralModalSm">
+    <!-- 
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centralModalSm">
 	  Launch demo modal
 	</button>
 	<div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -113,7 +114,8 @@
 		        </div>
 	  		</div>
 		</div>
-	</div> -->
+	</div> 
+	-->
 
 </div>
 
@@ -145,10 +147,10 @@ function divClicked() {
 }
 
 function editableTextBlurred() {
+    tinymce.remove('.editor');
     var html = $(this).val();
     var viewableText = $("<div>");
     viewableText.html(html);
-    tinymce.remove('.editor');
     $(this).replaceWith(viewableText);
     viewableText.click(divClicked);
 }
@@ -160,6 +162,17 @@ $(document).ready(function(){
   $(".remove").click(function(){
     tinymce.remove(".editor");
   });
+
+  	$(document).on('click', '.edit_message_button', function(){
+		var messageId = $(this).closest('div[class^="social-meta"]').data("message-id");
+		alert(messageId);
+	    $(this).closest('div[class^="social-meta"]').html("<textarea class='editor' /><button class='btn save_message'>save</button>");;
+	    setTinyMce();
+  	});
+
+  	$(document).on('click', '.save_message', function(){
+	    $(this).closest('div[class^="social-meta"]').html("<button class='btn edit_message_button'>edit</button>");
+  	});
 
 });
 
