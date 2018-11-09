@@ -13,11 +13,11 @@
 
 /*Message routes*/
 Route::get('/messages/administrated/', 'MessageController@administratedMessages')->name('messages.administrated');
-Route::get('/messages/message/{id}/get', 'MessageController@getMessage')->name('messages.get.message');
+Route::get('/messages/subject/{id}/edit', 'MessageController@getMessageSubject')->name('messages.subject.edit');
 Route::resource('messages', 'MessageController');
 Route::post('/messages/subject/add', 'MessageController@addMessageSubject')->name('messages.subject.add');
-Route::put('/messages/message/{id}/update', 'MessageController@updateMessage')->name('messages.update.message');
-Route::delete('/messages/message/{id}/delete', 'MessageController@deleteMessage')->name('messages.delete.message');
+Route::put('/messages/subject/{id}/update', 'MessageController@updateMessageSubject')->name('messages.subject.update');
+Route::delete('/messages/subject/{id}/delete', 'MessageController@deleteMessageSubject')->name('messages.subject.delete');
 
 
 /*Authentication route*/

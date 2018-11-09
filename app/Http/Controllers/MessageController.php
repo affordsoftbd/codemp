@@ -135,13 +135,15 @@ class MessageController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
-
-    public function getMessage($id)
-    {
         $message = $this->message->find($id);
         return json_encode($message->message_text);
+    }
+
+    public function getMessageSubject($id)
+    {
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        $subject = $this->messageSubject->findOrFail($id);
+        return view('messages.edit', compact('subject', 'user'));
     }
 
     /**
@@ -153,11 +155,6 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
-
-    public function updateMessage(Request $request, $id)
-    {
         $this->validate(request(),[
             'message_text' => 'required|string|max:1000'
         ]);
@@ -165,6 +162,17 @@ class MessageController extends Controller
         $message = $this->message->findOrFail($id);
         $message->update($input);
         return json_encode($request->message_text);
+    }
+
+    public function updateMessageSubject(Request $request, $id)
+    {
+        $this->validate(request(),[
+            'subject_text' => 'required|string|max:500'
+        ]);
+        $input = $request->all();
+        $subject = $this->messageSubject->findOrFail($id);
+        $subject->update($input);
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'বার্তা বিষয় হালনাগাদ করা হয়েছে!'));
     }
 
     /**
@@ -175,15 +183,15 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $messageSubject = $this->messageSubject->findOrFail($id);
-        $messageSubject->delete();
-        return redirect()->route('messages.index')->with('success', array('সাফল্য'=>'বার্তা মুছে ফেলা হয়েছে!'));
-    }
-
-    public function deleteMessage($id)
-    {
         $message = $this->message->findOrFail($id);
         $message->delete();
         return redirect()->route('messages.show', $message->message_subject->id)->with('success', array('সাফল্য'=>'বার্তা মুছে ফেলা হয়েছে!'));
+    }
+
+    public function deleteMessageSubject($id)
+    {
+        $messageSubject = $this->messageSubject->findOrFail($id);
+        $messageSubject->delete();
+        return redirect()->route('messages.index')->with('success', array('সাফল্য'=>'বার্তা মুছে ফেলা হয়েছে!'));
     }
 }

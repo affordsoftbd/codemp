@@ -18,23 +18,23 @@
 				<small class="red-text">{{ $conversation->created_at->format('l d F Y, h:i A') }}</small>
 		    </div>
 		    <div class="col-xl-5 col-lg-6 col-md-6" align="right">
-		        @if($conversation->author == $user->id)
-			        {!! Form::open(['route' => ['messages.destroy', $conversation->id], 'method'=>'delete']) !!}
-			            <a href="#" class="btn btn-light-green btn-sm">
+		        @if($conversation->author == $user->id && (strtotime($conversation->created_at) + 3600) > time())
+			        {!! Form::open(['route' => ['messages.subject.delete', $conversation->id], 'method'=>'delete']) !!}
+			            <a href="{{ route('messages.subject.edit', $conversation->id) }}" class="btn btn-light-green btn-sm">
 			                <i class="fa fa-edit"></i>
 			            </a>
 			            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
 			        {!! Form::close() !!}
-        		@endif
+        		@endIf
 		    </div>
 		</div>
         <hr>
         <!-- Pagination -->
         <nav aria-label="Page navigation example">
             <ul class="pagination pg-blue justify-content-end">
-              <ul class="pagination pg-blue">
-                  {{ $messages->links() }}                 
-              </ul>
+				<ul class="pagination pg-blue">
+				  {{ $messages->links() }}                 
+				</ul>
             </ul>
         </nav>
         @foreach($messages->reverse() as $message)
@@ -51,19 +51,20 @@
 				<div class="card-body">
 				  <!-- Social meta-->
 				  <div class="social-meta">
-				    <div class="message-div" data-message-id="{{ $message->id }}" data-url-edit="{{ route('messages.get.message', $message->id) }}" data-url-update="{{ route('messages.update.message', $message->id) }}">
+				    <div class="message-div" data-message-id="{{ $message->id }}" data-url-edit="{{ route('messages.edit', $message->id) }}" data-url-update="{{ route('messages.update', $message->id) }}">
 				    	{!! $message->message_text !!}
 					</div>
 					@if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
+				    <div class="clearfix"></div>
 				    <div class="message_options">
-						{!! Form::open(['method' => 'delete', 'route' => ['messages.delete.message', $message->id]]) !!}
+						{!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
 							<div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
 							  <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
 							  {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার বার্তা হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, বার্তা মুছে দিন!', 'type'=>'submit')) !!}
 							</div>
 						{!! Form::close() !!} 
 	                </div>
-	                @endif
+	                @endIf
 				  </div>
 				</div>
 				<!-- Card content -->
@@ -78,7 +79,7 @@
 			        <p class="font-weight-bold my-3">বার্তা যুক্ত করুন</p>
 			        @if ($errors->has('message_text'))
 			          <p class="red-text">{{ $errors->first('message_text') }}</p>
-			        @endif
+			        @endIf
 			        <!-- Material Editor -->
 			        <div class="md-form">
 			          {!! Form::textarea('message_text', null, array('class'=>'editor')) !!}
@@ -88,10 +89,7 @@
 			        </div>
 			    {!! Form::close() !!} 
 		    </div> 
-        @endif
-
-
-
+        @endIf
     </div>
 
     <!-- Participants -->
@@ -159,7 +157,7 @@ $(document).ready(function(){
     		showNotification("সাফল্য!", "বার্তা হালনাগাদ করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
 	      },
 	      error: function(response){
-	      	div.hide().html('<textarea class="editor" name="message_text">'+tinyMCE.activeEditor.getContent()+'</textarea><button class="btn btn-sm btn-danger save_message">Update</button>').fadeIn('slow');
+	      	div.hide().html('<textarea class="editor" name="message_text">'+tinyMCE.activeEditor.getContent()+'</textarea><button class="btn btn-sm btn-danger save_message"><i class="fa fa-check pr-2"></i>হালনাগাদ</button>').fadeIn('slow');
 		    setTinyMce();
     		showNotification("আপডেট করার সময় ত্রুটি!", "আপনার বার্তা আপডেট করা যাবে না! আপনার বার্তা খালি না তা নিশ্চিত করুন!", "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
 	      }
