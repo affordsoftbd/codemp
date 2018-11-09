@@ -50,15 +50,17 @@
 				  <!-- Social meta-->
 				  <div class="social-meta" data-message-id="{{ $message->id }}">
 				    {!! $message->message_text !!}
-				    <hr>
-				    {{-- @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time()) --}}
-                      {!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
-                        <div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
-                          <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
-                          {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার বার্তা হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, বার্তা মুছে দিন!', 'type'=>'submit')) !!}
-                        </div>
-                      {!! Form::close() !!} 
-                    {{-- @endif --}}
+					{{-- @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time()) --}}
+					    <div class="message_options">
+						    <hr>
+							{!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
+								<div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
+								  <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_message_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
+								  {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার বার্তা হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, বার্তা মুছে দিন!', 'type'=>'submit')) !!}
+								</div>
+							{!! Form::close() !!} 
+		                </div>
+	                {{-- @endif --}}
 				  </div>
 				</div>
 				<!-- Card content -->
@@ -66,21 +68,23 @@
 			<!-- Card -->
         @endforeach
         @if($messages->isEmpty() || $messages->onFirstPage() && $messages->isNotEmpty() && $messages->first()->user->id != $user->id)
-	        {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
-		        {!! Form::hidden('user_id', $user->id) !!}
-		        {!! Form::hidden('message_subject_id', $conversation->id) !!}
-		        <p class="font-weight-bold my-3">বার্তা যুক্ত করুন</p>
-		        @if ($errors->has('message_text'))
-		          <p class="red-text">{{ $errors->first('message_text') }}</p>
-		        @endif
-		        <!-- Material Editor -->
-		        <div class="md-form">
-		          {!! Form::textarea('message_text', null, array('class'=>'editor')) !!}
-		        </div>
-		        <div class="text-center my-4">
-		        	{!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
-		        </div>
-		    {!! Form::close() !!}  
+	        <div class="add_message">
+		        {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
+			        {!! Form::hidden('user_id', $user->id) !!}
+			        {!! Form::hidden('message_subject_id', $conversation->id) !!}
+			        <p class="font-weight-bold my-3">বার্তা যুক্ত করুন</p>
+			        @if ($errors->has('message_text'))
+			          <p class="red-text">{{ $errors->first('message_text') }}</p>
+			        @endif
+			        <!-- Material Editor -->
+			        <div class="md-form">
+			          {!! Form::textarea('message_text', null, array('class'=>'editor')) !!}
+			        </div>
+			        <div class="text-center my-4">
+			        	{!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+			        </div>
+			    {!! Form::close() !!} 
+		    </div> 
         @endif
 
 
@@ -136,42 +140,23 @@ If no background color is set on the Element, or its background color is set to 
 
 <script type="text/javascript">
 
-function divClicked() {
-    var divHtml = $(this).prev('div').html();
-    var editableText = $("<textarea class='editor' />");
-    editableText.val(divHtml);
-    $(this).prev('div').replaceWith(editableText);
-    setTinyMce();
-    editableText.focus();
-    editableText.blur(editableTextBlurred);
-}
-
-function editableTextBlurred() {
-    tinymce.remove('.editor');
-    var html = $(this).val();
-    var viewableText = $("<div>");
-    viewableText.html(html);
-    $(this).replaceWith(viewableText);
-    viewableText.click(divClicked);
-}
-
 $(document).ready(function(){
-
-  $(".btn").click(divClicked);
-
-  $(".remove").click(function(){
-    tinymce.remove(".editor");
-  });
 
   	$(document).on('click', '.edit_message_button', function(){
 		var messageId = $(this).closest('div[class^="social-meta"]').data("message-id");
 		alert(messageId);
 	    $(this).closest('div[class^="social-meta"]').html("<textarea class='editor' /><button class='btn save_message'>save</button>");;
 	    setTinyMce();
+	    $(".message_options").hide();
+	    $(".add_message").hide();
   	});
 
   	$(document).on('click', '.save_message', function(){
+	    var editor = $(this).closest('div[class^="editor"]');
+	    alert(tinyMCE.activeEditor.getContent());
 	    $(this).closest('div[class^="social-meta"]').html("<button class='btn edit_message_button'>edit</button>");
+	    $(".message_options").show();
+	    $(".add_message").show();
   	});
 
 });
