@@ -31,6 +31,41 @@ $(document).ready(function(){
 
   setTinyMce();
 
+   // Get number of new messages
+
+  numberOfNewMessages();
+
+    // Dropdown for new messages
+
+  $('#messages_navigation_menu').on('show.bs.dropdown', function () {
+    $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+      }
+    });
+    $.ajax({
+      url: $("#all_new_messages").data('url'),
+      type: 'GET',
+      dataType: 'JSON',
+      beforeSend: function(){
+        $("#all_new_messages").empty().append('<div class="text-center my-5"><i class="fa fa-spinner fa-spin"></i></div>');
+      },
+      success:function(response){
+        $("#all_new_messages").empty();
+        $("#new_messages_number").empty().append(response.length);
+        if(response.length > 0){
+          redirect = $("#all_new_messages").data('url');
+          for(var i = 0; i<response.length; i++){
+            $("#all_new_messages").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="'+redirect+'/'+response[i]['subject_id']+'"><img class="rounded-circle" src="'+response[i]['image']+'" width="60" alt="Generic placeholder image"></a><a class="media-body" href="'+redirect+'/'+response[i]['subject_id']+'" target="_blank"><h6 class="media-heading font-weight-bold green-text">'+response[i]['user']+'</h6><small>'+response[i]['date']+'</small><p>'+response[i]['message']+'</p></a></div><div class="dropdown-divider"></div>');
+          }
+        }
+        else{
+          $("#all_new_messages").empty().append('<div class="text-center my-5"><h5 class="font-weight-bold red-text">No New Message Found!</h5></div>');
+        }
+      }
+    });
+  })
+
     // Set Lightslider
 
   $('.lightSlider').each(function (index) {
@@ -166,6 +201,27 @@ $(document).ready(function(){
 /*==================== end of document ready functions  ====================*/
 
 /*==================== start of individual functions  ====================*/
+
+// Function for getting new messages number
+
+function numberOfNewMessages() {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+    }
+  });
+  $.ajax({
+    url: $("#new_messages_number").data('url'),
+    type: 'GET',
+    dataType: 'JSON',
+    beforeSend: function(){
+      $("#new_messages_number").empty().append('<i class="fa fa-spinner fa-spin"></i>');
+    },
+    success:function(response){
+      $("#new_messages_number").empty().append(response.length);
+    }
+  });
+}
 
 // Function for showing image preview
 

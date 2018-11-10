@@ -12,6 +12,7 @@
 */
 
 /*Message routes*/
+Route::get('/messages/new', 'MessageController@newMessages')->name('messages.new');
 Route::get('/messages/administrated/', 'MessageController@administratedMessages')->name('messages.administrated');
 Route::get('/messages/subject/{id}/edit', 'MessageController@getMessageSubject')->name('messages.subject.edit');
 Route::get('/messages/subject/{id}/receipent/{receipent}/add', 'MessageController@addReceipent');

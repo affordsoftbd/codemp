@@ -4,6 +4,7 @@
 
 @section('extra-css')
 <style type="text/css">
+
 .jquery_dropdown_result {
   position: absolute;
   z-index: 1050;
@@ -11,6 +12,7 @@
   overflow: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
+
 </style>
 @endsection
 

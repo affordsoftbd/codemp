@@ -46,14 +46,14 @@
             </li> 
             <li class="nav-item dropdown" id="messages_navigation_menu">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span id="new_messages_number">0</span>
+                    <span id="new_messages_number" data-url="{{ route('messages.new') }}">0</span>
                     <i class="fa fa-envelope"></i>
                 </a>
                 <!-- Messages Dropdown -->
                 <div class="dropdown-menu dropdown-wide dropdown-success">
                   <p class="text-center h6">বার্তা</p>
                   <div class="dropdown-divider"></div>
-                  <div id="all_new_messages">{{ print_r(session()->all()) }}</div>
+                  <div id="all_new_messages" data-url="{{ route('messages.new') }}"></div>
                   <a class="dropdown-item" href="{{ route('messages.index') }}">সব বার্তা প্রদর্শন করতে এখানে ক্লিক করুন</a>
                 </div>
             </li>

@@ -95,16 +95,6 @@ class MessageController extends Controller
         return redirect()->route('messages.show', $messageSubject->id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
 
-    private function getReceipents($id)
-    {
-        $allParticipants = array();
-        $subject = $this->messageSubject->findOrFail($id);
-        foreach($subject->receipents as $receipent){ 
-            array_push($allParticipants, $receipent->id);
-        }
-        return $allParticipants;
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -176,6 +166,42 @@ class MessageController extends Controller
         $user = $this->user->find(\Request::session()->get('user_id'));
         $subject = $this->messageSubject->findOrFail($id);
         return view('messages.edit', compact('subject', 'user'));
+    }
+
+    public function newMessages()
+    {
+        $unreadMessages = array();
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        foreach($user->participating as $subject){
+            $message = $this->message->where('message_subject_id','=', $subject->id)->orderBy('created_at', 'DESC')->first();
+            if((isset($message) && count($message->viewers) == 0) || (isset($message) && count($message->viewers) > 0 && !$message->viewers->contains('viewer', $user->id))){
+                $unreadMessages[] = array(
+                    'user'=>$message->user->first_name.' '.$message->user->last_name, 
+                    'image'=> !empty($message->user->detail->image_path) ? url('/').$message->user->detail->image_path : 'http://via.placeholder.com/450', 
+                    'subject_id'=>$message->message_subject->id, 
+                    'message'=>strip_tags(substr($message->message_text,0,20))."...", 
+                    'date'=>date('l d F Y, h:i A', strtotime($message->created_at))
+                );
+            }
+        }
+
+        if(count($unreadMessages) > 0){
+            $unreadMessages = array_values(array_sort($unreadMessages, function ($value) {
+                return $value['date'];
+            }));            
+        }
+
+        return json_encode(array_reverse($unreadMessages));
+    }
+
+    private function getReceipents($id)
+    {
+        $allParticipants = array();
+        $subject = $this->messageSubject->findOrFail($id);
+        foreach($subject->receipents as $receipent){ 
+            array_push($allParticipants, $receipent->id);
+        }
+        return $allParticipants;
     }
 
     public function getUserList(Request $request, $id)
