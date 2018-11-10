@@ -8,7 +8,7 @@
 <div class="row">
 
     <!-- Messages -->
-    <div class="col-lg-9 mb-4">
+    <div class="col-lg-8 mb-4">
 		<div class="row">
 		    <div class="col-xl-1 col-lg-2 col-md-2 post_creator">
 		        <img src="{{ file_exists($conversation->subjectAuthor->detail->image_path) ? url('/').$conversation->subjectAuthor->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">		        
@@ -18,14 +18,20 @@
 				<small class="red-text">{{ $conversation->created_at->format('l d F Y, h:i A') }}</small>
 		    </div>
 		    <div class="col-xl-5 col-lg-6 col-md-6" align="right">
-                <a class="btn btn-green btn-sm" href="{{ route('messages.show', $conversation->id) }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i>বার্তা রিফ্রেশ করুন</a>
+                <a class="btn btn-green btn-sm" href="{{ route('messages.show', $conversation->id) }}">
+                	<i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i>বার্তা রিফ্রেশ করুন
+                </a>
 		        @if($conversation->author == $user->id && (strtotime($conversation->created_at) + 3600) > time())
 			        {!! Form::open(['route' => ['messages.subject.delete', $conversation->id], 'method'=>'delete']) !!}
-			            <a href="{{ route('messages.subject.edit', $conversation->id) }}" class="btn btn-deep-orange btn-sm">
+			            <a href="{{ route('messages.subject.edit', $conversation->id) }}" class="btn btn-light-green btn-sm">
 			                <i class="fa fa-edit"></i>
 			            </a>
-			            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
+			            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
 			        {!! Form::close() !!}
+			    @elseIf($conversation->author != $user->id)
+			    	{!! Form::open(['method'=>'delete']) !!}
+			            {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>কথোপকথন অগ্রাহ্য করুন', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই কথোপকথন দেখতে পারবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
+			        {!! Form::close() !!}   
         		@endIf
 		    </div>
 		</div>
@@ -94,11 +100,29 @@
     </div>
 
     <!-- Participants -->
-    <div class="col-lg-3 mb-4">
+    <div class="col-lg-4 mb-4">
         <h5>অংশগ্রাহীরা</h5>
         <small class="red-text">মোট {{ count($conversation->receipents) }}</small>
         <hr>
         <button class="btn btn-sm btn-dark-green"><i class="fa fa-check pr-2"></i>আপনার সমস্ত অনুসরণকারীদের যোগ করুন</button>
+        @foreach($conversation->receipents as $receipent)
+	        @if($conversation->author == $user->id && $receipent->id != $conversation->author)
+		        <div class="row mt-3">
+		        	<div class="col-8">
+				        <div class="chip mt-2">
+				          <img src="{{ $receipent->detail->image_path }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
+				        </div>
+		        	</div>
+		        	<div class="col-4">
+				        @if($conversation->author == $user->id)
+				        	{!! Form::open(['method'=>'delete']) !!}
+					            {!! Form::button('<i class="fa fa-trash fa-sm" aria-hidden="true"></i>', array('class' => 'btn btn-sm btn-danger form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই প্রাপক মুছে ফেলা হবে!', 'confirmButtonText'=>'হ্যাঁ, আমি নিশ্চিত!', 'type'=>'submit')) !!}
+					        {!! Form::close() !!}  
+			        	@endIf
+		        	</div>
+		        </div>
+        	@endIf
+        @endforeach
     </div>
 
 </div>
