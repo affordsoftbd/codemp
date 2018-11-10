@@ -52,19 +52,17 @@ Route::post('/new_request_ajax', 'HomeController@newRequestsAjax')->name('new_re
 Route::get('/followers', 'HomeController@followers')->name('followers');
 Route::post('/remove_follower', 'HomeController@removeFollowers')->name('remove_follower');
 Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
+
+Route::get('group', 'GroupController@index')->name('group');
+
 Route::post('/save_news_comment', 'HomeController@saveNewsComment')->name('save_news_comment');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');
 Route::get('public_profile', 'HomeController@publicProfile');
 Route::post('/follow_leader', 'HomeController@followLeader')->name('follow_leader');
 Route::post('/un_follow_leader', 'HomeController@unFollowLeader')->name('un_follow_leader');
-Route::get('/{username}', 'HomeController@profilePosts')->name('profile');
-Route::get('/{username}/posts', 'HomeController@profilePosts')->name('profile.posts');
+
 Route::post('get_user_post_ajax/{id}', 'PostController@getUserPostAjax');
-Route::get('/{username}/albums', 'HomeController@profileAlbums')->name('profile.albums');
-Route::get('/{username}/videos', 'HomeController@profileVideos')->name('profile.videos');
-Route::get('/{username}/update', 'HomeController@editProfile')->name('profile.edit');
-Route::get('/{username}/update/politican', 'HomeController@editPoloticanProfile')->name('profile.edit.politican');
-Route::get('/{username}/update/password', 'HomeController@editProfilePassword')->name('profile.edit.password');
+
 Route::post('/save_user_profile', 'UserController@saveProfile');
 Route::post('/update_user_password', 'UserController@updatePassword');
 Route::put('/update_profile_image/{id}', 'UserController@updateProfileImage')->name('profile.update.image');
@@ -95,3 +93,12 @@ Route::post('thana_by_district', 'CommonController@getThanaByDistrict');
 Route::post('zip_by_thana', 'CommonController@getZipByThana');
 
 Route::post('error_404', 'CommonController@error404');
+
+
+Route::get('/{username}', 'HomeController@profilePosts')->name('profile');
+Route::get('/{username}/posts', 'HomeController@profilePosts')->name('profile.posts');
+Route::get('/{username}/albums', 'HomeController@profileAlbums')->name('profile.albums');
+Route::get('/{username}/videos', 'HomeController@profileVideos')->name('profile.videos');
+Route::get('/{username}/update', 'HomeController@editProfile')->name('profile.edit');
+Route::get('/{username}/update/politican', 'HomeController@editPoloticanProfile')->name('profile.edit.politican');
+Route::get('/{username}/update/password', 'HomeController@editProfilePassword')->name('profile.edit.password');
