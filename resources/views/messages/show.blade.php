@@ -18,12 +18,13 @@
 				<small class="red-text">{{ $conversation->created_at->format('l d F Y, h:i A') }}</small>
 		    </div>
 		    <div class="col-xl-5 col-lg-6 col-md-6" align="right">
+                <a class="btn btn-green btn-sm" href="{{ route('messages.show', $conversation->id) }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i>বার্তা রিফ্রেশ করুন</a>
 		        @if($conversation->author == $user->id && (strtotime($conversation->created_at) + 3600) > time())
 			        {!! Form::open(['route' => ['messages.subject.delete', $conversation->id], 'method'=>'delete']) !!}
-			            <a href="{{ route('messages.subject.edit', $conversation->id) }}" class="btn btn-light-green btn-sm">
+			            <a href="{{ route('messages.subject.edit', $conversation->id) }}" class="btn btn-deep-orange btn-sm">
 			                <i class="fa fa-edit"></i>
 			            </a>
-			            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
+			            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
 			        {!! Form::close() !!}
         		@endIf
 		    </div>
@@ -94,7 +95,10 @@
 
     <!-- Participants -->
     <div class="col-lg-3 mb-4">
-        <h5>অংশগ্রাহীরা</h5><hr>
+        <h5>অংশগ্রাহীরা</h5>
+        <small class="red-text">মোট {{ count($conversation->receipents) }}</small>
+        <hr>
+        <button class="btn btn-sm btn-dark-green"><i class="fa fa-check pr-2"></i>আপনার সমস্ত অনুসরণকারীদের যোগ করুন</button>
     </div>
 
 </div>
@@ -124,7 +128,7 @@ $(document).ready(function(){
 	      	div.html("<center><h1><i class='fa fa-spinner fa-spin my-5'></i></h1></center>");
 	      },
 	      success:function(response){
-		    div.hide().html('<textarea class="editor" name="message_text">'+response+'</textarea><button class="btn btn-sm btn-danger my-3 save_message">Update</button>').fadeIn('slow');
+		    div.hide().html('<textarea class="editor" name="message_text">'+response+'</textarea><button class="btn btn-sm btn-danger my-3 save_message"><i class="fa fa-check pr-2"></i>হালনাগাদ</button>').fadeIn('slow');
 		    setTinyMce();
 		    $(".message_options").hide();
 		    $(".add_message").hide();
