@@ -14,8 +14,11 @@
 /*Message routes*/
 Route::get('/messages/administrated/', 'MessageController@administratedMessages')->name('messages.administrated');
 Route::get('/messages/subject/{id}/edit', 'MessageController@getMessageSubject')->name('messages.subject.edit');
+Route::get('/messages/subject/{id}/receipent/{receipent}/add', 'MessageController@addReceipent');
+Route::get('/messages/subject/{id}/add/followers', 'MessageController@addFollowers')->name('messages.add.followers');
 Route::resource('messages', 'MessageController');
-Route::post('/messages/subject/add', 'MessageController@addMessageSubject')->name('messages.subject.add');
+Route::post('/messages/subject/{id}/getUserList', 'MessageController@getUserList')->name('messages.user.list');
+Route::delete('/messages/{id}/receipent/{receipent}/remove', 'MessageController@removeReceipent')->name('messages.receipent.remove');
 Route::put('/messages/subject/{id}/update', 'MessageController@updateMessageSubject')->name('messages.subject.update');
 Route::delete('/messages/subject/{id}/delete', 'MessageController@deleteMessageSubject')->name('messages.subject.delete');
 

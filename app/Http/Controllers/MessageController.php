@@ -21,7 +21,7 @@ class MessageController extends Controller
     {
         $this->middleware('message.participant')->only('show');
         $this->middleware('message.owner')->only('edit');
-        $this->middleware('subject.author')->only('getMessageSubject');
+        $this->middleware('subject.author')->only('getMessageSubject', 'addReceipent', 'addFollowers');
         $this->message = $message;
         $this->messageSubject = $messageSubject;
         $this->messageReceipent = $messageReceipent;
@@ -95,6 +95,16 @@ class MessageController extends Controller
         return redirect()->route('messages.show', $messageSubject->id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
 
+    private function getReceipents($id)
+    {
+        $allParticipants = array();
+        $subject = $this->messageSubject->findOrFail($id);
+        foreach($subject->receipents as $receipent){ 
+            array_push($allParticipants, $receipent->id);
+        }
+        return $allParticipants;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -110,6 +120,26 @@ class MessageController extends Controller
         $this->message->create($input);
         $this->saveViewer($this->message->orderBy('created_at', 'DESC')->first()->id, $request->session()->get('user_id'));
         return redirect()->route('messages.show', $request->message_subject_id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
+    }
+
+    public function addReceipent($id, $receipent)
+    {
+        $user = $this->user->findOrFail($receipent);
+        $user->participating()->attach($id);
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'প্রাপক যোগ করা হয়েছে!'));
+    }
+
+    public function addFollowers($id)
+    {
+        $allReceipents = $this->getReceipents($id);
+
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        foreach ($user->followers as $follower) {
+            if(!in_array($follower->user->id, $allReceipents)){
+                $follower->user->participating()->attach($id);
+            }
+        }
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'আপনার অনুগামীদের যোগ করা হয়েছে!'));
     }
 
     /**
@@ -148,6 +178,28 @@ class MessageController extends Controller
         return view('messages.edit', compact('subject', 'user'));
     }
 
+    public function getUserList(Request $request, $id)
+    {
+
+        $usersList = $this->user->whereNotIn('id', $this->getReceipents($id))
+                            ->where(function ($query) use ($request) {
+                                $query
+                                    ->where('username', $request->user)
+                                    ->orWhere('email', $request->user)
+                                    ->orWhere('first_name', 'LIKE', '%' . $request->user . '%')
+                                    ->orWhere('last_name', 'LIKE', '%' . $request->user . '%');
+                            })
+                            ->take(30)->get();
+        if(count($usersList) > 0){
+            $list = array();
+            foreach($usersList as $user){
+                $list[] = array('message_subject_id'=>$id, 'user_id'=>$user->id, 'name'=> $user->first_name.' '.$user->last_name, 'image'=> !empty($user->detail->image_path) ? url('/').$user->detail->image_path : 'http://via.placeholder.com/450');
+            }
+            return json_encode($list);
+        }
+
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -183,6 +235,13 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function removeReceipent($id, $receipent)
+    {
+        $user = $this->user->findOrFail($receipent);
+        $user->participating()->detach($id);
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'প্রাপক অপসারণ করা হয়েছে!'));
+    }
+
     public function destroy($id)
     {
         $message = $this->message->findOrFail($id);
