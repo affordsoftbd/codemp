@@ -104,7 +104,12 @@
         <h5>অংশগ্রাহীরা</h5>
         <small class="red-text">মোট {{ count($conversation->receipents) }}</small>
         <hr>
-        <button class="btn btn-sm btn-dark-green"><i class="fa fa-check pr-2"></i>আপনার সমস্ত অনুসরণকারীদের যোগ করুন</button>
+        <div class="md-form">
+            <i class="fa fa-plus prefix grey-text"></i>
+            <input type="text" class="form-control" id="add_participant">
+            <label for="add_participant">আরো প্রাপক যোগ করুন</label>
+        </div>
+        <button class="btn btn-sm btn-dark-green my-3"><i class="fa fa-check pr-2"></i>আপনার সমস্ত অনুসরণকারীদের যোগ করুন</button>
         @foreach($conversation->receipents as $receipent)
 	        @if($conversation->author == $user->id && $receipent->id != $conversation->author)
 		        <div class="row mt-3">
@@ -114,12 +119,14 @@
 				        </div>
 		        	</div>
 		        	<div class="col-4">
-				        @if($conversation->author == $user->id)
-				        	{!! Form::open(['method'=>'delete']) !!}
-					            {!! Form::button('<i class="fa fa-trash fa-sm" aria-hidden="true"></i>', array('class' => 'btn btn-sm btn-danger form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই প্রাপক মুছে ফেলা হবে!', 'confirmButtonText'=>'হ্যাঁ, আমি নিশ্চিত!', 'type'=>'submit')) !!}
-					        {!! Form::close() !!}  
-			        	@endIf
+			        	{!! Form::open(['method'=>'delete']) !!}
+				            {!! Form::button('<i class="fa fa-trash fa-sm" aria-hidden="true"></i>', array('class' => 'btn btn-sm btn-danger form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই প্রাপক মুছে ফেলা হবে!', 'confirmButtonText'=>'হ্যাঁ, আমি নিশ্চিত!', 'type'=>'submit')) !!}
+				        {!! Form::close() !!}  
 		        	</div>
+		        </div>
+		    @else
+		        <div class="chip mt-3">
+		        	<img src="{{ $receipent->detail->image_path }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
 		        </div>
         	@endIf
         @endforeach
