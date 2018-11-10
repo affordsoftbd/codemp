@@ -21,7 +21,7 @@ class MessageController extends Controller
     {
         $this->middleware('message.participant')->only('show');
         $this->middleware('message.owner')->only('edit');
-        $this->middleware('subject.author')->only('getMessageSubject', 'addReceipent');
+        $this->middleware('subject.author')->only('getMessageSubject', 'addReceipent', 'addFollowers');
         $this->message = $message;
         $this->messageSubject = $messageSubject;
         $this->messageReceipent = $messageReceipent;
@@ -95,6 +95,16 @@ class MessageController extends Controller
         return redirect()->route('messages.show', $messageSubject->id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
 
+    private function getReceipents($id)
+    {
+        $allParticipants = array();
+        $subject = $this->messageSubject->findOrFail($id);
+        foreach($subject->receipents as $receipent){ 
+            array_push($allParticipants, $receipent->id);
+        }
+        return $allParticipants;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -117,6 +127,19 @@ class MessageController extends Controller
         $user = $this->user->findOrFail($receipent);
         $user->participating()->attach($id);
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'প্রাপক যোগ করা হয়েছে!'));
+    }
+
+    public function addFollowers($id)
+    {
+        $allReceipents = $this->getReceipents($id);
+
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        foreach ($user->followers as $follower) {
+            if(!in_array($follower->user->id, $allReceipents)){
+                $follower->user->participating()->attach($id);
+            }
+        }
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'আপনার অনুগামীদের যোগ করা হয়েছে!'));
     }
 
     /**
@@ -157,15 +180,8 @@ class MessageController extends Controller
 
     public function getUserList(Request $request, $id)
     {
-        $allParticipants = array();
 
-        $subject = $this->messageSubject->findOrFail($id);
-
-        foreach($subject->receipents as $receipent){ 
-            array_push($allParticipants, $receipent->id);
-        }
-
-        $usersList = $this->user->whereNotIn('id', $allParticipants)
+        $usersList = $this->user->whereNotIn('id', $this->getReceipents($id))
                             ->where(function ($query) use ($request) {
                                 $query
                                     ->where('username', $request->user)

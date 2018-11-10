@@ -136,7 +136,7 @@
             <label for="add_participant">আরো প্রাপক যোগ করুন</label>
         </div>
         <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
-        <button class="btn btn-sm btn-dark-green my-3"><i class="fa fa-check pr-2"></i>আপনার সমস্ত অনুসরণকারীদের যোগ করুন</button>
+        <a class="btn btn-sm btn-dark-green my-3" href="{{ route('messages.add.followers', $conversation->id) }}"><i class="fa fa-check pr-2"></i>আপনার সমস্ত অনুসরণকারীদের যোগ করুন</a>
         @foreach($conversation->receipents as $receipent)
 	        @if($conversation->author == $user->id && $receipent->id != $conversation->author)
 		        <div class="row mt-3">
@@ -175,15 +175,15 @@
           <div class="modal-body">
             <ul class="list-group">
                 <ul class="list-group list-group-flush">
-                    @foreach($messages->first()->viewers as $viewer)
-                      <li class="list-group-item">
-                        <div class="chip">
-                          <img src="{{ !empty($viewer->user->detail->image_path) ? url('/').$viewer->user->detail->image_path : 'http://via.placeholder.com/450' }}" alt="{{ $viewer->user->first_name.' '.$viewer->user->last_name }}"> 
-                          {{ $viewer->user->first_name.' '.$viewer->user->last_name }}
-                        </div>
-                        <small class="grey-text pull-right">{{ $viewer->created_at->format('l d F Y, h:i A') }}</small>
-                      </li>
-                    @endforeach
+                @foreach($messages->first()->viewers as $viewer)
+					<li class="list-group-item">
+						<div class="chip">
+						  <img src="{{ !empty($viewer->user->detail->image_path) ? url('/').$viewer->user->detail->image_path : 'http://via.placeholder.com/450' }}" alt="{{ $viewer->user->first_name.' '.$viewer->user->last_name }}"> 
+						  {{ $viewer->user->first_name.' '.$viewer->user->last_name }}
+						</div>
+						<small class="grey-text pull-right">{{ $viewer->created_at->format('l d F Y, h:i A') }}</small>
+					</li>
+                @endforeach
                 </ul>
             </ul>
           </div>
