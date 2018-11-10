@@ -115,11 +115,11 @@
 		        <div class="row mt-3">
 		        	<div class="col-8">
 				        <div class="chip mt-2">
-				          <img src="{{ $receipent->detail->image_path }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
+				          <img src="{{ file_exists($receipent->detail->image_path) ? url('/').$receipent->detail->image_path : 'http://via.placeholder.com/450' }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
 				        </div>
 		        	</div>
 		        	<div class="col-4">
-			        	{!! Form::open(['method'=>'delete']) !!}
+			        	{!! Form::open(['route' => ['messages.receipent.remove', $conversation->id, $receipent->id], 'method'=>'delete']) !!}
 				            {!! Form::button('<i class="fa fa-trash fa-sm" aria-hidden="true"></i>', array('class' => 'btn btn-sm btn-danger form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই প্রাপক মুছে ফেলা হবে!', 'confirmButtonText'=>'হ্যাঁ, আমি নিশ্চিত!', 'type'=>'submit')) !!}
 				        {!! Form::close() !!}  
 		        	</div>
