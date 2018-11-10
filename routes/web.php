@@ -14,8 +14,7 @@
 /*Message routes*/
 Route::get('/messages/administrated/', 'MessageController@administratedMessages')->name('messages.administrated');
 Route::get('/messages/subject/{id}/edit', 'MessageController@getMessageSubject')->name('messages.subject.edit');
-Route::get('/messages/subject/{id}/receipent/{receipent}/add', 'MessageController@addReceipent')->name('messages.receipent.add');
-Route::get('/messages/{id}/getUserList', 'MessageController@getUserList');
+Route::get('/messages/subject/{id}/receipent/{receipent}/add', 'MessageController@addReceipent');
 Route::resource('messages', 'MessageController');
 Route::post('/messages/subject/{id}/getUserList', 'MessageController@getUserList')->name('messages.user.list');
 Route::delete('/messages/{id}/receipent/{receipent}/remove', 'MessageController@removeReceipent')->name('messages.receipent.remove');

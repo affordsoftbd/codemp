@@ -21,7 +21,7 @@ class MessageController extends Controller
     {
         $this->middleware('message.participant')->only('show');
         $this->middleware('message.owner')->only('edit');
-        $this->middleware('subject.author')->only('getMessageSubject');
+        $this->middleware('subject.author')->only('getMessageSubject', 'addReceipent');
         $this->message = $message;
         $this->messageSubject = $messageSubject;
         $this->messageReceipent = $messageReceipent;
@@ -114,7 +114,9 @@ class MessageController extends Controller
 
     public function addReceipent($id, $receipent)
     {
-
+        $user = $this->user->findOrFail($receipent);
+        $user->participating()->attach($id);
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'প্রাপক যোগ করা হয়েছে!'));
     }
 
     /**
@@ -175,7 +177,7 @@ class MessageController extends Controller
         if(count($usersList) > 0){
             $list = array();
             foreach($usersList as $user){
-                $list[] = array('id'=>$user->id, 'name'=> $user->first_name.' '.$user->last_name, 'image'=> (!empty($user->detail) && file_exists($user->detail->image_path)) ? url('/').$user->detail->image_path : 'http://via.placeholder.com/450');
+                $list[] = array('message_subject_id'=>$id, 'user_id'=>$user->id, 'name'=> $user->first_name.' '.$user->last_name, 'image'=> (!empty($user->detail) && file_exists($user->detail->image_path)) ? url('/').$user->detail->image_path : 'http://via.placeholder.com/450');
             }
             return json_encode($list);
         }

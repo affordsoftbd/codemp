@@ -2,6 +2,18 @@
 
 @section('title', "নতুন বার্তা ||")
 
+@section('extra-css')
+<style type="text/css">
+.jquery_dropdown_result {
+  position: absolute;
+  z-index: 1050;
+  max-height: 50vh; 
+  overflow: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+</style>
+@endsection
+
 @section('content')
 
 <!-- Grid row -->
@@ -106,9 +118,10 @@
         <hr>
         <div class="md-form">
             <i class="fa fa-plus prefix grey-text"></i>
-            <input type="text" class="form-control" id="add_participant">
+            <input type="text" class="form-control" id="add_participant" data-url="{{ route('messages.user.list', $conversation->id) }}">
             <label for="add_participant">আরো প্রাপক যোগ করুন</label>
         </div>
+        <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
         <button class="btn btn-sm btn-dark-green my-3"><i class="fa fa-check pr-2"></i>আপনার সমস্ত অনুসরণকারীদের যোগ করুন</button>
         @foreach($conversation->receipents as $receipent)
 	        @if($conversation->author == $user->id && $receipent->id != $conversation->author)
@@ -141,6 +154,34 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+
+	$('#add_participant').keyup(function() {
+	    var url = $(this).data("url");
+	    var user = $(this).val();
+	    var base = $('.jquery_dropdown_result').data("base");
+	    if (user.length >= 2 ) {
+	      $.ajaxSetup({
+	        headers: {
+	          'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+	        }
+	      });
+	      $.ajax({
+	        url: url,
+	        type: 'POST',
+	        data: {'user': user},
+	        dataType: 'JSON',
+	        success:function(response){
+	          $(".jquery_dropdown_result").empty();
+	          for( var i = 0; i<response.length; i++){
+	            $("<a class='list-group-item' href='"+base+"/messages/subject/"+response[i]['message_subject_id']+"/receipent/"+response[i]['user_id']+"/add'><div class='chip'><img src='"+response[i]['image']+"'>"+response[i]['name']+"</div></a>").hide().appendTo('.jquery_dropdown_result').show('normal');
+	          }
+	        }
+	      });
+	    }
+	    else{
+	      $(".jquery_dropdown_result").empty();
+	    }
+	  });
 
   	$(document).on('click', '.edit_message_button', function(){
 		var url = $(this).closest('div.social-meta').find('.message-div').data("url-edit");
