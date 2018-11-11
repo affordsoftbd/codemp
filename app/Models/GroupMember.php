@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GroupMember extends Model
 {
-    protected $table = 'group_details';
-    protected $primaryKey = 'group_detail_id';
+    protected $table = 'group_members';
+    protected $primaryKey = 'group_member_id';
     public $timestamps = false;
 }

@@ -20,6 +20,7 @@ Route::get('/messages/subject/{id}/add/followers', 'MessageController@addFollowe
 Route::resource('messages', 'MessageController');
 Route::post('/messages/subject/{id}/getUserList', 'MessageController@getUserList')->name('messages.user.list');
 Route::delete('/messages/{id}/receipent/{receipent}/remove', 'MessageController@removeReceipent')->name('messages.receipent.remove');
+Route::post('/messages/subject/add', 'MessageController@addMessageSubject')->name('messages.subject.add');
 Route::put('/messages/subject/{id}/update', 'MessageController@updateMessageSubject')->name('messages.subject.update');
 Route::delete('/messages/subject/{id}/delete', 'MessageController@deleteMessageSubject')->name('messages.subject.delete');
 
@@ -55,6 +56,7 @@ Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details
 
 Route::get('group', 'GroupController@index')->name('group');
 Route::post('save_group', 'GroupController@saveGroup')->name('save_group');
+Route::delete('delete_group/{id}', 'GroupController@deleteGroup')->name('group.delete');
 
 Route::post('/save_news_comment', 'HomeController@saveNewsComment')->name('save_news_comment');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');

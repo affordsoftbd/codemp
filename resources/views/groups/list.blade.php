@@ -7,16 +7,12 @@
 
 <a href="#" class="btn btn-outline-danger btn-rounded waves-effect" id="new_group_button"><i class="fa fa-plus pr-2"></i>নতুন গ্রুপ যোগ করুন</a>
 
-@if(Request::url() === url('/').'/messages')
-{!! Form::open(['url' => '/messages/', 'method'=>'get']) !!}
-@else
-{!! Form::open(['url' => '/messages/administrated/', 'method'=>'get']) !!}
-@endif
+<form method="get" action="">
 	<div class="row mb-5">
 	  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 	    <!-- Material input email -->
 	    <div class="md-form">
-	        <input type="text" name="search" class="form-control" placeholder="Enter group name">
+	        <input type="text" name="keyword" class="form-control" value="{{ request()->get('keyword')}}" placeholder="Enter group name">
 	    </div>
 	  </div>
 	  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -25,8 +21,9 @@
 	    </div>
 	  </div>
 	</div>
-{!! Form::close() !!}
+</form>
 
+@foreach($groups as $group)
 <div class="row mb-5">
 	<div class="col-md-1">
 	 <img src="" class="img-fluid rounded-circle z-depth-0 image-thumbnail my-3">
@@ -34,23 +31,29 @@
 	<div class="col-md-11">
 	  <div class="card">
 	    <div class="card-body">
-	      <strong>Group 1</strong>
-	      <small class="pull-right">Lorem ipsome</small>
+	      <strong>{{ $group->group_name }}</strong>          
+            <span class="" align="right">
+                {!! Form::open(['route' => ['group.delete', $group->group_id], 'method'=>'delete']) !!}
+                    {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই গ্রুপটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, গ্রুপ টি মুছে দিন!', 'type'=>'submit')) !!}
+                    <!--Likes-->
+                {!! Form::close() !!}
+            </span>
 	      <br>
-	      5 member(s)
+	      {{ count($group->members) }} member(s)
 	    </div>
 	  </div> 
 	</div>
 </div>
+@endforeach
 
 
 
 <div class="modal fade" id="modalNewGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="alert alert-success" id="comment_success" style="display:none"></div>
-            <div class="alert alert-danger" id="comment_error" style="display:none"></div>
-            <form id="comment_form" class="login-form" method="post" action="">
+            <div class="alert alert-success" id="group_success" style="display:none"></div>
+            <div class="alert alert-danger" id="group_error" style="display:none"></div>
+            <form id="group_form" class="login-form" method="post" action="">
                 {{ csrf_field() }}  
                 <input type="hidden" name="post_id" id="post_id" value="">
                 <div class="modal-header text-center">
@@ -61,7 +64,7 @@
                 </div>
                 <div class="modal-body mx-3">
                     <div class="md-form">
-                        {!! Form::textarea('address', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'name'=>'comment_text', 'id'=>'comment_text')) !!}
+                        <input type="text" name="group_name" id="group_nmae" class="form-control">
                         {!! Form::label('address', 'নাম') !!}
                     </div>
                     <div class="md-form">                    	
@@ -92,7 +95,55 @@
 
     	$(document).on('click','#new_group_button',function(){
     		$('#modalNewGroup').modal('show');
-    	})
+    	});
+
+
+        $(document).on('submit', '#group_form', function(event){
+            event.preventDefault();
+            var group_name = $('#group_name').val();
+            var validate = '';
+
+            if(group_name==''){
+                validate = validate+"দয়া করে গ্রুপ নাম লিখুন";
+            }
+
+            if(validate==''){
+
+                var formData = new FormData($('#group_form')[0]);
+                var url = '{{ url('save_group') }}';
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formData,
+                    async: false,
+                    success: function (data) {
+                        if(data.status == 200){
+                            $('#group_success').show();
+                            $('#group_error').hide();
+                            $('#group_success').html(data.reason);
+
+                            setTimeout(function(){
+                                location.reload();
+                            },2000)
+                        }
+                        else{
+                            $('#group_success').hide();
+                            $('#group_error').show();
+                            $('#group_error').html(data.reason);
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            else{
+                $('#group_success').hide();
+                $('#group_error').show();
+                $('#group_error').html(validate);
+            }
+        });
+
     </script>
 @endsection
 
