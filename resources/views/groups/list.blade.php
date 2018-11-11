@@ -65,7 +65,7 @@
                         {!! Form::label('address', 'নাম') !!}
                     </div>
                     <div class="md-form">                    	
-                        <select class="mdb-select" name="members[]" id="members">
+                        <select class="mdb-select" name="members[]" id="members" multiple>
                             <option value="" disabled selected>সদস্য</option>
                             @foreach($applicants as $applicant)
                                 <option value="{{ $applicant->id }}">{{ $applicant->first_name." ".$applicant->last_name }}</option>

@@ -54,6 +54,7 @@ Route::post('/remove_follower', 'HomeController@removeFollowers')->name('remove_
 Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
 
 Route::get('group', 'GroupController@index')->name('group');
+Route::post('save_group', 'GroupController@saveGroup')->name('save_group');
 
 Route::post('/save_news_comment', 'HomeController@saveNewsComment')->name('save_news_comment');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');
