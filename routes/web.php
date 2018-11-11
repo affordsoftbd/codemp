@@ -20,6 +20,7 @@ Route::get('/messages/subject/{id}/add/followers', 'MessageController@addFollowe
 Route::resource('messages', 'MessageController');
 Route::post('/messages/subject/{id}/getUserList', 'MessageController@getUserList')->name('messages.user.list');
 Route::delete('/messages/{id}/receipent/{receipent}/remove', 'MessageController@removeReceipent')->name('messages.receipent.remove');
+Route::post('/messages/subject/add', 'MessageController@addMessageSubject')->name('messages.subject.add');
 Route::put('/messages/subject/{id}/update', 'MessageController@updateMessageSubject')->name('messages.subject.update');
 Route::delete('/messages/subject/{id}/delete', 'MessageController@deleteMessageSubject')->name('messages.subject.delete');
 

@@ -37,14 +37,14 @@
                     <div align="right">
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input" id="materialInline1" name="post_privacy" value="public" checked>
-                          <label class="form-check-label" for="materialInline1">সর্বজনীন</label>
+                          <input type="radio" class="form-check-input" id="privacy1" name="post_privacy" value="public" checked>
+                          <label class="form-check-label" for="privacy1">সর্বজনীন</label>
                         </div>
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input red" id="materialInline2" name="post_privacy" value="followers">
-                          <label class="form-check-label" for="materialInline2">অনুসারীগণ</label>
+                          <input type="radio" class="form-check-input red" id="privacy2" name="post_privacy" value="followers">
+                          <label class="form-check-label" for="privacy2">অনুসারীগণ</label>
                         </div>
                     </div>
 
@@ -65,14 +65,14 @@
                     <div align="right">
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input" id="materialInline1" name="post_privacy" value="public" checked>
-                          <label class="form-check-label" for="materialInline1">সর্বজনীন</label>
+                          <input type="radio" class="form-check-input" id="privacy3" name="post_privacy" value="public" checked>
+                          <label class="form-check-label" for="privacy3">সর্বজনীন</label>
                         </div>
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input red" id="materialInline2" name="post_privacy" value="followers">
-                          <label class="form-check-label" for="materialInline2">অনুসারীগণ</label>
+                          <input type="radio" class="form-check-input red" id="privacy4" name="post_privacy" value="followers">
+                          <label class="form-check-label" for="privacy4">অনুসারীগণ</label>
                         </div>
                     </div>
 
@@ -109,14 +109,14 @@
                     <div align="right">
                         <!-- Material inline 1 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input radio-custom" id="privacy1" name="post_privacy" value="public" checked>
-                          <label class="form-check-label" for="privacy1">সর্বজনীন</label>
+                          <input type="radio" class="form-check-input radio-custom" id="privacy5" name="post_privacy" value="public" checked>
+                          <label class="form-check-label" for="privacy5">সর্বজনীন</label>
                         </div>
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input radio-custom" id="privacy2" name="post_privacy" value="public">
-                          <label class="form-check-label" for="privacy2">অনুসারীগণ</label>
+                          <input type="radio" class="form-check-input radio-custom" id="privacy6" name="post_privacy" value="public">
+                          <label class="form-check-label" for="privacy6">অনুসারীগণ</label>
                         </div>
                     </div>
 
@@ -632,7 +632,7 @@
         var files = e.target.files,
         filesLength = files.length;
         $("#album_upload_feedback").attr('style', '');
-        $("#album_upload_feedback").html("<h5 class='red-text font-weight-bold mt-3'>Preview Images</h5><small class='grey-text mb-3'>Following functionalities are for preview only! Please select your images again if you want a different set of images! Image size can not be more than <strong>2MB</strong>!</small><hr>");
+        $("#album_upload_feedback").html("<h5 class='red-text font-weight-bold mt-3'>প্রিভিউ ছবি</h5><small class='grey-text mb-3'>নিম্নলিখিত ফাঙ্কশনালিটিজ শুধুমাত্র প্রিভিউ এর জন্য! আপনি যদি ইমেজ এর একটি ভিন্ন সেট চান তাহলে আবার আপনার ছবি নির্বাচন করুন! ইমেজ আকার <strong>2MB</strong> এর বেশী হতে পারবেনা!</small><hr>");
         for (var i = 0; i < filesLength; i++) {
           var f = files[i];
           var fileReader = new FileReader();
