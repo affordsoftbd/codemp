@@ -31,9 +31,9 @@
         <span class="badge badge-danger badge-pill new_count" style="display:none" id="request_count">0</span>
     </a>
     <a href="{{ route('followers') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('followers*')? 'active':'' }}">
-        <i class="fas fa-user-friends fa-sm pr-2"></i>অনুসারী
+        <i class="fa fa-user-circle fa-sm pr-2"></i>অনুসারী
     </a>
     <a href="{{ route('group') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('group*')? 'active':'' }}">
-        <i class="fa fa-users fa-sm pr-2"></i>গ্রুপ সমূহ
+        <i class="fa fa-group fa-sm pr-2"></i>গ্রুপ সমূহ
     </a>
 </div>
