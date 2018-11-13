@@ -13,12 +13,12 @@ class CreateEventParticipantsTable extends Migration
      */
     public function up()
     {
-        Schema::table('event_participants', function (Blueprint $table) {
+        Schema::create('event_participants', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
-            $table->foreign('event_id')->references('id')->on('event');
+            $table->foreign('event_id')->references('id')->on('events');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,8 +31,6 @@ class CreateEventParticipantsTable extends Migration
      */
     public function down()
     {
-        Schema::table('event_participants', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('event_participants');
     }
 }
