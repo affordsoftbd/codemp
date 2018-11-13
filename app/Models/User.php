@@ -34,7 +34,20 @@ class User extends Model
     }
 
         // A User perticipated in many messages subjects
-    public function participating() {
+    public function participating() 
+    {
         return $this->belongsToMany(MessageSubject::class, 'message_receipients');
+    }
+
+        // A User has many events
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+        // A User perticipated in events
+    public function participating_events() 
+    {
+        return $this->belongsToMany(Event::class, 'event_participants');
     }
 }
