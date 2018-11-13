@@ -112,7 +112,7 @@
               </a>    
             @else
               <a href="#" class="btn btn-sm btn-red" onclick="cancel_request({{ $leader->id }})">
-                <i class="fa fa-user-times pr-2"></i>নেতা হিসেবে আবেদন বাতিল করুন
+                <i class="fa fa-user-times pr-2"></i>আবেদন বাতিল করুন
               </a>
             @endif
             <hr>
