@@ -24,6 +24,10 @@ Route::post('/messages/subject/add', 'MessageController@addMessageSubject')->nam
 Route::put('/messages/subject/{id}/update', 'MessageController@updateMessageSubject')->name('messages.subject.update');
 Route::delete('/messages/subject/{id}/delete', 'MessageController@deleteMessageSubject')->name('messages.subject.delete');
 
+/*Event routes*/
+Route::get('/events/organized/', 'MessageController@organizedEvents')->name('events.organized');
+Route::resource('events', 'EventController');
+
 
 /*Authentication route*/
 Route::get('login','AuthController@login')->name('login');

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "নতুন বার্তা ||")
+@section('title', "বার্তা প্রদর্শন ||")
 
 @section('extra-css')
 <style type="text/css">

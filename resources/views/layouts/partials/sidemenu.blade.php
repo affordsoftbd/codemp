@@ -5,13 +5,7 @@
     <a href="{{ route('news') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('news*')? 'active':'' }}">
         <i class="fa fa-newspaper-o fa-sm pr-2"></i>খবর
     </a>
-    <!-- <a href="#" class="list-group-item list-group-item-action waves-effect">
-        <i class="fa fa-question-circle fa-sm pr-2"></i>প্রশ্নাবলি
-    </a> -->
-    <!-- <a href="#" class="list-group-item list-group-item-action waves-effect">
-    	<i class="fa fa-video-camera fa-sm pr-2"></i>ভিডিও চ্যাট
-	</a> -->
-    <a href="#" class="list-group-item list-group-item-action waves-effect">
+    <a href="{{ route('events.index') }}" class="list-group-item list-group-item-action {{ Route::is('events*')? 'active':'' }} waves-effect">
         <i class="fa fa-calendar fa-sm pr-2"></i>ইভেন্টস
     </a>
     <a href="{{ route('messages.index') }}" class="list-group-item list-group-item-action {{ Route::is('messages*')? 'active':'' }} waves-effect">
