@@ -11,7 +11,7 @@
     <title>@yield('title') আমার নেতা || আপনার নেতাদের সাথে সংযোগ স্থাপন করুন</title>
 
     <!-- Font Awesome -->
-    {{ Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
+    {{ Html::style('https://use.fontawesome.com/releases/v5.5.0/css/all.css') }}
 
     <!-- Google Icons -->
     {{ Html::style('https://fonts.googleapis.com/icon?family=Material+Icons') }}
