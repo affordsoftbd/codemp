@@ -16,12 +16,14 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('events.index');
+        $search = \Request::get('search');
+        return view('events.index', compact('search'));
     }
 
     public function organizedEvents()
     {
-        return view('events.index');
+        $search = \Request::get('search');
+        return view('events.index', compact('search'));
     }
 
     /**

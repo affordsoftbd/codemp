@@ -25,7 +25,7 @@ Route::put('/messages/subject/{id}/update', 'MessageController@updateMessageSubj
 Route::delete('/messages/subject/{id}/delete', 'MessageController@deleteMessageSubject')->name('messages.subject.delete');
 
 /*Event routes*/
-Route::get('/events/organized/', 'MessageController@organizedEvents')->name('events.organized');
+Route::get('/events/organized/', 'EventController@organizedEvents')->name('events.organized');
 Route::resource('events', 'EventController');
 
 
