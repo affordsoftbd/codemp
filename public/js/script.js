@@ -60,7 +60,7 @@ $(document).ready(function(){
           }
         }
         else{
-          $("#all_new_messages").empty().append('<div class="text-center my-5"><h5 class="font-weight-bold red-text">No New Message Found!</h5></div>');
+          $("#all_new_messages").empty().append('<div class="text-center my-5"><h5 class="font-weight-bold red-text">কোন নতুন বার্তা পাওয়া যায় নি!</h5></div>');
         }
       }
     });
