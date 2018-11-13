@@ -15,6 +15,7 @@
     @if ($errors->has('subject_text'))
         <p class="red-text">{{ $errors->first('subject_text') }}</p>
     @endif
+    <h6 class="font-weight-bold my-3">বার্তা</h6>
     <div class="md-form">
         {!! Form::textarea('message_text', null, array('class'=>'editor')) !!}
     </div>
