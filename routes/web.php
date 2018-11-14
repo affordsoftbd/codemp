@@ -33,6 +33,7 @@ Route::resource('events', 'EventController');
 Route::get('login','AuthController@login')->name('login');
 Route::post('retry','AuthController@retry')->name('retry');
 Route::get('recovery','AuthController@recovery')->name('recovery');
+Route::post('reset_password','AuthController@resetPassword')->name('reset_password');
 Route::post('reset','AuthController@reset')->name('reset');
 Route::get('login','AuthController@login')->name('login');
 Route::post('login','AuthController@postLogin')->name('postLogin');

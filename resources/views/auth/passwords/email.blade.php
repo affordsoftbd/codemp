@@ -24,12 +24,15 @@
 
                 <h4 class="green-text"><i class="fa fa-gears fa-sm pr-2" aria-hidden="true"></i>অ্যাকাউন্ট পুনরুদ্ধার করতে আপনার ইমেল লিখুন</h4><hr>
 
-                <form class="login-form" method="post" action="{{ route('reset') }}">
+                <div class="alert alert-success" id="success_message" style="display:none"></div>
+                <div class="alert alert-danger" id="error_message" style="display:none"></div>
+
+                <form id="forgot_password_form" class="login-form" method="post" action="{{ route('reset') }}">
                                 {{ csrf_field() }}
                     <!-- Confirm Password -->
                     <div class="md-form">
                         <i class="fa fa-envelope prefix green-text"></i>
-                        <input type="email" name="email" id="email" class="form-control">
+                        <input type="text" name="email" id="email" class="form-control">
                         <label for="email">আপনার ইমেইল</label>
                     </div>
                     <div class="text-center mt-4">
@@ -44,4 +47,57 @@
 
     </div>
 
+@endsection
+
+@section('extra-script')
+
+<script>   
+
+        $(document).on('submit', '#forgot_password_form', function(event){
+            event.preventDefault();
+            var email = $('#email').val();
+            var validate = '';
+
+            if(email.trim()==''){
+                validate = validate+"Email is required</br>";
+            }
+            var re = /\S+@\S+\.\S+/;
+            if(email.trim()!='' && !re.test(email)){
+                validate = validate+"invalid email address</br>";
+            }
+
+            if(validate==''){
+                var formData = new FormData($('#forgot_password_form')[0]);
+                var url = '{{ route('reset_password') }}';
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formData,
+                    async: false,
+                    success: function (data) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        if(data.status == 200){
+                            $('#success_message').show();
+                            $('#error_message').hide();
+                            $('#success_message').html(data.reason);;
+                        }
+                        else{
+                            $('#success_message').hide();
+                            $('#error_message').show();
+                            $('#error_message').html(data.reason);
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            else{
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('#success_message').hide();
+                $('#error_message').show();
+                $('#error_message').html(validate);
+            }
+        });
+</script>
 @endsection

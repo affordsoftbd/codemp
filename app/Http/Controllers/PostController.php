@@ -92,7 +92,6 @@ class PostController extends Controller
     }
 
     public function saveImagePost(Request $request){
-        return 'privacy='.$request->post_privacy;
         $validator = Validator::make($request->all(), [
             'description' => 'required|string',
             'images.*' => 'required|file|mimes:jpg,jpeg,png,bmp|max:2000'

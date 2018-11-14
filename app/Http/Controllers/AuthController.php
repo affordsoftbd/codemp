@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserDetail;
+use App\SendMails;
 use Auth;
 use DB;;
 use Session;
@@ -33,6 +34,34 @@ class AuthController extends Controller
             return redirect('home');
         }
         return view ('auth.passwords.email');
+    }
+
+    public function resetPassword(Request $request){
+        try{
+            DB::beginTransaction();
+            $user = User::where('email',$request->email)->first();
+            if(empty($user)){
+                return ['status'=>401,'reason'=>'We did not find any user with this email address'];
+            }
+            $password = $this->random_string();
+            
+            $user->password = bcrypt($password);
+            $user->save();
+
+            $emailData['email'] = $request->email;
+            $emailData['subject'] = "Password recovery";
+            $emailData['password'] =$password;
+            $view = 'emails.password_recovery_email';
+            SendMails::sendMail($emailData, $view);
+
+            DB::commit();
+
+            return ['status'=>200,'reason'=>'An email with new password information has been sent to your email address.'];
+        }
+        catch (\Exception $exception){
+            DB::rollback();
+            return ['status'=>401,'reason'=>$e->getMessage()];
+        }
     }
 
     public function reset()
@@ -199,5 +228,9 @@ class AuthController extends Controller
         $user->status = 'Active';
         $user->save();
         return ['status'=>200,'reason'=>'User activated successfully'];
+    }
+
+    private function random_string($l = 8) {
+        return substr(md5(uniqid(mt_rand(), true)), 0, $l);
     }
 }
