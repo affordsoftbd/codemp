@@ -60,6 +60,8 @@ class EventController extends Controller
     {
         if(isset($request->event_date)){
             $request->event_date = Carbon::parse(str_replace('-', '', $request->event_date))->format('Y-m-d H:i:s');
+
+            print_r($request->event_date); die();
         }    
         $this->validate(request(),[
             'title' => 'required|string|max:500',
