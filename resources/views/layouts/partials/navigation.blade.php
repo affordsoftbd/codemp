@@ -32,15 +32,15 @@
             </li>
             <li class="nav-item dropdown" id="notifications_navigation_menu">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span id="new_notification_number">0</span>
+                  <span id="new_notification_number" data-url="{{ route('notifications.new') }}">0</span>
                   <i class="fa fa-bell"></i>
                 </a>
                 <!-- Notification Dropdown -->
                 <div class="dropdown-menu dropdown-menu-right dropdown-wide dropdown-success">
                     <p class="text-center h6">বিজ্ঞপ্তিগুলি</p>
                     <div class="dropdown-divider"></div>
-                    <div id="all_new_notifications"></div>
-                    <a class="dropdown-item text-center" href="javascript:void(0)">সমস্ত বিজ্ঞপ্তিগুলি</a>
+                    <div id="all_new_notifications" data-url="{{ route('notifications.new') }}"></div>
+                    <a class="dropdown-item text-center" href="{{ route('notifications.index') }}">সমস্ত বিজ্ঞপ্তিগুলি</a>
                 </div>
                 <!-- Notification Dropdown -->
             </li> 

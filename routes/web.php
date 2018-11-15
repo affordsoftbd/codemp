@@ -24,6 +24,10 @@ Route::post('/messages/subject/add', 'MessageController@addMessageSubject')->nam
 Route::put('/messages/subject/{id}/update', 'MessageController@updateMessageSubject')->name('messages.subject.update');
 Route::delete('/messages/subject/{id}/delete', 'MessageController@deleteMessageSubject')->name('messages.subject.delete');
 
+/*Notification routes*/
+Route::get('/notifications/new', 'NotificationController@newNotifications')->name('notifications.new');
+Route::get('/notifications', 'NotificationController@allNotifications')->name('notifications.index');
+
 /*Event routes*/
 Route::get('/events/organized/', 'EventController@organizedEvents')->name('events.organized');
 Route::resource('events', 'EventController');
