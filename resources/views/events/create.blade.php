@@ -8,12 +8,22 @@
 <hr>
 
 {!! Form::open(['method' => 'post', 'route' => ['events.store'], 'class'=>'md-form']) !!}
+
+    {!! Form::hidden('user_id', \Request::session()->get('user_id')) !!}
+
     <div class="md-form">
         {!! Form::text('title', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'title')) !!}
         {!! Form::label('title', 'ইভেন্ট শিরনাম') !!}
     </div>
     @if ($errors->has('title'))
         <p class="red-text">{{ $errors->first('title') }}</p>
+    @endif
+    <div class="md-form">
+      {!! Form::text('event_date', null, array('class' =>'form-control datetimepicker', 'id'=>'event_date')) !!}
+      {!! Form::label('event_date', 'ইভেন্ট তারিখ এবং সময়') !!}
+    </div>
+    @if ($errors->has('event_date'))
+        <p class="red-text">{{ $errors->first('event_date') }}</p>
     @endif
     <h6 class="font-weight-bold my-3">বিস্তারিত</h6>
     <div class="md-form">

@@ -9,6 +9,18 @@ use App\Models\EventComment;
 
 class EventController extends Controller
 {
+    
+    protected $event;
+    protected $user;
+
+    public function __construct(Event $event, User $user)
+    {
+        /*$this->middleware('auth');
+        $this->middleware('order.owner')->only('show', 'edit');*/
+        $this->event = $event;
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +29,7 @@ class EventController extends Controller
     public function index()
     {
         $search = \Request::get('search');
+        $user = $this->user->find(\Request::session()->get('user_id'));
         return view('events.index', compact('search'));
     }
 
@@ -44,7 +57,13 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(),[
+            'title' => 'required|string|max:500',
+            'details' => 'required|string|max:5000'
+        ]);
+        $input = $request->all();
+        $this->event->create($input);
+        return redirect()->route('events.index')->with('success', array('সাফল্য'=>'অর্ডার যোগ করা হয়েছে!'));
     }
 
     /**

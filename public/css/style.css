@@ -21,6 +21,11 @@ a:hover {
     color: red;
 }
 
+.dtp .dtp-buttons {
+    padding: 0 0em 0em 0em;
+    text-align: right;
+}
+
 [type=radio]:checked+label:after {
     border-color: #ff0000;
     background-color: #ff0000;
