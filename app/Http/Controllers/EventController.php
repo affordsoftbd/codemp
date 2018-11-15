@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\EventComment;
+use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
@@ -57,9 +58,13 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        if(isset($request->event_date)){
+            $request->event_date = Carbon::parse(str_replace('-', '', $request->event_date))->format('Y-m-d H:i:s');
+        }    
         $this->validate(request(),[
             'title' => 'required|string|max:500',
-            'details' => 'required|string|max:5000'
+            'details' => 'required|string|max:5000',
+            'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
         ]);
         $input = $request->all();
         $this->event->create($input);
