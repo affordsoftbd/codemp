@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 use Session;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\UserNotifications;
-
-use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
@@ -25,9 +23,9 @@ class NotificationController extends Controller
     public function allNotifications(Request $request)
     {
         $user = $this->user->find(\Request::session()->get('user_id'));
-        $notifications = $user->notifications()->paginate(30);
+        $notifications = $user->notifications()->paginate(15);
     	$user->unreadNotifications->markAsRead();
-        return view('profile.notification', compact('user', 'notifications'));
+        return view('notifications', compact('user', 'notifications'));
     }
 
     public function newNotifications(Request $request)

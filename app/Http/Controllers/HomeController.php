@@ -36,6 +36,7 @@ class HomeController extends Controller
         if(Auth::check()){
             return redirect('home');
         }
+
         $data['divisions'] = DB::table('divisions')->get();
         $data['districts'] = DB::table('districts')->get();
         $data['thanas'] = DB::table('thanas')->get();
@@ -52,7 +53,13 @@ class HomeController extends Controller
             if(!Auth::check()){
                 return redirect('login');
             }
-            $user = Auth::user();
+
+            $user = Auth::user();       
+
+            for($i=0; $i<=8; $i++){
+                $this->send_notification(array($user->id), 'নতুন বিজ্ঞপ্তি পাওয়া গেছে!!', route('messages.index'));
+            }
+
             $my_leaders = MyLeader::select('leader_id')->where('worker_id',$user->id)->where('status','active')->pluck('leader_id')->toArray();
             $followings = Follower::select('leader_id')->where('follower_user_id',$user->id)->pluck('leader_id')->toArray();
             $post_creators = array_merge($my_leaders,$followings);

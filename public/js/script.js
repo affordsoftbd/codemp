@@ -35,6 +35,11 @@ $(document).ready(function(){
 
   numberOfNewMessages();
 
+
+    // Get number of new notifications
+
+  numberOfNewNotifications();
+
     // Dropdown for new messages
 
   $('#messages_navigation_menu').on('show.bs.dropdown', function () {
@@ -61,6 +66,37 @@ $(document).ready(function(){
         }
         else{
           $("#all_new_messages").empty().append('<div class="text-center my-5"><h5 class="font-weight-bold red-text">কোন নতুন বার্তা পাওয়া যায় নি!</h5></div>');
+        }
+      }
+    });
+  })
+
+    // Dropdown for new notifications
+
+  $('#notifications_navigation_menu').on('show.bs.dropdown', function () {
+    $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+      }
+    });
+    $.ajax({
+      url: $("#all_new_notifications").data('url'),
+      type: 'GET',
+      data: {'markAsRead': 'yes'},
+      dataType: 'JSON',
+      beforeSend: function(){
+        $("#all_new_notifications").empty().append('<div class="text-center my-5"><i class="fa fa-spinner fa-spin"></i></div>');
+      },
+      success:function(response){
+        $("#all_new_notifications").empty();
+        $("#new_notification_number").empty().append(response.length);
+        if(response.length > 0){
+          for(var i = 0; i<response.length; i++){
+            $("#all_new_notifications").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="'+response[i]['link']+'"><span class="badge badge-pill red"><i class="fa fa-'+response[i]['icon']+' fa-2x" aria-hidden="true"></i></span></a><a class="media-body" href="'+response[i]['link']+'" target="_blank"><h6 class="green-text">'+response[i]['text']+'</h6></a></div><div class="dropdown-divider"></div>');
+          }
+        }
+        else{
+          $("#all_new_notifications").empty().append('<div class="text-center my-5"><h5 class="font-weight-bold red-text">কোন নতুন বিজ্ঞপ্তি পাওয়া যায় নি!</h5></div>');
         }
       }
     });
@@ -219,6 +255,27 @@ function numberOfNewMessages() {
     },
     success:function(response){
       $("#new_messages_number").empty().append(response.length);
+    }
+  });
+}
+
+// Function for getting new notifications number
+
+function numberOfNewNotifications() {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+    }
+  });
+  $.ajax({
+    url: $("#new_notification_number").data('url'),
+    type: 'GET',
+    dataType: 'JSON',
+    beforeSend: function(){
+      $("#new_notification_number").empty().append('<i class="fa fa-spinner fa-spin"></i>');
+    },
+    success:function(response){
+      $("#new_notification_number").empty().append(response.length);
     }
   });
 }

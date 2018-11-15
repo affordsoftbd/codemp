@@ -57,8 +57,6 @@ class UserNotifications extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
-            return $this->data;
-        ];
+        return $this->data;
     }
 }

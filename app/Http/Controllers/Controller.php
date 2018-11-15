@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Storage;
+use App\Models\User;
 use App\Notifications\UserNotifications;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -34,10 +35,10 @@ class Controller extends BaseController
         return '/uploads/'.$file;
     }
 
-    protected function send_notification($recievers, $text='You have got a new notification!', $link='javascript:void(0)', $icon='bell'){
+    protected function send_notification($recievers, $text='আপনি একটি নতুন বিজ্ঞপ্তি পেয়েছেন!', $link='javascript:void(0)', $icon='bell'){
         if(is_array($recievers) && count($recievers) > 0){
             foreach($recievers as $reciever){
-                $user = $this->user->findOrFail($reciever);
+                $user = User::findOrFail($reciever);
                 $user->notify(new UserNotifications(['text' => $text, 'link' => $link, 'icon' => $icon]));
             }
         }
