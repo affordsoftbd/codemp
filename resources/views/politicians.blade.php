@@ -3,6 +3,7 @@
 @section('title', "নেতা/কর্মীগণ ||")
 
 @section('content')
+
 @if(request()->get('following')=='true')
   <button type="button" class="btn btn-dark-green btn-sm pull-right" onclick="show_all_leaders()">
       <i class="fa fa-exclamation-circle fa-sm pr-2"></i> সকল নেতাদের প্রদর্শনী করুন
@@ -20,8 +21,8 @@
   <div class="row">
     <div class="col-sm-10">
       <div class="md-form">
-        <input class="form-control" id="keyword" name="keyword" type="text" value={{ request()->get('keyword')}}>
-          <input class="form-control" name="following" type="hidden" value={{ request()->get('following')}}>
+        <input class="form-control" id="keyword" name="keyword" type="text" value="{{ request()->get('keyword')}}">
+        <input name="following" type="hidden" value="{{ request()->get('following') }}">
         <label for="keyword">নেতা/কর্মী অনুসন্ধান করুন</label>
       </div>
     </div>
@@ -77,11 +78,11 @@
             <button type="submit" class="btn btn-danger waves-effect text-center btn-sm" type="submit">সাজান</button>
           </div>
         </div>
+      </div>
 </form>
 
 <div class="row my-5">
-
-  @foreach($leaders as $leader)
+@foreach($leaders as $leader)
     <?php 
       $follower = \App\Models\Follower::where('leader_id',$leader->id)->where('follower_user_id',Session::get('user_id'))->first();
       $myLeader = \App\Models\MyLeader::where('leader_id',$leader->id)->where('worker_id',Session::get('user_id'))->first();
@@ -132,7 +133,7 @@
         </div>
         <!-- Card -->
     </div>
-  @endforeach
+@endforeach
 </div>
 
 <!--Pagination-->
