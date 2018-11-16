@@ -7,7 +7,7 @@
 <h4 class="red-text">বার্তা বিষয় হালনাগাদ করুন</h4>
 <hr>
 
-{!! Form::open(['method' => 'put', 'route' => ['messages.subject.update', $subject->id], 'class'=>'md-form']) !!}
+{!! Form::open(['method' => 'put', 'route' => ['messages.subject.update', $subject->id], 'class'=>'md-form', 'name' => 'check_edit']) !!}
     <div class="md-form">
         {!! Form::textarea('subject_text', $subject->subject_text, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'subject_text')) !!}
         {!! Form::label('subject_text', 'বার্তা বিষয়') !!}

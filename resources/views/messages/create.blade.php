@@ -7,7 +7,7 @@
 <h4 class="red-text">একটি নতুন বার্তা তৈরি করুন</h4>
 <hr>
 
-{!! Form::open(['method' => 'post', 'route' => ['messages.subject.add'], 'class'=>'md-form login-form']) !!}
+{!! Form::open(['method' => 'post', 'route' => ['messages.subject.add'], 'class'=>'md-form login-form', 'name' => 'check_edit']) !!}
     <div class="md-form">
         {!! Form::textarea('subject_text', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'subject_text')) !!}
         {!! Form::label('subject_text', 'বার্তা বিষয়') !!}

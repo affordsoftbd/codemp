@@ -8,7 +8,7 @@
 <small class="grey-text"><b>সর্বশেষ সংষ্করণ:</b> {{ (empty($post->updated_at))? 'এখনো আপডেট করা হয় নি!' : $post->updated_at }}</small>
 <hr>
 
-{!! Form::open(['method' => 'put', 'route' => ['post.update', $post->post_id], 'class'=>'md-form login-form']) !!}
+{!! Form::open(['method' => 'put', 'route' => ['post.update', $post->post_id], 'class'=>'md-form login-form', 'name' => 'check_edit']) !!}
     <div class="md-form">
         {!! Form::textarea('description', $post->description, array('class'=>'editor')) !!}
     </div>

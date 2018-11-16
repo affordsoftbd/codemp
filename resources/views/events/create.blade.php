@@ -7,7 +7,7 @@
 <h4 class="red-text">একটি নতুন ইভেন্ট তৈরি করুন</h4>
 <hr>
 
-{!! Form::open(['method' => 'post', 'route' => ['events.store'], 'class'=>'md-form']) !!}
+{!! Form::open(['method' => 'post', 'route' => ['events.store'], 'class'=>'md-form', 'name' => 'check_edit']) !!}
 
     {!! Form::hidden('user_id', \Request::session()->get('user_id')) !!}
 

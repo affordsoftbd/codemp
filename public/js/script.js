@@ -196,6 +196,11 @@ $(document).ready(function(){
       });
   });
 
+    // Prevent leaving page
+
+  preventLeave();
+
+
     //  Show profile image preview
 
   $('.input_image').change(function() {
@@ -293,17 +298,6 @@ function readURL(input, i) {
     }
 }
 
-  // Function for aligning footer
-
-function footerAlign() {
-  $('footer').css('display', 'block');
-  $('footer').css('height', 'auto');
-  var footerHeight = $('footer').outerHeight();
-  $('body').css('padding-bottom', footerHeight);
-  $('footer').css('height', footerHeight);
-}
-
-
   // Function for fixing dropdown menu right
 
 function dropDownRight(){
@@ -314,6 +308,42 @@ function dropDownRight(){
     $('.dropdown-wide').removeClass('dropdown-menu-right');
   }
 } 
+
+  // Function for preventing page leave on form edit
+
+function preventLeave(){
+  var formHasChanged = false;
+  var submitted = false;
+
+  $('form[name="check_edit"]').on('change input', function() {
+    formHasChanged = true;
+  });
+  
+  window.onbeforeunload = function (e) {
+    if (formHasChanged && !submitted) {
+      var message = "You have not saved your changes.", e = e || window.event;
+      if (e) {
+          e.returnValue = message;
+      }
+      return message;
+    }
+  }
+  
+  $('form[name="check_edit"]').submit(function() {
+       submitted = true;
+  });
+}
+
+  // Function for aligning footer
+
+function footerAlign() {
+  $('footer').css('display', 'block');
+  $('footer').css('height', 'auto');
+  var footerHeight = $('footer').outerHeight();
+  $('body').css('padding-bottom', footerHeight);
+  $('footer').css('height', footerHeight);
+}
+
 
   // Function for tinymce editor
 
