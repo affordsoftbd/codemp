@@ -48,7 +48,7 @@ class MessageController extends Controller
         $user = $this->user->find(\Request::session()->get('user_id'));
         $messages = $user->participating()->withCount(['messages as latest_message' => function($query) {
                                                 $query->select(DB::raw('max(messages.created_at)'));
-                                            }])->search($search)->orderByDesc('latest_message')->paginate(30);
+                                            }])->search($search)->orderByDesc('latest_message')->paginate(15);
         return view('messages.index', compact('user', 'messages', 'search'));
     }
 
@@ -58,7 +58,7 @@ class MessageController extends Controller
         $user = $this->user->find(\Request::session()->get('user_id'));
         $messages = $user->authored()->withCount(['messages as latest_message' => function($query) {
                                                 $query->select(DB::raw('max(messages.created_at)'));
-                                            }])->search($search)->orderByDesc('latest_message')->paginate(30);
+                                            }])->search($search)->orderByDesc('latest_message')->paginate(15);
         return view('messages.index', compact('user', 'messages', 'search'));
     }
 

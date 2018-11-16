@@ -31,7 +31,8 @@ class EventController extends Controller
     {
         $search = \Request::get('search');
         $user = $this->user->find(\Request::session()->get('user_id'));
-        return view('events.index', compact('search'));
+        $event = $this->event->where('user_id', \Request::session()->get('user_id'))->orderBy('event_date', 'desc')->paginate(15);
+        return view('events.index', compact('search', 'user', 'event'));
     }
 
     public function organizedEvents()
@@ -57,18 +58,15 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        if(isset($request->event_date)){
-            $request->event_date = Carbon::parse(str_replace('-', '', $request->event_date))->format('Y-m-d H:i:s');
-
-            print_r($request->event_date); die();
-        }    
+    {  
+        $input = $request->all();
+        $input['event_date'] = Carbon::parse(str_replace('-', '', $input['event_date']))->format('Y-m-d H:i:s');
+        $request->replace($input);
         $this->validate(request(),[
             'title' => 'required|string|max:500',
             'details' => 'required|string|max:5000',
             'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
         ]);
-        $input = $request->all();
         $this->event->create($input);
         return redirect()->route('events.index')->with('success', array('সাফল্য'=>'অর্ডার যোগ করা হয়েছে!'));
     }
