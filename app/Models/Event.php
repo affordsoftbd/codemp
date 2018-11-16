@@ -37,6 +37,6 @@ class Event extends Model
         // An event belongs to many participants
     public function participants()
     {
-        return $this->belongsToMany(User::class, 'message_receipients');
+        return $this->belongsToMany(User::class, 'event_participants');
     }
 }

@@ -31,8 +31,8 @@ class EventController extends Controller
     {
         $search = \Request::get('search');
         $user = $this->user->find(\Request::session()->get('user_id'));
-        $event = $this->event->where('user_id', \Request::session()->get('user_id'))->orderBy('event_date', 'desc')->paginate(15);
-        return view('events.index', compact('search', 'user', 'event'));
+        $events = $this->event->where('user_id', \Request::session()->get('user_id'))->orderBy('event_date', 'desc')->paginate(15);
+        return view('events.index', compact('search', 'user', 'events'));
     }
 
     public function organizedEvents()

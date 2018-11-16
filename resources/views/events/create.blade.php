@@ -22,7 +22,7 @@
       {!! Form::text('event_date', null, array('class' =>'form-control datetimepicker', 'id'=>'event_date')) !!}
       {!! Form::label('event_date', 'ইভেন্ট তারিখ এবং সময়') !!}
     </div>
-    @if ($errors->has('event_date'))
+    @if($errors->has('event_date'))
         <p class="red-text">{{ $errors->first('event_date') }}</p>
     @endif
     <h6 class="font-weight-bold my-3">বিস্তারিত</h6>
@@ -40,5 +40,19 @@
 
 <a class="btn btn-success waves-effect btn-sm" href="{{ route('events.index') }}"><i class="fa fa-arrow-circle-left fa-sm pr-2" aria-hidden="true"></i>প্রত্যাবর্তন</a>
 
+@endsection
+
+@section('extra-script')
+
+@if(!empty(old('event_date')))
+    <div id="format_date" style="display: none;">{{ date('l d F Y - H:i', strtotime(old('event_date'))) }}</div>
+@endif
+
+<script type="text/javascript">
+    if($("#format_date").length != 0)
+    {
+        $("input[name=event_date]").val($('#format_date').text());
+    }
+</script>
 
 @endsection
