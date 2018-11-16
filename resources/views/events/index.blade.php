@@ -53,20 +53,20 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="view overlay rounded z-depth-1 mb-4">
-				<img class="img-fluid" src="{{ file_exists(url('/').$event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/450' }}" alt="Sample image">
-				<a href="">
+				<img class="img-fluid" src="{{ file_exists(url('/').$event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/200x120' }}" alt="Sample image">
+				<a href="{{ route('events.show', $event->id) }}">
 					<div class="mask rgba-white-slight"></div>
 				</a>
 			</div>
 		</div>
 		<div class="col-md-9">
-			<h5 class="font-weight-bold dark-grey-text">{{ $event->title }}</h5>
+			<a href="{{ route('events.show', $event->id) }}" class="font-weight-bold dark-grey-text">{{ $event->title }}</a>
 			<div class="d-flex justify-content-between">
 			  <div class="col-11 text-truncate pl-0 mb-3">
 			  	<p class="red-text small">মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
-			    <a href="" class="dark-grey-text">{{ date('l d F Y, h:i A', strtotime($event->created_at)) }}</a>
+			    <a href="{{ route('events.show', $event->id) }}" class="dark-grey-text">{{ date('l d F Y, h:i A', strtotime($event->created_at)) }}</a>
 			  </div>
-			  <a href=""><i class="fa fa-angle-double-right"></i></a>
+			  <a href="{{ route('events.show', $event->id) }}"><i class="fa fa-angle-double-right"></i></a>
 			</div>
 		</div>
 	</div>
