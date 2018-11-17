@@ -31,14 +31,16 @@ class EventController extends Controller
     {
         $search = \Request::get('search');
         $user = $this->user->find(\Request::session()->get('user_id'));
-        $events = $this->event->where('user_id', \Request::session()->get('user_id'))->orderBy('event_date', 'desc')->paginate(15);
+        $events = $user->participating_events()->search($search)->orderByDesc('event_date')->paginate(15);
         return view('events.index', compact('search', 'user', 'events'));
     }
 
     public function organizedEvents()
     {
         $search = \Request::get('search');
-        return view('events.index', compact('search'));
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        $events = $user->events()->search($search)->orderByDesc('event_date')->paginate(15);
+        return view('events.index', compact('search', 'user', 'events'));
     }
 
     /**
@@ -67,7 +69,9 @@ class EventController extends Controller
             'details' => 'required|string|max:5000',
             'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
         ]);
-        $this->event->create($input);
+        $id = $this->event->create($input)->id;
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        $user->participating_events()->attach($id);
         return redirect()->route('events.index')->with('success', array('সাফল্য'=>'অর্ডার যোগ করা হয়েছে!'));
     }
 

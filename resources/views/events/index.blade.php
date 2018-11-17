@@ -19,15 +19,15 @@
 <hr>
 
 @if(empty($search))
-<a href="{{ route('events.create') }}" class="btn btn-outline-danger btn-rounded waves-effect"><i class="fa fa-plus pr-2"></i>নতুন ইভেন্ট যোগ করুন</a>
+	<a href="{{ route('events.create') }}" class="btn btn-outline-danger btn-rounded waves-effect"><i class="fa fa-plus pr-2"></i>নতুন ইভেন্ট যোগ করুন</a>
 @else
-  <a class="btn btn-sm btn-dark-green" href="{{ route('events.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> রিফ্রেশ তালিকা</a>
+  	<a class="btn btn-sm btn-dark-green" href="{{ route('events.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> রিফ্রেশ তালিকা</a>
 @endif
 
-@if(Request::url() === url('/').'/evemts')
-{!! Form::open(['url' => '/events/', 'method'=>'get']) !!}
+@if(Request::url() === url('/').'/events')
+	{!! Form::open(['url' => '/events/', 'method'=>'get']) !!}
 @else
-{!! Form::open(['url' => '/events/administrated/', 'method'=>'get']) !!}
+	{!! Form::open(['url' => '/events/organized/', 'method'=>'get']) !!}
 @endif
 	<div class="row mb-5">
 	  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
