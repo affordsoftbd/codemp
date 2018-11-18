@@ -53,7 +53,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="view overlay rounded z-depth-1 mb-4">
-				<img class="img-fluid" src="{{ file_exists(url('/').$event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/200x120' }}" alt="Sample image">
+				<img class="img-fluid" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/200x120' }}" alt="Sample image">
 				<a href="{{ route('events.show', $event->id) }}">
 					<div class="mask rgba-white-slight"></div>
 				</a>
@@ -64,7 +64,7 @@
 			<div class="d-flex justify-content-between">
 			  <div class="col-11 text-truncate pl-0 mb-3">
 			  	<p class="red-text small">মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
-			    <a href="{{ route('events.show', $event->id) }}" class="dark-grey-text">{{ date('l d F Y, h:i A', strtotime($event->created_at)) }}</a>
+			    <a href="{{ route('events.show', $event->id) }}" class="dark-grey-text">{{ date('l d F Y, h:i A', strtotime($event->event_date)) }}</a>
 			  </div>
 			  <a href="{{ route('events.show', $event->id) }}"><i class="fa fa-angle-double-right"></i></a>
 			</div>

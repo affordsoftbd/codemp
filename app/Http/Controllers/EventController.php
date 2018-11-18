@@ -13,13 +13,15 @@ class EventController extends Controller
 {
     
     protected $event;
+    protected $comment;
     protected $user;
 
-    public function __construct(Event $event, User $user)
+    public function __construct(Event $event, EventComment $comment, User $user)
     {
         /*$this->middleware('auth');
         $this->middleware('order.owner')->only('show', 'edit');*/
         $this->event = $event;
+        $this->comment = $comment;
         $this->user = $user;
     }
 
@@ -76,6 +78,16 @@ class EventController extends Controller
         return redirect()->route('events.index')->with('success', array('সাফল্য'=>'ইভেন্ট যোগ করা হয়েছে!'));
     }
 
+    public function addComment(Request $request)
+    {  
+        $this->validate(request(),[
+            'comment' => 'required|string|max:5000'
+        ]);
+        $input = $request->all();
+        $id = $this->comment->create($input);
+        return redirect()->route('events.show', $request->event_id)->with('success', array('সাফল্য'=>'মন্তব্য যোগ করা হয়েছে!'));
+    }
+
     /**
      * Display the specified resource.
      *
@@ -99,6 +111,12 @@ class EventController extends Controller
     {
         $event = $this->event->findOrFail($id);
         return view('events.edit', compact('event'));
+    }
+
+    public function editComment($id)
+    {
+        $comment = $this->comment->findOrFail($id);
+        return json_encode($comment->comment);
     }
 
     /**
@@ -137,6 +155,17 @@ class EventController extends Controller
         return redirect()->route('events.show', $id)->with('success', array('সাফল্য'=>'ইভেন্ট হালনাগাদ করা হয়েছে!'));
     }
 
+    public function updateComment(Request $request, $id)
+    {
+         $this->validate(request(),[
+            'comment' => 'required|string|max:1000'
+        ]);
+        $input = $request->all();
+        $comment = $this->comment->findOrFail($id);
+        $comment->update($input);
+        return json_encode($request->comment);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -148,5 +177,12 @@ class EventController extends Controller
         $event = $this->event->findOrFail($id);
         $event->delete();
         return redirect()->route('events.index')->with('success', array('সাফল্য'=>'ইভেন্ট মুছে ফেলা হয়েছে!'));
+    }
+
+    public function deleteComment($id)
+    {
+        $comment = $this->comment->findOrFail($id);
+        $comment->delete();
+        return redirect()->back()->with('success', array('সাফল্য'=>'মন্তব্য মুছে ফেলা হয়েছে!'));
     }
 }

@@ -15,7 +15,7 @@
     </div>
     <div class="col-xl-6 col-lg-4 col-md-4">
         <h4 class="font-weight-bold green-text">{{ $post->first_name." ".$post->last_name}}</h4>
-        <small class="red-text">{{ $post->created_at->format('l d F Y, h:i A') }}</small>
+        <small class="red-text">{{ $post->created_at }}</small>
     </div>
     <div class="col-xl-5 col-lg-6 col-md-6" align="right">
         {!! Form::open(['route' => ['post.delete', $post->post_id], 'method'=>'delete']) !!}
@@ -53,7 +53,7 @@
         <div class="card border message_area border-light">
             <div class="card-body">
                 <h6 class="font-weight-bold">{{ $comment->first_name." ".$comment->last_name}}</h6>
-                <small class="grey-text">{{ $comment->created_at->format('l d F Y, h:i A') }}</small>
+                <small class="grey-text">{{ $comment->created_at }}</small>
                 <hr>
                 <?php echo htmlspecialchars_decode($comment->comment); ?>
             </div>
@@ -62,7 +62,7 @@
     @endforeach
 
     <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center">
-        <h6 class="font-weight-bold red-text">আপনার মন্তব্য পোস্ট করুন</h6>
+        <h6 class="font-weight-bold red-text">আপনার মন্তব্য যোগ করুন</h6>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2">
         <img src="{{ (Session::get('image_path')!='') ? url('/').Session::get('image_path') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">

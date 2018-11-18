@@ -57,31 +57,47 @@
 	                <h6 class="font-weight-bold">{{ $comment->user->first_name." ".$comment->user->last_name}}</h6>
 	                <small class="grey-text">{{ $comment->created_at->format('l d F Y, h:i A') }}</small>
 	                <hr>
-	                {!! $comment->comment !!}
+	                <div class="event_comment_area" data-url-edit="{{ route('events.comment.edit', $comment->id) }}" data-url-update="{{ route('events.comment.update', $comment->id) }}">
+                        {!! $comment->comment !!}
+                    </div>
+                    @if($comment->user_id == $user->id && (strtotime($comment->created_at) + 3600) > time())
+                        <div class="clearfix"></div>
+                        <div class="event_options">
+                            {!! Form::open(['method' => 'delete', 'route' => ['events.comment.delete', $comment->id]]) !!}
+                                <div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
+                                  <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_comment_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
+                                  {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার মন্তব্য হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, মন্তব্য মুছে দিন!', 'type'=>'submit')) !!}
+                                </div>
+                            {!! Form::close() !!} 
+                        </div>
+                    @endIf
 	            </div>
 	        </div>
 	    </div>
     @endforeach
     
-    <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center">
-        <h6 class="font-weight-bold red-text">আপনার মন্তব্য পোস্ট করুন</h6>
+    <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center add_comment">
+        <h6 class="font-weight-bold red-text">আপনার মন্তব্য যোগ করুন</h6>
     </div>
-    <div class="col-xl-1 col-lg-2 col-md-2">
+    <div class="col-xl-1 col-lg-2 col-md-2 add_comment">
         <img src="{{  !empty($user->detail->image_path) ? url('/').$user->detail->image_path : 'http://via.placeholder.com/50' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
     </div>
-    <div class="col-xl-11 col-lg-10 col-md-10">
-        <div class="alert alert-success" id="comment_success" style="display:none"></div>
-        <div class="alert alert-danger" id="comment_error" style="display:none"></div>
-        <form id="comment_form" class="login-form" method="post" action="">
-            <input type="hidden" name="_token" value="1erMKU6lQeayxoETWQqTP8cojlDPThBmh5iXY7Uu">  
-            <input type="hidden" name="post_id" value="29">
+    <div class="col-xl-11 col-lg-10 col-md-10 add_comment">
+        {!! Form::open(['method' => 'post', 'route' => ['events.comment.add'], 'class'=>'md-form', 'name' => 'check_edit']) !!}
+            
+            {!! Form::hidden('event_id', $event->id) !!}
+            {!! Form::hidden('user_id', $user->id) !!}
+
             <div class="md-form">
-                <textarea class="editor" name="comment_text" id="comment_text" cols="50" rows="10"></textarea>
-            </div>
+        		{!! Form::textarea('comment', null, array('class'=>'editor')) !!}
+		    </div>
+		    @if ($errors->has('comment'))
+		        <p class="red-text">{{ $errors->first('comment') }}</p>
+		    @endif
             <div class="text-center my-4">
-                <button type="submit" class="btn btn-danger btn-sm">পোস্ট</button>
+            	{!! Form::button('<i class="fa fa-plus pr-2"></i>পোস্ট', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
             </div>
-        </form>
+		{!! Form::close() !!}
         <div class="clearfix"></div>
     </div>
 
@@ -121,5 +137,74 @@
     </div>
 </div>
 <!-- Image Modal -->
+
+@endsection
+
+@section('extra-script')
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $(document).on('click', '.edit_comment_button', function(){
+        var url = $(this).closest('div.card-body').find('.event_comment_area').data("url-edit");
+        var div = $(this).closest('div.card-body').find('.event_comment_area');
+        var html = '';
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+          }
+        });
+        $.ajax({
+          url: url,
+          type: 'GET',
+          dataType: 'JSON',
+          beforeSend: function(){
+            div.html("<center><h1><i class='fa fa-spinner fa-spin my-5'></i></h1></center>");
+          },
+          success:function(response){
+            div.hide().html('<textarea class="editor" name="comment">'+response+'</textarea><button class="btn btn-sm btn-danger my-3 save_comment"><i class="fa fa-check pr-2"></i>হালনাগাদ</button>').fadeIn('slow');
+            setTinyMce();
+            $(".event_options").hide();
+            $(".add_comment").hide();
+          }
+        });
+    });
+
+    $(document).on('click', '.save_comment', function(){
+        var url = $(this).closest('div.card-body').find('.event_comment_area').data("url-update");
+        var div = $(this).closest('div.card-body').find('.event_comment_area');
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+          }
+        });
+        $.ajax({
+          url: url,
+          type: 'PUT',
+          data: {
+            'comment': tinyMCE.activeEditor.getContent()
+          },
+          dataType: 'JSON',
+          beforeSend: function(){
+            div.html("<center><h1><i class='fa fa-spinner fa-spin my-5'></i></h1></center>");
+          },
+          success:function(response){
+            div.html(response);
+            $(".event_options").show();
+            $(".add_comment").show();
+            showNotification("সাফল্য!", "মন্তব্য হালনাগাদ করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
+          },
+          error: function(response){
+            div.hide().html('<textarea class="editor" name="comment">'+tinyMCE.activeEditor.getContent()+'</textarea><button class="btn btn-sm btn-danger save_comment"><i class="fa fa-check pr-2"></i>হালনাগাদ</button>').fadeIn('slow');
+            setTinyMce();
+            showNotification("আপডেট করার সময় ত্রুটি!", "আপনার মন্তব্য আপডেট করা যাবে না! আপনার মন্তব্য খালি না তা নিশ্চিত করুন!", "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
+          }
+        });
+    });
+
+});
+
+</script>
 
 @endsection
