@@ -130,6 +130,8 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = $this->event->findOrFail($id);
+        $event->delete();
+        return redirect()->route('events.index')->with('success', array('সাফল্য'=>'ইভেন্ট মুছে ফেলা হয়েছে!'));
     }
 }
