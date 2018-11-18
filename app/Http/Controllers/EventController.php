@@ -83,7 +83,9 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        return view('events.show');
+        $event = $this->event->findOrFail($id);
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        return view('events.show', compact('event', 'user'));
     }
 
     /**

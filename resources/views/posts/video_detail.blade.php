@@ -76,7 +76,7 @@
     @endforeach
 
     <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center">
-        <h6 class="font-weight-bold red-text">আপনার মন্তব্য পোস্ট করুন</h4>
+        <h6 class="font-weight-bold red-text">আপনার মন্তব্য পোস্ট করুন</h6>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2">
         <img src="{{ (Session::get('image_path')!='') ? url('/').Session::get('image_path') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">

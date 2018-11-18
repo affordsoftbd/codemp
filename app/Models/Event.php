@@ -25,7 +25,7 @@ class Event extends Model
         // A MessageSubject has an organizer
     public function organizer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
         // A MessageSubject has many messages

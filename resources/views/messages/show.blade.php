@@ -25,7 +25,7 @@
     <div class="col-lg-8 mb-4">
 		<div class="row">
 		    <div class="col-xl-1 col-lg-2 col-md-2 post_creator">
-		        <img src="{{ !empty($conversation->subjectAuthor->detail->image_path) ? $conversation->subjectAuthor->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">		        
+		        <img src="{{ !empty($conversation->subjectAuthor->detail->image_path) ? url('/').$conversation->subjectAuthor->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">		        
 		    </div>
 		    <div class="col-xl-6 col-lg-4 col-md-4">
 		        <h4>{{ $conversation->subject_text }}</h4>
@@ -43,7 +43,7 @@
 			            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
 			        {!! Form::close() !!}
 			    @elseIf($conversation->author != $user->id)
-			    	{!! Form::open(['method'=>'delete']) !!}
+			    	{!! Form::open(['route' => ['messages.receipent.remove', $conversation->id, $user->id], 'method'=>'delete']) !!}
 			            {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>কথোপকথন অগ্রাহ্য করুন', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই কথোপকথন দেখতে পারবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
 			        {!! Form::close() !!}   
         		@endIf
@@ -65,7 +65,7 @@
 				<div class="card-body">
 				  <div class="content">
 				    <div class="right-side-meta">{{ $message->created_at }}</div>
-				    <img src="{{ !empty($message->user->detail->image_path) ? $message->user->detail->image_path : 'http://via.placeholder.com/450' }}" class="rounded-circle avatar-img z-depth-1-half">{{ $message->user->first_name }}
+				    <img src="{{ !empty($message->user->detail->image_path) ? url('/').$message->user->detail->image_path : 'http://via.placeholder.com/450' }}" class="rounded-circle avatar-img z-depth-1-half">{{ $message->user->first_name }}
 				  </div>
 				</div>
 				<!-- Card content -->
@@ -155,7 +155,7 @@
 		        </div>
 		    @else
 		        <div class="chip mt-3">
-		        	<img src="{{ !empty($receipent->detail->image_path) ? $receipent->detail->image_path : 'http://via.placeholder.com/450' }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
+		        	<img src="{{ !empty($receipent->detail->image_path) ? url('/').$receipent->detail->image_path : 'http://via.placeholder.com/450' }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
 		        </div>
         	@endIf
         @endforeach
