@@ -31,6 +31,7 @@ Route::get('/notifications', 'NotificationController@allNotifications')->name('n
 /*Event routes*/
 Route::get('/events/organized/', 'EventController@organizedEvents')->name('events.organized');
 Route::resource('events', 'EventController');
+Route::put('/events/{id}/image/update', 'EventController@updateImage')->name('event.image.update');
 
 
 /*Authentication route*/
@@ -63,9 +64,9 @@ Route::get('/followers', 'HomeController@followers')->name('followers');
 Route::post('/remove_follower', 'HomeController@removeFollowers')->name('remove_follower');
 Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
 
-Route::get('group', 'GroupController@index')->name('group');
-Route::post('save_group', 'GroupController@saveGroup')->name('save_group');
-Route::delete('delete_group/{id}', 'GroupController@deleteGroup')->name('group.delete');
+Route::get('/group', 'GroupController@index')->name('group');
+Route::post('/save_group', 'GroupController@saveGroup')->name('save_group');
+Route::delete('/delete_group/{id}', 'GroupController@deleteGroup')->name('group.delete');
 
 Route::post('/save_news_comment', 'HomeController@saveNewsComment')->name('save_news_comment');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');

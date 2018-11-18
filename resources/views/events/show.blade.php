@@ -87,4 +87,39 @@
 
 </div>
 
+<!-- Image Modal -->
+<div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ইমেজ আপলোড করুন</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body image_modal">
+				<div class="text-center">
+					<img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
+					<p class="text-center mt-4">সর্বাধিক অনুমোদিত আকার:: 2 MB</p>
+				</div>
+                {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['event.image.update', $event->id], 'enctype' => 'multipart/form-data']) !!}
+					<div class="file-field">
+					  <div class="btn btn-success btn-sm float-left">
+					      <span>নির্বাচন</span>
+					      {!! Form::file("event_image", ['class'=>'input_image']) !!}
+					  </div>
+					  <div class="file-path-wrapper">
+					      {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার চিত্র নির্বাচন করুন']) !!}
+					  </div>
+					</div>
+					<div class="text-center mt-4">
+					  {{ Form::button('আপলোড <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+					</div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Image Modal -->
+
 @endsection

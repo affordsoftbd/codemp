@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Event;
@@ -107,6 +108,20 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    public function updateImage(Request $request, $id)
+    {
+        $this->validate(request(),[
+            'event_image'  => 'required|image|dimensions:min_width=100,min_height=200|max:2000',
+        ]);
+        $input = $request->all();
+        $event = $this->event->findOrFail($id);
+        $event_image = $this->uploadImage($request->file('event_image'), 'events/', 960, 720);
+        $event->event_image = $event_image;
+        $event->save();
+        Session::flash('success', array('সাফল্য'=>'ইভেন্ট ছবি হালনাগাদ করা হয়েছে!'));
+    }
+
     public function update(Request $request, $id)
     {
         $input = $request->all();

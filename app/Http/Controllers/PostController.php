@@ -271,7 +271,7 @@ class PostController extends Controller
             $postImage->image_path = $imageUpload;
             $postImage->post_id = $request->post_id;
             $postImage->save();
-            Session::flash('success', array('নতুন ছবি যোগ করা হয়েছে!'=>''));
+            Session::flash('success', array('সফল!'=>'নতুন ছবি যোগ করা হয়েছে!'));
         }
         catch (\Exception $e) {
             return $e->getMessage();

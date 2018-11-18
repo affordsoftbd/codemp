@@ -131,7 +131,7 @@
                               {!! Form::file("image", ['class'=>'input_image']) !!}
                           </div>
                           <div class="file-path-wrapper">
-                              {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার চিত্রগুলো নির্বাচন করুন']) !!}
+                              {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার চিত্র নির্বাচন করুন']) !!}
                           </div>
                       </div>
                       <div class="text-center mt-4">
@@ -142,7 +142,7 @@
             </div>
         </div>
     </div>
-    <!-- Image Modal -->
+<!-- Image Modal -->
 
 @endsection
 
