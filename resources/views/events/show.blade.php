@@ -23,20 +23,29 @@
 	            @endIf
 	        {!! Form::close() !!}
 	    @elseIf($event->user_id != $user->id)
-	    	{!! Form::open(['method'=>'delete']) !!}
-	            {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>ইভেন্ট অনুসরণ করুন', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই কথোপকথন দেখতে পারবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
-	        {!! Form::close() !!}   
+            @if($checkIfParticipated == "yes")
+                {!! Form::open(['route' => ['events.participant.remove', $event->id, $user->id], 'method'=>'delete']) !!}
+                    {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>ইভেন্ট থেকে সরে যান', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই ইভেন্ট এর আপডেট পাবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
+                {!! Form::close() !!}
+            @else
+                {!! Form::open(['route' => ['events.participant.add'], 'method'=>'post']) !!}
+                    {!! Form::hidden('event_id', $event->id) !!}
+                    {!! Form::hidden('user_id', $user->id) !!}
+                    {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>ইভেন্ট অনুসরণ করুন', array('class' => 'btn btn-green btn-sm', 'type'=>'submit')) !!}
+                {!! Form::close() !!}
+            @endIf
 		@endIf
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
         <hr>
         <h3>{{ $event->title }}</h3>
 		<h6 class="font-weight-bold mt-3"><i class="fa fa-calendar-check-o fa-sm pr-2"></i>{{ date('l d F Y, h:i A', strtotime($event->event_date)) }}</h6>
+        <p class="grey-text font-weight-bold mt-3"><i class="fa fa-users fa-sm pr-2"></i>মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
         <a href="{{ $event->event_image }}" target="_blank"> 
-            <img class="img-fluid my-3" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
+            <img class="img-fluid mb-3" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
         </a>
         @if($event->user_id == $user->id)
-	        <button type="button" class="btn red btn-sm mb-5" data-toggle="modal" data-target="#updateimage">
+	        <button type="button" class="btn red btn-sm mb-4" data-toggle="modal" data-target="#updateimage">
 	          <i class="fa fa-upload fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ আপলোড করুন
 	        </button>
 	    @endIf

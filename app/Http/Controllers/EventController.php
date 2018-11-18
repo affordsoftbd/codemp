@@ -88,17 +88,32 @@ class EventController extends Controller
         return redirect()->route('events.show', $request->event_id)->with('success', array('সাফল্য'=>'মন্তব্য যোগ করা হয়েছে!'));
     }
 
+    public function addParticipant(Request $request)
+    {  
+        $user = $this->user->find($request->user_id);
+        $user->participating_events()->attach($request->event_id);
+        return redirect()->route('events.show', $request->event_id)->with('success', array('সাফল্য'=>'আপনাকে অংশগ্রহণকারী হিসাবে যোগ করা হয়েছে!'));
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
-        $event = $this->event->findOrFail($id);
         $user = $this->user->find(\Request::session()->get('user_id'));
-        return view('events.show', compact('event', 'user'));
+        $event = $this->event->findOrFail($id);
+        $checkIfParticipated = "no";
+        foreach($event->participants as $participant){ 
+            if($participant->id == $user->id){
+                $checkIfParticipated = "yes";
+            }
+            break;
+        }
+        return view('events.show', compact('event', 'user', 'checkIfParticipated'));
     }
 
     /**
@@ -184,5 +199,12 @@ class EventController extends Controller
         $comment = $this->comment->findOrFail($id);
         $comment->delete();
         return redirect()->back()->with('success', array('সাফল্য'=>'মন্তব্য মুছে ফেলা হয়েছে!'));
+    }
+
+    public function removeParticipant($event, $user)
+    {
+        $user = $this->user->findOrFail($user);
+        $user->participating_events()->detach($event);
+        return redirect()->back()->with('success', array('সাফল্য'=>'আপনাকে এই ইভেন্ট থেকে মুছে ফেলা হয়েছে!'));
     }
 }

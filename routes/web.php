@@ -32,6 +32,8 @@ Route::get('/notifications', 'NotificationController@allNotifications')->name('n
 Route::get('/events/organized/', 'EventController@organizedEvents')->name('events.organized');
 Route::get('/events/comment/{id}', 'EventController@editComment')->name('events.comment.edit');
 Route::resource('events', 'EventController');
+Route::post('/events/participant/add', 'EventController@addParticipant')->name('events.participant.add');
+Route::delete('/events/{event}/participant/{user}/remove', 'EventController@removeParticipant')->name('events.participant.remove');
 Route::post('/events/comments/add', 'EventController@addComment')->name('events.comment.add');
 Route::put('/events/comments/{id}/update', 'EventController@updateComment')->name('events.comment.update');
 Route::delete('/events/comments/{id}/delete', 'EventController@deleteComment')->name('events.comment.delete');
