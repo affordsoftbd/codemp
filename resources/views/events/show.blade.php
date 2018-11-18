@@ -13,12 +13,14 @@
         <small class="red-text">{{ $event->created_at->format('l d F Y, h:i A') }}</small>
     </div>
     <div class="col-xl-5 col-lg-6 col-md-6" align="right">
-        @if($event->user_id == $user->id && (strtotime($event->created_at) + 3600) > time())
-	        {!! Form::open(['route' => ['events.delete', $event->id], 'method'=>'delete']) !!}
+        @if($event->user_id == $user->id)
+	        {!! Form::open(['route' => ['events.destroy', $event->id], 'method'=>'delete']) !!}
 	            <a href="{{ route('events.edit', $event->id) }}" class="btn btn-light-green btn-sm">
 	                <i class="fa fa-edit"></i>
 	            </a>
-	            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই ইভেন্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, ইভেন্টটি মুছে দিন!', 'type'=>'submit')) !!}
+	            @if((strtotime($event->created_at) + 3600) > time())
+	            	{!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই ইভেন্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, ইভেন্টটি মুছে দিন!', 'type'=>'submit')) !!}
+	            @endIf
 	        {!! Form::close() !!}
 	    @elseIf($event->user_id != $user->id)
 	    	{!! Form::open(['method'=>'delete']) !!}
@@ -33,15 +35,33 @@
         <a href="{{ $event->event_image }}" target="_blank"> 
             <img class="img-fluid my-3" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
         </a>
-        <button type="button" class="btn red btn-sm mb-5" data-toggle="modal" data-target="#updateimage">
-          <i class="fa fa-upload fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ আপলোড করুন
-        </button>
+        @if($event->user_id == $user->id)
+	        <button type="button" class="btn red btn-sm mb-5" data-toggle="modal" data-target="#updateimage">
+	          <i class="fa fa-upload fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ আপলোড করুন
+	        </button>
+	    @endIf
         {!! $event->details !!}
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
         <hr>
-        <h5 class="grey-text font-weight-bold" id="total_comments">মোট মন্তব্য: 0</h5>
+        <h5 class="grey-text font-weight-bold" id="total_comments">মোট মন্তব্য: {{ count($event->comments) }}</h5>
     </div>
+
+    @foreach($event->comments as $comment)
+	    <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
+	        <img src="{{ !empty($comment->user->detail->image_path) ? url('/').$comment->user->detail->image_path : 'http://via.placeholder.com/50' }}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
+	    </div>
+	    <div class="col-xl-11 col-lg-10 col-md-10 my-3">
+	        <div class="card border message_area border-light">
+	            <div class="card-body">
+	                <h6 class="font-weight-bold">{{ $comment->user->first_name." ".$comment->user->last_name}}</h6>
+	                <small class="grey-text">{{ $comment->created_at->format('l d F Y, h:i A') }}</small>
+	                <hr>
+	                {!! $comment->comment !!}
+	            </div>
+	        </div>
+	    </div>
+    @endforeach
     
     <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center">
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য পোস্ট করুন</h6>

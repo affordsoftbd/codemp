@@ -72,7 +72,7 @@ class EventController extends Controller
         $id = $this->event->create($input)->id;
         $user = $this->user->find(\Request::session()->get('user_id'));
         $user->participating_events()->attach($id);
-        return redirect()->route('events.index')->with('success', array('সাফল্য'=>'অর্ডার যোগ করা হয়েছে!'));
+        return redirect()->route('events.index')->with('success', array('সাফল্য'=>'ইভেন্ট যোগ করা হয়েছে!'));
     }
 
     /**
@@ -96,7 +96,8 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        return view('events.edit');
+        $event = $this->event->findOrFail($id);
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -108,7 +109,17 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $input['event_date'] = Carbon::parse(str_replace('-', '', $input['event_date']))->format('Y-m-d H:i:s');
+        $request->replace($input);
+        $this->validate(request(),[
+            'title' => 'required|string|max:500',
+            'details' => 'required|string|max:5000',
+            'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
+        ]);
+        $event = $this->event->findOrFail($id);
+        $event->update($input);
+        return redirect()->route('events.show', $id)->with('success', array('সাফল্য'=>'ইভেন্ট হালনাগাদ করা হয়েছে!'));
     }
 
     /**

@@ -20,7 +20,7 @@ class EventComment extends Model
     }
 
         // A comment belongs to an user
-    public function comments()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

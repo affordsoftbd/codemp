@@ -14,7 +14,7 @@
     </div>
     <div class="col-xl-6 col-lg-4 col-md-4">
         <h4 class="font-weight-bold green-text">{{ $post->first_name." ".$post->last_name}}</h4>
-        <small class="red-text">{{ $post->created_at}}</small>
+        <small class="red-text">{{ $post->created_at->format('l d F Y, h:i A') }}</small>
     </div>
     <div class="col-xl-5 col-lg-6 col-md-6" align="right">
          {!! Form::open(['route' => ['post.delete', $post->post_id], 'method'=>'delete']) !!}
@@ -76,7 +76,7 @@
         <div class="card border message_area border-light">
             <div class="card-body">
                 <h6 class="font-weight-bold">{{ $comment->first_name." ".$comment->last_name}}</h6>
-                <small class="grey-text">{{ $comment->created_at}}</small>
+                <small class="grey-text">{{ $comment->created_at->format('l d F Y, h:i A') }}</small>
                 <hr>
                 <?php echo htmlspecialchars_decode($comment->comment); ?>
             </div>
