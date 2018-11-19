@@ -101,7 +101,7 @@ class PostController extends Controller
                 'images.*.max' => 'Sorry! Maximum allowed size for an image is 2MB',
         ]);
         if ($validator->fails()) {
-          return response()->json(['response'=>'error', 'message'=>implode(" || ",$validator->messages()->all())]);
+          return response()->json(['response'=>'error', 'message'=>$validator->messages()->all()]);
         }
         try {
             $post = NEW Post();
@@ -136,7 +136,7 @@ class PostController extends Controller
             'description' => 'required|string'
         ]);
         if ($validator->fails()) {
-          return response()->json(['response'=>'error', 'message'=>implode(" || ",$validator->messages()->all())]);
+          return response()->json(['response'=>'error', 'message'=>$validator->messages()->all()]);
         }
         try {
             $post = NEW Post();
@@ -146,7 +146,7 @@ class PostController extends Controller
             $post->privacy = $request->post_privacy;
             $post->save();
             $postVideo = NEW PostVideo();
-            $postVideo->video_path = $this->uploadVideo($request->video, 'posts/videos/'); // $request->video->store('storage/uploads','public');
+            $postVideo->video_path = $this->uploadVideo($request->video, 'posts/videos/'); 
             $postVideo->post_id = $post->post_id;
             $postVideo->save();
             return json_encode(['response'=>'success', 'message'=>'Video shared successfully!']);

@@ -61,7 +61,6 @@
             <!--/.Panel 1-->
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel2" role="tabpanel">
-                <div id="image_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_album']) !!}
                     
                     <div align="right">
@@ -105,7 +104,6 @@
             <!--/.Panel 2-->
             <!--Panel 3-->
             <div class="tab-pane fade" id="panel3" role="tabpanel">
-                <div id="video_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['video.save'], 'class'=>'md-form share_video']) !!}
 
                     <div align="right">

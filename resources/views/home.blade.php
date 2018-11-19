@@ -59,7 +59,6 @@
             <!--/.Panel 1-->
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel2" role="tabpanel">
-                <div id="image_error_message"></div>
                 {!! Form::open(['method' => 'post', 'route' => ['image.save'], 'class'=>'md-form upload_album']) !!}
                     
                     <div align="right">
@@ -674,21 +673,20 @@
             $("#image_description").empty().val("");
             $("#selected_images_names").empty().val("");
             $('#album_upload_feedback').fadeOut('slow', function() {
-                var json = JSON.parse(xhr.responseText);
-                if(json.response == 'error'){
-                    $('#image_error_message').html('<div class="alert alert-danger my-3" role="alert"><center>'+json.message+'</center></div>');
-                    $(this).empty();
-                }
-                else{
-                    html = '<ul class="green-text">';
-                    for( var i = 0; i<json.message.length; i++){
-                        html +='<li>'+json.message[i]+'</li>';
-                    }
-                    html +='</ul>';
-                    $(this).html(html).fadeIn('slow');
-                    $(this).delay(2000).fadeOut('slow');
-                }
+                $(this).empty();
             });
+            var json = JSON.parse(xhr.responseText);
+            if(json.response == 'error'){
+                for( var i = 0; i<json.message.length; i++){
+                    showNotification("এরর!", json.message[i], "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                }
+
+            }
+            else{
+                for( var i = 0; i<json.message.length; i++){
+                    showNotification("সাফল্য!", json.message[i], "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                }
+            }
 
             var last_id = $('#last_id').val();
             $('#last_id').val(parseInt(last_id)+1);
@@ -720,16 +718,18 @@
                 $("#selected_video_name").empty().val("");
                 $("#video_description").empty().val("");
                 $('#video_upload_feedback').fadeOut('slow', function() {
-                    var json = JSON.parse(xhr.responseText);
-                    if(json.response == 'error'){
-                        $('#video_error_message').html('<div class="alert alert-danger mt-3 mb-5" role="alert"><center>'+json.message+'</center></div>');
-                        $(this).empty();
-                    }
-                    else{
-                        $(this).html('<p class="green-text">'+json.message+'</p>').fadeIn('slow');
-                        $(this).delay(2000).fadeOut('slow');
-                    }
+                    $(this).empty();
                 });
+                var json = JSON.parse(xhr.responseText);
+                if(json.response == 'error'){
+                    for( var i = 0; i<json.message.length; i++){
+                        showNotification("এরর!", json.message[i], "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                    }
+
+                }
+                else{
+                    showNotification("সাফল্য!", json.message, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                }
 
                 var last_id = $('#last_id').val();
                 $('#last_id').val(parseInt(last_id)+1);
