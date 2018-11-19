@@ -94,6 +94,7 @@
             var validate = '';
 
             if(post_text==''){
+                /*showNotification("এরর!", "দয়া করে কিছু লিখুন", "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');*/
                 validate = validate+"দয়া করে কিছু লিখুন";
             }
 
@@ -445,9 +446,11 @@
                         $('#p_like_'+post_id).text(new_like);
                         if($('#p_like_ico_'+post_id).hasClass("fa fa-thumbs-up")) {
                             $('#p_like_ico_'+post_id).removeClass('fa fa-thumbs-up').addClass('fa fa-thumbs-o-up');
+                            showNotification("সতর্কতা!", "আপনার পছন্দ মুছে ফেলা হয়েছে", "#", "warning", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         }
                         else if($('#p_like_ico_'+post_id).hasClass("fa fa-thumbs-o-up")){
                             $('#p_like_ico_'+post_id).removeClass('fa fa-thumbs-o-up').addClass('fa fa-thumbs-up');
+                            showNotification("সাফল্য!", "আপনি এই পোস্টটি পছন্দ করেছেন", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         }
                     }
                     else{
