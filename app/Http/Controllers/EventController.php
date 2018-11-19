@@ -75,7 +75,7 @@ class EventController extends Controller
         $id = $this->event->create($input)->id;
         $user = $this->user->find(\Request::session()->get('user_id'));
         $user->participating_events()->attach($id);
-        return redirect()->route('events.index')->with('success', array('সাফল্য'=>'ইভেন্ট যোগ করা হয়েছে!'));
+        return redirect()->route('events.show', $id)->with('success', array('সাফল্য'=>'ইভেন্ট যোগ করা হয়েছে!'));
     }
 
     public function addComment(Request $request)

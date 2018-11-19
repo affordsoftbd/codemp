@@ -50,26 +50,29 @@
 
 <!-- Small news -->
 <div class="single-news my-4">
+	<a href="{{ route('events.show', $event->id) }}">
 	<div class="row">
 		<div class="col-md-3">
 			<div class="view overlay rounded z-depth-1 mb-4">
 				<img class="img-fluid" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/200x120' }}" alt="Sample image">
-				<a href="{{ route('events.show', $event->id) }}">
-					<div class="mask rgba-white-slight"></div>
-				</a>
+				<div class="mask rgba-white-slight"></div>
 			</div>
 		</div>
 		<div class="col-md-9">
-			<a href="{{ route('events.show', $event->id) }}" class="font-weight-bold dark-grey-text">{{ $event->title }}</a>
+			<h5 class="font-weight-bold dark-grey-text">
+				{{ $event->title }}
+				<small>আয়োজক- <strong>{{ $event->organizer->first_name.' '.$event->organizer->last_name }}</strong></small>
+			</h5>
 			<div class="d-flex justify-content-between">
 			  <div class="col-11 text-truncate pl-0 mb-3">
 			  	<p class="red-text small">মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
-			    <a href="{{ route('events.show', $event->id) }}" class="dark-grey-text">{{ date('l d F Y, h:i A', strtotime($event->event_date)) }}</a>
+			    <p class="dark-grey-text">{{ date('l d F Y, h:i A', strtotime($event->event_date)) }}</p>
 			  </div>
-			  <a href="{{ route('events.show', $event->id) }}"><i class="fa fa-angle-double-right"></i></a>
+			  <i class="fa fa-angle-double-right"></i>
 			</div>
 		</div>
 	</div>
+	</a>
 	<hr>
 </div>
 <!-- Small news -->

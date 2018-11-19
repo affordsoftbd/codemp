@@ -19,7 +19,7 @@
         <p class="red-text">{{ $errors->first('title') }}</p>
     @endif
     <div class="md-form">
-      {!! Form::text('event_date', date('l d F Y - H:i', strtotime(old('event_date'))), array('class' =>'form-control datetimepicker', 'id'=>'event_date')) !!}
+      {!! Form::text('event_date', date('l d F Y - H:i', strtotime($event->event_date)), array('class' =>'form-control datetimepicker', 'id'=>'event_date')) !!}
       {!! Form::label('event_date', 'ইভেন্ট তারিখ এবং সময়') !!}
     </div>
     @if($errors->has('event_date'))
