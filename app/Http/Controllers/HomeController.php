@@ -54,11 +54,7 @@ class HomeController extends Controller
                 return redirect('login');
             }
 
-            $user = Auth::user();       
-
-            for($i=0; $i<=8; $i++){
-                $this->send_notification(array($user->id), 'নতুন বিজ্ঞপ্তি পাওয়া গেছে!!', route('messages.index'));
-            }
+            $user = Auth::user();  
 
             $my_leaders = MyLeader::select('leader_id')->where('worker_id',$user->id)->where('status','active')->pluck('leader_id')->toArray();
             $followings = Follower::select('leader_id')->where('follower_user_id',$user->id)->pluck('leader_id')->toArray();
@@ -145,6 +141,7 @@ class HomeController extends Controller
                 ->join('my_leaders','my_leaders.worker_id','users.id')
                 ->where('my_leaders.leader_id',Session::get('user_id'))
                 ->get();
+            $data['workers'] = User::where('party_id', User::find(\Request::session()->get('user_id'))->party_id);
             return view('summeries',$data);
         }
         catch (\Exception $e) {

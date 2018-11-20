@@ -20,6 +20,9 @@ class EventController extends Controller
     {
         /*$this->middleware('auth');
         $this->middleware('order.owner')->only('show', 'edit');*/
+        /*for($i=0; $i<=8; $i++){
+            $this->send_notification(array($user->id), 'নতুন বিজ্ঞপ্তি পাওয়া গেছে!!', route('messages.index'));
+        }*/
         $this->event = $event;
         $this->comment = $comment;
         $this->user = $user;

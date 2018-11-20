@@ -21,7 +21,7 @@
         <i class="fa fa-certificate fa-sm pr-2"></i>নেতা/কর্মীগণ
     </a>
     <a href="{{ route('requests') }}" class="list-group-item list-group-item-action justify-content-between align-items-center waves-effect {{ Route::is('requests*')? 'active':'' }}">
-        <i class="fa fa-user-plus fa-sm pr-2"></i>আবেদন 
+        <i class="fa fa-user-plus fa-sm pr-2"></i>আবেদনকারী
         <span class="badge badge-danger badge-pill new_count" style="display:none" id="request_count">0</span>
     </a>
     <a href="{{ route('followers') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('followers*')? 'active':'' }}">
