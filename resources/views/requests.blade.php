@@ -34,7 +34,7 @@
             <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($applicant->applicants) }} জন অনুসারী</span></a>  
             <div class="btn-group mt-3" role="group" aria-label="Basic example">
               <a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="গ্রহণ করুন" onclick="accept_request({{ $applicant->my_leader_id }})"><i class="fa fa-check"></i></a>              
-              <a href="#" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="মুছে দিন" onclick="rject_request({{ $applicant->my_leader_id }})"><i class="fa fa-close"></i></a>
+              <a href="{{ url('/messages/create/?recipient='.$applicant->id) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="মুছে দিন" onclick="rject_request({{ $applicant->my_leader_id }})"><i class="fa fa-close"></i></a>
               <a href="{{ url('public_profile?user='.$applicant->username) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
             </div>
           </div>

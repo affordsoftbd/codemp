@@ -56,7 +56,7 @@
 	      <div class="card">
 	        <div class="card-body {{ $message->messages->last()->viewers->contains('viewer', $user->id) ? 'green'  : 'red' }} white-text">
 	          <strong>{{ $message->subject_text }}</strong>
-	          <small class="pull-right">{{ $message->author == $user->id ? 'authering'  : '' }}</small>
+	          <small class="pull-right">{{ $message->author == $user->id ? 'এডমিনিস্ট্রেটর'  : '' }}</small>
 	          <br>
 	          {{ substr(strip_tags($message->messages->last()->message_text), 0, 50) }}...
 	        </div>

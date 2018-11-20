@@ -4,6 +4,9 @@
 
 @section('content')
 
+<h4 class="font-weight-bold green-text">গ্রুপ এর তালিকা</h4>
+<small class="red-text">{{ empty(request()->get('keyword')) ? 'সকল' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} গ্রুপ</small>
+<hr>
 
 <a href="#" class="btn btn-outline-danger btn-rounded waves-effect" id="new_group_button"><i class="fa fa-plus pr-2"></i>নতুন গ্রুপ যোগ করুন</a>
 
@@ -12,7 +15,7 @@
 	  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 	    <!-- Material input email -->
 	    <div class="md-form">
-	        <input type="text" name="keyword" class="form-control" value="{{ request()->get('keyword')}}" placeholder="Enter group name">
+	        <input type="text" name="keyword" class="form-control" value="{{ request()->get('keyword') }}" placeholder="গ্রুপ অনুসন্ধান">
 	    </div>
 	  </div>
 	  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -23,28 +26,43 @@
 	</div>
 </form>
 
-@foreach($groups as $group)
-<div class="row mb-5">
-	<div class="col-md-1">
-	 <img src="" class="img-fluid rounded-circle z-depth-0 image-thumbnail my-3">
-	</div>
-	<div class="col-md-11">
-	  <div class="card">
-	    <div class="card-body">
-	      <strong>{{ $group->group_name }}</strong>          
-            <span class="" align="right">
+
+<div class="row">
+    @foreach($groups as $group)
+    <div class="col-lg-4 mb-4">
+        <!-- Card -->
+        <div class="card card-cascade wider">
+
+          <!-- Card image -->
+          <div class="view view-cascade gradient-card-header green">
+
+            <!-- Title -->
+            <h2 class="card-header-title mb-3">{{ $group->group_name }}</h2>
+            <!-- Text -->
+            <p class="mb-0"><i class="fa fa-group fa-sm pr-2"></i>{{ count($group->members) }} member(s)</p>
+
+          </div>
+
+          <!-- Card content -->
+          <div class="card-body card-body-cascade text-center">
+
+            <!-- Text -->
+            <p class="card-text"><i class="fa fa-calendar pr-2"></i>{{ date('d M Y', strtotime($group->created_at)) }}</p>
+            <!-- Link -->
+            <a href="#!" class="orange-text d-flex flex-row-reverse p-2">
                 {!! Form::open(['route' => ['group.delete', $group->group_id], 'method'=>'delete']) !!}
-                    {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই গ্রুপটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, গ্রুপ টি মুছে দিন!', 'type'=>'submit')) !!}
-                    <!--Likes-->
+                    {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই গ্রুপটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, গ্রুপ টি মুছে দিন!', 'type'=>'submit')) !!}
                 {!! Form::close() !!}
-            </span>
-	      <br>
-	      {{ count($group->members) }} member(s)
-	    </div>
-	  </div> 
-	</div>
+            </a>
+
+          </div>
+          <!-- Card content -->
+
+        </div>
+        <!-- Card -->
+    </div>
+    @endforeach
 </div>
-@endforeach
 
 
 

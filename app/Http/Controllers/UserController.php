@@ -119,7 +119,7 @@ class UserController extends Controller
             $imageUpload = $this->uploadImage($request->file('image'), 'users/', 640, 480);
             DB::table('user_details')->where('user_id', $id)->update(['image_path' => $imageUpload]);  
             Session::put('image_path', $imageUpload);  
-            return ['status'=>200,'reason'=>'Successfully updated'];
+            Session::flash('success', array('সফল!'=>'প্রোফাইল ছবি সফলভাবে আপডেট করা হয়েছে'));
         }
         catch (\Exception $e) {
             return ['status'=>200,'reason'=>$e->getMessage()];

@@ -69,7 +69,8 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return view ('messages.create');
+        $recipient = $this->user->find(\Request::get('recipient'));
+        return view ('messages.create', compact('recipient'));
     }
 
     public function addMessageSubject(Request $request)
@@ -91,6 +92,10 @@ class MessageController extends Controller
         $messageReceipent->message_subject_id = $messageSubject->id;
         $messageReceipent->user_id = $request->session()->get('user_id');
         $messageReceipent->save();
+        if(!empty($request->recipient)){
+            $user = $this->user->findOrFail($request->recipient);
+            $user->participating()->attach($messageSubject->id);
+        }
         $this->saveViewer($message->id, $request->session()->get('user_id'));
         return redirect()->route('messages.show', $messageSubject->id)->with('success', array('সাফল্য'=>'বার্তা যোগ করা হয়েছে!'));
     }
