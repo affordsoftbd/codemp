@@ -118,9 +118,11 @@
                         $('#p_like_'+post_id).text(new_like);
                         if(data.like<1){
                             $('#like_btn').removeClass('btn-green').addClass('btn-yellow');
+                            showNotification("সতর্কতা!", "আপনার পছন্দ মুছে ফেলা হয়েছে", "#", "warning", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         }
                         else{
                             $('#like_btn').removeClass('btn-yellow').addClass('btn-green');
+                            showNotification("সাফল্য!", "আপনি এই পোস্টটি পছন্দ করেছেন", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         }
                     }
                     else{

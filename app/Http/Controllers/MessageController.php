@@ -129,7 +129,21 @@ class MessageController extends Controller
                 $follower->user->participating()->attach($id);
             }
         }
-        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'আপনার অনুগামীদের যোগ করা হয়েছে!'));
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'আপনার অনুসারীদের যোগ করা হয়েছে!'));
+    }
+
+    public function addWorkers($id)
+    {
+        $allReceipents = $this->getReceipents($id);
+
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        $workers = $this->user->where('party_id', $user->party_id);
+        foreach ($workers as $worker) {
+            if(!in_array($worker->id, $allReceipents)){
+                $worker->participating()->attach($id);
+            }
+        }
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'সমস্ত কর্মচারীদের যোগ করা হয়েছে!'));
     }
 
     /**

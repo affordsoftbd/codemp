@@ -138,7 +138,8 @@
             <label for="add_participant">আরো প্রাপক যোগ করুন</label>
         </div>
         <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
-        <a class="btn btn-sm btn-dark-green my-3" href="{{ route('messages.add.followers', $conversation->id) }}"><i class="fa fa-check pr-2"></i>আপনার সমস্ত অনুসরণকারীদের যোগ করুন</a>
+        <a class="btn btn-sm btn-light-green my-3" href="{{ route('messages.add.workers', $conversation->id) }}"><i class="fa fa-check pr-2"></i>সমস্ত কর্মচারীদের যোগ করুন</a>
+        <a class="btn btn-sm btn-dark-green my-3" href="{{ route('messages.add.followers', $conversation->id) }}"><i class="fa fa-check pr-2"></i>শুধুমাত্র আপনার অনুসরণকারীদের যোগ করুন</a>
         @foreach($conversation->receipents as $receipent)
 	        @if($conversation->author == $user->id && $receipent->id != $conversation->author)
 		        <div class="row mt-3">

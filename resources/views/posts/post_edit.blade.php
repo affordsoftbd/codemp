@@ -12,6 +12,9 @@
     <div class="md-form">
         {!! Form::textarea('description', $post->description, array('class'=>'editor')) !!}
     </div>
+    @if ($errors->has('description'))
+        <p class="red-text">{{ $errors->first('description') }}</p>
+    @endif
     <div class="text-center my-4">
         {!! Form::button('হালনাগাদ', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
     </div>

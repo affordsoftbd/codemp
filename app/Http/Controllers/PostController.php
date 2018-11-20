@@ -96,9 +96,9 @@ class PostController extends Controller
             'description' => 'required|string',
             'images.*' => 'required|file|mimes:jpg,jpeg,png,bmp|max:2000'
             ],[
-                'images.*.required' => 'Please upload an image',
-                'images.*.mimes' => 'Only jpg,jpeg,png,bmp images are allowed',
-                'images.*.max' => 'Sorry! Maximum allowed size for an image is 2MB',
+                'images.*.required' => 'একটি ছবি আপলোড করুন',
+                'images.*.mimes' => 'শুধুমাত্র jpg, jpeg, png, bmp ছবির অনুমতি দেওয়া হয়',
+                'images.*.max' => 'দুঃখিত! একটি ছবির জন্য সর্বাধিক অনুমোদিত আকার 2 এমবি',
         ]);
         if ($validator->fails()) {
           return response()->json(['response'=>'error', 'message'=>$validator->messages()->all()]);
@@ -120,7 +120,7 @@ class PostController extends Controller
                     $postImage->image_path = $imageUpload;
                     $postImage->post_id = $post->post_id;
                     $postImage->save();
-                    $messages[] = "Image ".count($images)." uploaded as ".$postImage->image_path;
+                    $messages[] = "ছবি ".count($images)." আপলোড হয়েছে ".$postImage->image_path." হিসেবে";
                 }
                 return json_encode(['response'=>'success', 'message'=>$messages]);
             }
@@ -149,7 +149,7 @@ class PostController extends Controller
             $postVideo->video_path = $this->uploadVideo($request->video, 'posts/videos/'); 
             $postVideo->post_id = $post->post_id;
             $postVideo->save();
-            return json_encode(['response'=>'success', 'message'=>'Video shared successfully!']);
+            return json_encode(['response'=>'success', 'message'=>'ভিডিও সফলভাবে শেয়ার হয়েছে!']);
         }
         catch (\Exception $e) {
             return ['status'=>401, 'reason'=>$e->getMessage()];
@@ -206,22 +206,20 @@ class PostController extends Controller
 
     public function updatePostDetails(Request $request, $id)
     {
-        try {
-            $input = $request->all();
-            $post = Post::findOrFail($id);
-            $post->update($input);
-            if($post->post_type == 'photo'){
-                return redirect()->route('image', $id)->with('success', array('সফল!'=>'অ্যালবাম বিস্তারিত আপডেট করা হয়েছে!'));
-            }
-            elseif($post->post_type == 'video'){
-                return redirect()->route('video', $id)->with('success', array('সফল!'=>'ভিডিও বিবরণ আপডেট করা হয়েছে!'));
-            }
-            else{
-                return redirect()->route('post', $id)->with('success', array('সফল!'=>'পোস্ট আপডেট করা হয়েছে!'));
-            }
+        $this->validate(request(),[
+            'description' => 'required|string'
+        ]);
+        $input = $request->all();
+        $post = Post::findOrFail($id);
+        $post->update($input);
+        if($post->post_type == 'photo'){
+            return redirect()->route('image', $id)->with('success', array('সফল!'=>'অ্যালবাম বিস্তারিত আপডেট করা হয়েছে!'));
         }
-        catch (\Exception $e) {
-            return $e->getMessage();
+        elseif($post->post_type == 'video'){
+            return redirect()->route('video', $id)->with('success', array('সফল!'=>'ভিডিও বিবরণ আপডেট করা হয়েছে!'));
+        }
+        else{
+            return redirect()->route('post', $id)->with('success', array('সফল!'=>'পোস্ট আপডেট করা হয়েছে!'));
         }
     }
 
