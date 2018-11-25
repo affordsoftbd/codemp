@@ -133,7 +133,7 @@
            set_district('{{ $user->division_id }}','{{ $user->district_id }}');
            set_thana('{{ $user->district_id }}','{{ $user->thana_id }}');
            set_zip('{{ $user->thana_id }}','{{ $user->zip_id }}');
-           set_leader('{{ $user->role_id }}','{{ $user->parent_id }}');
+           //set_leader('{{ $user->role_id }}','{{ $user->parent_id }}');
         });
 
         $(document).on('submit', '#user_form', function(event){
@@ -143,51 +143,42 @@
             var email = $('#email').val();
             var phone = $('#phone').val();
             var username = $('#username').val();
-            //var password = $('#password').val();
-            //var password_confirm = $('#password_confirm').val();
-            //var nid = $('#nid').val();
-            //var division = $('#division').val();
-            //var district = $('#district').val();
-            //var thana = $('#thana').val();
-            //var zip = $('#zip').val();
-            //var leader = $('#leader').val();
+            var nid = $('#nid').val();
+            var division = $('#division').val();
+            var district = $('#district').val();
+            var thana = $('#thana').val();
+            var zip = $('#zip').val();
+            var role = $('#role_id').val();
             var validate = '';
 
             if(first_name.trim()==''){
-                validate = validate+"first name is required</br>";
+                validate = validate+"নামের প্রথম অংশ প্রয়োজন</br>";
             }
             if(phone.trim()==''){
-                validate = validate+"phone is required</br>";
+                validate = validate+"ফোন প্রয়োজন </br>";
             }
             var re = /\S+@\S+\.\S+/;
             if(email.trim()!='' && !re.test(email)){
-                validate = validate+"invalid email address</br>";
+                validate = validate+"অকার্যকর ইমেইল ঠিকানা</br>";
             }
             if(username.trim()==''){
-                validate = validate+"username is required</br>";
+                validate = validate+"ইউসার নাম প্রয়োজন</br>";
             }
-            /*if(password.trim()!='' && password.trim().length<8){
-                validate = validate+"password needs at least 8 digits</br>";
+            if(division===null){
+                validate = validate+"বিভাগ প্রয়োজন</br>";
             }
-            var regex = /\d/g;
-            if(password.trim()!='' && !regex.test(password.trim())){
-                validate = validate+"password should contain at least 1 number</br>";
+            if(district===null){
+                validate = validate+"জেলা প্রয়োজন</br>";
             }
-            if(password!=password_confirm){
-                validate = validate+"password and password confirm does not match";
-            }*/
-            /*if(division==''){
-                validate = validate+"division is required</br>";
+            if(thana===null){
+                validate = validate+"থানা প্রয়োজন</br>";
             }
-            if(district==''){
-                validate = validate+"district is required</br>";
+            if(zip===null){
+                validate = validate+"জিপ প্রয়োজন</br>";
             }
-            if(thana==''){
-                validate = validate+"thana is required</br>";
+            if(role===null){
+                validate = validate+"রোল প্রয়োজন</br>";
             }
-            if(zip==''){
-                validate = validate+"zip is required</br>";
-            }*/
 
             if(validate==''){
                 var formData = new FormData($('#user_form')[0]);

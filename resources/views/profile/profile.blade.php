@@ -3,7 +3,7 @@
 		<h4 class="font-weight-bold green-text">
 			{{ $user->first_name." ".$user->last_name}}
 		</h4>
-		<small class="red-text"><strong>সিলেট > মোগগ্রারা সদর > সোনারগাঁও উপজেলা</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</small>
+		<small class="red-text"><strong>{{ $user->division_name}} > {{ $user->district_name}} > {{ $user->thana_name}} > {{ $user->zip_code}}</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</small>
 		<hr>
 
 <div class="card border message_area border-light">

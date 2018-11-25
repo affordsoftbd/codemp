@@ -10,7 +10,7 @@
 		        <div class="card-body light-green white-text">
 		        	<h1 class="font-weight-bold my-5 text-center">
 		        		<i class="fa fa fa-flag fa-sm pr-2"></i>
-		          		<small>কর্মচারীর সংখ্যা: {{ count($workers)}}</small>
+		          		<small>কর্মীর সংখ্যা: {{ count($workers)}}</small>
 		        	</h1>  
 		        </div>
 		    </div>

@@ -67,6 +67,7 @@ class UserController extends Controller
             if(trim($request->password)!=''){
                 $user->password = bcrypt($request->password);
             }
+            $user->role_id = $request->role_id;
             $user->updated_at = date('Y-m-d h:i:s');
             $user->save();
             
@@ -77,6 +78,10 @@ class UserController extends Controller
             $userDetail->phone = $request->phone;
             $userDetail->nid = $request->nid;
             $userDetail->address = $request->address;
+            $userDetail->division_id = $request->division;
+            $userDetail->district_id = $request->district;
+            $userDetail->thana_id = $request->thana;
+            $userDetail->zip_id = $request->zip;
             $userDetail->save();
 
             /*

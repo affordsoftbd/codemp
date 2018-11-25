@@ -28,13 +28,13 @@
           </div>
 
           <!-- Category -->
-          <a href="#!" class="red-text"><h6 class="font-weight-bold mb-3"><i class="fa fa-tag pr-2"></i>Adventure</h6></a>
+          <!--a href="#!" class="red-text"><h6 class="font-weight-bold mb-3"><i class="fa fa-tag pr-2"></i>Adventure</h6></a-->
           <!-- Post title -->
           <h4 class="font-weight-bold mb-3"><strong>{{ $nws->title }}</strong></h4>
           <!-- Post data -->
           <p>{{ date('d/m/Y',strtotime($nws->created_at)) }}</p>
           <!-- Excerpt -->
-          <p class="dark-grey-text">{{ substr($nws->description, 0, 250) }}</p>
+          <p class="dark-grey-text"><?php echo substr($nws->description, 0, 250) ?></p>
           <!-- Read more button -->
           <a href="{{ route('news.details', $nws->global_news_id) }}" class="btn btn-danger btn-rounded btn-md">আরো পড়ুন</a>
 

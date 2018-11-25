@@ -157,6 +157,10 @@ class HomeController extends Controller
             }
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
+                ->leftJoin('divisions','divisions.division_id','user_details.division_id')
+                ->leftJoin('districts','districts.district_id','user_details.district_id')
+                ->leftJoin('thanas','thanas.thana_id','user_details.thana_id')
+                ->leftJoin('zips','zips.zip_id','user_details.zip_id')
                 ->first();
             $data['followers'] = Follower::where('leader_id',$data['user']->id)->get();
             if(empty($data['user'])){
@@ -430,7 +434,7 @@ class HomeController extends Controller
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
             $data['divisions'] = DB::table('divisions')->get();  
-            $data['roles'] = DB::table('roles')->where('role_id','!=',1)->get();
+            $data['roles'] = DB::table('roles')->get();
             return view('profile.edit',$data);
         }
         catch (\Exception $e) {

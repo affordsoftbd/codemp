@@ -40,15 +40,10 @@
 <!-- Search by date -->
 
 <!-- Search by date -->
-  <h5 class="green-text font-weight-bold mt-4">ধরন</h5><hr>
+  <!--h5 class="green-text font-weight-bold mt-4">ধরন</h5><hr>
   <ul class="list-unstyled mb-0">
     <li><a href="javascript:void('0')" class="red-text">Re-contextualized</a><hr></li>
     <li><a href="javascript:void('0')" class="green-text">Re-contextualized</a><hr></li>
-    <li><a href="javascript:void('0')" class="red-text">Re-contextualized</a><hr></li>
-    <li><a href="javascript:void('0')" class="red-text">Re-contextualized</a><hr></li>
-    <li><a href="javascript:void('0')" class="red-text">Re-contextualized</a><hr></li>
-    <li><a href="javascript:void('0')" class="red-text">Re-contextualized</a><hr></li>
-    <li><a href="javascript:void('0')" class="red-text">Re-contextualized</a><hr></li>
-  </ul>
+  </ul-->
 <!-- Search by date -->
 </div>
