@@ -121,7 +121,7 @@ class AuthController extends Controller
             $user->password = bcrypt($request->password);
             $user->party_id = $request->party_id;
             $user->role_id = $request->role_id;
-            $user->status = 'Pending';
+            $user->status = 'Active';
             $user->created_at = date('Y-m-d h:i:s');
             $user->save();
             

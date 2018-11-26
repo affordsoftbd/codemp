@@ -124,6 +124,10 @@
            $('#district').material_select();
            $('#thana').material_select();
            $('#zip').material_select();
+
+           set_district('{{ request()->get('division') }}','{{ request()->get('district') }}');
+           set_thana('{{ request()->get('district') }}','{{ request()->get('thana') }}');
+           set_zip('{{ request()->get('thana') }}','{{ request()->get('zip') }}');
         });
 
         function remove_follower(follower_id){

@@ -248,6 +248,10 @@ class HomeController extends Controller
             }
             $data['user'] = User::where('username',$request->user)
                 ->join('user_details','user_details.user_id','=','users.id')
+                ->leftJoin('divisions','divisions.division_id','user_details.division_id')
+                ->leftJoin('districts','districts.district_id','user_details.district_id')
+                ->leftJoin('thanas','thanas.thana_id','user_details.thana_id')
+                ->leftJoin('zips','zips.zip_id','user_details.zip_id')
                 ->first();
             $data['followers'] = Follower::where('leader_id',$data['user']->id)->get();
             if(empty($data['user'])){
@@ -276,6 +280,7 @@ class HomeController extends Controller
                 return redirect('login');
             }        
             $data['divisions'] = DB::table('divisions')->get(); 
+            $user = Auth::user();
 
 
             $data['leaders'] = User::query();
@@ -287,6 +292,7 @@ class HomeController extends Controller
             $data['leaders'] = $data['leaders']->leftJoin('thanas','thanas.thana_id','user_details.thana_id');
             $data['leaders'] = $data['leaders']->leftJoin('zips','zips.zip_id','user_details.zip_id');
             $data['leaders'] = $data['leaders']->where('role_id',1);
+            $data['leaders'] = $data['leaders']->where('users.id','!=',$user->id);
             $data['leaders'] = $data['leaders']->where('status','Active');
 
             if($request->following=='true'){

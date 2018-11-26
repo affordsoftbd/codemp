@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('profile.profile')
+@include('public_profile_basic')
 
 @guest          
 
@@ -68,34 +68,6 @@
 	    </div>
 	</div>
  </div>
-
-<div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="alert alert-success" id="comment_success" style="display:none"></div>
-            <div class="alert alert-danger" id="comment_error" style="display:none"></div>
-            <form id="comment_form" class="login-form" method="post" action="">
-                {{ csrf_field() }}  
-                <input type="hidden" name="post_id" id="post_id" value="">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">আপনার মন্তব্য লিখুন</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body mx-3">
-                    <div class="md-form">
-                        {!! Form::textarea('address', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'name'=>'comment_text', 'id'=>'comment_text')) !!}
-                        {!! Form::label('address', 'মন্তব্য') !!}
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    {{ Form::button('পোস্ট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <input type="hidden" name="last_load" id="last_load">
 <input type="hidden" name="last_id" id="last_id">
@@ -166,7 +138,6 @@
                                         html +='</div>';
 
                                         html +='<div class="ml-auto mr-4 mb-4 ">';
-                                        html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action green" href="{{ route('post') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
                                         html +='</div>';
@@ -214,7 +185,6 @@
                                         html +='</div>';
 
                                         html +='<div class="ml-auto mr-4 mb-4 ">';
-                                        html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action green" href="{{ route('image') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
                                         html +='</div>';
@@ -279,7 +249,6 @@
 
                                         
                                         html +='<div class="ml-auto mr-4 mb-4 ">';
-                                        html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action green" href="{{ route('video') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
                                         html +='</div>';
@@ -460,6 +429,48 @@
                         else if($('#p_like_ico_'+post_id).hasClass("fa fa-thumbs-o-up")){
                             $('#p_like_ico_'+post_id).removeClass('fa fa-thumbs-o-up').addClass('fa fa-thumbs-up');
                         }
+                    }
+                    else{
+                        alert(data);
+                    }
+                } ,error: function(xhr, status, error) {
+                    alert(error);
+                },
+            });
+        }
+
+        function follow_leader(leader_id){
+            $.ajax({
+                type: "POST",
+                url: "{{ route('follow_leader') }}",
+                data: { _token: "{{ csrf_token() }}",leader_id:leader_id},
+                dataType: "json",
+                cache : false,
+                success: function(data){
+                    if(data.status == 200){
+                      show_success_message('leader followed successfully');
+                      location.reload();
+                    }
+                    else{
+                        alert(data);
+                    }
+                } ,error: function(xhr, status, error) {
+                    alert(error);
+                },
+            });
+        }
+
+        function un_follow_leader(leader_id){
+            $.ajax({
+                type: "POST",
+                url: "{{ route('un_follow_leader') }}",
+                data: { _token: "{{ csrf_token() }}",leader_id:leader_id},
+                dataType: "json",
+                cache : false,
+                success: function(data){
+                    if(data.status == 200){
+                        show_success_message('leader un-followed successfully');
+                        location.reload();
                     }
                     else{
                         alert(data);
