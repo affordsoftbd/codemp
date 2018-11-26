@@ -49,9 +49,9 @@
         ?>
 		<div class="btn-group my-5" role="group" aria-label="Basic example">
               @if(empty($follower))
-              <a href="red" class="btn btn-light-green btn-sm" onclick="follow_leader({{ $user->id }})"><i class="fa fa-check fa-sm pr-2"></i>অনুসরণ</a>
+              <a href="javascript:void(0)" class="btn btn-light-green btn-sm" onclick="follow_leader({{ $user->id }})"><i class="fa fa-check fa-sm pr-2"></i>অনুসরণ</a>
               @else
-              <a href="red" class="btn btn-red btn-sm" onclick="un_follow_leader({{ $user->id }})"><i class="fa fa-close fa-sm pr-2"></i>অনুসরণ বাতিল</a>              
+              <a href="javascript:void(0)" class="btn btn-red btn-sm" onclick="un_follow_leader({{ $user->id }})"><i class="fa fa-close fa-sm pr-2"></i>অনুসরণ বাতিল</a>              
               @endif
               <a href="red" class="btn btn-dark-green btn-sm"><i class="fa fa-comments fa-sm pr-2"></i>চ্যাট</a>
             </div> 
