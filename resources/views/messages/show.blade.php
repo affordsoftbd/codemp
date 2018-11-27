@@ -106,7 +106,7 @@
 				</small>
 			</div>
         @endif
-        @if($messages->isEmpty() || $messages->onFirstPage() && $messages->isNotEmpty() && $messages->first()->user->id != $user->id)
+        @if($conversation->author == $user->id || $messages->isEmpty() || $messages->onFirstPage() && $messages->isNotEmpty() && $messages->first()->user->id != $user->id)
 	        <div class="add_message">
 		        {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
 			        {!! Form::hidden('user_id', $user->id) !!}

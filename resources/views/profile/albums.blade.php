@@ -110,10 +110,11 @@
                     success: function (data) {
                         if(data.status == 200){
                             tinyMCE.activeEditor.setContent('');
-                            $('#post_success').hide();
+                            /*$('#post_success').hide();
                             $('#post_danger').hide();
                             $('#post_success').html('');
-                            $('#post_danger').html('');
+                            $('#post_danger').html('');*/
+                            showNotification("সফল!", "পোস্টটি সফলভাবে শেয়ার করা হয়েছে", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
 
                             var last_id = $('#last_id').val();
                             $('#last_id').val(parseInt(last_id)+1);
@@ -121,9 +122,10 @@
                             getPost(parseInt(last_id)+1,'init');
                         }
                         else{
-                            $('#post_success').hide();
+                            /*$('#post_success').hide();
                             $('#post_danger').show();
-                            $('#post_danger').html(data.reason);
+                            $('#post_danger').html(data.reason);*/
+                            showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         }
                     },
                     cache: false,
@@ -132,9 +134,10 @@
                 });
             }
             else{
-                $('#post_success').hide();
+                /*$('#post_success').hide();
                 $('#post_danger').show();
-                $('#post_danger').html(validate);
+                $('#post_danger').html(validate);*/
+                showNotification("এরর!", validate, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
             }
         });
 
