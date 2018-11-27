@@ -43,6 +43,10 @@ a:hover {
   min-width: 300px;
 }
 
+.right-side-meta {
+    font-size: 12px;
+}
+
 #all_new_messages{
   max-height: 50vh; 
   overflow: scroll;

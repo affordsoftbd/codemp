@@ -64,7 +64,7 @@
 				<!-- Heading-->
 				<div class="card-body">
 				  <div class="content">
-				    <div class="right-side-meta">{{ $message->created_at }}</div>
+				    <div class="right-side-meta">{{ $message->created_at->format('l d F Y, h:i A') }}</div>
 				    <img src="{{ !empty($message->user->detail->image_path) ? url('/').$message->user->detail->image_path : 'http://via.placeholder.com/450' }}" class="rounded-circle avatar-img z-depth-1-half">{{ $message->user->first_name }}
 				  </div>
 				</div>
@@ -137,9 +137,17 @@
             <input type="text" class="form-control" id="add_participant" data-url="{{ route('messages.user.list', $conversation->id) }}">
             <label for="add_participant">আরো প্রাপক যোগ করুন</label>
         </div>
+
         <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
-        <a class="btn btn-sm btn-light-green my-3" href="{{ route('messages.add.workers', $conversation->id) }}"><i class="fa fa-check pr-2"></i>সমস্ত কর্মচারীদের যোগ করুন</a>
-        <a class="btn btn-sm btn-dark-green my-3" href="{{ route('messages.add.followers', $conversation->id) }}"><i class="fa fa-check pr-2"></i>শুধুমাত্র আপনার অনুসরণকারীদের যোগ করুন</a>
+
+        <button id="add_participant_dropdown" type="button" class="btn btn-sm btn-dark-green my-3 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      <i class="fa fa-check pr-2"></i>নির্দিষ্ট প্রাপক যোগ করুন
+	    </button>
+	    <div class="dropdown-menu" aria-labelledby="add_participant_dropdown">
+	      <a class="dropdown-item" href="{{ route('messages.add.workers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>সমস্ত কর্মচারী</a>
+	      <a class="dropdown-item" href="{{ route('messages.add.followers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>শুধুমাত্র আপনার অনুসরণকারী</a>
+	    </div>
+        
         @foreach($conversation->receipents as $receipent)
 	        @if($conversation->author == $user->id && $receipent->id != $conversation->author)
 		        <div class="row mt-3">
