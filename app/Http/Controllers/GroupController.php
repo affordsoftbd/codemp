@@ -64,7 +64,33 @@ class GroupController extends Controller
             }
         }
 
-        return ['status'=>200,'reason'=>'group created successfully'];
+        return ['status'=>200,'reason'=>'গ্রুপ সফলভাবে তৈরি হয়েছে'];
+    }
+
+    public function editGroup(Request $request){
+        $group = Group::where('group_id',$request->group_id)->first();
+        $members = GroupMember::select('user_id')->where('group_id',$request->group_id)->pluck('user_id')->toArray();
+        return ['status'=>200,'group'=>$group,'members'=>$members];
+    }
+
+    public function updateGroup(Request $request){
+        $group = Group::where('group_id',$request->group_id)->first();
+        $group->group_name = $request->group_name;
+        $group->save();
+
+        $members = $request->members;
+        GroupMember::where('group_id',$request->group_id)->delete();
+        if(!empty($members)){
+            foreach($members as $member){
+                $groupMember = NEW GroupMember();
+                $groupMember->group_id = $group->group_id;
+                $groupMember->user_id = $member;
+                $groupMember->member_role = 'general';
+                $groupMember->save();
+            }
+        }
+
+        return ['status'=>200,'reason'=>'গ্রুপ সফলভাবে হালনাগাদ হয়েছে'];
     }
 
     public function deleteGroup(Request $request){

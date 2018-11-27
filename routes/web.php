@@ -73,6 +73,8 @@ Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details
 
 Route::get('/group', 'GroupController@index')->name('group');
 Route::post('/save_group', 'GroupController@saveGroup')->name('save_group');
+Route::post('/edit_group', 'GroupController@editGroup')->name('group.edit');
+Route::post('/update_group', 'GroupController@updateGroup')->name('update_group');
 Route::delete('/delete_group/{id}', 'GroupController@deleteGroup')->name('group.delete');
 
 Route::post('/save_news_comment', 'HomeController@saveNewsComment')->name('save_news_comment');
