@@ -53,4 +53,10 @@ class User extends Model
     {
         return $this->belongsToMany(Event::class, 'event_participants');
     }
+
+        // A User has many groups
+    public function groups() 
+    {
+        return $this->hasMany(Group::class, 'created_by');
+    }
 }

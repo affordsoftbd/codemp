@@ -11,7 +11,13 @@ class Group extends Model
     protected $primaryKey = 'group_id';
     public $timestamps = false;
 
-    #one to many detail tabe relation
+        // A group belongs to a creator 
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    	#one to many detail tabe relation
     public function members()
     {
         return $this->hasMany(GroupMember::class,'group_id');

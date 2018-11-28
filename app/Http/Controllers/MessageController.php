@@ -151,6 +151,19 @@ class MessageController extends Controller
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'সমস্ত কর্মচারীদের যোগ করা হয়েছে!'));
     }
 
+    public function addGroupMembers($id, $group)
+    {
+        /*$allReceipents = $this->getReceipents($id);
+
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        foreach ($user->followers as $follower) {
+            if(!in_array($follower->user->id, $allReceipents)){
+                $follower->user->participating()->attach($id);
+            }
+        }
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'আপনার অনুসারীদের যোগ করা হয়েছে!'));*/
+    }
+
     /**
      * Display the specified resource.
      *
@@ -165,7 +178,7 @@ class MessageController extends Controller
         if($messages->onFirstPage() && $messages->isNotEmpty() && !$messages->first()->viewers->contains('viewer', $request->session()->get('user_id'))){
             $this->saveViewer($messages->first()->id, $request->session()->get('user_id'));
         }
-        return view('messages.show', compact('conversation', 'messages', 'user'));
+        return view('messages.show', compact('conversation', 'messages', 'user', 'groups'));
     }
 
     /**

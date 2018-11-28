@@ -18,6 +18,7 @@ Route::get('/messages/subject/{id}/edit', 'MessageController@getMessageSubject')
 Route::get('/messages/subject/{id}/receipent/{receipent}/add', 'MessageController@addReceipent');
 Route::get('/messages/subject/{id}/add/followers', 'MessageController@addFollowers')->name('messages.add.followers');
 Route::get('/messages/subject/{id}/add/workers', 'MessageController@addWorkers')->name('messages.add.workers');
+Route::get('/messages/subject/{id}/group/{group}/members', 'MessageController@addGroupMembers')->name('messages.add.group.members');
 Route::resource('messages', 'MessageController');
 Route::post('/messages/subject/{id}/getUserList', 'MessageController@getUserList')->name('messages.user.list');
 Route::delete('/messages/{id}/receipent/{receipent}/remove', 'MessageController@removeReceipent')->name('messages.receipent.remove');

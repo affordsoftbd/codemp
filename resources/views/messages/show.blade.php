@@ -146,8 +146,13 @@
 	    <div class="dropdown-menu" aria-labelledby="add_participant_dropdown">
 	      <a class="dropdown-item" href="{{ route('messages.add.workers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>সমস্ত কর্মচারী</a>
 	      <a class="dropdown-item" href="{{ route('messages.add.followers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>শুধুমাত্র আপনার অনুসরণকারী</a>
+	      @if(!empty($user->groups))
+	      	@foreach($user->groups as $group)
+	      		<a class="dropdown-item" href="{{ route('messages.add.group.members', [$conversation->id, $group->group_id]) }}"><i class="fa fa-hand-o-right pr-2"></i>গ্রুপ {{ $group->group_name }}</a>
+	      	@endforeach
+	      @endIf
 	    </div>
-        
+
         @foreach($conversation->receipents as $receipent)
 	        @if($conversation->author == $user->id && $receipent->id != $conversation->author)
 		        <div class="row mt-3">
