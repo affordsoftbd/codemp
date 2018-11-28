@@ -1,6 +1,57 @@
 @extends('layouts.master')
 
-@section('title', "বার্তা ||")
+@section('title', "গ্রুপ ||")
+
+@section('extra-css')
+<style>
+.member_photos {
+   /* Prevent vertical gaps */
+   line-height: 0;
+   
+   -webkit-column-count: 5;
+   -webkit-column-gap:   0px;
+   -moz-column-count:    5;
+   -moz-column-gap:      0px;
+   column-count:         5;
+   column-gap:           0px;
+}
+
+.member_photos img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+}
+
+@media (max-width: 1200px) {
+  .member_photos {
+  -moz-column-count:    4;
+  -webkit-column-count: 4;
+  column-count:         4;
+  }
+}
+@media (max-width: 1000px) {
+  .member_photos {
+  -moz-column-count:    3;
+  -webkit-column-count: 3;
+  column-count:         3;
+  }
+}
+@media (max-width: 800px) {
+  .member_photos {
+  -moz-column-count:    2;
+  -webkit-column-count: 2;
+  column-count:         2;
+  }
+}
+@media (max-width: 400px) {
+  .member_photos {
+  -moz-column-count:    1;
+  -webkit-column-count: 1;
+  column-count:         1;
+  }
+}
+</style>
+@endsection
 
 @section('content')
 
@@ -27,43 +78,47 @@
 </form>
 
 
-<div class="row">
-    @foreach($groups as $group)
-    <div class="col-lg-4 mb-4">
-        <!-- Card -->
-        <div class="card card-cascade wider">
+@foreach($groups as $group)
+    <!-- Card -->
+    <div class="card card-cascade wider mb-5">
 
-          <!-- Card image -->
-          <div class="view view-cascade gradient-card-header green">
+      <!-- Card image -->
+      <div class="view view-cascade gradient-card-header green">
 
-            <!-- Title -->
-            <h2 class="card-header-title mb-3">{{ $group->group_name }}</h2>
-            <!-- Text -->
-            <p class="mb-0"><i class="fa fa-group fa-sm pr-2"></i>{{ count($group->members) }} member(s)</p>
+        <!-- Title -->
+        <h2 class="card-header-title mb-3">{{ $group->group_name }}</h2>
+        <!-- Text -->
+        <p class="mb-0"><i class="fa fa-calendar pr-2"></i>{{ date('d M Y', strtotime($group->created_at)) }}</p>
 
-          </div>
+      </div>
 
-          <!-- Card content -->
-          <div class="card-body card-body-cascade text-center">
+      <!-- Card content -->
+      <div class="card-body card-body-cascade text-center">
 
-            <!-- Text -->
-            <p class="card-text"><i class="fa fa-calendar pr-2"></i>{{ date('d M Y', strtotime($group->created_at)) }}</p>
-            <!-- Link -->
-            <a href="#!" class="btn btn-light-green btn-sm" onclick="edit_group({{ $group->group_id }})"><i class="fa fa-edit fa-sm pr-2"></i></a>
-            <a href="#!" class="orange-text d-flex flex-row-reverse p-2">
-                {!! Form::open(['route' => ['group.delete', $group->group_id], 'method'=>'delete']) !!}
-                    {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই গ্রুপটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, গ্রুপ টি মুছে দিন!', 'type'=>'submit')) !!}
-                {!! Form::close() !!}
-            </a>
+        <!-- Text -->
+        <p class="card-text"><i class="fa fa-group fa-sm pr-2"></i>{{ count($group->members) }} member(s)</p>
+        <section class="member_photos">
+            @foreach($group->members as $member)
+                <img {{-- 'class="img-fluid mx-3 my-3"' --}} src="{{ !empty($member->user->user_details_image_path) ? url('/').$member->user->user_details_image_path : 'http://via.placeholder.com/200' }}" alt="{{ $member->user->first_name }}">
+                @if( $loop->iteration > 15)
+                    @break
+                @endif
+            @endforeach
+        </section>
+        <!-- Link -->
+        <span class="orange-text d-flex flex-row-reverse p-2">
+            {!! Form::open(['route' => ['group.delete', $group->group_id], 'method'=>'delete']) !!}
+                <a href="#!" class="btn btn-light-green btn-sm" onclick="edit_group({{ $group->group_id }})"><i class="fa fa-edit fa-sm"></i></a>
+                {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই গ্রুপটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, গ্রুপ টি মুছে দিন!', 'type'=>'submit')) !!}
+            {!! Form::close() !!}
+        </span>
 
-          </div>
-          <!-- Card content -->
+      </div>
+      <!-- Card content -->
 
-        </div>
-        <!-- Card -->
     </div>
-    @endforeach
-</div>
+    <!-- Card -->
+@endforeach
 
 
 
@@ -86,8 +141,8 @@
                         <input type="text" name="group_name" id="group_name" class="form-control">
                         {!! Form::label('address', 'নাম') !!}
                     </div>
-                    <div class="md-form">                    	
-                        <select class="mdb-select" name="members[]" id="members" multiple>
+                    <div class="md-form">              	
+                        <select class="mdb-select md-form colorful-select dropdown-primary" name="members[]" id="members" multiple searchable="Search here..">
                             <option value="" disabled selected>সদস্য</option>
                             @foreach($applicants as $applicant)
                                 <option value="{{ $applicant->id }}">{{ $applicant->first_name." ".$applicant->last_name }}</option>
@@ -144,6 +199,21 @@
 
 @section('extra-script')
     <script>   	
+
+        /*function getRandomSize(min, max) {
+          return Math.round(Math.random() * (max - min) + min);
+        }
+
+        var allImages = "";
+
+        for (var i = 0; i < 25; i++) {
+          var width = getRandomSize(200, 400);
+          var height =  getRandomSize(200, 400);
+          allImages += '<img src="https://placekitten.com/'+width+'/'+height+'" alt="pretty kitty">';
+        }
+
+        $('.member_photos').append(allImages);*/
+
 
         $(document).ready(function(){
             $('#members').material_select();

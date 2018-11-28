@@ -47,9 +47,9 @@
                 <img class="img-fluid mb-3" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
             </a>
             @if($event->user_id == $user->id)
-                <button type="button" class="btn green btn-sm mb-4 center-block" data-toggle="modal" data-target="#updateimage">
-                  <i class="fa fa-upload fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ আপলোড করুন
-                </button>
+            <button type="button" class="btn green btn-sm mb-4 center-block" data-toggle="modal" data-target="#updateimage">
+              <i class="fa fa-upload fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ আপলোড করুন
+            </button>
             @endIf
         </div>
         {!! $event->details !!}
