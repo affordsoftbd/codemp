@@ -45,9 +45,11 @@
             <img class="img-fluid mb-3" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
         </a>
         @if($event->user_id == $user->id)
-	        <button type="button" class="btn red btn-sm mb-4" data-toggle="modal" data-target="#updateimage">
+        <div align="center">
+            <button type="button" class="btn green btn-sm mb-4 center-block" data-toggle="modal" data-target="#updateimage">
 	          <i class="fa fa-upload fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ আপলোড করুন
 	        </button>
+        </div>
 	    @endIf
         {!! $event->details !!}
     </div>
@@ -131,7 +133,7 @@
 					<div class="file-field">
 					  <div class="btn btn-success btn-sm float-left">
 					      <span>নির্বাচন</span>
-					      {!! Form::file("event_image", ['class'=>'input_image']) !!}
+					      {!! Form::file("event_image", ['class'=>'input_image', 'accept'=>'image/*']) !!}
 					  </div>
 					  <div class="file-path-wrapper">
 					      {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার চিত্র নির্বাচন করুন']) !!}

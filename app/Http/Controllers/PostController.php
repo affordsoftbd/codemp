@@ -261,9 +261,12 @@ class PostController extends Controller
     public function addImage(Request $request)
     {
         try {
-            $this->validate(request(),[
+            $validator = \Validator::make($request->all(), [
                 'image'  => 'required|image|dimensions:min_width=100,min_height=200|max:2000',
             ]);
+            if ($validator->fails()) {
+                Session::flash('error', array('এরর!'=>'দুঃখিত! ছবি আপডেট করা যায়নি! ছবির জন্য সর্বাধিক অনুমোদিত আকার 2 এমবি!'));
+            }
             $imageUpload = $this->uploadImage($request->file('image'), 'posts/images/', 960, 720);
             $postImage = NEW PostImage();
             $postImage->image_path = $imageUpload;

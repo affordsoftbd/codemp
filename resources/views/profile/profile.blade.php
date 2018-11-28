@@ -221,7 +221,7 @@
                     <div class="file-field">
                       <div class="btn btn-success btn-sm float-left">
                           <span>নির্বাচন</span>
-                          {!! Form::file("image", ['class'=>'input_image']) !!}
+                          {!! Form::file("image", ['class'=>'input_image', 'accept'=>'image/*']) !!}
                       </div>
                       <div class="file-path-wrapper">
                           {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'আপনার ফাইল নির্বাচন করুন']) !!}
