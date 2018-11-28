@@ -115,7 +115,7 @@
 
                         <!-- Material inline 2 -->
                         <div class="form-check form-check-inline">
-                          <input type="radio" class="form-check-input radio-custom" id="privacy6" name="post_privacy" value="public">
+                          <input type="radio" class="form-check-input radio-custom" id="privacy6" name="post_privacy" value="followers">
                           <label class="form-check-label" for="privacy6">অনুসারীগণ</label>
                         </div>
                     </div>
