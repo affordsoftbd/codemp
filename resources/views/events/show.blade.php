@@ -41,16 +41,17 @@
         <h3>{{ $event->title }}</h3>
 		<h6 class="font-weight-bold mt-3"><i class="fa fa-calendar-check-o fa-sm pr-2"></i>{{ date('l d F Y, h:i A', strtotime($event->event_date)) }}</h6>
         <p class="grey-text font-weight-bold mt-3"><i class="fa fa-users fa-sm pr-2"></i>মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
-        <a href="{{ $event->event_image }}" target="_blank"> 
-            <img class="img-fluid mb-3" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
-        </a>
-        @if($event->user_id == $user->id)
-        <div align="center">
-            <button type="button" class="btn green btn-sm mb-4 center-block" data-toggle="modal" data-target="#updateimage">
-	          <i class="fa fa-upload fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ আপলোড করুন
-	        </button>
+        
+        <div id="aniimated-thumbnials" align="center">
+            <a href="{{ $event->event_image }}">
+                <img class="img-fluid mb-3" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
+            </a>
+            @if($event->user_id == $user->id)
+                <button type="button" class="btn green btn-sm mb-4 center-block" data-toggle="modal" data-target="#updateimage">
+                  <i class="fa fa-upload fa-sm pr-2"" aria-hidden="true"></i>একটি নতুন ইমেজ আপলোড করুন
+                </button>
+            @endIf
         </div>
-	    @endIf
         {!! $event->details !!}
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12">
