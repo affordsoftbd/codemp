@@ -151,17 +151,21 @@ class MessageController extends Controller
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'সমস্ত কর্মচারীদের যোগ করা হয়েছে!'));
     }
 
-    public function addGroupMembers($id, $group)
+    public function addGroupMembers($id, $group_id)
     {
-        /*$allReceipents = $this->getReceipents($id);
-
         $user = $this->user->find(\Request::session()->get('user_id'));
-        foreach ($user->followers as $follower) {
-            if(!in_array($follower->user->id, $allReceipents)){
-                $follower->user->participating()->attach($id);
+        $allReceipents = $this->getReceipents($id);
+        foreach ($user->groups as $group) {
+            if($group->group_id == $group_id){
+                foreach ($group->members as $member) {
+                    if(!in_array($member->user_id, $allReceipents)){
+                        $member->user->participating()->attach($id);
+                    }
+                }
+                break;
             }
         }
-        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'আপনার অনুসারীদের যোগ করা হয়েছে!'));*/
+        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'আপনার অনুসারীদের যোগ করা হয়েছে!'));
     }
 
     /**
