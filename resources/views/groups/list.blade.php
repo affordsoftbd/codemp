@@ -221,7 +221,7 @@
                         $('#modalEditGroup').modal('show');
                     }
                     else{
-                        show_error_message(data);
+                        showNotification("এরর!", data, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                     }
                 }
             });            

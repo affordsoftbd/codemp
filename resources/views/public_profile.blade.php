@@ -380,7 +380,7 @@
                     async: false,
                     success: function (data) {
                         if(data.status == 200){
-                            show_success_message(data.reason);
+                            showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                             $('#post_id').val('');
                             $('#comment_text').val('');
                             $('#modalSubscriptionForm').modal('hide');
@@ -448,7 +448,7 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                      show_success_message('leader followed successfully');
+                      showNotification("সাকসেস!", 'leader followed successfully', "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                       location.reload();
                     }
                     else{
@@ -469,7 +469,7 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                        show_success_message('leader un-followed successfully');
+                        showNotification("সাকসেস!", 'leader un-followed successfully', "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         location.reload();
                     }
                     else{

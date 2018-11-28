@@ -120,9 +120,9 @@
             <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($leader->followers) }} জন অনুসারী</span></a> 
             <div class="btn-group mt-3" role="group" aria-label="Basic example">
               @if(empty($follower))
-                <a href="red" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ" onclick="follow_leader({{ $leader->id }})"><i class="fa fa-check"></i></a>
+                <a href="#!" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ" onclick="follow_leader({{ $leader->id }})"><i class="fa fa-check"></i></a>
               @else
-                <a href="red" class="btn btn-red btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ বাতিল" onclick="un_follow_leader({{ $leader->id }})"><i class="fa fa-close"></i></a>
+                <a href="#!" class="btn btn-red btn-sm" data-toggle="tooltip" data-placement="right" title="অনুসরণ বাতিল" onclick="un_follow_leader({{ $leader->id }})"><i class="fa fa-close"></i></a>
               @endif         
                 <a href="{{ url('/messages/create/?recipient='.$leader->id) }}" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
                 <a href="{{ url('public_profile?user='.$leader->username) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
@@ -176,7 +176,7 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                      show_success_message('leader followed successfully');
+                      showNotification("সাকসেস!", 'leader followed successfully', "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                       location.reload();
                     }
                     else{
@@ -197,7 +197,7 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                        show_success_message('leader un-followed successfully');
+                        showNotification("সাকসেস!", 'leader un-followed successfully', "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         location.reload();
                     }
                     else{
@@ -218,7 +218,7 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                      show_success_message(data.reason);
+                      showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                       
                       setTimeout(function(){
                           location.reload();
@@ -242,7 +242,7 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                      show_success_message(data.reason);
+                      showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                       
                       setTimeout(function(){
                           location.reload();

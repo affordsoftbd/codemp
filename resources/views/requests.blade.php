@@ -70,7 +70,7 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                      show_success_message(data.reason);
+                      showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         
                       setTimeout(function(){
                           location.reload();
@@ -105,7 +105,7 @@
               success: function(data){
                   $('#warning-modal').modal('hide');
                   if(data.status == 200){
-                      show_success_message(data.reason);
+                      showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
 
                       setTimeout(function(){
                           location.reload();
@@ -114,7 +114,7 @@
                   }
 
                   else{
-                      show_error_message(data.reason);;
+                      showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                   }
 
                   setTimeout(function(){
