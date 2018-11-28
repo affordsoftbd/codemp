@@ -404,7 +404,7 @@
                     async: false,
                     success: function (data) {
                         if(data.status == 200){
-                            show_success_message(data.reason);
+                            showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                             $('#post_id').val('');
                             $('#comment_text').val('');
                             $('#modalSubscriptionForm').modal('hide');
