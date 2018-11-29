@@ -6,7 +6,7 @@
 		<small class="red-text"><strong>{{ $user->division_name}} > {{ $user->district_name}} > {{ $user->thana_name}} > {{ $user->zip_code}}</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</small>
 		<hr>
     </div>
-        <div class="col-lg-4 col-md-12">
+    <div class="col-lg-4 col-md-12">
 		<!-- Card -->
 		<div class="card card-personal">
 
@@ -53,7 +53,7 @@
               @else
               <a href="javascript:void(0)" class="btn btn-red btn-sm" onclick="un_follow_leader({{ $user->id }})"><i class="fa fa-close fa-sm pr-2"></i>অনুসরণ বাতিল</a>              
               @endif
-              <a href="red" class="btn btn-dark-green btn-sm"><i class="fa fa-comments fa-sm pr-2"></i>চ্যাট</a>
+              <a href="{{ url('/messages/create/?recipient='.$user->id) }}" class="btn btn-dark-green btn-sm"><i class="fa fa-comments fa-sm pr-2"></i>চ্যাট</a>
             </div> 
     </div>
 </div>
