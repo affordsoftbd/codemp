@@ -103,7 +103,7 @@
         <p class="card-text"><i class="fa fa-group fa-sm pr-2"></i>{{ count($group->members) }} member(s)</p>
         <section class="member_photos">
             @foreach($group->members as $member)
-                <img {{-- 'class="img-fluid mx-3 my-3"' --}} src="{{ !empty($member->user->user_details_image_path) ? url('/').$member->user->user_details_image_path : 'http://via.placeholder.com/200' }}" alt="{{ $member->user->first_name }}">
+                <img {{-- 'class="img-fluid mx-3 my-3"' --}} src="{{ !empty($member->user->user_details_image_path) ? url('/').$member->user->user_details_image_path : 'http://via.placeholder.com/200?text='.$member->user->first_name }}" alt="{{ $member->user->first_name }}">
                 @if( $loop->iteration > 15)
                     @break
                 @endif

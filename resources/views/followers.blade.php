@@ -98,7 +98,8 @@
             <hr>
             <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($follower->followers) }} জন অনুসারী</span></a>
             <div class="btn-group mt-3" role="group" aria-label="Basic example">
-              <a href="#" class="btn btn-red btn-sm" data-toggle="tooltip" data-placement="right" title="অপসারণ" onclick="remove_follower({{ $follower->id }})"><i class="fa fa-close"></i></a>               
+              <!-- <a href="#" class="btn btn-red btn-sm" data-toggle="tooltip" data-placement="right" title="অপসারণ" onclick="remove_follower({{ $follower->id }})"><i class="fa fa-close"></i></a>     -->
+              <a href="#" class="btn btn-red btn-sm remove_follower_btn" data-toggle="tooltip" data-placement="right" title="অপসারণ" follower_id="{{ $follower->id }}"><i class="fa fa-close"></i></a>               
               <a href="{{ url('/messages/create/?recipient='.$follower->id) }}" class="btn btn-light-green btn-sm" data-toggle="tooltip" data-placement="right" title="চ্যাট"><i class="fa fa-comments"></i></a>
               <a href="{{ url('public_profile?user='.$follower->username) }}" class="btn btn-green btn-sm" data-toggle="tooltip" data-placement="right" title="পরিলেখ"><i class="fa fa-user"></i></a>
             </div>
@@ -135,13 +136,71 @@
            set_zip('{{ request()->get('thana') }}','{{ request()->get('zip') }}');
         });
 
-        function remove_follower(follower_id){
+        $('.remove_follower_btn').click(function(e){
+          e.preventDefault();
+          var follower_id = $(this).attr('follower_id');
+          swal(
+
+          {
+            title: "আপনি এই অনুসারীকে অপসারণ করতে চান?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#ff0000",
+            confirmButtonText: "হ্যাঁ, এই অনুসারী মুছে ফেলুন",
+            cancelButtonText: "বাতিল",
+          },
+          function( confirmed ) {
+            if(confirmed){
+                // alert(follower_id);
+                $.ajax({
+                  type: "POST",
+                  url: "{{ url('remove_follower') }}",
+                  data: {follower_id:follower_id,_token: "{{ csrf_token() }}"},
+                  dataType: "JSON",
+                  cache : false,
+                  beforeSend: function() {
+                  },
+
+                  success: function(data){
+                      $('#warning-modal').modal('hide');
+                      if(data.status == 200){
+                          showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+
+                          setTimeout(function(){
+                              location.reload();
+                          }, 2000);
+
+                      }
+
+                      else{
+                          showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                      }
+
+                      setTimeout(function(){
+                          location.reload();
+                      }, 3000);
+
+                  },
+
+                  error: function(xhr, status, error) {
+
+                      alert(error);
+
+                  },
+
+                });
+              }
+            }
+            );
+        })
+
+        /*function remove_follower(follower_id){
             $('#item_id').val(follower_id);
             $('.text-danger').text('আপনি এই অনুসারীকে অপসারণ করতে চান?');
             $('#warning-modal').modal('show');
-        }
+        }*/
 
-        $(document).on('click','#warning_ok',function(){
+        /*$(document).on('click','#warning_ok',function(){
           var follower_id = $('#item_id').val();
           $.ajax({
               type: "POST",
@@ -179,7 +238,7 @@
 
               },
 
-          });
+          });*/
 
       })
 

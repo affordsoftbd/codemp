@@ -143,7 +143,7 @@ class UserController extends Controller
             ]);
 
             if(!$result){
-                return ['status'=>401,'reason'=>'Old password is not valid'];
+                return ['status'=>401,'reason'=>'পুরানো পাসওয়ার্ড বৈধ নয়'];
             }     
             
             $user = User::where('id',Session::get('user_id'))->first();  
@@ -152,7 +152,7 @@ class UserController extends Controller
             $user->save();
             
             DB::commit();
-            return ['status'=>200,'reason'=>'Password successfully updated'];
+            return ['status'=>200,'reason'=>'পাসওয়ার্ড সফলভাবে আপডেট করা হয়েছে'];
         }
         catch (\Exception $e) {
             DB::rollback();

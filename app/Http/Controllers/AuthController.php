@@ -41,7 +41,7 @@ class AuthController extends Controller
             DB::beginTransaction();
             $user = User::where('email',$request->email)->first();
             if(empty($user)){
-                return ['status'=>401,'reason'=>'We did not find any user with this email address'];
+                return ['status'=>401,'reason'=>'আমরা এই ইমেল ঠিকানা দিয়ে কোনো ব্যবহারকারী খুঁজে পাই নি'];
             }
             $password = $this->random_string();
             
@@ -56,7 +56,7 @@ class AuthController extends Controller
 
             DB::commit();
 
-            return ['status'=>200,'reason'=>'An email with new password information has been sent to your email address.'];
+            return ['status'=>200,'reason'=>'নতুন পাসওয়ার্ড তথ্য সহ একটি ইমেল আপনার ইমেল ঠিকানায় পাঠানো হয়েছে।'];
         }
         catch (\Exception $exception){
             DB::rollback();
@@ -99,17 +99,17 @@ class AuthController extends Controller
             if($request->email!=''){
                 $emailCheck = User::where('email',$request->email)->first();
                 if(!empty($emailCheck)){
-                    return ['status'=>401,'reason'=>'Duplicate email address'];
+                    return ['status'=>401,'reason'=>'ডুপ্লিকেট ইমেইল ঠিকানা'];
                 }
             }
             $usernameCheck = User::where('username',$request->username)->first();
             if(!empty($usernameCheck)){
-                return ['status'=>401,'reason'=>'Duplicate username'];
+                return ['status'=>401,'reason'=>'ডুপ্লিকেট ব্যবহারকারীর নাম'];
             }
             
             $phoneCheck = UserDetail::where('phone',$request->phone)->first();
             if(!empty($phoneCheck)){
-                return ['status'=>401,'reason'=>'Duplicate phone number'];
+                return ['status'=>401,'reason'=>'ডুপ্লিকেট ফোন নম্বর'];
             }
             
             $user = NEW User();
@@ -158,7 +158,7 @@ class AuthController extends Controller
                 Session::put('last_name',$user->last_name);
             }
     
-            return ['status'=>200,'reason'=>'Successfully saved'];
+            return ['status'=>200,'reason'=>'সফলভাবে সংরক্ষিত'];
         }
         catch (\Exception $e) {
             DB::rollback();
@@ -204,10 +204,10 @@ class AuthController extends Controller
     public function verifyEmail(Request $request){
         $user = User::where('user_id',$request->user_id)->first();
         if($request->mobile_code == $user->mobile_code){
-            return ['status'=>200,'reason'=>'Valid code'];
+            return ['status'=>200,'reason'=>'বৈধ code'];
         }
         else{
-            return ['status'=>401,'reason'=>'Invalid code'];
+            return ['status'=>401,'reason'=>'ভুল কোড'];
         }
         
     }
@@ -215,10 +215,10 @@ class AuthController extends Controller
     public function verifyMobileCode(Request $request){
         $user = User::where('user_id',$request->user_id)->first();
         if($request->mobile_code == $user->mobile_code){
-            return ['status'=>200,'reason'=>'Valid code'];
+            return ['status'=>200,'reason'=>'বৈধ কোড'];
         }
         else{
-            return ['status'=>401,'reason'=>'Invalid code'];
+            return ['status'=>401,'reason'=>'ভুল কোড'];
         }
         
     }
@@ -227,7 +227,7 @@ class AuthController extends Controller
         $user = User::where('user_id',$request->user_id)->first();
         $user->status = 'Active';
         $user->save();
-        return ['status'=>200,'reason'=>'User activated successfully'];
+        return ['status'=>200,'reason'=>'ব্যবহারকারী সফলভাবে সক্রিয়!'];
     }
 
     private function random_string($l = 8) {

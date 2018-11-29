@@ -342,14 +342,14 @@ class PostController extends Controller
         $oldLike = PostLike::where('post_id',$request->post_id)->where('user_id',Session::get('user_id'))->first();
         if(!empty($oldLike)){
             PostLike::where('post_id',$request->post_id)->where('user_id',Session::get('user_id'))->delete();
-            return ['status'=>200,'reason'=>'Already liked','like'=>-1];
+            return ['status'=>200,'reason'=>'ইতিমধ্যে লাইক করা হয়েছে','like'=>-1];
         }
         $like = NEW PostLike();
         $like->post_id = $request->post_id;
         $like->user_id = Session::get('user_id');
         $like->save();
 
-        return ['status'=>200,'reason'=>'New like saved','like'=>1];
+        return ['status'=>200,'reason'=>'নতুন লাইক সংরক্ষিত','like'=>1];
     }
 
     public function deletePost($id)
