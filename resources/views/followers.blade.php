@@ -134,34 +134,31 @@
            set_district('{{ request()->get('division') }}','{{ request()->get('district') }}');
            set_thana('{{ request()->get('district') }}','{{ request()->get('thana') }}');
            set_zip('{{ request()->get('thana') }}','{{ request()->get('zip') }}');
-        });
 
-        $('.remove_follower_btn').click(function(e){
-          e.preventDefault();
-          var follower_id = $(this).attr('follower_id');
-          swal(
+          $('.remove_follower_btn').click(function(e){
+            e.preventDefault();
+            var follower_id = $(this).attr('follower_id');
+            swal(
 
-          {
-            title: "আপনি এই অনুসারীকে অপসারণ করতে চান?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#ff0000",
-            confirmButtonText: "হ্যাঁ, এই অনুসারী মুছে ফেলুন",
-            cancelButtonText: "বাতিল",
-          },
-          function( confirmed ) {
-            if(confirmed){
-                // alert(follower_id);
-                $.ajax({
-                  type: "POST",
-                  url: "{{ url('remove_follower') }}",
-                  data: {follower_id:follower_id,_token: "{{ csrf_token() }}"},
-                  dataType: "JSON",
-                  cache : false,
-                  beforeSend: function() {
-                  },
-
-                  success: function(data){
+            {
+              title: "আপনি এই অনুসারীকে অপসারণ করতে চান?",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#ff0000",
+              confirmButtonText: "হ্যাঁ, এই অনুসারী মুছে ফেলুন",
+              cancelButtonText: "বাতিল",
+            },
+            function( confirmed ) {
+              if(confirmed){
+                  $.ajax({
+                    type: "POST",
+                    url: "{{ url('remove_follower') }}",
+                    data: {follower_id:follower_id,_token: "{{ csrf_token() }}"},
+                    dataType: "JSON",
+                    cache : false,
+                    beforeSend: function() {
+                    },
+                    success: function(data){
                       $('#warning-modal').modal('hide');
                       if(data.status == 200){
                           showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
@@ -169,30 +166,24 @@
                           setTimeout(function(){
                               location.reload();
                           }, 2000);
-
                       }
-
                       else{
                           showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                       }
-
                       setTimeout(function(){
                           location.reload();
                       }, 3000);
-
-                  },
-
-                  error: function(xhr, status, error) {
-
-                      alert(error);
-
-                  },
-
-                });
+                    },
+                    error: function(xhr, status, error) {
+                        alert(error);
+                    },
+                  });
+                }
               }
-            }
             );
-        })
+          })
+
+        });
 
         /*function remove_follower(follower_id){
             $('#item_id').val(follower_id);
@@ -238,9 +229,9 @@
 
               },
 
-          });*/
+          });
 
-      })
+      })*/
 
      </script>
 @endsection
