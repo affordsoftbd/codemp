@@ -89,7 +89,12 @@
             <h4 class="card-title title-one">{{ $follower->first_name." ".$follower->last_name}}</h4>
             <p class="card-meta">অংশগ্রহন {{ date('Y',strtotime($follower->created_at))}}</p>
             <!-- Text -->
-            <p class="card-text"><strong>{{ $follower->division_name}} > {{ $follower->district_name}} > {{ $follower->thana_name}} > {{ $follower->zip_code}}</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+            <p class="card-text">
+              @if(!empty($leader->division_name))
+                <strong>{{ $leader->division_name }} > {{ $leader->district_name }} > {{ $leader->thana_name }} > {{ $leader->zip_code }}</strong> অধীনে 
+              @endIf
+              <strong>নেতা</strong> হিসেবে যোগদান করেছেন
+            </p>
             <hr>
             <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($follower->followers) }} জন অনুসারী</span></a>
             <div class="btn-group mt-3" role="group" aria-label="Basic example">

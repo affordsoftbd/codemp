@@ -4,6 +4,10 @@
 
 @section('extra-css')
 <style>
+.multiple-select-dropdown li [type=checkbox]+label {
+    height: .98rem; 
+    /*padding-bottom: 5px;*/
+}
 .member_photos {
    /* Prevent vertical gaps */
    line-height: 0;
@@ -121,9 +125,8 @@
 @endforeach
 
 
-
 <div class="modal fade" id="modalNewGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="alert alert-success" id="group_success" style="display:none"></div>
             <div class="alert alert-danger" id="group_error" style="display:none"></div>
@@ -141,14 +144,12 @@
                         <input type="text" name="group_name" id="group_name" class="form-control">
                         {!! Form::label('address', 'নাম') !!}
                     </div>
-                    <div class="md-form">              	
-                        <select class="mdb-select md-form colorful-select dropdown-primary" name="members[]" id="members" multiple searchable="Search here..">
-                            <option value="" disabled selected>সদস্য</option>
-                            @foreach($applicants as $applicant)
-                                <option value="{{ $applicant->id }}">{{ $applicant->first_name." ".$applicant->last_name }}</option>
-                            @endforeach                                            
-                        </select>
-                    </div>
+                    <select class="mdb-select md-form" name="members[]" id="members" multiple searchable="এখানে অনুসন্ধান করুন..">
+                        <option value="" disabled selected>সদস্য</option>
+                        @foreach($applicants as $applicant)
+                            <option value="{{ $applicant->id }}">{{ $applicant->first_name." ".$applicant->last_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                     {{ Form::button('সাবমিট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
@@ -159,7 +160,7 @@
 </div>
 
 <div class="modal fade" id="modalEditGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="alert alert-success" id="edit_group_success" style="display:none"></div>
             <div class="alert alert-danger" id="edit_group_error" style="display:none"></div>
@@ -178,14 +179,12 @@
                         <input type="text" name="group_name" id="edit_group_name" class="form-control">
                         {!! Form::label('address', 'নাম') !!}
                     </div>
-                    <div class="md-form">                       
-                        <select class="mdb-select md-form colorful-select dropdown-primary" name="members[]" id="edit_members" multiple>
-                            <option value="" disabled selected>সদস্য</option>
-                            @foreach($applicants as $applicant)
-                                <option value="{{ $applicant->id }}">{{ $applicant->first_name." ".$applicant->last_name }}</option>
-                            @endforeach                                            
-                        </select>
-                    </div>
+                    <select class="mdb-select md-form" name="members[]" id="edit_members" multiple searchable="এখানে অনুসন্ধান করুন..">
+                        <option value="" disabled selected>সদস্য</option>
+                        @foreach($applicants as $applicant)
+                            <option value="{{ $applicant->id }}">{{ $applicant->first_name." ".$applicant->last_name }}</option>
+                        @endforeach   
+                    </select>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                     {{ Form::button('সাবমিট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
@@ -245,13 +244,13 @@
                     async: false,
                     success: function (data) {
                         if(data.status == 200){
-                            $('#group_success').show();
                             $('#group_error').hide();
+                            $('#group_success').show();
                             $('#group_success').html(data.reason);
 
                             setTimeout(function(){
                                 location.reload();
-                            },2000)
+                            },500)
                         }
                         else{
                             $('#group_success').hide();
@@ -324,7 +323,7 @@
 
                             setTimeout(function(){
                                 location.reload();
-                            },2000)
+                            },500)
                         }
                         else{
                             $('#edit_group_success').hide();

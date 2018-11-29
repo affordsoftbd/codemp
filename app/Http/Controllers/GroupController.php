@@ -63,8 +63,8 @@ class GroupController extends Controller
                 $groupMember->save();
             }
         }
-
-        return ['status'=>200,'reason'=>'গ্রুপ সফলভাবে তৈরি হয়েছে'];
+        Session::flash('success', array('সফল!'=>'গ্রুপ সফলভাবে তৈরি হয়েছে!'));
+        return ['status'=>200,'reason'=>'সবকিছু ঠিক আছে! পৃষ্ঠা পুনরায় লোড হচ্ছে...'];
     }
 
     public function editGroup(Request $request){
@@ -89,13 +89,13 @@ class GroupController extends Controller
                 $groupMember->save();
             }
         }
-
-        return ['status'=>200,'reason'=>'গ্রুপ সফলভাবে হালনাগাদ হয়েছে'];
+        Session::flash('success', array('সফল!'=>'গ্রুপ সফলভাবে হালনাগাদ হয়েছে!'));
+        return ['status'=>200,'reason'=>'সবকিছু ঠিক আছে! পৃষ্ঠা পুনরায় লোড হচ্ছে...'];
     }
 
     public function deleteGroup(Request $request){
         Group::where('group_id',$request->id)->delete();
         GroupMember::where('group_id',$request->id)->delete();
-        return redirect('group');
+        return redirect('group')->with('success', array('সফল!'=>'গ্রুপ মুছে ফেলা হয়েছে!'));
     }
 }

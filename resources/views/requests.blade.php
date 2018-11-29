@@ -29,7 +29,12 @@
             <a href="{{ url('public_profile?user='.$applicant->username) }}"><h4 class="card-title title-one">{{ $applicant->first_name." ".$applicant->last_name}}</h4></a>
             <p class="card-meta">অংশগ্রহন {{ date('Y',strtotime($applicant->created_at))}}</p>
             <!-- Text -->
-            <p class="card-text"><strong>{{ $applicant->division_name}} > {{ $applicant->district_name}} > {{ $applicant->thana_name}} > {{ $applicant->zip_code}}</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+            <p class="card-text"><strong>
+              @if(!empty($leader->division_name))
+                <strong>{{ $leader->division_name }} > {{ $leader->district_name }} > {{ $leader->thana_name }} > {{ $leader->zip_code }}</strong> অধীনে 
+              @endIf
+              <strong>নেতা</strong> হিসেবে যোগদান করেছেন
+            </p>
             <hr>
             <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($applicant->applicants) }} জন অনুসারী</span></a>  
             <div class="btn-group mt-3" role="group" aria-label="Basic example">

@@ -18,10 +18,10 @@
 
     <!-- Bootstrap core CSS -->
     {{ Html::style('css/bootstrap.min.css') }}
-    
-    @yield('extra-css')
 
     @include('layouts.partials.styles')
+    
+    @yield('extra-css')
 
   </head>
   <!-- #ENDS# Header -->

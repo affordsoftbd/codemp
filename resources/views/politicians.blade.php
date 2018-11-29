@@ -106,7 +106,11 @@
             <a href="{{ url('public_profile?user='.$leader->username) }}"><h4 class="card-title title-one">{{ $leader->first_name." ".$leader->last_name}}</h4></a>
             <p class="card-meta">অংশগ্রহন {{ date('Y',strtotime($leader->created_at))}}</p>
             <!-- Text -->
-            <p class="card-text"><strong>{{ $leader->division_name}} > {{ $leader->district_name}} > {{ $leader->thana_name}} > {{ $leader->zip_code}}</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
+            <p class="card-text">
+              @if(!empty($leader->division_name))
+                <strong>{{ $leader->division_name }} > {{ $leader->district_name }} > {{ $leader->thana_name }} > {{ $leader->zip_code }}</strong> অধীনে 
+              @endIf
+              <strong>নেতা</strong> হিসেবে যোগদান করেছেন</p>
             @if(empty($myLeader))   
               <a href="#" class="btn btn-sm btn-green" onclick="send_request({{ $leader->id }})">
                 <i class="fa fa-user-plus pr-2"></i>নেতা হিসেবে আবেদন পাঠান
