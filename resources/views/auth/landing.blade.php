@@ -67,48 +67,55 @@
                                         <div class="md-form">
                                             <input type="text" name="first_name" id="first_name" class="form-control">
                                             <label for="firstname">নামের প্রথম অংশ</label>
-                                        </div>
+                                        </div>                                        
+                                            <label class="hidden text-danger" id="first_name_error">নামের প্রথম অংশ প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Last name -->
                                         <div class="md-form">
                                             <input type="text" name="last_name" id="last_name" class="form-control">
                                             <label for="lastname">নামের শেষাংশ</label>
-                                        </div>
+                                        </div>                                       
+                                            <label class="hidden text-danger" id="last_name_error">নামের শেষাংশ প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-2">
                                         <!-- Phone number -->
                                         <div class="md-form">
                                             <input type="text" name="username" id="reg_username" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
                                             <label for="reg_username">ইউসার নাম</label>
-                                        </div>
+                                        </div>                                       
+                                            <label class="hidden text-danger" id="reg_username_error">ইউসার নাম প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-2">
                                         <!-- E-mail -->
                                         <div class="md-form">
                                             <input type="email" name="email" id="reg_email" class="form-control">
                                             <label for="email">ই-মেইল</label>
-                                        </div>
+                                        </div>                                       
+                                            <label class="hidden text-danger" id="reg_email_error">ই-মেইল প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-2">
                                         <!-- Phone number -->
                                         <div class="md-form">
                                             <input type="text" name="phone" id="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
                                             <label for="phone">ফোন নম্বর</label>
-                                        </div>
+                                        </div>                                       
+                                            <label class="hidden text-danger" id="phone_error">ফোন নম্বর প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <!-- Phone number -->
                                         <div class="md-form">
                                             <input type="text" name="nid" id="nid" class="form-control" maxlength="16">
                                             <label for="nid">জাতীয় আইডি</label>
-                                        </div>
+                                        </div>                                       
+                                            <label class="hidden text-danger" id="nid_error">জাতীয় আইডি প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="md-form">
                                             <input type="text" name="address" id="address" class="form-control" maxlength="16">
                                             <label for="address">ঠিকানা</label>
-                                        </div>
+                                        </div>                                       
+                                            <label class="hidden text-danger" id="address_error">ঠিকানা প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Choose Division -->
@@ -117,28 +124,32 @@
                                             @foreach($divisions as $division)
                                                 <option value="{{ $division->division_id }}">{{ $division->division_name }}</option>
                                             @endforeach                                            
-                                        </select>
+                                        </select>                                       
+                                            <label class="hidden text-danger" id="division_error">বিভাগ প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Choose District -->
                                         <select class="mdb-select" name="district" id="district" searchable="এখানে অনুসন্ধান করুন">
                                             <option value="" disabled selected>আপনার জেলা</option>
                                             
-                                        </select>
+                                        </select>                                       
+                                            <label class="hidden text-danger" id="district_error">জেলা প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Choose Thana -->
                                         <select class="mdb-select" name="thana" id="thana" searchable="এখানে অনুসন্ধান করুন">
                                             <option value="" disabled selected>আপনার থানা</option>
                                             
-                                        </select>
+                                        </select>                                       
+                                            <label class="hidden text-danger" id="thana_error">নথানা প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Choose Zip -->
                                         <select class="mdb-select" name="zip" id="zip" searchable="এখানে অনুসন্ধান করুন">
                                             <option value="" disabled selected>আপনার জিপ</option>
                                             
-                                        </select>
+                                        </select>                                       
+                                            <label class="hidden text-danger" id="zip_error">জিপ প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <select class="mdb-select" name="party_id" id="party_id">
@@ -147,7 +158,8 @@
                                                 <option value="{{ $party->party_id }}">{{ $party->party_name }}</option>
                                             @endforeach
                                             
-                                        </select>
+                                        </select>                                       
+                                            <label class="hidden text-danger" id="party_id_error">রাজনৈতিক দল প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <!-- Choose Role -->
@@ -156,7 +168,8 @@
                                             @foreach($roles as $role)
                                                 <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
                                             @endforeach
-                                        </select>
+                                        </select>                                       
+                                            <label class="hidden text-danger" id="role_id_error">রোল প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="md-form">
@@ -165,14 +178,16 @@
                                             <small id="reg_password" class="form-text text-muted mb-4">
                                                 অন্ততপক্ষে ৮টি বা আরও অক্ষর এবং ১ সংখ্যা
                                             </small>
-                                        </div>
+                                        </div>                                       
+                                            <label class="hidden text-danger" id="reg_password_error">পাসওয়ার্ড প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <!-- Confirm Password -->
                                         <div class="md-form">
                                             <input type="password" name="password_confirm" id="reg_password_confirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                                             <label for="reg_password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
-                                        </div>
+                                        </div>                                       
+                                            <label class="hidden text-danger" id="reg_password_confirm_error">পাসওয়ার্ড নিশ্চিত প্রয়োজন</label>
                                     </div>
                                 </div>
 
@@ -346,19 +361,44 @@
 
             if(first_name.trim()==''){
                 validate = validate+"নামের প্রথম অংশ প্রয়োজন</br>";
+                $('#first_name').css('border-color','red');
+                $('#first_name_error').removeClass('hidden');
+            }
+            else{
+                $('#first_name').css('border-color','#ced4da');
+                $('#first_name_error').addClass('hidden');
             }
             if(phone.trim()==''){
                 validate = validate+"ফোন প্রয়োজন </br>";
+                $('#phone').css('border-color','red');
             }
+            else{
+                $('#phone').css('border-color','#ced4da');
+            }
+
             var re = /\S+@\S+\.\S+/;
             if(email.trim()!='' && !re.test(email)){
                 validate = validate+"অকার্যকর ইমেইল ঠিকানা</br>";
+                $('#reg_email').css('border-color','red');
+            }
+            else{
+                $('#reg_email').css('border-color','#ced4da');
             }
             if(username.trim()==''){
                 validate = validate+"ইউসার নাম প্রয়োজন</br>";
+                $('#reg_username').css('border-color','red');
+                $('#reg_username_error').removeClass('hidden');
+            }
+            else{
+                $('#reg_username').css('border-color','#ced4da');
+                $('#reg_username_error').addClass('hidden');
             }
             if(password.trim()==''){
                 validate = validate+"পাসওয়ার্ড প্রয়োজন</br>";
+                $('#reg_password').css('border-color','red');
+            }
+            else{
+                $('#reg_password').css('border-color','#ced4da');
             }
             if(password.trim()!='' && password.trim().length<8){
                 validate = validate+"পাসওয়ার্ড অন্তত ৮ সংখ্যা প্রয়োজন</br>";
@@ -369,27 +409,55 @@
             }
             if(password_confirm.trim()==''){
                 validate = validate+"পাসওয়ার্ড নিশ্চিত করা প্রয়োজন</br>";
+                $('#reg_password_confirm').css('border-color','red');
+            }
+            else{
+                $('#reg_password_confirm').css('border-color','#ced4da');
             }
             if(password.trim()!='' && password_confirm.trim()!='' && password!=password_confirm){
                 validate = validate+"পাসওয়ার্ড এবং পাসওয়ার্ড নিশ্চিত মেলে না</br>";
             }
             if(division===null){
                 validate = validate+"বিভাগ প্রয়োজন</br>";
+                $('#division').parent('.select-wrapper').find('input').css('border-color','red');
+            }
+            else{
+                $('#division').parent('.select-wrapper').find('input').css('border-color','#ced4da');
             }
             if(district===null){
                 validate = validate+"জেলা প্রয়োজন</br>";
+                $('#district').parent('.select-wrapper').find('input').css('border-color','red');
+            }
+            else{
+                $('#district').parent('.select-wrapper').find('input').css('border-color','#ced4da');
             }
             if(thana===null){
                 validate = validate+"থানা প্রয়োজন</br>";
+                $('#thana').parent('.select-wrapper').find('input').css('border-color','red');
+            }
+            else{
+                $('#thana').parent('.select-wrapper').find('input').css('border-color','#ced4da');
             }
             if(zip===null){
                 validate = validate+"জিপ প্রয়োজন</br>";
+                $('#zip').parent('.select-wrapper').find('input').css('border-color','red');
+            }
+            else{
+                $('#zip').parent('.select-wrapper').find('input').css('border-color','#ced4da');
             }
             if(party===null){
                 validate = validate+"রাজনৈতিক দল প্রয়োজন</br>";
+                $('#party_id').parent('.select-wrapper').find('input').css('border-color','red');
+            }
+            else{
+                $('#party_id').parent('.select-wrapper').find('input').css('border-color','red');
             }
             if(role===null){
                 validate = validate+"রোল প্রয়োজন</br>";
+                $('#role_id').parent('.select-wrapper').find('input').css('border-color','red');
+            }
+            else{
+                $('#role_id').parent('.select-wrapper').find('input').css('border-color','red');
             }
 
             if(validate==''){
