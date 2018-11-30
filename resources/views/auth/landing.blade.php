@@ -362,11 +362,9 @@
             if(first_name.trim()==''){
                 validate = validate+"নামের প্রথম অংশ প্রয়োজন</br>";
                 $('#first_name').css('border-color','red');
-                $('#first_name_error').removeClass('hidden');
             }
             else{
                 $('#first_name').css('border-color','#ced4da');
-                $('#first_name_error').addClass('hidden');
             }
             if(phone.trim()==''){
                 validate = validate+"ফোন প্রয়োজন </br>";
@@ -379,7 +377,6 @@
             var re = /\S+@\S+\.\S+/;
             if(email.trim()!='' && !re.test(email)){
                 validate = validate+"অকার্যকর ইমেইল ঠিকানা</br>";
-                $('#reg_email').css('border-color','red');
             }
             else{
                 $('#reg_email').css('border-color','#ced4da');
@@ -387,7 +384,6 @@
             if(username.trim()==''){
                 validate = validate+"ইউসার নাম প্রয়োজন</br>";
                 $('#reg_username').css('border-color','red');
-                $('#reg_username_error').removeClass('hidden');
             }
             else{
                 $('#reg_username').css('border-color','#ced4da');
@@ -486,9 +482,10 @@
             }
             else{
                 $("html, body").animate({ scrollTop: 0 }, "slow");
+                //showNotification("এরর!", validate, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                 $('#success_message').hide();
                 $('#error_message').show();
-                $('#error_message').html(validate);
+                $('#error_message').html('প্রয়োজনীয় তথ্যগুলো পূরণ করুন');
             }
         });
     </script>
