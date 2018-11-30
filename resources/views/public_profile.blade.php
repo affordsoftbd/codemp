@@ -423,8 +423,10 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                      showNotification("সাকসেস!", 'leader followed successfully', "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-                      location.reload();
+                      showNotification("সাকসেস!", 'নেতা সফলভাবে অনুসরণ', "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                      setTimeout(function(){
+                          location.reload();
+                      }, 2000);
                     }
                     else{
                         alert(data);
@@ -444,8 +446,10 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
-                        showNotification("সাকসেস!", 'leader un-followed successfully', "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-                        location.reload();
+                        showNotification("সাকসেস!", 'নেতা সফলভাবে অনুসরণ মুক্ত', "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                        setTimeout(function(){
+                          location.reload();
+                      }, 2000);
                     }
                     else{
                         alert(data);
