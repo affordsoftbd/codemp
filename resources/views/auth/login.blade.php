@@ -43,14 +43,13 @@
 
 	            <form class="login-form" method="post" action="{{ route('postLogin') }}">
                                 {{ csrf_field() }}
-
+                    <div data-toggle="popover" data-placement="top" title="ভুল লগইন ক্রেডেনশিয়াল" data-content="আপনার প্রদত্ত লগইন ক্রেডেনশিয়াল খুঁজে পাওয়া  যাচ্ছে না!"></div>
                      <!-- Confirm Email -->
                     <div class="md-form">
                         <i class="fa fa-envelope prefix red-text"></i>
-                        <input type="text" name="username" id="username" class="form-control" data-toggle="popover" data-placement="right" title="ভুল লগইন ক্রেডেনশিয়াল" data-content="আপনার প্রদত্ত লগইন ক্রেডেনশিয়াল খুঁজে পাওয়া  যাচ্ছে না!">
-                        <label for="email">ইমেইল নিশ্চিত করুন</label>
+                        <input type="text" name="username" id="username" class="form-control">
+                        <label for="username">ইমেইল নিশ্চিত করুন</label>
                     </div>
-
                     <!-- Confirm Password -->
                     <div class="md-form">
                         <i class="fa fa-lock prefix red-text"></i>
@@ -58,7 +57,7 @@
                         <label for="password">পাসওয়ার্ড নিশ্চিত করুন</label>
                     </div>
                     <div class="text-center mt-4">
-                        <input class="btn btn-danger btn-sm" type="submit" value="লগ ইন">
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-sign-in pr-2"></i>লগ ইন</button>
                     </div>
                     <div class="text-center mt-4">
                     	<a href="{{ route('recovery') }}">পাসওয়ার্ড রিসেট করতে এখানে ক্লিক করুন</a>
