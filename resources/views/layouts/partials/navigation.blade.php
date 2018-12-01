@@ -40,7 +40,7 @@
                     <p class="text-center h6">বিজ্ঞপ্তিগুলি</p>
                     <div class="dropdown-divider"></div>
                     <div id="all_new_notifications" data-url="{{ route('notifications.new') }}"></div>
-                    <a class="dropdown-item text-center" href="{{ route('notifications.index') }}">সমস্ত বিজ্ঞপ্তিগুলি</a>
+                    <a class="dropdown-item text-center" href="{{ route('notifications.index') }}">পুরাতন বিজ্ঞপ্তিগুলি প্রদর্শন করতে এখানে ক্লিক করুন</a>
                 </div>
                 <!-- Notification Dropdown -->
             </li> 
