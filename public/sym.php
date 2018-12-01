@@ -12,7 +12,7 @@ try {
 		echo 'Done!';
 	}
 	else{
-		echo "failed!"
+		echo "failed!";
 	}
 }
 catch (\Exception $e) {
