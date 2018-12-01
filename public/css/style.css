@@ -139,9 +139,10 @@ div.mce-fullscreen {
   border: none !important; 
 }
 
-.scrolltotop{
-  bottom: 45px; 
-  right: 24px;
+@media only screen and ( max-width: 767px ) {
+    .scrolltotop{
+        display:none !important;
+    }
 }
 
 /* Bootstrap Notify ============================ */

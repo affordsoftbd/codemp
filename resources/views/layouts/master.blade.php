@@ -36,7 +36,7 @@
             <div class="col-md-3 mb-3">
               @include('layouts.partials.sidemenu')
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 mb-3 order-first order-sm-12">
               <!-- Content -->
               @yield('content')
               <!-- #ENDS# Content -->
