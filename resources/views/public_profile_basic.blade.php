@@ -6,7 +6,7 @@
 		<small class="red-text"><strong>{{ $user->division_name}} > {{ $user->district_name}} > {{ $user->thana_name}} > {{ $user->zip_code}}</strong> অধীনে <strong>নেতা</strong> হিসেবে যোগদান করেছেন</small>
 		<hr>
     </div>
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-4 col-md-12">
   		<!-- Card -->
   		<div class="card card-personal">
 
@@ -43,7 +43,7 @@
 
   		</div>
     </div>
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-8 col-md-12">
 
     <!-- Card -->
         <?php 

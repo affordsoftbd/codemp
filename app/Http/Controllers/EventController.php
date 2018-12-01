@@ -70,11 +70,20 @@ class EventController extends Controller
         $input = $request->all();
         $input['event_date'] = Carbon::parse(str_replace('-', '', $input['event_date']))->format('Y-m-d H:i:s');
         $request->replace($input);
-        $this->validate(request(),[
+        $rules = [
             'title' => 'required|string|max:500',
             'details' => 'required|string|max:5000',
             'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => ':attribute ফিল্ড টি অত্যাবশ্যক ',
+            'max' => ':max এর বেশী শব্দ হতে পারে না',
+            'string' => 'ইনপুট শব্দ হতে হবে',
+            'date' => 'ইনপুট তারিখ হতে হবে',
+            'after' => 'ইনপুট তারিখ হতে হবে '.Carbon::now()->addDays(1)->format('l d F Y').' এর পরে',
+        ];
+        $this->validate($request, $rules, $customMessages);
         $id = $this->event->create($input)->id;
         $user = $this->user->find(\Request::session()->get('user_id'));
         $user->participating_events()->attach($id);
@@ -166,11 +175,20 @@ class EventController extends Controller
         $input = $request->all();
         $input['event_date'] = Carbon::parse(str_replace('-', '', $input['event_date']))->format('Y-m-d H:i:s');
         $request->replace($input);
-        $this->validate(request(),[
+        $rules = [
             'title' => 'required|string|max:500',
             'details' => 'required|string|max:5000',
             'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => ':attribute ফিল্ড টি অত্যাবশ্যক ',
+            'max' => ':max এর বেশী শব্দ হতে পারে না',
+            'string' => 'ইনপুট শব্দ হতে হবে',
+            'date' => 'ইনপুট তারিখ হতে হবে',
+            'after' => 'ইনপুট তারিখ হতে হবে '.Carbon::now()->addDays(1)->format('l d F Y').' এর পরে',
+        ];
+        $this->validate($request, $rules, $customMessages);
         $event = $this->event->findOrFail($id);
         $event->update($input);
         return redirect()->route('events.show', $id)->with('success', array('সাফল্য'=>'ইভেন্ট হালনাগাদ করা হয়েছে!'));

@@ -43,6 +43,13 @@ a:hover {
   min-width: 300px;
 }
 
+.card img{
+    max-height:300px;
+    max-width:300px;
+    height:auto;
+    width:auto;
+}
+
 .right-side-meta {
     font-size: 12px;
 }

@@ -41,7 +41,7 @@
  	{{Html::script('js/material.min.js')}}
 
     <!-- Video JavaScript -->
-    {{Html::script('https://vjs.zencdn.net/7.2.3/video.js')}}
+    {{Html::script('js/video.js')}}
 
     <!-- Custom JavaScript -->
  	{{Html::script('js/script.js')}}

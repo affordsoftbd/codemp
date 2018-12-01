@@ -75,10 +75,19 @@ class MessageController extends Controller
 
     public function addMessageSubject(Request $request)
     {
-        $this->validate(request(),[
-            'subject_text' => 'required|string|max:1000',
-            'message_text' => 'required|string|max:1000'
-        ]);
+        $rules = [
+            'subject_text' => 'required|string|max:500',
+            'message_text' => 'required|string|max:5000'
+        ];
+
+        $customMessages = [
+            'required' => ':attribute ফিল্ড টি অত্যাবশ্যক ',
+            'max' => ':max এর বেশী শব্দ হতে পারে না',
+            'string' => 'ইনপুট শব্দ হতে হবে'
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
         $messageSubject = $this->messageSubject;
         $messageSubject->subject_text = $request->subject_text;
         $messageSubject->author = $request->session()->get('user_id');
@@ -108,9 +117,18 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(),[
-            'message_text' => 'required|max:50000'
-        ]);
+     
+        $rules = [
+            'message_text' => 'required|max:5000'
+        ];
+
+        $customMessages = [
+            'required' => ':attribute ফিল্ড টি অত্যাবশ্যক ',
+            'max' => ':max এর বেশী শব্দ হতে পারে না'
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
         $input = $request->all();
         $this->message->create($input);
         $this->saveViewer($this->message->orderBy('created_at', 'DESC')->first()->id, $request->session()->get('user_id'));
@@ -271,9 +289,15 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate(request(),[
-            'message_text' => 'required|string|max:1000'
-        ]);
+        $rules = [
+            'message_text' => 'required|max:5000'
+        ];
+
+        $customMessages = [
+            'required' => ':attribute ফিল্ড টি অত্যাবশ্যক ',
+            'max' => ':max এর বেশী শব্দ হতে পারে না'
+        ];
+        $this->validate($request, $rules, $customMessages);
         $input = $request->all();
         $message = $this->message->findOrFail($id);
         $message->update($input);
@@ -282,9 +306,15 @@ class MessageController extends Controller
 
     public function updateMessageSubject(Request $request, $id)
     {
-        $this->validate(request(),[
-            'subject_text' => 'required|string|max:500'
-        ]);
+        $rules = [
+            'message_text' => 'required|max:500'
+        ];
+
+        $customMessages = [
+            'required' => ':attribute ফিল্ড টি অত্যাবশ্যক ',
+            'max' => ':max এর বেশী শব্দ হতে পারে না'
+        ];
+        $this->validate($request, $rules, $customMessages);
         $input = $request->all();
         $subject = $this->messageSubject->findOrFail($id);
         $subject->update($input);

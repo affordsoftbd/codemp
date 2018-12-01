@@ -33,7 +33,7 @@
         <p class="red-text">{{ $errors->first('details') }}</p>
     @endif
     <div class="text-center my-4">
-        {!! Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+        {!! Form::button('<i class="fa fa-check pr-2"></i>হালনাগাদ করুন', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
     </div>
 {!! Form::close() !!}
 
