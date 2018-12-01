@@ -2,13 +2,18 @@
 
 try {
 
-	$targetFolder = '/home/mamuhin/public_html/amar_neta/storage/app/public';
+	$targetFolder = '/home/amarneta/amar_neta/storage/app/public';
 
-	$linkFolder = '/home/mamuhin/public_html/amar_neta/public/storage';
+	$linkFolder = '/home/amarneta/public_html/storage';
 
-	symlink($targetFolder, $linkFolder);
+	$sym = symlink($targetFolder, $linkFolder);
 
-	echo 'Done!';
+	if($sym){
+		echo 'Done!';
+	}
+	else{
+		echo "failed!"
+	}
 }
 catch (\Exception $e) {
     return $e->getMessage();
