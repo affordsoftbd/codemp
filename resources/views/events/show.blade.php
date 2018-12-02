@@ -61,7 +61,7 @@
 
     @foreach($event->comments as $comment)
 	    <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
-	        <img src="{{ file_exists($comment->user->detail->image_path) ? asset($comment->user->detail->image_path) : 'http://via.placeholder.com/50' }}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
+	        <img src="{{ file_exists($comment->user->detail->image_path) ? asset($comment->user->detail->image_path) : url('/').'/img/avatar.png' }}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
 	    </div>
 	    <div class="col-xl-11 col-lg-10 col-md-10 my-3">
 	        <div class="card border message_area border-light">
@@ -92,7 +92,7 @@
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য যোগ করুন</h6>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2 add_comment">
-        <img src="{{  file_exists($user->detail->image_path) ? asset($user->detail->image_path) : 'http://via.placeholder.com/50' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
+        <img src="{{ file_exists($user->detail->image_path) ? asset($user->detail->image_path) : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10 add_comment">
         {!! Form::open(['method' => 'post', 'route' => ['events.comment.add'], 'class'=>'md-form', 'name' => 'check_edit']) !!}
