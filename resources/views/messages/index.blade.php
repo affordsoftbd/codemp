@@ -50,7 +50,7 @@
 	<a href="{{ route('messages.show', $message->id) }}" target="_blank">
 	  <div class="row mb-5">
 	    <div class="col-md-1">
-	     <img src="{{ file_exists(url('/').$message->messages->last()->user->detail->image_path) ? url('/').$message->messages->last()->user->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0 image-thumbnail my-3">
+	     <img src="{{ file_exists($message->messages->last()->user->detail->image_path) ? asset($message->messages->last()->user->detail->image_path) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0 image-thumbnail my-3">
 	    </div>
 	    <div class="col-md-11">
 	      <div class="card">

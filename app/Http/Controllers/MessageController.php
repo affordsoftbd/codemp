@@ -273,7 +273,7 @@ class MessageController extends Controller
         if(count($usersList) > 0){
             $list = array();
             foreach($usersList as $user){
-                $list[] = array('message_subject_id'=>$id, 'user_id'=>$user->id, 'name'=> $user->first_name.' '.$user->last_name, 'image'=> !empty($user->detail->image_path) ? url('/').$user->detail->image_path : 'http://via.placeholder.com/450');
+                $list[] = array('message_subject_id'=>$id, 'user_id'=>$user->id, 'name'=> $user->first_name.' '.$user->last_name, 'image'=> file_exists($user->detail->image_path) ? asset($user->detail->image_path) : 'http://via.placeholder.com/450');
             }
             return json_encode($list);
         }

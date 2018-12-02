@@ -54,6 +54,12 @@ a:hover {
     font-size: 12px;
 }
 
+.viewers_list{
+  max-height: 50vh; 
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
 #all_new_messages{
   max-height: 50vh; 
   overflow: scroll;
