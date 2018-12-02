@@ -155,12 +155,8 @@
 		<!-- Card -->
 		<div class="card card-personal">
 
-			<!-- Card image-->			
-			@if($user->image_path!='')
-	            <img class="card-img-top" src="{{ url('/').$user->image_path}}" alt="Card image cap">
-	        @else
-	            <img class="card-img-top"  src="{{ url('/').'/img/avatar.png'}}" alt="Card image cap">
-	        @endif
+			<!-- Card image-->	
+            <img class="card-img-top" src="{{ file_exists($user->image_path) ? asset($user->image_path) : url('/').'/img/avatar.png' }}" alt="{{ $user->first_name.' '.$user->last_name }}">	
 			<!-- Card image-->
 
 

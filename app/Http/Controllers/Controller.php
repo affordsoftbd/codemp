@@ -25,21 +25,16 @@ class Controller extends BaseController
             $constraint->aspectRatio();                 
         });
         $image_resize->stream(); 
-        /*Storage::disk('local')->put($path.$filename, $image_resize, 'public');
-        return '/uploads/'.$path.$filename;*/
-        Storage::disk('local')->put('public/'.$path.$filename, $image_resize, 'public');
+        Storage::disk('local')->put($path.$filename, $image_resize, 'public');
+        /*return '/uploads/'.$path.$filename;*/
         return 'storage/'.$path.$filename;
     }
 
     protected function uploadVideo($video, $path)
     {         
-        /*$file = Storage::disk('local')->put($path, $video, 'public');
-        return '/uploads/'.$file;*/
-        $file = Storage::disk('local')->put('public/'.$path, $video, 'public');
-        $exp = explode("/", trim($file, "/"));
-        unset($exp[0]);
-        $location = implode("/", $exp);
-        return 'storage/'.$location;
+        $file = Storage::disk('local')->put($path, $video, 'public');
+        /*return '/uploads/'.$file;*/
+        return 'storage/'.$file;
     }
 
     protected function send_notification($recievers, $text='আপনি একটি নতুন বিজ্ঞপ্তি পেয়েছেন!', $link='javascript:void(0)', $icon='bell'){
