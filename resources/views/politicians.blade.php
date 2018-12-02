@@ -92,12 +92,7 @@
         <div class="card card-personal">
 
           <!-- Card image-->
-
-        @if($leader->image_path!='')
-            <img src="{{ url('/').$leader->image_path}}" class="card-img-top" alt="Card image cap">
-        @else
-            <img src="{{ url('/').'/img/avatar.png'}}" class="card-img-top" alt="Card image cap">
-        @endif
+          <img src="{{ file_exists($leader->image_path) ? asset($leader->image_path) : url('/').'/img/avatar.png' }}" class="card-img-top" alt="Card image cap">
           <!-- Card image-->
 
           <!-- Card content -->

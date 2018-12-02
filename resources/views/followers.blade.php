@@ -76,11 +76,7 @@
         <!-- Card -->
         <div class="card card-personal">
           <!-- Card image-->
-        @if($follower->image_path!='')
-            <img src="{{ url('/').$follower->image_path}}" class="card-img-top" alt="Card image cap">
-        @else
-            <img src="{{ url('/').'/img/avatar.png'}}" class="card-img-top" alt="Card image cap">
-        @endif
+          <img src="{{ file_exists($follower->image_path) ? asset($follower->image_path) : url('/').'/img/avatar.png' }}" class="card-img-top" alt="Card image cap">
           <!-- Card image-->
 
           <!-- Card content -->

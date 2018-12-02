@@ -15,7 +15,7 @@
 
           <!-- Card image -->
           <div class="view view-cascade overlay">
-            <img class="card-img-top" src="{{ url('/').'/'.$news->image_path}}" alt="Sample image">
+            <img class="card-img-top" src="{{ file_exists($news->image_path) ? asset($news->image_path) : 'http://via.placeholder.com/1000x500?text=News+Image' }}" alt="Sample image">
             <a href="#!">
               <div class="mask rgba-white-slight"></div>
             </a>
@@ -52,11 +52,7 @@
           <div class="card-body">
             <div class="content">
               <div class="right-side-meta">{{ date('d/m/Y h:i',strtotime($comment->created_at)) }}</div>
-              @if($comment->image_path!='')
-              <img src="{{ url('/').$comment->image_path}}" class="rounded-circle profile-image-thumbnile avatar-img z-depth-1-half">
-              @else
-              <img src="{{ url('/').'/img/avatar.png'}}" class="rounded-circle profile-image-thumbnile avatar-img z-depth-1-half">
-              @endif
+              <img src="{{ file_exists($comment->image_path) ? asset($comment->image_path) : url('/').'/img/avatar.png' }}" class="rounded-circle profile-image-thumbnile avatar-img z-depth-1-half">
               <strong>{{ $comment->first_name." ".$comment->last_name}}</strong>
             </div>
           </div>

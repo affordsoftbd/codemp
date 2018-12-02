@@ -21,7 +21,7 @@
 
           <!-- Featured image -->
           <div class="view overlay rounded z-depth-2 mb-4">
-          <img class="img-fluid" src="{{ url('/').'/'.$nws->image_path}}" alt="{{ $nws->title }}">
+          <img class="img-fluid" src="{{ file_exists($nws->image_path) ? asset($nws->image_path) : 'http://via.placeholder.com/400x300?text=News+Image' }}" alt="{{ $nws->title }}">
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
