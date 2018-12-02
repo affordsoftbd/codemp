@@ -74,7 +74,7 @@
   @foreach($followers as $follower)
     <div class="col-lg-4 mb-4">
         <!-- Card -->
-        <div class="card card-personal">
+        <div class="card card-personal profile_card">
           <!-- Card image-->
           <img src="{{ file_exists($follower->image_path) ? asset($follower->image_path) : url('/').'/img/avatar.png' }}" class="card-img-top" alt="Card image cap">
           <!-- Card image-->

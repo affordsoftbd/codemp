@@ -43,7 +43,7 @@
         <p class="grey-text font-weight-bold mt-3"><i class="fa fa-users fa-sm pr-2"></i>মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
         
         <div id="aniimated-thumbnials" align="center">
-            <a href="{{ asset($event->event_image) }}">
+            <a href="{{ file_exists($event->event_image) ? asset($event->event_image) : 'http://via.placeholder.com/1000x500?text=Event+Image' }}">
                 <img class="img-fluid mb-3" src="{{ file_exists($event->event_image) ? asset($event->event_image) : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
             </a>
             @if($event->user_id == $user->id)

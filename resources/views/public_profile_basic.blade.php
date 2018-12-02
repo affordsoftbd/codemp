@@ -8,7 +8,7 @@
     </div>
     <div class="col-lg-4 col-md-12">
   		<!-- Card -->
-  		<div class="card card-personal">
+  		<div class="card card-personal profile_card">
 
   			<!-- Card image-->	
         <img src="{{ file_exists($user->image_path) ? asset($user->image_path) : url('/').'/img/avatar.png' }}" class="card-img-top" alt="Card image cap">		

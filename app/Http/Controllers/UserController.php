@@ -119,10 +119,10 @@ class UserController extends Controller
     public function updateProfileImage(Request $request, $id){
         try {
             $validator = \Validator::make($request->all(), [
-                'image'  => 'required|image|dimensions:min_width=100,min_height=200|max:500',
+                'image'  => 'required|image|dimensions:min_width=100,min_height=200|max:5000',
             ]);
             if ($validator->fails()) {
-                Session::flash('error', array('এরর!'=>'দুঃখিত! ছবি আপডেট করা যায়নি! ছবির জন্য সর্বাধিক অনুমোদিত আকার 500 কেবি!'));
+                Session::flash('error', array('এরর!'=>'দুঃখিত! ছবি আপডেট করা যায়নি! ছবির জন্য সর্বাধিক অনুমোদিত আকার 5 এমবি!'));
             }
             $imageUpload = $this->uploadImage($request->file('image'), 'users/', 640, 480);
             DB::table('user_details')->where('user_id', $id)->update(['image_path' => $imageUpload]);  

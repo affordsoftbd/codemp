@@ -99,8 +99,6 @@
       <!-- Card content -->
       <div class="card-body card-body-cascade text-center">
 
-        <!-- Text -->
-        <p class="card-text"><i class="fa fa-group fa-sm pr-2"></i>{{ count($group->members) }} member(s)</p>
         <section class="member_photos">
             @foreach($group->members as $member)
                 <img {{-- 'class="img-fluid mx-3 my-3"' --}} src="{{ file_exists($member->user->user_details_image_path) ? asset($member->user->user_details_image_path) : url('/').'/img/avatar.png' }}" alt="{{ $member->user->first_name }}">
@@ -109,6 +107,8 @@
                 @endif
             @endforeach
         </section>
+        <!-- Text -->
+        <p class="card-text"><i class="fa fa-group fa-sm pr-2"></i>{{ count($group->members) }} member(s)</p>
         <!-- Link -->
         <span class="orange-text d-flex flex-row-reverse p-2">
             {!! Form::open(['route' => ['group.delete', $group->group_id], 'method'=>'delete']) !!}

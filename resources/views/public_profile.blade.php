@@ -9,19 +9,19 @@
 @guest          
 
 @else
-    <!-- Nav tabs -->
-     <ul class="nav nav-tabs md-tabs nav-justified red my-5" role="tablist">
-         <li class="nav-item">
-             <a class="nav-link active" data-toggle="tab" href="javascript:void(0)" role="tab"><i class="fa fa-edit fa-sm pr-2"></i> পোস্ট সমূহ</a>
-         </li>
-         <li class="nav-item">
-             <a class="nav-link" href="{{ route('profile.albums', Session::get('username')) }}" role="tab"><i class="fa fa-file-image-o fa-sm pr-2"></i> অ্যালবাম সমূহ</a>
-         </li>
-         <li class="nav-item">
-             <a class="nav-link" href="{{ route('profile.videos', Session::get('username')) }}" role="tab"><i class="fa fa-file-movie-o fa-sm pr-2"></i> ভিডিও সমূহ</a>
-         </li>
-     </ul>
-     <!-- Tab panels -->
+<!-- Nav tabs -->
+ <ul class="nav nav-tabs md-tabs nav-justified red my-5" role="tablist">
+     <li class="nav-item">
+         <a class="nav-link active" data-toggle="tab" href="javascript:void(0)" role="tab"><i class="fa fa-edit fa-sm pr-2"></i> পোস্ট সমূহ</a>
+     </li>
+     <li class="nav-item">
+         <a class="nav-link" href="{{ route('profile.albums', Session::get('username')) }}" role="tab"><i class="fa fa-file-image-o fa-sm pr-2"></i> অ্যালবাম সমূহ</a>
+     </li>
+     <li class="nav-item">
+         <a class="nav-link" href="{{ route('profile.videos', Session::get('username')) }}" role="tab"><i class="fa fa-file-movie-o fa-sm pr-2"></i> ভিডিও সমূহ</a>
+     </li>
+ </ul>
+ <!-- Tab panels -->
 @endguest
 
 <div class="tab-content">
@@ -88,7 +88,7 @@
                                         var profile_image = "{{ url('/').'/' }}"+value.image_path;
                                     }
                                     else{
-                                        var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
+                                        var profile_image = "url('/').'/img/avatar.png";
                                     }
 
                                     var like_icon = "fa fa-thumbs-o-up";
@@ -137,7 +137,7 @@
                                         var profile_image = '{{ url('/').'/' }}'+value.image_path;
                                     }
                                     else{
-                                        var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
+                                        var profile_image = "url('/').'/img/avatar.png";
                                     }
 
                                     var like_icon = "fa fa-thumbs-o-up";
@@ -201,7 +201,7 @@
                                         var profile_image = "{{ url('/').'/' }}"+value.image_path;
                                     }
                                     else{
-                                        var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
+                                        var profile_image = "url('/').'/img/avatar.png";
                                     }
 
                                     var like_icon = "fa fa-thumbs-o-up";

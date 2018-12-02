@@ -12,7 +12,7 @@
   @foreach($applicants as $applicant)
     <div class="col-lg-4 mb-4">
         <!-- Card -->
-        <div class="card card-personal">
+        <div class="card card-personal profile_card">
 
           <!-- Card image-->
           <img src="{{ file_exists($applicant->image_path) ? asset($applicant->image_path) : url('/').'/img/avatar.png' }}" class="card-img-top" alt="Card image cap">

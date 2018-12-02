@@ -307,7 +307,7 @@
                                         var profile_image = "{{ url('/').'/' }}"+value.image_path;
                                     }
                                     else{
-                                        var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
+                                        var profile_image = "url('/').'/img/avatar.png";
                                     }
 
                                     var like_icon = "fa fa-thumbs-o-up";
@@ -356,7 +356,7 @@
                                         var profile_image = '{{ url('/').'/' }}'+value.image_path;
                                     }
                                     else{
-                                        var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
+                                        var profile_image = "url('/').'/img/avatar.png";
                                     }
 
                                     var like_icon = "fa fa-thumbs-o-up";
@@ -420,7 +420,7 @@
                                         var profile_image = "{{ url('/').'/' }}"+value.image_path;
                                     }
                                     else{
-                                        var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
+                                        var profile_image = "url('/').'/img/avatar.png";
                                     }
 
                                     var like_icon = "fa fa-thumbs-o-up";

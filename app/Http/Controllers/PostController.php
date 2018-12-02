@@ -94,11 +94,11 @@ class PostController extends Controller
     public function saveImagePost(Request $request){
         $validator = Validator::make($request->all(), [
             'description' => 'required|string',
-            'images.*' => 'required|file|mimes:jpg,jpeg,png,bmp|max:2000'
+            'images.*' => 'required|file|mimes:jpg,jpeg,png,bmp|max:5000'
             ],[
                 'images.*.required' => 'একটি ছবি আপলোড করুন',
                 'images.*.mimes' => 'শুধুমাত্র jpg, jpeg, png, bmp ছবির অনুমতি দেওয়া হয়',
-                'images.*.max' => 'দুঃখিত! একটি ছবির জন্য সর্বাধিক অনুমোদিত আকার 2 এমবি',
+                'images.*.max' => 'দুঃখিত! একটি ছবির জন্য সর্বাধিক অনুমোদিত আকার 5 এমবি',
         ]);
         if ($validator->fails()) {
           return response()->json(['response'=>'error', 'message'=>$validator->messages()->all()]);
@@ -262,10 +262,10 @@ class PostController extends Controller
     {
         try {
             $validator = \Validator::make($request->all(), [
-                'image'  => 'required|image|dimensions:min_width=100,min_height=200|max:2000',
+                'image'  => 'required|image|dimensions:min_width=100,min_height=200|max:5000',
             ]);
             if ($validator->fails()) {
-                Session::flash('error', array('এরর!'=>'দুঃখিত! ছবি আপডেট করা যায়নি! ছবির জন্য সর্বাধিক অনুমোদিত আকার 2 এমবি!'));
+                Session::flash('error', array('এরর!'=>'দুঃখিত! ছবি আপডেট করা যায়নি! ছবির জন্য সর্বাধিক অনুমোদিত আকার 5 এমবি!'));
             }
             $imageUpload = $this->uploadImage($request->file('image'), 'posts/images/', 960, 720);
             $postImage = NEW PostImage();
