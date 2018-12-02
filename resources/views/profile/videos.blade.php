@@ -163,7 +163,7 @@
                                     video_post = true;
 
                                     if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = "{{ url('/')}}"+value.image_path;
+                                        var profile_image = "{{ url('/').'/' }}"+value.image_path;
                                     }
                                     else{
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
@@ -198,7 +198,7 @@
                                         html +='</div>';
 
                                         $.each(value.videos, function( index, video ) {
-                                            var video_url =  '{{ url('/') }}'+video.video_path;
+                                            var video_url =  '{{ url('/').'/' }}'+video.video_path;
 
                                             html +='<div class="view overlay my-3" align="center">';
                                                 html +='<video class="video-js z-depth-1" controls style="width:100%">';

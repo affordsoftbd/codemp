@@ -61,7 +61,7 @@
             <!-- Dropdown -->
             <li class="nav-item avatar dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ (Session::get('image_path')!='') ? url('/').Session::get('image_path') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-0">
+                    <img src="{{ file_exists(Session::get('image_path')) ? asset(Session::get('image_path')) : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-0">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-success" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('summeries') }}"><i class="fa fa-dashboard fa-sm pr-2"></i>সংক্ষিপ্তসার</a>

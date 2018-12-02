@@ -85,7 +85,7 @@
                                     *Text post
                                     */
                                     if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = "{{ url('/')}}"+value.image_path;
+                                        var profile_image = "{{ url('/').'/' }}"+value.image_path;
                                     }
                                     else{
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
@@ -112,7 +112,9 @@
                                             html +=value.description;
                                         html +='</div>';
 
+                                        
                                         html +='<div class="ml-auto mr-4 mb-4 ">';
+                                        html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action green" href="{{ route('post') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
                                         html +='</div>';
@@ -132,7 +134,7 @@
                                     image_post = true;
 
                                     if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = '{{ url('/') }}'+value.image_path;
+                                        var profile_image = '{{ url('/').'/' }}'+value.image_path;
                                     }
                                     else{
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
@@ -160,6 +162,7 @@
                                         html +='</div>';
 
                                         html +='<div class="ml-auto mr-4 mb-4 ">';
+                                        html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action green" href="{{ route('image') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
                                         html +='</div>';
@@ -169,7 +172,7 @@
                                                 html +='<p>এই অ্যালবামের মোট '+Object.keys(value.images).length+'টি ছবি থেকে <span class="slidercount">1</span>নং ছবি</p>';
                                                 html +='<ul class="lightSlider">'; // slidercount
                                                 $.each(value.images, function( index, image ) {
-                                                    var image_url =  '{{ url('/') }}'+image.image_path;
+                                                    var image_url =  '{{ url('/').'/' }}'+image.image_path;
                                                     var sub_html = index + 1;
                                                     html +='<li data-thumb="'+image_url+'" data-src="'+image_url+'" data-sub-html="চিত্র '+sub_html+'">';
                                                         html +='<img src="'+image_url+'" />';
@@ -193,9 +196,9 @@
                                     * Video post
                                     */
                                     video_post = true;
-                                    
+
                                     if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = "{{ url('/')}}"+value.image_path;
+                                        var profile_image = "{{ url('/').'/' }}"+value.image_path;
                                     }
                                     else{
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
@@ -224,12 +227,13 @@
 
                                         
                                         html +='<div class="ml-auto mr-4 mb-4 ">';
+                                        html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action green" href="{{ route('video') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
                                         html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
                                         html +='</div>';
 
                                         $.each(value.videos, function( index, video ) {
-                                            var video_url =  '{{ url('/') }}'+video.video_path;
+                                            var video_url =  '{{ url('/').'/' }}'+video.video_path;
 
                                             html +='<div class="view overlay my-3" align="center">';
                                                 html +='<video class="video-js z-depth-1" controls style="width:100%">';
@@ -237,7 +241,7 @@
                                                 html +='</video> ';
                                             html +='</div>';
                                         });
-                                        
+
                                         html +='<div class="rounded-bottom green text-center pt-3">';
                                             html +='<ul class="list-unstyled list-inline font-small">';
                                                 html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="'+like_icon+' pr-1" id="p_like_ico_'+value.post_id+'"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
@@ -245,7 +249,7 @@
                                             html +='</ul>';
                                         html +='</div>';
 
-                                    html +='</div>';
+                                    html +='</div>'; 
                                 }
                             }); 
 

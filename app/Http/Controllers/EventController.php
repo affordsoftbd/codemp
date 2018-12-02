@@ -157,10 +157,10 @@ class EventController extends Controller
     public function updateImage(Request $request, $id)
     {
         $validator = \Validator::make($request->all(), [
-            'event_image'  => 'required|image|dimensions:min_width=100,min_height=200|max:2000',
+            'event_image'  => 'required|image|dimensions:min_width=100,min_height=200|max:5000',
         ]);
         if ($validator->fails()) {
-            Session::flash('error', array('এরর!'=>'দুঃখিত! ছবি আপডেট করা যায়নি! ছবির জন্য সর্বাধিক অনুমোদিত আকার 2 এমবি!'));
+            Session::flash('error', array('এরর!'=>'দুঃখিত! ছবি আপডেট করা যায়নি! ছবির জন্য সর্বাধিক অনুমোদিত আকার 5 এমবি!'));
         }
         $input = $request->all();
         $event = $this->event->findOrFail($id);

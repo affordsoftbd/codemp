@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div class="col-xl-1 col-lg-2 col-md-2 post_creator">
-        <img src="{{ !empty($event->organizer->detail->image_path) ? $event->organizer->detail->image_path : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">		        
+        <img src="{{ file_exists($event->organizer->detail->image_path) ? asset($event->organizer->detail->image_path) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">		        
     </div>
     <div class="col-xl-6 col-lg-4 col-md-4">
         <h4 class="font-weight-bold green-text">{{ $event->organizer->first_name.' '.$event->organizer->last_name }}</h4>
@@ -43,8 +43,8 @@
         <p class="grey-text font-weight-bold mt-3"><i class="fa fa-users fa-sm pr-2"></i>মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
         
         <div id="aniimated-thumbnials" align="center">
-            <a href="{{ $event->event_image }}">
-                <img class="img-fluid mb-3" src="{{ !empty($event->event_image) ? url('/').$event->event_image : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
+            <a href="{{ asset($event->event_image) }}">
+                <img class="img-fluid mb-3" src="{{ file_exists($event->event_image) ? asset($event->event_image) : 'http://via.placeholder.com/1000x500?text=Event+Image' }}" alt="{{ $event->title }}">
             </a>
             @if($event->user_id == $user->id)
             <button type="button" class="btn green btn-sm mb-4 center-block" data-toggle="modal" data-target="#updateimage">
@@ -61,7 +61,7 @@
 
     @foreach($event->comments as $comment)
 	    <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
-	        <img src="{{ !empty($comment->user->detail->image_path) ? url('/').$comment->user->detail->image_path : 'http://via.placeholder.com/50' }}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
+	        <img src="{{ file_exists($comment->user->detail->image_path) ? asset($comment->user->detail->image_path) : 'http://via.placeholder.com/50' }}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
 	    </div>
 	    <div class="col-xl-11 col-lg-10 col-md-10 my-3">
 	        <div class="card border message_area border-light">
@@ -92,7 +92,7 @@
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য যোগ করুন</h6>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2 add_comment">
-        <img src="{{  !empty($user->detail->image_path) ? url('/').$user->detail->image_path : 'http://via.placeholder.com/50' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
+        <img src="{{  file_exists($user->detail->image_path) ? asset($user->detail->image_path) : 'http://via.placeholder.com/50' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10 add_comment">
         {!! Form::open(['method' => 'post', 'route' => ['events.comment.add'], 'class'=>'md-form', 'name' => 'check_edit']) !!}

@@ -162,7 +162,7 @@
                                     image_post = true;
 
                                     if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = '{{ url('/') }}'+value.image_path;
+                                        var profile_image = '{{ url('/').'/' }}'+value.image_path;
                                     }
                                     else{
                                         var profile_image = "https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg";
@@ -200,7 +200,7 @@
                                                 html +='<p>এই অ্যালবামের মোট '+Object.keys(value.images).length+'টি ছবি থেকে <span class="slidercount">1</span>নং ছবি</p>';
                                                 html +='<ul class="lightSlider">'; // slidercount
                                                 $.each(value.images, function( index, image ) {
-                                                    var image_url =  '{{ url('/') }}'+image.image_path;
+                                                    var image_url =  '{{ url('/').'/' }}'+image.image_path;
                                                     var sub_html = index + 1;
                                                     html +='<li data-thumb="'+image_url+'" data-src="'+image_url+'" data-sub-html="চিত্র '+sub_html+'">';
                                                         html +='<img src="'+image_url+'" />';
