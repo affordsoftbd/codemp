@@ -6,12 +6,7 @@
 
 <div class="row">
     <div class="col-xl-1 col-lg-2 col-md-2 post_creator">
-        @if($post->image_path!='')
-            <img src="{{ url('/').$post->image_path}}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">
-        @else
-            <img src="{{ url('/').'/img/avatar.png'}}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">
-        @endif
-        
+        <img src="{{ file_exists($post->image_path) ? asset($post->image_path) : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">           
     </div>
     <div class="col-xl-6 col-lg-4 col-md-4">
         <h4 class="font-weight-bold green-text">{{ $post->first_name." ".$post->last_name}}</h4>
@@ -42,7 +37,7 @@
         <div class="view overlay my-3">
             @foreach($post->videos as $video)
             <video id="my-video" class="video-js" preload="auto" controls data-setup="{}" style="width:100%">
-              <source src="{{ url('/').$video->video_path}}" type="video/mp4">
+              <source src="{{ asset($video->video_path) }}" type="video/mp4">
             </video>
             @endforeach
             <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe-->
@@ -57,11 +52,7 @@
     </div-->
     @foreach($post_comments as $comment)
     <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
-        @if($comment->image_path!='')
-            <img src="{{ url('/').$post->image_path}}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
-        @else
-            <img src="{{ url('/').'/img/avatar.png'}}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
-        @endif
+        <img src="{{ file_exists($post->image_path) ? asset($post->image_path) : url('/').'/img/avatar.png' }}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10 my-3">
         <div class="card border message_area border-light">
@@ -79,7 +70,7 @@
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য যোগ করুন</h6>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2">
-        <img src="{{ (Session::get('image_path')!='') ? url('/').Session::get('image_path') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
+        <img src="{{ file_exists(Session::get('image_path')) ? asset(Session::get('image_path')) : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10">
         <div class="alert alert-success" id="comment_success" style="display:none"></div>
