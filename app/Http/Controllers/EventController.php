@@ -87,6 +87,7 @@ class EventController extends Controller
         $id = $this->event->create($input)->id;
         $user = $this->user->find(\Request::session()->get('user_id'));
         $user->participating_events()->attach($id);
+        $this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));
         return redirect()->route('events.show', $id)->with('success', array('সাফল্য'=>'ইভেন্ট যোগ করা হয়েছে!'));
     }
 
@@ -97,6 +98,8 @@ class EventController extends Controller
         ]);
         $input = $request->all();
         $id = $this->comment->create($input);
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        $this->send_notification($this->event->find($request->event_id)->pluck('user_id')->toArray(), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ একটি মন্তব্য যোগ করেছেন!', route('events.show', $id));
         return redirect()->route('events.show', $request->event_id)->with('success', array('সাফল্য'=>'মন্তব্য যোগ করা হয়েছে!'));
     }
 
@@ -104,6 +107,7 @@ class EventController extends Controller
     {  
         $user = $this->user->find($request->user_id);
         $user->participating_events()->attach($request->event_id);
+        $this->send_notification(array(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ অংশগ্রহণ করেছেন!', route('events.show', $id));
         return redirect()->route('events.show', $request->event_id)->with('success', array('সাফল্য'=>'আপনাকে অংশগ্রহণকারী হিসাবে যোগ করা হয়েছে!'));
     }
 
@@ -191,6 +195,7 @@ class EventController extends Controller
         $this->validate($request, $rules, $customMessages);
         $event = $this->event->findOrFail($id);
         $event->update($input);
+        $this->send_notification($event->participants->pluck('id')->toArray(), 'ইভেন্ট '.$event->title.' আপডেট করা হয়েছে!', route('events.show', $id));
         return redirect()->route('events.show', $id)->with('success', array('সাফল্য'=>'ইভেন্ট হালনাগাদ করা হয়েছে!'));
     }
 

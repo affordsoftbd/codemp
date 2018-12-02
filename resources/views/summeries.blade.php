@@ -10,7 +10,7 @@
 		        <div class="card-body light-green white-text">
 		        	<h1 class="font-weight-bold my-5 text-center">
 		        		<i class="fa fa fa-flag fa-sm pr-2"></i>
-		          		<small>কর্মীর সংখ্যা: {{ count($workers)}}</small>
+		          		<small>কর্মীর সংখ্যা: {{ $workers }}</small>
 		        	</h1>  
 		        </div>
 		    </div>
@@ -20,7 +20,7 @@
 		        <div class="card-body red white-text">
 		        	<h1 class="font-weight-bold my-5 text-center">
 		          		<i class="fa fa-user-circle fa-sm pr-2"></i>
-		          		<small>অনুসারীর সংখ্যা: {{ count($followers)}}</small>
+		          		<small>অনুসারীর সংখ্যা: {{ $followers }}</small>
 		      		</h1>
 		        </div>
 		    </div>
@@ -30,7 +30,7 @@
 		        <div class="card-body deep-orange white-text">
 		        	<h1 class="font-weight-bold my-5 text-center">
 		        		<i class="fa fa-user-plus fa-sm pr-2"></i>
-		        		<small>নতুন আবেদনকারী: {{ count($new_applicants)}}</small>
+		        		<small>নতুন আবেদনকারী: {{ $new_applicants }}</small>
 		      		</h1>
 		        </div>
 		    </div>
@@ -40,7 +40,7 @@
 		        <div class="card-body green white-text">
 		        	<h1 class="font-weight-bold my-5 text-center">
 		        		<i class="fa fa-group fa-sm pr-2"></i>
-		          		<small>আবেদনকারীর সংখ্যা: {{ count($all_applicants)}}</small>  
+		          		<small>আবেদনকারীর সংখ্যা: {{ $all_applicants }}</small>  
 		      		</h1>
 		        </div>
 		    </div>

@@ -129,19 +129,19 @@ class HomeController extends Controller
                 ->join('followers','followers.follower_user_id','users.id')
                 ->where('status','Active')
                 ->where('followers.leader_id',Session::get('user_id'))
-                ->get();
+                ->count();
 
             $data['new_applicants'] = User::where('users.status','Active')
                 ->join('my_leaders','my_leaders.worker_id','users.id')
                 ->where('my_leaders.status','pending')
                 ->where('my_leaders.leader_id',Session::get('user_id'))
-                ->get();
+                ->count();
 
             $data['all_applicants'] = User::where('users.status','Active')
                 ->join('my_leaders','my_leaders.worker_id','users.id')
                 ->where('my_leaders.leader_id',Session::get('user_id'))
-                ->get();
-            $data['workers'] = User::where('party_id', User::find(\Request::session()->get('user_id'))->party_id);
+                ->count();
+            $data['workers'] = User::where('party_id', User::find(\Request::session()->get('user_id'))->party_id)->count();
             return view('summeries',$data);
         }
         catch (\Exception $e) {

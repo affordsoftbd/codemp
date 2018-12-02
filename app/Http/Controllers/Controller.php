@@ -37,6 +37,17 @@ class Controller extends BaseController
         return 'storage/'.$file;
     }
 
+    protected function get_followers($user_id=''){
+        $followers = array();
+        if(!empty($user)){
+            $user = $this->user->find($user_id);
+            foreach($user->followers as $follower){
+                array_push($follower->id, $followers);
+            }
+        }
+        return $followers;
+    }
+
     protected function send_notification($recievers, $text='আপনি একটি নতুন বিজ্ঞপ্তি পেয়েছেন!', $link='javascript:void(0)', $icon='bell'){
         if(is_array($recievers) && count($recievers) > 0){
             foreach($recievers as $reciever){
