@@ -6,11 +6,7 @@
 
 <div class="row">
     <div class="col-xl-1 col-lg-2 col-md-2 post_creator">
-        @if($post->image_path!='')
-            <img src="{{ url('/').$post->image_path}}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">
-        @else
-            <img src="{{ url('/').'/img/avatar.png'}}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">
-        @endif
+        <img src="{{ file_exists($post->image_path) ? asset($post->image_path) : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">
     </div>
     <div class="col-xl-6 col-lg-4 col-md-4">
         <h4 class="font-weight-bold green-text">{{ $post->first_name." ".$post->last_name}}</h4>
@@ -42,8 +38,8 @@
             <ul id="content-slider" class="content-slider">
                 @foreach($post->images as $image)
                 <li>
-                    <a href="{{ url('/').$image->image_path }}" data-sub-html="{{ url('/').$image->image_path }}"> 
-                        <img class="img-fluid" src="{{ url('/').$image->image_path }}" alt="{{ url('/').$image->image_path }}">
+                    <a href="{{ file_exists($image->image_path) ? asset($image->image_path) : 'http://via.placeholder.com/450' }}" data-sub-html="{{ file_exists($image->image_path) ? asset($image->image_path) : 'http://via.placeholder.com/450' }}"> 
+                        <img class="img-fluid" src="{{ file_exists($image->image_path) ? asset($image->image_path) : 'http://via.placeholder.com/450' }}" alt="{{ file_exists($image->image_path) ? asset($image->image_path) : 'http://via.placeholder.com/450' }}">
                     </a>
                     {!! Form::open(['route' => ['image.delete', $image->post_image_id], 'method'=>'delete']) !!}
                         {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই ছবি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, ছবি মুছে দিন!', 'type'=>'submit')) !!}
@@ -61,11 +57,7 @@
 
     @foreach($post_comments as $comment)
     <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
-        @if($comment->image_path!='')
-            <img src="{{ url('/').$post->image_path}}" class="rounded-circle z-depth-1-half">
-        @else
-            <img src="{{ url('/').'/img/avatar.png'}}" class="rounded-circle z-depth-1-half">
-        @endif
+        <img src="{{ file_exists($post->image_path) ? asset($post->image_path) : url('/').'/img/avatar.png' }}" class="rounded-circle z-depth-1-half">
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10 my-3">
         <div class="card border message_area border-light">
@@ -83,7 +75,7 @@
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য যোগ করুন</h6>
     </div>
     <div class="col-xl-1 col-lg-2 col-md-2">
-        <img src="{{ (Session::get('image_path')!='') ? url('/').Session::get('image_path') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
+        <img src="{{ file_exists(Session::get('image_path')!='') ? asset(Session::get('image_path')!='') : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
     </div>
     <div class="col-xl-11 col-lg-10 col-md-10">
         <div class="alert alert-success" id="comment_success" style="display:none"></div>
