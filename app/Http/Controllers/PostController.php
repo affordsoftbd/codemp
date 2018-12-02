@@ -146,7 +146,7 @@ class PostController extends Controller
             $post->privacy = $request->post_privacy;
             $post->save();
             $postVideo = NEW PostVideo();
-            $postVideo->video_path = $this->uploadVideo($request->video, 'posts/videos/'); 
+            $postVideo->video_path = $this->uploadVideo($request->video, 'posts/videos'); 
             $postVideo->post_id = $post->post_id;
             $postVideo->save();
             return json_encode(['response'=>'success', 'message'=>'ভিডিও সফলভাবে শেয়ার হয়েছে!']);
