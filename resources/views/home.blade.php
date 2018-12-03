@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    {{ Form::button('পোস্ট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                    {{ Form::button('<i class="fa fa-plus pr-2"></i>পোস্ট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
                 </div>
             </form>
         </div>
