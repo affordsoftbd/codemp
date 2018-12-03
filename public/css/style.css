@@ -44,8 +44,7 @@ a:hover {
 }
 
 .profile_card img{
-  max-height:300px;
-  max-width:300px;
+  max-height:250px;
   height:auto;
   width:auto;
 }
