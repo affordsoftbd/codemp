@@ -10,7 +10,7 @@
     </div>
     <div class="col-xl-6 col-lg-4 col-md-4">
         <h4 class="font-weight-bold green-text">{{ $post->first_name." ".$post->last_name}}</h4>
-        <small class="red-text">{{ $post->created_at }}</small>
+        <small class="red-text">{{ date('l d F Y, h:i A',strtotime($post->created_at)) }}</small>
     </div>
     <div class="col-xl-5 col-lg-6 col-md-6" align="right">
         {!! Form::open(['route' => ['post.delete', $post->post_id], 'method'=>'delete']) !!}
@@ -44,7 +44,7 @@
         <div class="card border message_area border-light">
             <div class="card-body">
                 <h6 class="font-weight-bold">{{ $comment->first_name." ".$comment->last_name}}</h6>
-                <small class="grey-text">{{ $comment->created_at }}</small>
+                <small class="grey-text">{{ date('l d F Y, h:i A',strtotime($comment->created_at)) }}</small>
                 <hr>
                 <?php echo htmlspecialchars_decode($comment->comment); ?>
             </div>
@@ -68,7 +68,7 @@
                 {!! Form::textarea('additional_details', null, array('class'=>'editor','name'=>'comment_text','id'=>'comment_text')) !!}
             </div>
             <div class="text-center my-4">
-                {!! Form::button('পোস্ট', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+                {!! Form::button('<i class="fa fa-plus pr-2"></i>পোস্ট', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
             </div>
         </form>
         <div class="clearfix"></div>

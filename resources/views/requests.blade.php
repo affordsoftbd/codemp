@@ -22,7 +22,7 @@
           <div class="card-body">
             <!-- Title-->
             <a href="{{ url('public_profile?user='.$applicant->username) }}"><h4 class="card-title title-one">{{ $applicant->first_name." ".$applicant->last_name}}</h4></a>
-            <p class="card-meta">অংশগ্রহন {{ date('Y',strtotime($applicant->created_at))}}</p>
+            <p class="card-meta">অংশগ্রহন {{ date('l d F Y',strtotime($applicant->created_at)) }}</p>
             <!-- Text -->
             <p class="card-text"><strong>
               @if(!empty($leader->division_name))

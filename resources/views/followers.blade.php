@@ -83,7 +83,7 @@
           <div class="card-body">
             <!-- Title-->
             <h4 class="card-title title-one">{{ $follower->first_name." ".$follower->last_name}}</h4>
-            <p class="card-meta">অংশগ্রহন {{ date('Y',strtotime($follower->created_at))}}</p>
+            <p class="card-meta">অংশগ্রহন {{ date('l d F Y',strtotime($follower->created_at)) }}</p>
             <!-- Text -->
             <p class="card-text">
               @if(!empty($leader->division_name))

@@ -28,7 +28,7 @@
             <h2 class="font-weight-bold"><a>{{ $news->title }}</a></h2>
             <!--a href="#!" class="red-text"><h6 class="font-weight-bold mb-3"><i class="fa fa-tag pr-2"></i>Adventure</h6></a-->
             <!-- Data -->
-            <p>{{ date('d/m/Y',strtotime($news->created_at)) }}</p>
+            <p>{{ $news->created_at->format('l d F Y, h:i A') }}</p>
 
           </div>
           <!-- Card content -->
@@ -45,31 +45,23 @@
 
         <h4 class="font-weight-bold mt-5">মন্তব্য</h4><hr>
 
-        @foreach($news_comments as $comment)
-        <!-- Card -->
-        <div class="card news-card mb-4">
-          <!-- Heading-->
-          <div class="card-body">
-            <div class="content">
-              <div class="right-side-meta">{{ date('d/m/Y h:i',strtotime($comment->created_at)) }}</div>
-              <img src="{{ file_exists($comment->image_path) ? asset($comment->image_path) : url('/').'/img/avatar.png' }}" class="rounded-circle profile-image-thumbnile avatar-img z-depth-1-half">
-              <strong>{{ $comment->first_name." ".$comment->last_name}}</strong>
-            </div>
+        <div class="row">
+          @foreach($news_comments as $comment)
+          <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
+            <img src="{{ file_exists($comment->image_path) ? asset($comment->image_path) : url('/').'/img/avatar.png' }}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
           </div>
-          <hr>
-          <!-- Card content -->
-          <div class="card-body">
-            <!-- Social meta-->
-            <div class="social-meta">
-              <p>
-              <?php echo htmlspecialchars_decode($comment->comment); ?>
-                
-              </p>
-            </div>
+          <div class="col-xl-11 col-lg-10 col-md-10 my-3">
+              <div class="card border message_area border-light">
+                  <div class="card-body">
+                      <h6 class="font-weight-bold">{{ $comment->first_name." ".$comment->last_name}}</h6>
+                      <small class="grey-text">{{ date('l d F Y, h:i A',strtotime($comment->created_at)) }}</small>
+                      <hr>
+                      <?php echo htmlspecialchars_decode($comment->comment); ?>
+                  </div>
+              </div>
           </div>
+          @endforeach
         </div>
-        <!-- Card -->
-        @endforeach
 
         <div class="alert alert-success" id="comment_success" style="display:none"></div>
         <div class="alert alert-danger" id="comment_error" style="display:none"></div>
@@ -80,7 +72,7 @@
                 {!! Form::textarea('additional_details', null, array('class'=>'editor','name'=>'comment_text','id'=>'comment_text')) !!}
             </div>
             <div class="text-center my-4">
-                {!! Form::button('পোস্ট', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
+                {!! Form::button('<i class="fa fa-plus pr-2"></i>পোস্ট', array('type' => 'submit', 'class' =>'btn btn-danger btn-sm')) !!}
             </div>
         </form>
 

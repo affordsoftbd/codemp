@@ -4,8 +4,8 @@
 			{{ $user->first_name." ".$user->last_name}}
 		</h4>
 		<small class="red-text">
-            @if(!empty($leader->division_name))
-            <strong>{{ $leader->division_name }} > {{ $leader->district_name }} > {{ $leader->thana_name }} > {{ $leader->zip_code }}</strong> অধীনে 
+            @if(!empty($user->division_name))
+                <strong>{{ $user->division_name }} > {{ $user->district_name }} > {{ $user->thana_name }} > {{ $user->zip_code }}</strong> অধীনে 
             @endIf
             <strong>নেতা</strong> হিসেবে যোগদান করেছেন
         </small>
@@ -167,7 +167,7 @@
 			<div class="card-body">
 				<p class="card-meta">
 					<i class="fa fa-calendar-check-o prefix grey-text fa-sm pr-2"></i>
-					অংশগ্রহন {{ date('d F Y',strtotime($user->created_at))}}
+					অংশগ্রহন {{ date('l d F Y',strtotime($user->created_at)) }}
 				</p>
 				<p class="card-meta">
 					<i class="fa fa-envelope prefix grey-text fa-sm pr-2"></i>

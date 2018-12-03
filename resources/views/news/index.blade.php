@@ -32,7 +32,7 @@
           <!-- Post title -->
           <h4 class="font-weight-bold mb-3"><strong>{{ $nws->title }}</strong></h4>
           <!-- Post data -->
-          <p>{{ date('d/m/Y',strtotime($nws->created_at)) }}</p>
+          <p><i class="fa fa-clock-o pr-2"></i>{{ $nws->created_at->format('l d F Y, h:i A') }}</p>
           <!-- Excerpt -->
           <p class="dark-grey-text"><?php echo substr($nws->description, 0, 250) ?></p>
           <!-- Read more button -->
