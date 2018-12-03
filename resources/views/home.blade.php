@@ -145,9 +145,7 @@
     </div>
 </div>
 
-<div id="post_list">
-
-</div>
+<div id="post_list"></div>
 
 <input type="hidden" name="last_load" id="last_load">
 <input type="hidden" name="last_id" id="last_id">

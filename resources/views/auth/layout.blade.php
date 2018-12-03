@@ -47,7 +47,7 @@
                 <!--First column-->
                 <div class="col-md-6">
                     <h5><span class="yellow-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</h5>
-                    <p>আপনার নেতাদের সাথে সংযোগ করুন</p>
+                    <p>আপনার নেতাদের সাথে সংযুক্ত হউন</p>
                 </div>
                 <!--/.First column-->
 

@@ -50,8 +50,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <h1 class="display-5 font-weight-bold green-text">আপনাকে স্বাগতম!</h1><hr>
-                    <p class="red-text">আপনার নেতাদের সাথে সংযোগ করুন</p>
-                    {{ Html::image('img/p2p.png', 'Peer to peer', array('class' => 'p2p img-responsive my-5')) }}
+                    <p class="red-text">আপনার নেতাদের সাথে সংযুক্ত হউন</p>
+                    {{ Html::image('img/p2p.svg', 'Peer to peer', array('class' => 'p2p img-responsive my-5')) }}
                 </div>
                 <div class="col-md-8">
                     <div class="card wow h-100" data-wow-delay="0.3s">
@@ -81,7 +81,7 @@
                                         </div>                                       
                                         <label class="error text-danger" id="last_name_error">নামের শেষাংশ প্রয়োজন</label>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <!-- Phone number -->
                                         <div class="md-form">
                                             <input type="text" name="username" id="reg_username" class="form-control">
@@ -89,7 +89,7 @@
                                         </div>                                       
                                        <label class="error text-danger" id="reg_username_error">ইউসার নাম প্রয়োজন</label>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <!-- E-mail -->
                                         <div class="md-form">
                                             <input type="email" name="email" id="reg_email" class="form-control">
@@ -97,7 +97,7 @@
                                         </div>                                       
                                         <label class="error text-danger" id="reg_email_error">ই-মেইল প্রয়োজন</label>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-6">
                                         <!-- Phone number -->
                                         <div class="md-form">
                                             <input type="text" name="phone" id="phone" class="form-control">
@@ -112,13 +112,6 @@
                                             <label for="nid">জাতীয় আইডি</label>
                                         </div>                                       
                                         <label class="error text-danger" id="nid_error">জাতীয় আইডি প্রয়োজন</label>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="md-form">
-                                            <input type="text" name="address" id="address" class="form-control" maxlength="16">
-                                            <label for="address">ঠিকানা</label>
-                                        </div>                                       
-                                        <label class="error text-danger" id="address_error">ঠিকানা প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Choose Division -->
@@ -173,6 +166,13 @@
                                             @endforeach
                                         </select>                                       
                                         <label class="error text-danger" id="role_id_error">রোল প্রয়োজন</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="md-form">
+                                            <input type="text" name="address" id="address" class="form-control" maxlength="16">
+                                            <label for="address">ঠিকানা</label>
+                                        </div>                                       
+                                        <label class="error text-danger" id="address_error">ঠিকানা প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="md-form">
