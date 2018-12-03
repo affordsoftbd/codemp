@@ -39,7 +39,8 @@
     <div class="col-xl-12 col-lg-12 col-md-12">
         <hr>
         <h3>{{ $event->title }}</h3>
-		<h6 class="font-weight-bold mt-3"><i class="fa fa-calendar-check-o fa-sm pr-2"></i>{{ date('l d F Y, h:i A', strtotime($event->event_date)) }}</h6>
+		<h6 class="font-weight-bold mt-3"><i class="fa fa-location-arrow pr-2"></i> Mirpur, Dhaka</h6>
+        <p class="dark-grey-text font-weight-bold mt-3"><i class="fa fa-calendar-check-o fa-sm pr-2"></i>{{ date('l d F Y, h:i A', strtotime($event->event_date)) }}</p>
         <p class="grey-text font-weight-bold mt-3"><i class="fa fa-users fa-sm pr-2"></i>মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
         
         <div id="aniimated-thumbnials" align="center">

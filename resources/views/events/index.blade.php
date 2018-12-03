@@ -61,12 +61,14 @@
 		<div class="col-md-9">
 			<h5 class="font-weight-bold dark-grey-text">
 				{{ $event->title }}
-				<small>আয়োজক- <strong>{{ $event->organizer->first_name.' '.$event->organizer->last_name }}</strong></small>
+				<small>আয়োজক- <strong class="green-text">{{ $event->organizer->first_name.' '.$event->organizer->last_name }}</strong></small>
 			</h5>
 			<div class="d-flex justify-content-between">
-			  <div class="col-11 text-truncate pl-0 mb-3">
+			  <div class="col-11 text-truncate pl-0 mb-3">			    
+			  	<p class="dark-grey-text">
+			    	<i class="fa fa-calendar-check-o pr-2"></i><strong>Mirpur, Dhaka:</strong> {{ date('l d F Y, h:i A', strtotime($event->event_date)) }}
+			    </p>
 			  	<p class="red-text small">মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
-			    <p class="dark-grey-text">{{ date('l d F Y, h:i A', strtotime($event->event_date)) }}</p>
 			  </div>
 			  <i class="fa fa-angle-double-right"></i>
 			</div>
