@@ -172,7 +172,18 @@
             }
         });
 
-
+        function checkImage(image){
+            var profile_image = "{{ url('/img/avatar.png') }}";
+            $.ajax({
+                url: "{{ url('/').'/' }}"+image,
+                type:'HEAD',
+                async: false,
+                success:function(){
+                    profile_image = "{{ url('/').'/' }}"+image; 
+                }
+            });
+            return profile_image;
+        }
 
         function getPost(last_id,type){
             if(last_id > 0){  
@@ -190,12 +201,8 @@
                                     /*
                                     *Text post
                                     */
-                                    if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = "{{ url('/').'/' }}"+value.image_path;
-                                    }
-                                    else{
-                                        var profile_image = "url('/').'/img/avatar.png";
-                                    }
+                                    
+                                    var profile_image = checkImage(value.image_path);
 
                                     var like_icon = "fa fa-thumbs-o-up";
                                     if(value.likes.length > 0){
@@ -239,12 +246,7 @@
                                     */
                                     image_post = true;
 
-                                    if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = '{{ url('/').'/' }}'+value.image_path;
-                                    }
-                                    else{
-                                        var profile_image = "url('/').'/img/avatar.png";
-                                    }
+                                    var profile_image = checkImage(value.image_path);
 
                                     var like_icon = "fa fa-thumbs-o-up";
                                     if(value.likes.length > 0){
@@ -303,12 +305,7 @@
                                     */
                                     video_post = true;
 
-                                    if(value.image_path!='' || value.image_path!='null'){
-                                        var profile_image = "{{ url('/').'/' }}"+value.image_path;
-                                    }
-                                    else{
-                                        var profile_image = "url('/').'/img/avatar.png";
-                                    }
+                                    var profile_image = checkImage(value.image_path);
 
                                     var like_icon = "fa fa-thumbs-o-up";
                                     if(value.likes.length > 0){
