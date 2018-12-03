@@ -28,6 +28,9 @@
     <!-- Bootstrap Material Datetime Picker Plugin Js -->
  	{{Html::script('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}
 
+    <!-- Jquery datetime formater -->
+    {{Html::script('plugins/date-format/jquery-dateformat.min.js')}}
+
     <!-- DropJone Js -->
     {{Html::script('js/dropzone.js')}}
 

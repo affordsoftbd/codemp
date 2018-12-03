@@ -112,7 +112,7 @@
 
                                         html +='<div class="card-body">';
                                             html +='<div class="content">';
-                                                html +='<div class="right-side-meta">'+value.created_at+'</div>';
+                                                html +='<div class="right-side-meta">'+$.format.date(value.created_at, 'ddd d MMMM yyyy, h:ss a')+'</div>';
                                                 html +='<img src="'+profile_image+'" class="rounded-circle profile-image-thumbnile avatar-img z-depth-1-half"><strong>'+value.first_name+' '+value.last_name+'</strong>';
                                             html +='</div>';
                                             html +='<hr>';
@@ -156,7 +156,7 @@
 
                                         html +='<div class="card-body">';
                                             html +='<div class="content">';
-                                                html +='<div class="right-side-meta">'+value.created_at+'</div>';
+                                                html +='<div class="right-side-meta">'+$.format.date(value.created_at, 'ddd d MMMM yyyy, h:ss a')+'</div>';
                                                 html +='<img src="'+profile_image+'" class="rounded-circle profile-image-thumbnile avatar-img z-depth-1-half"><strong>'+value.first_name+' '+value.last_name+'</strong>';
                                             html +='</div>';
                                             html +='<hr>';
@@ -215,7 +215,7 @@
 
                                         html +='<div class="card-body">';
                                             html +='<div class="content">';
-                                                html +='<div class="right-side-meta">'+value.created_at+'</div>';
+                                                html +='<div class="right-side-meta">'+$.format.date(value.created_at, 'ddd d MMMM yyyy, h:ss a')+'</div>';
                                                 html +='<img src="'+profile_image+'" class="rounded-circle profile-image-thumbnile avatar-img z-depth-1-half"><strong>'+value.first_name+' '+value.last_name+'</strong>';
                                             html +='</div>';
                                             html +='<hr>';
