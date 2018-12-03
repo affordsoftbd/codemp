@@ -2,16 +2,20 @@
 
 @section('extra-style')
     <style>
-        .intro-2 {
+        body {
             background-image: linear-gradient(#ffffff, #e6ffe6);
             background-size: cover;
+        }
+        .intro-2 {
             padding-top: 50px;
             padding-bottom: 50px;
         }
-
         .p2p {
           max-width: 100%;
           height: auto;
+        }
+        .error {
+            display: none;
         }
     </style>
 @endsection
@@ -22,7 +26,7 @@
 
         <div class="container container-fluid">
         
-            <a class="navbar-brand" href="javascript:void(0)"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i>আমারনেতা</a>
+            <a class="navbar-brand" href="javascript:void(0)"><span class="yellow-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</a>
             <form class="form-inline" method="post" action="{{ route('postLogin') }}">
                 {{ csrf_field() }}
                 <div class="md-form mt-0">
@@ -46,7 +50,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <h1 class="display-5 font-weight-bold green-text">আপনাকে স্বাগতম!</h1><hr>
-                    <!-- <p class="red-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p> -->
+                    <p class="red-text">আপনার নেতাদের সাথে সংযোগ করুন</p>
                     {{ Html::image('img/p2p.png', 'Peer to peer', array('class' => 'p2p img-responsive my-5')) }}
                 </div>
                 <div class="col-md-8">
@@ -60,7 +64,6 @@
 
                                 <form id="registration_form" class="login-form" method="post" action="">
                                 {{ csrf_field() }}
-
                                 <div class="form-row">
                                     <div class="col-sm-3">
                                         <!-- First name -->
@@ -68,7 +71,7 @@
                                             <input type="text" name="first_name" id="first_name" class="form-control">
                                             <label for="first_name">নামের প্রথম অংশ</label>
                                         </div>                                        
-                                        <label class="hidden text-danger" id="first_name_error">নামের প্রথম অংশ প্রয়োজন</label>
+                                        <label class="error text-danger" id="first_name_error">নামের প্রথম অংশ প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Last name -->
@@ -76,7 +79,7 @@
                                             <input type="text" name="last_name" id="last_name" class="form-control">
                                             <label for="last_name">নামের শেষাংশ</label>
                                         </div>                                       
-                                        <label class="hidden text-danger" id="last_name_error">নামের শেষাংশ প্রয়োজন</label>
+                                        <label class="error text-danger" id="last_name_error">নামের শেষাংশ প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-2">
                                         <!-- Phone number -->
@@ -84,7 +87,7 @@
                                             <input type="text" name="username" id="reg_username" class="form-control">
                                             <label for="reg_username">ইউসার নাম</label>
                                         </div>                                       
-                                       <label class="hidden text-danger" id="reg_username_error">ইউসার নাম প্রয়োজন</label>
+                                       <label class="error text-danger" id="reg_username_error">ইউসার নাম প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-2">
                                         <!-- E-mail -->
@@ -92,7 +95,7 @@
                                             <input type="email" name="email" id="reg_email" class="form-control">
                                             <label for="email">ই-মেইল</label>
                                         </div>                                       
-                                        <label class="hidden text-danger" id="reg_email_error">ই-মেইল প্রয়োজন</label>
+                                        <label class="error text-danger" id="reg_email_error">ই-মেইল প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-2">
                                         <!-- Phone number -->
@@ -100,7 +103,7 @@
                                             <input type="text" name="phone" id="phone" class="form-control">
                                             <label for="phone">ফোন নম্বর</label>
                                         </div>                                       
-                                        <label class="hidden text-danger" id="phone_error">ফোন নম্বর প্রয়োজন</label>
+                                        <label class="error text-danger" id="phone_error">ফোন নম্বর প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <!-- Phone number -->
@@ -108,14 +111,14 @@
                                             <input type="text" name="nid" id="nid" class="form-control" maxlength="16">
                                             <label for="nid">জাতীয় আইডি</label>
                                         </div>                                       
-                                        <label class="hidden text-danger" id="nid_error">জাতীয় আইডি প্রয়োজন</label>
+                                        <label class="error text-danger" id="nid_error">জাতীয় আইডি প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="md-form">
                                             <input type="text" name="address" id="address" class="form-control" maxlength="16">
                                             <label for="address">ঠিকানা</label>
                                         </div>                                       
-                                        <label class="hidden text-danger" id="address_error">ঠিকানা প্রয়োজন</label>
+                                        <label class="error text-danger" id="address_error">ঠিকানা প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Choose Division -->
@@ -125,7 +128,7 @@
                                                 <option value="{{ $division->division_id }}">{{ $division->division_name }}</option>
                                             @endforeach                                            
                                         </select>                                       
-                                        <label class="hidden text-danger" id="division_error">বিভাগ প্রয়োজন</label>
+                                        <label class="error text-danger" id="division_error">বিভাগ প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Choose District -->
@@ -133,7 +136,7 @@
                                             <option value="" disabled selected>আপনার জেলা</option>
                                             
                                         </select>                                       
-                                       <label class="hidden text-danger" id="district_error">জেলা প্রয়োজন</label>
+                                       <label class="error text-danger" id="district_error">জেলা প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Choose Thana -->
@@ -141,7 +144,7 @@
                                             <option value="" disabled selected>আপনার থানা</option>
                                             
                                         </select>                                       
-                                            <label class="hidden text-danger" id="thana_error">নথানা প্রয়োজন</label>
+                                            <label class="error text-danger" id="thana_error">নথানা প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-3">
                                         <!-- Choose Zip -->
@@ -149,7 +152,7 @@
                                             <option value="" disabled selected>আপনার জিপ</option>
                                             
                                         </select>                                       
-                                       <label class="hidden text-danger" id="zip_error">জিপ প্রয়োজন</label>
+                                       <label class="error text-danger" id="zip_error">জিপ প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <select class="mdb-select" name="party_id" id="party_id">
@@ -159,7 +162,7 @@
                                             @endforeach
                                             
                                         </select>                                       
-                                        <label class="hidden text-danger" id="party_id_error">রাজনৈতিক দল প্রয়োজন</label>
+                                        <label class="error text-danger" id="party_id_error">রাজনৈতিক দল প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <!-- Choose Role -->
@@ -169,7 +172,7 @@
                                                 <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
                                             @endforeach
                                         </select>                                       
-                                        <label class="hidden text-danger" id="role_id_error">রোল প্রয়োজন</label>
+                                        <label class="error text-danger" id="role_id_error">রোল প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="md-form">
@@ -179,7 +182,7 @@
                                                 অন্ততপক্ষে ৮টি বা আরও অক্ষর এবং ১ সংখ্যা
                                             </small>
                                         </div>                                       
-                                        <label class="hidden text-danger" id="reg_password_error">পাসওয়ার্ড প্রয়োজন</label>
+                                        <label class="error text-danger" id="reg_password_error">পাসওয়ার্ড প্রয়োজন</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <!-- Confirm Password -->
@@ -187,7 +190,7 @@
                                             <input type="password" name="password_confirm" id="reg_password_confirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                                             <label for="reg_password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
                                         </div>                                       
-                                        <label class="hidden text-danger" id="reg_password_confirm_error">পাসওয়ার্ড নিশ্চিত প্রয়োজন</label>
+                                        <label class="error text-danger" id="reg_password_confirm_error">পাসওয়ার্ড নিশ্চিত প্রয়োজন</label>
                                     </div>
                                 </div>
 
@@ -386,7 +389,7 @@
             }
             else{
                 $('#reg_username').css('border-color','#ced4da');
-                $('#reg_username_error').addClass('hidden');
+                $('#reg_username_error').addClass('error');
             }
             if(password.trim()==''){
                 validate = validate+"পাসওয়ার্ড প্রয়োজন</br>";
