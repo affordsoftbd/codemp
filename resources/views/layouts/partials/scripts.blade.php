@@ -40,11 +40,12 @@
     <!-- Jqurey Datatable Js -->
     {{Html::script('plugins/material-addons/js/datatables.min.js') }}
 
+    <!-- Video JavaScript -->
+    {{Html::script('plugins/video-js/video.js')}}
+    {{Html::script('plugins/video-js/newskin.js')}}
+
     <!-- MDB core JavaScript -->
  	{{Html::script('js/material.min.js')}}
-
-    <!-- Video JavaScript -->
-    {{Html::script('js/video.js')}}
 
     <!-- Custom JavaScript -->
  	{{Html::script('js/script.js')}}
