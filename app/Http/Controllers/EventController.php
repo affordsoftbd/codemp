@@ -108,7 +108,7 @@ class EventController extends Controller
     {  
         $user = $this->user->find($request->user_id);
         $user->participating_events()->attach($request->event_id);
-        $this->send_notification(array(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ অংশগ্রহণ করেছেন!', route('events.show', $id));
+        $this->send_notification(array($request->organizer), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ অংশগ্রহণ করেছেন!', route('events.show', $request->event_id));
         return redirect()->route('events.show', $request->event_id)->with('success', array('সাফল্য'=>'আপনাকে অংশগ্রহণকারী হিসাবে যোগ করা হয়েছে!'));
     }
 
@@ -127,8 +127,8 @@ class EventController extends Controller
         foreach($event->participants as $participant){ 
             if($participant->id == $user->id){
                 $checkIfParticipated = "yes";
+                break;
             }
-            break;
         }
         return view('events.show', compact('event', 'user', 'checkIfParticipated'));
     }

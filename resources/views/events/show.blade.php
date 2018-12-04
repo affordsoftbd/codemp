@@ -31,6 +31,7 @@
                 {!! Form::open(['route' => ['events.participant.add'], 'method'=>'post']) !!}
                     {!! Form::hidden('event_id', $event->id) !!}
                     {!! Form::hidden('user_id', $user->id) !!}
+                    {!! Form::hidden('organizer', $event->user_id) !!}
                     {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>ইভেন্ট অনুসরণ করুন', array('class' => 'btn btn-green btn-sm', 'type'=>'submit')) !!}
                 {!! Form::close() !!}
             @endIf
