@@ -39,7 +39,7 @@
                         <label for="password_confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
                     </div>
                     <div class="text-center mt-4">
-                        <input class="btn btn-danger btn-sm" type="submit" value="রিসেট">
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-retweet pr-2"></i>রিসেট</button>
                     </div>
                 </form>
                 <!-- Form -->

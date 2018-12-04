@@ -36,7 +36,7 @@
                         <label for="email">আপনার ইমেইল</label>
                     </div>
                     <div class="text-center mt-4">
-                        <input class="btn btn-danger btn-sm" type="submit" value="সাবমিট">
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-send pr-2"></i>সাবমিট</button>
                     </div>
                 </form>
                 <!-- Form -->
