@@ -12,11 +12,18 @@
     {!! Form::hidden('user_id', \Request::session()->get('user_id')) !!}
 
     <div class="md-form">
-        {!! Form::text('title', $event->title, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'title')) !!}
+        {!! Form::textarea('title', $event->title, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'title')) !!}
         {!! Form::label('title', 'ইভেন্ট শিরনাম') !!}
     </div>
     @if ($errors->has('title'))
         <p class="red-text">{{ $errors->first('title') }}</p>
+    @endif
+    <div class="md-form">
+        {!! Form::text('location', $event->location, array('class'=>'form-control', 'id'=>'location')) !!}
+        {!! Form::label('location', 'ইভেন্ট স্থান') !!}
+    </div>
+    @if($errors->has('location'))
+        <p class="red-text">{{ $errors->first('location') }}</p>
     @endif
     <div class="md-form">
       {!! Form::text('event_date', date('l d F Y - H:i', strtotime($event->event_date)), array('class' =>'form-control datetimepicker', 'id'=>'event_date')) !!}

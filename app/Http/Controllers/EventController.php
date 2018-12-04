@@ -73,6 +73,7 @@ class EventController extends Controller
         $rules = [
             'title' => 'required|string|max:500',
             'details' => 'required|string|max:5000',
+            'location' => 'required|string|max:255',
             'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
         ];
 
@@ -182,6 +183,7 @@ class EventController extends Controller
         $rules = [
             'title' => 'required|string|max:500',
             'details' => 'required|string|max:5000',
+            'location' => 'required|string|max:255',
             'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
         ];
 
