@@ -54,7 +54,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="view overlay rounded z-depth-1 mb-4">
-				<img class="img-fluid" src="{{ file_exists($event->event_image) ? asset($event->event_image) : 'http://via.placeholder.com/200x120' }}" alt="{{ $event->title }}">
+				<img class="img-fluid" src="{{ file_exists($event->event_image) ? asset($event->event_image) : 'http://via.placeholder.com/400x300?text=Event+Image' }}" alt="{{ $event->title }}">
 				<div class="mask rgba-white-slight"></div>
 			</div>
 		</div>
