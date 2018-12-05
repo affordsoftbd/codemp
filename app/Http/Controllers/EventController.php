@@ -18,11 +18,8 @@ class EventController extends Controller
 
     public function __construct(Event $event, EventComment $comment, User $user)
     {
-        /*$this->middleware('auth');
-        $this->middleware('order.owner')->only('show', 'edit');*/
-        /*for($i=0; $i<=8; $i++){
-            $this->send_notification(array($user->id), 'নতুন বিজ্ঞপ্তি পাওয়া গেছে!!', route('messages.index'));
-        }*/
+        $this->middleware('check.auth');
+        $this->middleware('event.creator')->only('edit');
         $this->event = $event;
         $this->comment = $comment;
         $this->user = $user;
