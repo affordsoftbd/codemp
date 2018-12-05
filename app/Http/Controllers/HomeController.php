@@ -349,6 +349,7 @@ class HomeController extends Controller
         $myLeader->worker_id = Session::get('user_id');
         $myLeader->status = 'pending';
         $myLeader->save();
+        /*$this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
         return ['status'=>200,'reason'=>'আবেদন সফলভাবে পাঠানো হয়েছে'];
     }
 
@@ -361,6 +362,7 @@ class HomeController extends Controller
         $myLeader = MyLeader::where('my_leader_id',$request->request_id)->first();
         $myLeader->status = 'active';
         $myLeader->save();
+        /*$this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
         return ['status'=>200,'reason'=>'সফলভাবে গৃহীত হয়েছে'];
     }
 
@@ -459,6 +461,7 @@ class HomeController extends Controller
             $follower->leader_id = $request->leader_id;
             $follower->follower_user_id = Session::get('user_id');
             $follower->save();
+            /*$this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
             return ['status'=>200,'reason'=>'Successfully followed'];
         }
         catch (\Exception $e) {

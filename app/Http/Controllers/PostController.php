@@ -340,7 +340,7 @@ class PostController extends Controller
         $comment->post_id = $request->post_id;
         $comment->user_id = Session::get('user_id');
         $comment->save();
-
+       /* $this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
         return ['status'=>200,'reason'=>'মন্তব্য সফলভাবে সংরক্ষিত হয়েছে'];
     }
 
@@ -354,7 +354,7 @@ class PostController extends Controller
         $like->post_id = $request->post_id;
         $like->user_id = Session::get('user_id');
         $like->save();
-
+        /*$this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
         return ['status'=>200,'reason'=>'নতুন লাইক সংরক্ষিত','like'=>1];
     }
 
