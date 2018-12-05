@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('check.auth');
     }
 
     /**
@@ -83,24 +83,6 @@ class UserController extends Controller
             $userDetail->thana_id = $request->thana;
             $userDetail->zip_id = $request->zip;
             $userDetail->save();
-
-            /*
-            * Update profile image
-            */ 
-            /*if($request->hasFile('profile_image')){
-                $profile_image = $request->file('profile_image');
-
-                // Save original image
-                $destinationPath = 'public/uploads/users/';
-                $extension = $profile_image->getClientOriginalExtension();
-                $file_name = rand(11111, 99999) . '.' . $extension;
-                $file_path = "/".$destinationPath."/".$file_name;
-                $profile_image->move($destinationPath, $file_name);
-
-                $photo = UserDetail::where('user_id',Session::get('user_id'))->first();
-                $photo->image_path = $file_path;
-                $photo->save();
-            }*/
             
             DB::commit();
             

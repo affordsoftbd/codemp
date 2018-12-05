@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('check.auth')->except('index');
     }
 
     /**
@@ -44,15 +44,11 @@ class HomeController extends Controller
         $data['parties'] = DB::table('parties')->get();
         $data['roles'] = DB::table('roles')->get();
         return view ('auth.landing',$data);
-        // return view ('olds.login');
     }
 
     public function home()
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
 
             $user = Auth::user();  
 
@@ -152,9 +148,6 @@ class HomeController extends Controller
     public function profilePosts(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->leftJoin('divisions','divisions.division_id','user_details.division_id')
@@ -185,9 +178,6 @@ class HomeController extends Controller
     public function profileAlbums(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
@@ -214,9 +204,6 @@ class HomeController extends Controller
     public function profileVideos(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
@@ -243,9 +230,6 @@ class HomeController extends Controller
     public function publicProfile(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
             $data['user'] = User::where('username',$request->user)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->leftJoin('divisions','divisions.division_id','user_details.division_id')
@@ -275,10 +259,7 @@ class HomeController extends Controller
 
     public function politicians(Request $request)
     {
-        try {
-            if(!Auth::check()){
-                return redirect('login');
-            }        
+        try {       
             $data['divisions'] = DB::table('divisions')->get(); 
             $user = Auth::user();
 
@@ -432,10 +413,7 @@ class HomeController extends Controller
 
     public function editProfile(Request $request)
     {
-        try {
-            if(!Auth::check()){
-                return redirect('login');
-            }            
+        try {            
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
@@ -450,10 +428,7 @@ class HomeController extends Controller
 
     public function editPoloticanProfile(Request $request)
     {
-        try {
-            if(!Auth::check()){
-                return redirect('login');
-            }          
+        try {          
 
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
@@ -469,10 +444,7 @@ class HomeController extends Controller
 
     public function editProfilePassword(Request $request)
     {
-        try {
-            if(!Auth::check()){
-                return redirect('login');
-            }            
+        try {           
             return view('profile.edit_pass');
         }
         catch (\Exception $e) {

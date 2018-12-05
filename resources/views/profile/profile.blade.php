@@ -208,7 +208,7 @@
             <div class="modal-body text-center mb-1">
 
                 <h5 class="mt-1 mb-2">প্রোফাইল ছবি আপডেট করুন</h5>
-                <p class="dark-grey-text">সর্বাধিক অনুমোদিত আকার: 500 কেবি</p>
+                <p class="dark-grey-text">সর্বাধিক অনুমোদিত আকার: 5 এমবি</p>
 
                 {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['profile.update.image', Auth::user()->id], 'enctype' => 'multipart/form-data']) !!}
 

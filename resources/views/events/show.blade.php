@@ -130,7 +130,7 @@
             <div class="modal-body image_modal">
 				<div class="text-center">
 					<img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
-					<p class="text-center mt-4">সর্বাধিক অনুমোদিত আকার:: 2 MB</p>
+					<p class="text-center mt-4">সর্বাধিক অনুমোদিত আকার:: 5 এমবি</p>
 				</div>
                 {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['event.image.update', $event->id], 'enctype' => 'multipart/form-data']) !!}
 					<div class="file-field">

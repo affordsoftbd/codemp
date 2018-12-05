@@ -14,8 +14,7 @@ class NotificationController extends Controller
 
     public function __construct(UserNotifications $notification, User $user)
     {
-        /*$this->middleware('auth');
-        $this->middleware('notifcation.owner')->only('notificationRedirect');*/
+        $this->middleware('check.auth');
         $this->notification = $notification;        
         $this->user = $user;
     }

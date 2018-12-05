@@ -20,7 +20,7 @@ class CheckAuth
         if(Auth::check()){
             return $next($request);
         }
-        return redirect()->route('welcome');
+        return redirect()->route('login');
 
     }
 }
