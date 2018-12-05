@@ -100,7 +100,7 @@
 
         <!--Copyright-->
         <div class="footer-copyright py-3 text-center">
-            &copy;  কপিরাইট 2018:
+            &copy;  কপিরাইট {{ date('Y') }}:
             <a href="https://mdbootstrap.com/material-design-for-bootstrap/"> আমারনেতা  </a>
         </div>
     </footer>
