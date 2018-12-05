@@ -19,6 +19,12 @@ use Session;
 class PostController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('check.auth');
+        $this->middleware('post.creator')->only('editPostDetails');
+    }
+
     public function getPostAjax(Request $request){
         try {
             $user = Auth::user();

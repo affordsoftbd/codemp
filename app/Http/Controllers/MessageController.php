@@ -19,6 +19,7 @@ class MessageController extends Controller
 
     public function __construct(Message $message, MessageSubject $messageSubject, MessageReceipent $messageReceipent, MessageViewer $messageView, User $user)
     {
+        $this->middleware('check.auth');
         $this->middleware('message.participant')->only('show');
         $this->middleware('message.owner')->only('edit');
         $this->middleware('subject.author')->only('getMessageSubject', 'addReceipent', 'addFollowers');
