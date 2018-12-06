@@ -21,6 +21,10 @@ a:hover {
     color: red;
 }
 
+.pagination.pg-blue .page-item.active .page-link, .pagination.pg-blue .page-item.active .page-link:hover {
+    background-color: #f44336;
+}
+
 .dtp .dtp-buttons {
     padding: 0 0em 0em 0em;
     text-align: right;

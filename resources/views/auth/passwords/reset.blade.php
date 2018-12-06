@@ -8,7 +8,7 @@
 
         <div class="container container-fluid">
         
-            <a class="navbar-brand font-weight-bold" href="{{ route('welcome') }}"><span class="yellow-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</a>
+            <a class="navbar-brand font-weight-bold" href="{{ route('welcome') }}"><span class="red-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</a>
 
         </div>
 
