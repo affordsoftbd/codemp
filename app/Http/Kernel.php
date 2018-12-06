@@ -62,5 +62,8 @@ class Kernel extends HttpKernel
         'message.owner' => \App\Http\Middleware\MessageCreatorOnly::class,
         'subject.author' => \App\Http\Middleware\SubjectAuthorOnly::class,
         'message.participant' => \App\Http\Middleware\MessageAccessControl::class,
+        'check.auth' => \App\Http\Middleware\CheckAuth::class,
+        'event.creator' => \App\Http\Middleware\CheckEventCreator::class,
+        'post.creator' => \App\Http\Middleware\CheckPostCreator::class,
     ];
 }

@@ -19,7 +19,7 @@ class GroupController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('check.auth');
     }
 
     /**
@@ -63,7 +63,8 @@ class GroupController extends Controller
                 $groupMember->save();
             }
         }
-        Session::flash('success', array('সফল!'=>'গ্রুপ সফলভাবে তৈরি হয়েছে!'));
+        Session::flash('success', array('সফল!'=>'গ্রুপ সফলভাবে তৈরি হয়েছে!'));  
+        $this->send_notification($request->members,  'আপনাকে একটি নতুন গ্রুপ &#34;'.$request->group_name.'&#34;-এ যোগ করা হয়েছে!');
         return ['status'=>200,'reason'=>'সবকিছু ঠিক আছে! পৃষ্ঠা পুনরায় লোড হচ্ছে...'];
     }
 
@@ -90,6 +91,7 @@ class GroupController extends Controller
             }
         }
         Session::flash('success', array('সফল!'=>'গ্রুপ সফলভাবে হালনাগাদ হয়েছে!'));
+        $this->send_notification($request->members,  'গ্রুপ &#34;'.$request->group_name.'&#34;- হালনাগাদ করা হয়েছে!');
         return ['status'=>200,'reason'=>'সবকিছু ঠিক আছে! পৃষ্ঠা পুনরায় লোড হচ্ছে...'];
     }
 

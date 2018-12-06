@@ -31,6 +31,7 @@
                 {!! Form::open(['route' => ['events.participant.add'], 'method'=>'post']) !!}
                     {!! Form::hidden('event_id', $event->id) !!}
                     {!! Form::hidden('user_id', $user->id) !!}
+                    {!! Form::hidden('organizer', $event->user_id) !!}
                     {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>ইভেন্ট অনুসরণ করুন', array('class' => 'btn btn-green btn-sm', 'type'=>'submit')) !!}
                 {!! Form::close() !!}
             @endIf
@@ -39,7 +40,7 @@
     <div class="col-xl-12 col-lg-12 col-md-12">
         <hr>
         <h3>{{ $event->title }}</h3>
-		<h6 class="font-weight-bold mt-3"><i class="fa fa-location-arrow pr-2"></i> Mirpur, Dhaka</h6>
+		<h6 class="font-weight-bold mt-3"><i class="fa fa-location-arrow pr-2"></i>{{ $event->location }}</h6>
         <p class="dark-grey-text font-weight-bold mt-3"><i class="fa fa-clock-o fa-sm pr-2"></i>{{ date('l d F Y, h:i A', strtotime($event->event_date)) }}</p>
         <p class="grey-text font-weight-bold mt-3"><i class="fa fa-users fa-sm pr-2"></i>মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
         
@@ -73,7 +74,7 @@
 	                <div class="event_comment_area" data-url-edit="{{ route('events.comment.edit', $comment->id) }}" data-url-update="{{ route('events.comment.update', $comment->id) }}">
                         {!! $comment->comment !!}
                     </div>
-                    @if($comment->user_id == $user->id && (strtotime($comment->created_at) + 3600) > time())
+                    @if($comment->user_id == $event->user_id || $comment->user_id == $user->id && (strtotime($comment->created_at) + 3600) > time())
                         <div class="clearfix"></div>
                         <div class="event_options">
                             {!! Form::open(['method' => 'delete', 'route' => ['events.comment.delete', $comment->id]]) !!}
@@ -129,7 +130,7 @@
             <div class="modal-body image_modal">
 				<div class="text-center">
 					<img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
-					<p class="text-center mt-4">সর্বাধিক অনুমোদিত আকার:: 2 MB</p>
+					<p class="text-center mt-4">সর্বাধিক অনুমোদিত আকার:: 5 এমবি</p>
 				</div>
                 {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['event.image.update', $event->id], 'enctype' => 'multipart/form-data']) !!}
 					<div class="file-field">

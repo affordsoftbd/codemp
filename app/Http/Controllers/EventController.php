@@ -18,11 +18,8 @@ class EventController extends Controller
 
     public function __construct(Event $event, EventComment $comment, User $user)
     {
-        /*$this->middleware('auth');
-        $this->middleware('order.owner')->only('show', 'edit');*/
-        /*for($i=0; $i<=8; $i++){
-            $this->send_notification(array($user->id), 'নতুন বিজ্ঞপ্তি পাওয়া গেছে!!', route('messages.index'));
-        }*/
+        $this->middleware('check.auth');
+        $this->middleware('event.creator')->only('edit');
         $this->event = $event;
         $this->comment = $comment;
         $this->user = $user;
@@ -73,6 +70,7 @@ class EventController extends Controller
         $rules = [
             'title' => 'required|string|max:500',
             'details' => 'required|string|max:5000',
+            'location' => 'required|string|max:255',
             'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
         ];
 
@@ -99,7 +97,7 @@ class EventController extends Controller
         $input = $request->all();
         $id = $this->comment->create($input);
         $user = $this->user->find(\Request::session()->get('user_id'));
-        $this->send_notification($this->event->find($request->event_id)->pluck('user_id')->toArray(), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ একটি মন্তব্য যোগ করেছেন!', route('events.show', $id));
+        $this->send_notification(array(array_get($this->event->find($request->event_id)->toArray(), 'user_id')), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ একটি মন্তব্য যোগ করেছেন!', route('events.show', $request->event_id));
         return redirect()->route('events.show', $request->event_id)->with('success', array('সাফল্য'=>'মন্তব্য যোগ করা হয়েছে!'));
     }
 
@@ -107,7 +105,7 @@ class EventController extends Controller
     {  
         $user = $this->user->find($request->user_id);
         $user->participating_events()->attach($request->event_id);
-        $this->send_notification(array(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ অংশগ্রহণ করেছেন!', route('events.show', $id));
+        $this->send_notification(array($request->organizer), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ অংশগ্রহণ করেছেন!', route('events.show', $request->event_id));
         return redirect()->route('events.show', $request->event_id)->with('success', array('সাফল্য'=>'আপনাকে অংশগ্রহণকারী হিসাবে যোগ করা হয়েছে!'));
     }
 
@@ -126,8 +124,8 @@ class EventController extends Controller
         foreach($event->participants as $participant){ 
             if($participant->id == $user->id){
                 $checkIfParticipated = "yes";
+                break;
             }
-            break;
         }
         return view('events.show', compact('event', 'user', 'checkIfParticipated'));
     }
@@ -182,6 +180,7 @@ class EventController extends Controller
         $rules = [
             'title' => 'required|string|max:500',
             'details' => 'required|string|max:5000',
+            'location' => 'required|string|max:255',
             'event_date' => 'required|date|after:'.Carbon::now()->addDays(1)->format('l d F Y')
         ];
 
@@ -201,7 +200,7 @@ class EventController extends Controller
 
     public function updateComment(Request $request, $id)
     {
-         $this->validate(request(),[
+        $this->validate(request(),[
             'comment' => 'required|string|max:1000'
         ]);
         $input = $request->all();

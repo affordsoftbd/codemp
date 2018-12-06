@@ -8,7 +8,7 @@
     <!-- Favicon-->
     <link rel="icon" href="https://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"/>
 
-    <title>@yield('title') আমার নেতা || আপনার নেতাকে খুঁজে বের করুন</title>
+    <title>@yield('title') আমার নেতা || আপনার নেতাদের সাথে সংযোগ স্থাপন করুন</title>
 
     <!-- Font Awesome -->
     {{ Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
@@ -46,8 +46,8 @@
 
                 <!--First column-->
                 <div class="col-md-6">
-                    <h5><span class="yellow-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</h5>
-                    <p>আপনার নেতাদের সাথে সংযুক্ত হউন</p>
+                    <h5 class="font-weight-bold"><span class="yellow-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</h5>
+                    <p>আপনার নেতাদের সাথে সংযোগ স্থাপন করুন</p>
                 </div>
                 <!--/.First column-->
 
@@ -100,7 +100,7 @@
 
         <!--Copyright-->
         <div class="footer-copyright py-3 text-center">
-            &copy;  কপিরাইট 2018:
+            &copy;  কপিরাইট {{ date('Y') }}:
             <a href="https://mdbootstrap.com/material-design-for-bootstrap/"> আমারনেতা  </a>
         </div>
     </footer>

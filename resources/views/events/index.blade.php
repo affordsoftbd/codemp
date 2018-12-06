@@ -54,7 +54,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="view overlay rounded z-depth-1 mb-4">
-				<img class="img-fluid" src="{{ file_exists($event->event_image) ? asset($event->event_image) : 'http://via.placeholder.com/200x120' }}" alt="{{ $event->title }}">
+				<img class="img-fluid" src="{{ file_exists($event->event_image) ? asset($event->event_image) : 'http://via.placeholder.com/400x300?text=Event+Image' }}" alt="{{ $event->title }}">
 				<div class="mask rgba-white-slight"></div>
 			</div>
 		</div>
@@ -66,7 +66,7 @@
 			<div class="d-flex justify-content-between">
 			  <div class="col-11 text-truncate pl-0 mb-3">			    
 			  	<p class="dark-grey-text">
-			    	<i class="fa fa-calendar-check-o pr-2"></i><strong>Mirpur, Dhaka:</strong> {{ date('l d F Y, h:i A', strtotime($event->event_date)) }}
+			    	<i class="fa fa-calendar-check-o pr-2"></i><strong>{{ $event->location }}:</strong> {{ date('l d F Y, h:i A', strtotime($event->event_date)) }}
 			    </p>
 			  	<p class="red-text small">মোট অংশগ্রহণকারী: {{ count($event->participants) }}</p>
 			  </div>

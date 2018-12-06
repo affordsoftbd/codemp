@@ -9,7 +9,7 @@ class Event extends Model
 {
     protected $table = "events";
 
-    protected $fillable = ['title', 'details', 'event_image', 'event_date', 'user_id'];
+    protected $fillable = ['title', 'details', 'location', 'event_date', 'event_image', 'user_id'];
 
     use SoftDeletes;
 
@@ -22,7 +22,7 @@ class Event extends Model
         }
     }
 
-        // A MessageSubject has an organizer
+        // An Event has an organizer
     public function organizer()
     {
         return $this->belongsTo(User::class, 'user_id');

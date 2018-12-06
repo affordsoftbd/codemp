@@ -8,7 +8,7 @@
 
     <div class="container container-fluid">
     
-        <a class="navbar-brand" href="{{ route('welcome') }}"><span class="yellow-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</a>
+        <a class="navbar-brand font-weight-bold" href="{{ route('welcome') }}"><span class="yellow-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</a>
 
     </div>
 
@@ -36,7 +36,7 @@
                         <label for="email">আপনার ইমেইল</label>
                     </div>
                     <div class="text-center mt-4">
-                        <input class="btn btn-danger btn-sm" type="submit" value="সাবমিট">
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-send pr-2"></i>সাবমিট</button>
                     </div>
                 </form>
                 <!-- Form -->

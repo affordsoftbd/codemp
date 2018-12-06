@@ -5,7 +5,7 @@
 @section('content')
 
 <h4 class="font-weight-bold green-text">খবর এর তালিকা</h4>
-<small class="red-text">{{ empty($search) ? 'সকল' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} খবর</small>
+<small class="red-text">{{ empty($search) ? 'সকল' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} খবর এর তালিকা</small>
 <hr>
 
 <!-- Grid row -->

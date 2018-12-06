@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('check.auth')->except('index');
     }
 
     /**
@@ -44,15 +44,11 @@ class HomeController extends Controller
         $data['parties'] = DB::table('parties')->get();
         $data['roles'] = DB::table('roles')->get();
         return view ('auth.landing',$data);
-        // return view ('olds.login');
     }
 
     public function home()
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
 
             $user = Auth::user();  
 
@@ -100,13 +96,16 @@ class HomeController extends Controller
     public function newsDetails($id)
     {
         try {
-            $data['news'] = News::where('global_news_id',$id)->first();
+            $news = News::findOrFail($id);
+            $user = User::findOrFail(Session::get('user_id'));
+            /*$data['news'] = News::where('global_news_id',$id)->first();
             $data['news_comments'] = NewsComment::select('global_news_comments.comment','global_news_comments.created_at','users.first_name','users.last_name','user_details.image_path')
                 ->where('news_id',$id)
                 ->join('users','users.id','=','global_news_comments.user_id')
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->get();
-            return view('news.details',$data);
+            return view('news.details',$data);*/
+            return view('news.details', compact('news', 'user'));
         }
         catch (\Exception $e) {
             return $e->getMessage();
@@ -119,7 +118,29 @@ class HomeController extends Controller
         $comment->news_id = $request->news_id;
         $comment->comment = $request->comment_text;
         $comment->save();
-        return ['status'=>200,'reason'=>'Comment successfully saved'];
+        return ['status'=>200,'reason'=>'মন্তব্য যোগ করা হয়েছে!'];
+    }
+
+    public function editNewsComment($id){
+        $news_comment = NewsComment::findOrFail($id);
+        return json_encode($news_comment->comment);
+    }
+
+    public function updateNewsComment(Request $request, $id){
+        $this->validate(request(),[
+            'comment' => 'required|string|max:1000'
+        ]);
+        $input = $request->all();
+        $news_comment = NewsComment::findOrFail($id);
+        $news_comment->update($input);
+        return json_encode($request->comment);
+    }
+
+    public function deleteComment($id)
+    {
+        $comment = NewsComment::findOrFail($id);
+        $comment->delete();
+        return redirect()->back()->with('success', array('সাফল্য'=>'মন্তব্য মুছে ফেলা হয়েছে!'));
     }
 
     public function summeries()
@@ -152,9 +173,6 @@ class HomeController extends Controller
     public function profilePosts(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->leftJoin('divisions','divisions.division_id','user_details.division_id')
@@ -185,9 +203,6 @@ class HomeController extends Controller
     public function profileAlbums(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
@@ -214,9 +229,6 @@ class HomeController extends Controller
     public function profileVideos(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
@@ -243,9 +255,6 @@ class HomeController extends Controller
     public function publicProfile(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return redirect('login');
-            }
             $data['user'] = User::where('username',$request->user)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->leftJoin('divisions','divisions.division_id','user_details.division_id')
@@ -275,10 +284,7 @@ class HomeController extends Controller
 
     public function politicians(Request $request)
     {
-        try {
-            if(!Auth::check()){
-                return redirect('login');
-            }        
+        try {       
             $data['divisions'] = DB::table('divisions')->get(); 
             $user = Auth::user();
 
@@ -368,6 +374,7 @@ class HomeController extends Controller
         $myLeader->worker_id = Session::get('user_id');
         $myLeader->status = 'pending';
         $myLeader->save();
+        $this->send_notification(array($request->leader_id), Session::get('first_name').' '.Session::get('last_name').' আপনাকে কর্মী হিসাবে অনুরোধ পাঠিয়েছেন!', route('requests'));
         return ['status'=>200,'reason'=>'আবেদন সফলভাবে পাঠানো হয়েছে'];
     }
 
@@ -380,6 +387,7 @@ class HomeController extends Controller
         $myLeader = MyLeader::where('my_leader_id',$request->request_id)->first();
         $myLeader->status = 'active';
         $myLeader->save();
+        $this->send_notification(array($myLeader->worker_id), Session::get('first_name').' '.Session::get('last_name').' কর্মী হিসাবে আপনাকে যোগ করেছেন!', url('public_profile?user='.Session::get('username')));
         return ['status'=>200,'reason'=>'সফলভাবে গৃহীত হয়েছে'];
     }
 
@@ -432,10 +440,7 @@ class HomeController extends Controller
 
     public function editProfile(Request $request)
     {
-        try {
-            if(!Auth::check()){
-                return redirect('login');
-            }            
+        try {            
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->first();
@@ -450,10 +455,7 @@ class HomeController extends Controller
 
     public function editPoloticanProfile(Request $request)
     {
-        try {
-            if(!Auth::check()){
-                return redirect('login');
-            }          
+        try {          
 
             $data['user'] = User::where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
@@ -469,10 +471,7 @@ class HomeController extends Controller
 
     public function editProfilePassword(Request $request)
     {
-        try {
-            if(!Auth::check()){
-                return redirect('login');
-            }            
+        try {           
             return view('profile.edit_pass');
         }
         catch (\Exception $e) {
@@ -487,11 +486,12 @@ class HomeController extends Controller
             $follower->leader_id = $request->leader_id;
             $follower->follower_user_id = Session::get('user_id');
             $follower->save();
-            return ['status'=>200,'reason'=>'Successfully followed'];
+            $this->send_notification(array($request->leader_id), Session::get('first_name').' '.Session::get('last_name').' আপনাকে অনুসরণ করেছেন!', url('public_profile?user='.Session::get('username')));
+            return ['status'=>200,'reason'=>'সফলভাবে অনুসরণ'];
         }
         catch (\Exception $e) {
             //return $e->getMessage();
-            return ['status'=>401,'reason'=>'Some error occured'];
+            return ['status'=>401,'reason'=>'কিছু ত্রুটি ঘটেছে'];
         }
     }
 
@@ -500,11 +500,11 @@ class HomeController extends Controller
         try {
             FOLLOWER::where('leader_id',$request->leader_id)->where('follower_user_id',Session::get('user_id'))->delete();
             
-            return ['status'=>200,'reason'=>'Successfully unfollowed'];
+            return ['status'=>200,'reason'=>'সফলভাবে বাতিল অনুসরণ করা হয়েছে'];
         }
         catch (\Exception $e) {
             //return $e->getMessage();
-            return ['status'=>401,'reason'=>'Some error occured'];
+            return ['status'=>401,'reason'=>'কিছু ত্রুটি ঘটেছে'];
         }
     }
 }

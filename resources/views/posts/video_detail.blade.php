@@ -40,16 +40,11 @@
               <source src="{{ asset($video->video_path) }}" type="video/mp4">
             </video>
             @endforeach
-            <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe-->
         </div> 
         <hr>
         <h5 class="grey-text font-weight-bold" id="total_comments">মোট মন্তব্য: {{ count($post_comments) }}</h5>
     </div>
-    <!--div class="col-xl-12 col-lg-12 col-md-12 my-5">
-        <button type="button" class="btn btn-sm btn-fb"><i class="fa fa-facebook"></i></button>
-        <button type="button" class="btn btn-sm btn-tw"><i class="fa fa-twitter"></i></button>
-        <button type="button" class="btn btn-sm btn-gplus"><i class="fa fa-google-plus"></i></button>
-    </div-->
+
     @foreach($post_comments as $comment)
     <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
         <img src="{{ file_exists($post->image_path) ? asset($post->image_path) : url('/').'/img/avatar.png' }}" class="rounded-circle z-depth-1-half image-thumbnail my-3">

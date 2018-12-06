@@ -19,6 +19,12 @@ use Session;
 class PostController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('check.auth');
+        $this->middleware('post.creator')->only('editPostDetails');
+    }
+
     public function getPostAjax(Request $request){
         try {
             $user = Auth::user();
@@ -334,7 +340,11 @@ class PostController extends Controller
         $comment->post_id = $request->post_id;
         $comment->user_id = Session::get('user_id');
         $comment->save();
-
+        $post = Post::where('post_id', $request->post_id)->first(); 
+        if($post->post_type == 'photo'){
+            $post->post_type = 'image';
+        }
+        $this->send_notification(array($post->user_id), Session::get('first_name').' '.Session::get('last_name').' আপনার পোস্ট  এ নতুন মন্তব্য যোগ করেছেন!', route($post->post_type, $request->post_id));
         return ['status'=>200,'reason'=>'মন্তব্য সফলভাবে সংরক্ষিত হয়েছে'];
     }
 
@@ -348,7 +358,11 @@ class PostController extends Controller
         $like->post_id = $request->post_id;
         $like->user_id = Session::get('user_id');
         $like->save();
-
+        $post = Post::where('post_id', $request->post_id)->first();
+        if($post->post_type == 'photo'){
+            $post->post_type = 'image';
+        }
+        $this->send_notification(array($post->user_id), Session::get('first_name').' '.Session::get('last_name').' আপনার পোস্ট  পছন্দ করেছেন!', route($post->post_type, $request->post_id));
         return ['status'=>200,'reason'=>'নতুন লাইক সংরক্ষিত','like'=>1];
     }
 
