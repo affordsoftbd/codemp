@@ -157,7 +157,7 @@ class AuthController extends Controller
                 Session::put('first_name',$user->first_name);
                 Session::put('last_name',$user->last_name);
             }
-    
+            $this->send_notification(array($user->id), 'অভিনন্দন, '.$user->first_name.'! আপনি সফলভাবে নিবন্ধিত হয়েছেন!');
             return ['status'=>200,'reason'=>'সফলভাবে সংরক্ষিত'];
         }
         catch (\Exception $e) {

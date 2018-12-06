@@ -64,7 +64,7 @@ class GroupController extends Controller
             }
         }
         Session::flash('success', array('সফল!'=>'গ্রুপ সফলভাবে তৈরি হয়েছে!'));  
-        /*$this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
+        $this->send_notification($request->members,  'আপনাকে একটি নতুন গ্রুপ &#34;'.$request->group_name.'&#34;-এ যোগ করা হয়েছে!');
         return ['status'=>200,'reason'=>'সবকিছু ঠিক আছে! পৃষ্ঠা পুনরায় লোড হচ্ছে...'];
     }
 
@@ -91,7 +91,7 @@ class GroupController extends Controller
             }
         }
         Session::flash('success', array('সফল!'=>'গ্রুপ সফলভাবে হালনাগাদ হয়েছে!'));
-        /*$this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
+        $this->send_notification($request->members,  'গ্রুপ &#34;'.$request->group_name.'&#34;- হালনাগাদ করা হয়েছে!');
         return ['status'=>200,'reason'=>'সবকিছু ঠিক আছে! পৃষ্ঠা পুনরায় লোড হচ্ছে...'];
     }
 

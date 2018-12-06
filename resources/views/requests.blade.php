@@ -24,7 +24,7 @@
             <a href="{{ url('public_profile?user='.$applicant->username) }}"><h4 class="card-title title-one">{{ $applicant->first_name." ".$applicant->last_name}}</h4></a>
             <p class="card-meta">অংশগ্রহন {{ date('l d F Y',strtotime($applicant->created_at)) }}</p>
             <!-- Text -->
-            <p class="card-text"><strong>
+            <p class="card-text">
               @if(!empty($leader->division_name))
                 <strong>{{ $leader->division_name }} > {{ $leader->district_name }} > {{ $leader->thana_name }} > {{ $leader->zip_code }}</strong> অধীনে 
               @endIf

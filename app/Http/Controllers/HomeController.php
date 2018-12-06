@@ -349,7 +349,7 @@ class HomeController extends Controller
         $myLeader->worker_id = Session::get('user_id');
         $myLeader->status = 'pending';
         $myLeader->save();
-        /*$this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
+        $this->send_notification(array($request->leader_id), Session::get('first_name').' '.Session::get('last_name').' আপনাকে কর্মী হিসাবে অনুরোধ পাঠিয়েছেন!', route('requests'));
         return ['status'=>200,'reason'=>'আবেদন সফলভাবে পাঠানো হয়েছে'];
     }
 
@@ -362,7 +362,7 @@ class HomeController extends Controller
         $myLeader = MyLeader::where('my_leader_id',$request->request_id)->first();
         $myLeader->status = 'active';
         $myLeader->save();
-        /*$this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
+        $this->send_notification(array($myLeader->worker_id), Session::get('first_name').' '.Session::get('last_name').' কর্মী হিসাবে আপনাকে যোগ করেছেন!', url('public_profile?user='.Session::get('username')));
         return ['status'=>200,'reason'=>'সফলভাবে গৃহীত হয়েছে'];
     }
 
@@ -461,12 +461,12 @@ class HomeController extends Controller
             $follower->leader_id = $request->leader_id;
             $follower->follower_user_id = Session::get('user_id');
             $follower->save();
-            /*$this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));*/
-            return ['status'=>200,'reason'=>'Successfully followed'];
+            $this->send_notification(array($request->leader_id), Session::get('first_name').' '.Session::get('last_name').' আপনাকে অনুসরণ করেছেন!', url('public_profile?user='.Session::get('username')));
+            return ['status'=>200,'reason'=>'সফলভাবে অনুসরণ'];
         }
         catch (\Exception $e) {
             //return $e->getMessage();
-            return ['status'=>401,'reason'=>'Some error occured'];
+            return ['status'=>401,'reason'=>'কিছু ত্রুটি ঘটেছে'];
         }
     }
 
@@ -475,11 +475,11 @@ class HomeController extends Controller
         try {
             FOLLOWER::where('leader_id',$request->leader_id)->where('follower_user_id',Session::get('user_id'))->delete();
             
-            return ['status'=>200,'reason'=>'Successfully unfollowed'];
+            return ['status'=>200,'reason'=>'সফলভাবে বাতিল অনুসরণ করা হয়েছে'];
         }
         catch (\Exception $e) {
             //return $e->getMessage();
-            return ['status'=>401,'reason'=>'Some error occured'];
+            return ['status'=>401,'reason'=>'কিছু ত্রুটি ঘটেছে'];
         }
     }
 }
