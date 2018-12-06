@@ -29,6 +29,7 @@ Route::delete('/messages/subject/{id}/delete', 'MessageController@deleteMessageS
 /*Notification routes*/
 Route::get('/notifications/new', 'NotificationController@newNotifications')->name('notifications.new');
 Route::get('/notifications', 'NotificationController@allNotifications')->name('notifications.index');
+Route::get('/notifications/read', 'NotificationController@markNotificationsAsRead')->name('notifications.read');
 
 /*Event routes*/
 Route::get('/events/organized/', 'EventController@organizedEvents')->name('events.organized');

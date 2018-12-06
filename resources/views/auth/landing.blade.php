@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <h1 class="display-5 font-weight-bold green-text">আপনাকে স্বাগতম!</h1><hr>
-                    <p class="red-text">আপনার নেতাদের সাথে সংযুক্ত হউন</p>
+                    <p class="red-text">আপনার নেতাদের সাথে সংযোগ স্থাপন করুন</p>
                     {{ Html::image('img/p2p.svg', 'Peer to peer', array('class' => 'p2p img-responsive my-5')) }}
                 </div>
                 <div class="col-md-8">
@@ -204,8 +204,8 @@
                                 <button class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
                                 <hr>
                                 <center>
-                                <!-- Terms of service -->
-                                <p><em>রেজিস্টার</em> 
+                                    <!-- Terms of service -->
+                                    <p><em>রেজিস্টার</em> 
                                     &nbsp;ক্লিক এর আগে আপনি আমাদের
                                     <a href="" target="_blank">terms of service</a> মেনে নিচ্ছেন</p>
                                 </center>

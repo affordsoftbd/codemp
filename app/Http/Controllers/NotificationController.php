@@ -19,21 +19,24 @@ class NotificationController extends Controller
         $this->user = $user;
     }
     
-    public function allNotifications(Request $request)
+    public function allNotifications()
     {
         $user = $this->user->find(\Request::session()->get('user_id'));
         $notifications = $user->notifications()->paginate(15);
-    	$user->unreadNotifications->markAsRead();
         return view('notifications', compact('user', 'notifications'));
     }
 
-    public function newNotifications(Request $request)
+    public function newNotifications()
     {
     	$user = $this->user->find(\Request::session()->get('user_id'));
     	$notifications = $user->unreadNotifications()->pluck('data');
-    	if($request->markAsRead == 'yes'){
-    		$user->unreadNotifications->markAsRead();
-    	}
         return json_encode($notifications);
+    }
+
+    public function markNotificationsAsRead()
+    {
+        $user = $this->user->find(\Request::session()->get('user_id'));
+        $user->unreadNotifications->markAsRead();
+        return redirect()->back();
     }
 }

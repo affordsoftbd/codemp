@@ -82,7 +82,6 @@ $(document).ready(function(){
     $.ajax({
       url: $("#all_new_notifications").data('url'),
       type: 'GET',
-      data: {'markAsRead': 'yes'},
       dataType: 'JSON',
       beforeSend: function(){
         $("#all_new_notifications").empty().append('<div class="text-center my-5"><i class="fa fa-spinner fa-spin"></i></div>');
@@ -91,7 +90,7 @@ $(document).ready(function(){
         $("#all_new_notifications").empty();
         $("#new_notification_number").empty().append(response.length);
         if(response.length > 0){
-          for(var i = 0; i<response.length; i++){
+          for(var i = 0; i<30; i++){
             $("#all_new_notifications").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="'+response[i]['link']+'"><span class="badge badge-pill red"><i class="fa fa-'+response[i]['icon']+' fa-2x" aria-hidden="true"></i></span></a><a class="media-body" href="'+response[i]['link']+'" target="_blank"><h6 class="green-text">'+response[i]['text']+'</h6></a></div><div class="dropdown-divider"></div>');
           }
         }

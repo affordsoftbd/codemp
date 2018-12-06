@@ -4,6 +4,10 @@
 
 @section('content')
 
+<a href="{{ route('notifications.read') }}" class="btn btn-dark-green btn-sm pull-right {{ count($user->unreadNotifications) == 0 ? 'disabled' : '' }}">
+  <i class="fa fa-check fa-sm pr-2"></i>সকল বিজ্ঞপ্তি অক্ষিগত হিসাবে চিহ্নিত করুন
+</a>
+
 <h4 class="font-weight-bold green-text">বিজ্ঞপ্তি</h4>
 <small class="red-text">এখানে আপনি প্রাপ্ত সমস্ত বিজ্ঞপ্তিগুলোর তালিকা!</small>
 <hr>
@@ -11,7 +15,7 @@
 @foreach($notifications as $notification)
   <a href="{{ $notification->data['link'] }}" target="_blank">
     <div class="card mb-5">
-      <div class="card-body green">
+      <div class="card-body {{ is_null($notification->read_at) ? 'red' : 'green' }}">
         <div class="row">
           <div class="col-lg-1">
             <span class="badge badge-pill red"><i class="fa fa-{{ $notification->data['icon'] }} fa-2x" aria-hidden="true"></i></span>

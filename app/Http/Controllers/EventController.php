@@ -97,7 +97,7 @@ class EventController extends Controller
         $input = $request->all();
         $id = $this->comment->create($input);
         $user = $this->user->find(\Request::session()->get('user_id'));
-        $this->send_notification($this->event->find($request->event_id)->pluck('user_id')->toArray(), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ একটি মন্তব্য যোগ করেছেন!', route('events.show', $request->event_id));
+        $this->send_notification(array(array_get($this->event->find($request->event_id)->toArray(), 'user_id')), $user->first_name.' '.$user->last_name.' আপনার ইভেন্ট এ একটি মন্তব্য যোগ করেছেন!', route('events.show', $request->event_id));
         return redirect()->route('events.show', $request->event_id)->with('success', array('সাফল্য'=>'মন্তব্য যোগ করা হয়েছে!'));
     }
 
