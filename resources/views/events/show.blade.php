@@ -74,7 +74,7 @@
 	                <div class="event_comment_area" data-url-edit="{{ route('events.comment.edit', $comment->id) }}" data-url-update="{{ route('events.comment.update', $comment->id) }}">
                         {!! $comment->comment !!}
                     </div>
-                    @if($comment->user_id == $user->id && (strtotime($comment->created_at) + 3600) > time())
+                    @if($comment->user_id == $event->user_id || $comment->user_id == $user->id && (strtotime($comment->created_at) + 3600) > time())
                         <div class="clearfix"></div>
                         <div class="event_options">
                             {!! Form::open(['method' => 'delete', 'route' => ['events.comment.delete', $comment->id]]) !!}

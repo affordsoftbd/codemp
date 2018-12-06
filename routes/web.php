@@ -42,6 +42,14 @@ Route::put('/events/comments/{id}/update', 'EventController@updateComment')->nam
 Route::delete('/events/comments/{id}/delete', 'EventController@deleteComment')->name('events.comment.delete');
 Route::put('/events/{id}/image/update', 'EventController@updateImage')->name('event.image.update');
 
+/*News routes*/
+Route::get('/news', 'HomeController@news')->name('news');
+Route::get('/news/comment/{id}', 'HomeController@editNewsComment')->name('news.comment.edit');
+Route::put('/news/comment/{id}/update', 'HomeController@updateNewsComment')->name('news.comment.update');
+Route::delete('/news/comment/{id}/delete', 'HomeController@deleteComment')->name('news.comment.delete');
+Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
+Route::post('/save_news_comment', 'HomeController@saveNewsComment')->name('save_news_comment');
+
 
 /*Authentication route*/
 Route::get('login','AuthController@login')->name('login');
@@ -61,7 +69,6 @@ Route::post('save_user','AuthController@saveUser');
 
 Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@home')->name('home');
-Route::get('/news', 'HomeController@news')->name('news');
 Route::get('/summeries', 'HomeController@summeries')->name('summeries');
 Route::get('/requests', 'HomeController@requests')->name('requests');
 Route::post('/send_request', 'HomeController@saveRequests')->name('send_request');
@@ -71,7 +78,6 @@ Route::post('/reject_request', 'HomeController@rejectRequests')->name('reject_re
 Route::post('/new_request_ajax', 'HomeController@newRequestsAjax')->name('new_request_ajax');
 Route::get('/followers', 'HomeController@followers')->name('followers');
 Route::post('/remove_follower', 'HomeController@removeFollowers')->name('remove_follower');
-Route::get('/news/{headline}', 'HomeController@newsDetails')->name('news.details');
 
 Route::get('/group', 'GroupController@index')->name('group');
 Route::post('/save_group', 'GroupController@saveGroup')->name('save_group');
@@ -79,7 +85,6 @@ Route::post('/edit_group', 'GroupController@editGroup')->name('group.edit');
 Route::post('/update_group', 'GroupController@updateGroup')->name('update_group');
 Route::delete('/delete_group/{id}', 'GroupController@deleteGroup')->name('group.delete');
 
-Route::post('/save_news_comment', 'HomeController@saveNewsComment')->name('save_news_comment');
 Route::get('/politicians', 'HomeController@politicians')->name('politicians');
 Route::get('public_profile', 'HomeController@publicProfile');
 Route::post('/follow_leader', 'HomeController@followLeader')->name('follow_leader');

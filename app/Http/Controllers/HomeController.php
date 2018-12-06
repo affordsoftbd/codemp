@@ -96,13 +96,16 @@ class HomeController extends Controller
     public function newsDetails($id)
     {
         try {
-            $data['news'] = News::where('global_news_id',$id)->first();
+            $news = News::findOrFail($id);
+            $user = User::findOrFail(Session::get('user_id'));
+            /*$data['news'] = News::where('global_news_id',$id)->first();
             $data['news_comments'] = NewsComment::select('global_news_comments.comment','global_news_comments.created_at','users.first_name','users.last_name','user_details.image_path')
                 ->where('news_id',$id)
                 ->join('users','users.id','=','global_news_comments.user_id')
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->get();
-            return view('news.details',$data);
+            return view('news.details',$data);*/
+            return view('news.details', compact('news', 'user'));
         }
         catch (\Exception $e) {
             return $e->getMessage();
@@ -115,7 +118,29 @@ class HomeController extends Controller
         $comment->news_id = $request->news_id;
         $comment->comment = $request->comment_text;
         $comment->save();
-        return ['status'=>200,'reason'=>'Comment successfully saved'];
+        return ['status'=>200,'reason'=>'মন্তব্য যোগ করা হয়েছে!'];
+    }
+
+    public function editNewsComment($id){
+        $news_comment = NewsComment::findOrFail($id);
+        return json_encode($news_comment->comment);
+    }
+
+    public function updateNewsComment(Request $request, $id){
+        $this->validate(request(),[
+            'comment' => 'required|string|max:1000'
+        ]);
+        $input = $request->all();
+        $news_comment = NewsComment::findOrFail($id);
+        $news_comment->update($input);
+        return json_encode($request->comment);
+    }
+
+    public function deleteComment($id)
+    {
+        $comment = NewsComment::findOrFail($id);
+        $comment->delete();
+        return redirect()->back()->with('success', array('সাফল্য'=>'মন্তব্য মুছে ফেলা হয়েছে!'));
     }
 
     public function summeries()

@@ -200,7 +200,7 @@ class EventController extends Controller
 
     public function updateComment(Request $request, $id)
     {
-         $this->validate(request(),[
+        $this->validate(request(),[
             'comment' => 'required|string|max:1000'
         ]);
         $input = $request->all();

@@ -12,10 +12,16 @@ class News extends Model
 
     protected $primaryKey = 'global_news_id';
 
-    #one to many detail tabe relation
+        // A News belongs to a creator
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    	// A News has a many comments
     public function comments()
     {
-        return $this->hasMany(NewsComment::class,'news_id');
+        return $this->hasMany(NewsComment::class, 'news_id');
     }
 
 }

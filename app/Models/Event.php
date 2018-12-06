@@ -22,7 +22,7 @@ class Event extends Model
         }
     }
 
-        // A MessageSubject has an organizer
+        // An Event has an organizer
     public function organizer()
     {
         return $this->belongsTo(User::class, 'user_id');
