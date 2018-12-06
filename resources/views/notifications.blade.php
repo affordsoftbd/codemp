@@ -8,7 +8,7 @@
   <i class="fa fa-check fa-sm pr-2"></i>সকল বিজ্ঞপ্তি অক্ষিগত হিসাবে চিহ্নিত করুন
 </a>
 
-<h4 class="font-weight-bold green-text">বিজ্ঞপ্তি</h4>
+<h4 class="font-weight-bold green-text">বিজ্ঞপ্তি এর তালিকা</h4>
 <small class="red-text">এখানে আপনি প্রাপ্ত সমস্ত বিজ্ঞপ্তিগুলোর তালিকা!</small>
 <hr>
 

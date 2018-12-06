@@ -60,7 +60,7 @@
 @section('content')
 
 <h4 class="font-weight-bold green-text">গ্রুপ এর তালিকা</h4>
-<small class="red-text">{{ empty(request()->get('keyword')) ? 'সকল' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} গ্রুপ</small>
+<small class="red-text">{{ empty(request()->get('keyword')) ? 'সকল' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} গ্রুপ এর তালিকা</small>
 <hr>
 
 <a href="#" class="btn btn-outline-danger btn-rounded waves-effect" id="new_group_button"><i class="fa fa-plus pr-2"></i>নতুন গ্রুপ যোগ করুন</a>
