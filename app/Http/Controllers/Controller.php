@@ -19,21 +19,18 @@ class Controller extends BaseController
     {        
         $ext = explode('.', $image->getClientOriginalName()); 
         $filename = md5(uniqid())."." . $ext[count($ext) -1];
-        $image_resize = Image::make($image->getRealPath()); 
-        // $image_resize->resize($resizeX, $resizeY);             
+        $image_resize = Image::make($image->getRealPath());          
         $image_resize->resize($resizeX, $resizeY, function ($constraint) {
             $constraint->aspectRatio();                 
         });
         $image_resize->stream(); 
         Storage::disk('local')->put($path.$filename, $image_resize, 'public');
-        /*return '/uploads/'.$path.$filename;*/
         return 'storage/'.$path.$filename;
     }
 
     protected function uploadVideo($video, $path)
     {         
         $file = Storage::disk('local')->put($path, $video, 'public');
-        /*return '/uploads/'.$file;*/
         return 'storage/'.$file;
     }
 
