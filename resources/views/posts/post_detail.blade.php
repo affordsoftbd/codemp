@@ -191,7 +191,7 @@
                   success:function(response){
                     div.hide().html('<textarea class="editor" name="comment">'+response+'</textarea><button class="btn btn-sm btn-danger my-3 save_comment"><i class="fa fa-check pr-2"></i>হালনাগাদ</button>').fadeIn('slow');
                     setTinyMce();
-                    $(".news_options").hide();
+                    $(".post_options").hide();
                     $(".add_comment").hide();
                   }
                 });
@@ -217,7 +217,7 @@
                   },
                   success:function(response){
                     div.html(response);
-                    $(".news_options").show();
+                    $(".post_options").show();
                     $(".add_comment").show();
                     showNotification("সাফল্য!", "মন্তব্য হালনাগাদ করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
                   },
