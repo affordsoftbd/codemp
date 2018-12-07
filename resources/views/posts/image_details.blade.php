@@ -38,7 +38,7 @@
             <ul id="content-slider" class="content-slider">
                 @foreach($post->images as $image)
                 <li>
-                    <a href="{{ file_exists($image->image_path) ? asset($image->image_path) : 'http://via.placeholder.com/450' }}" data-sub-html="{{ file_exists($image->image_path) ? asset($image->image_path) : 'http://via.placeholder.com/450' }}"> 
+                    <a href="{{ file_exists($image->image_path) ? asset($image->image_path) : 'http://via.placeholder.com/450' }}" data-sub-html="চিত্র {{ $loop->iteration }}"> 
                         <img class="img-fluid" src="{{ file_exists($image->image_path) ? asset($image->image_path) : 'http://via.placeholder.com/450' }}" alt="{{ file_exists($image->image_path) ? asset($image->image_path) : 'http://via.placeholder.com/450' }}">
                     </a>
                     {!! Form::open(['route' => ['image.delete', $image->post_image_id], 'method'=>'delete']) !!}
