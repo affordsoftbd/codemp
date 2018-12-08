@@ -96,73 +96,103 @@ class AuthController extends Controller
         try {
             DB::beginTransaction();
             
-            if($request->email!=''){
-                $emailCheck = User::where('email',$request->email)->first();
-                if(!empty($emailCheck)){
-                    return ['status'=>401,'reason'=>'ডুপ্লিকেট ইমেইল ঠিকানা'];
+            if($request->verification_code==''){
+                if($request->email!=''){
+                    $emailCheck = User::where('email',$request->email)->first();
+                    if(!empty($emailCheck)){
+                        return ['status'=>401,'reason'=>'ডুপ্লিকেট ইমেইল ঠিকানা'];
+                    }
                 }
+                $usernameCheck = User::where('username',$request->username)->first();
+                if(!empty($usernameCheck)){
+                    return ['status'=>401,'reason'=>'ডুপ্লিকেট ব্যবহারকারীর নাম'];
+                }
+                
+                $phoneCheck = UserDetail::where('phone',$request->phone)->first();
+                if(!empty($phoneCheck)){
+                    //return ['status'=>401,'reason'=>'ডুপ্লিকেট ফোন নম্বর'];
+                }
+
+
+                //POST Method example
+                $url = "http://66.45.237.70/api.php";
+                $number=$request->phone;
+                $text="Amarneta Code- 5698";
+                $data= array(
+                'username'=>"01749472736",
+                'password'=>"QH3A8EBR",
+                'number'=>"$number",
+                'message'=>"$text"
+                );
+
+                $ch = curl_init(); // Initialize cURL
+                curl_setopt($ch, CURLOPT_URL,$url);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $smsresult = curl_exec($ch);
+                $p = explode("|",$smsresult);
+                $sendstatus = $p[0];
+
+                return ['status'=>200,'reason'=>'Verification code sent','verification_status'=$sendstatus];
             }
-            $usernameCheck = User::where('username',$request->username)->first();
-            if(!empty($usernameCheck)){
-                return ['status'=>401,'reason'=>'ডুপ্লিকেট ব্যবহারকারীর নাম'];
+            else{       
+                if($request->verification_code=='5698'){
+                    return ['status'=>401,'reason'=>'ভুল যাচাই কোড'];
+                }
+
+                $user = NEW User();
+                $user->parent_id = 0;         
+                $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name;
+                $user->email = $request->email;
+                $user->username = $request->username;
+                $user->password = bcrypt($request->password);
+                $user->party_id = $request->party_id;
+                $user->role_id = $request->role_id;
+                $user->status = 'Active';
+                $user->created_at = date('Y-m-d h:i:s');
+                $user->save();
+                
+                /*
+                * Save user details
+                */
+                $userDetail = NEW UserDetail();
+                $userDetail->user_id = $user->id;
+                $userDetail->phone = $request->phone;
+                $userDetail->nid = $request->nid;
+                $userDetail->address = $request->address;
+                $userDetail->division_id = $request->division;
+                $userDetail->district_id = $request->district;
+                $userDetail->thana_id = $request->thana;
+                $userDetail->zip_id = $request->zip;
+                $userDetail->save();
+                
+                DB::commit();
+                
+                /*
+                * Now auto login user
+                */
+                $result = Auth::attempt(['username' => trim($request->username),
+                    'password' => $request->password
+                ]);
+        
+                if($result){
+                    $user = Auth::user();
+                    Session::put('role_id',$user->role_id);
+                    Session::put('user_id',$user->id);
+                    Session::put('username',$user->username);
+                    Session::put('email',$user->email);
+                    Session::put('first_name',$user->first_name);
+                    Session::put('last_name',$user->last_name);
+                }
+                $this->send_notification(array($user->id), 'অভিনন্দন, '.$user->first_name.'! আপনি সফলভাবে নিবন্ধিত হয়েছেন!');
+                return ['status'=>200,'reason'=>'সফলভাবে সংরক্ষিত'];
             }
             
-            $phoneCheck = UserDetail::where('phone',$request->phone)->first();
-            if(!empty($phoneCheck)){
-                return ['status'=>401,'reason'=>'ডুপ্লিকেট ফোন নম্বর'];
-            }
-            
-            $user = NEW User();
-            $user->parent_id = 0;         
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->email = $request->email;
-            $user->username = $request->username;
-            $user->password = bcrypt($request->password);
-            $user->party_id = $request->party_id;
-            $user->role_id = $request->role_id;
-            $user->status = 'Active';
-            $user->created_at = date('Y-m-d h:i:s');
-            $user->save();
-            
-            /*
-            * Save user details
-            */
-            $userDetail = NEW UserDetail();
-            $userDetail->user_id = $user->id;
-            $userDetail->phone = $request->phone;
-            $userDetail->nid = $request->nid;
-            $userDetail->address = $request->address;
-            $userDetail->division_id = $request->division;
-            $userDetail->district_id = $request->district;
-            $userDetail->thana_id = $request->thana;
-            $userDetail->zip_id = $request->zip;
-            $userDetail->save();
-            
-            DB::commit();
-            
-            /*
-            * Now auto login user
-            */
-            $result = Auth::attempt(['username' => trim($request->username),
-                'password' => $request->password
-            ]);
-    
-            if($result){
-                $user = Auth::user();
-                Session::put('role_id',$user->role_id);
-                Session::put('user_id',$user->id);
-                Session::put('username',$user->username);
-                Session::put('email',$user->email);
-                Session::put('first_name',$user->first_name);
-                Session::put('last_name',$user->last_name);
-            }
-            $this->send_notification(array($user->id), 'অভিনন্দন, '.$user->first_name.'! আপনি সফলভাবে নিবন্ধিত হয়েছেন!');
-            return ['status'=>200,'reason'=>'সফলভাবে সংরক্ষিত'];
         }
         catch (\Exception $e) {
             DB::rollback();
-            return ['status'=>200,'reason'=>$e->getMessage()];
+            return ['status'=>401,'reason'=>$e->getMessage()];
         }
     }
     

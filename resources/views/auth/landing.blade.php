@@ -66,7 +66,7 @@
 
                                 <form id="registration_form" class="login-form" method="post" action="">
                                 {{ csrf_field() }}
-                                <div class="form-row">
+                                <div class="form-row" id="form_area">
                                     <div class="col-sm-3">
                                         <!-- First name -->
                                         <div class="md-form">
@@ -180,13 +180,24 @@
                                         </div>                                       
                                     </div>
                                 </div>
+                                <div class="form-row hidden" id="code_area">
+                                    <div class="col-sm-6">
+                                        <!-- Confirm Password -->
+                                        <div class="md-form">
+                                            <input type="hidden" id="is_verification" value='off'>
+                                            <input type="text" name="verification_code" id="verification_code" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                                            <label for="reg_password_confirm">যাচাই কোড</label>
+                                        </div>                                       
+                                    </div>
+                                </div>
 
                                 <div class="col-sm-12">                                
                                     {{-- Html::image('https://developers.google.com/recaptcha/images/newCaptchaAnchor.gif', 'Captcha', array('class' => 'img-fluid my-3 mx-5', 'height' => '300', 'width' => '300')) --}}
                                 </div>
 
                                 <!-- Sign up button -->
-                                <button class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
+                                <button id="register_button" class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
+                                <button id="verify_button" class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0 hidden" type="button">কোড নিশ্চিত করুন</button>
                                 <hr>
                                 <center>
                                     <!-- Terms of service -->
@@ -456,7 +467,10 @@
                     success: function (data) {
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                         if(data.status == 200){
-                            window.location.href="{{ url('/home') }}";
+                            $('#is_verification').val('on');
+                            $('#form_area').addClass('hidden');
+                            $('#code_area').removeclass('hidden');
+                            //window.location.href="{{ url('/home') }}";
                         }
                         else{
                             $('#success_message').hide();
@@ -477,5 +491,51 @@
                 $('#error_message').html('প্রয়োজনীয় তথ্যগুলো পূরণ করুন');
             }
         });
+        
+
+        public function verify_registration(){
+            var verification_code = $('#verification_code').val();
+            var validate = '';
+
+            if(verification_code.trim()==''){
+                validate = validate+"যাচাই কোড</br>";
+                $('#verification_code').css('border-color','red');
+            }
+            else{
+                $('#verification_code').css('border-color','#ced4da');
+            }
+
+            if(validate==''){
+                var formData = new FormData($('#registration_form')[0]);
+                var url = '{{ url('save_user') }}';
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formData,
+                    async: false,
+                    success: function (data) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        if(data.status == 200){
+                            window.location.href="{{ url('/home') }}";
+                        }
+                        else{
+                            $('#success_message').hide();
+                            $('#error_message').show();
+                            $('#error_message').html(data.reason);
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            else{
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                //showNotification("এরর!", validate, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                $('#success_message').hide();
+                $('#error_message').show();
+                $('#error_message').html('যাচাই কোড প্রয়োজন');
+            }
+        }
     </script>
 @endsection
