@@ -180,11 +180,13 @@
                                         </div>                                       
                                     </div>
                                 </div>
-                                <div class="form-row hidden" id="code_area">
+                                <div class="form-row" id="code_area" style="display:none">
                                     <div class="col-sm-6">
                                         <!-- Confirm Password -->
+                                        <label>আপনার মুঠোফোনে একটি কোড পাঠানো হয়েছে। কোডটি এখানে যাচাই করুন </label>
                                         <div class="md-form">
                                             <input type="hidden" id="is_verification" value='off'>
+                                            <input type="hidden" id="system_code" value=''>
                                             <input type="text" name="verification_code" id="verification_code" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                                             <label for="reg_password_confirm">যাচাই কোড</label>
                                         </div>                                       
@@ -197,7 +199,7 @@
 
                                 <!-- Sign up button -->
                                 <button id="register_button" class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
-                                <button id="verify_button" class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0 hidden" type="button">কোড নিশ্চিত করুন</button>
+                                <button id="verify_button" class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0" type="button" style="display:none" onclick="verify_registration()">কোড নিশ্চিত করুন</button>
                                 <hr>
                                 <center>
                                     <!-- Terms of service -->
@@ -446,14 +448,14 @@
                 $('#party_id').parent('.select-wrapper').find('input').css('border-color','red');
             }
             else{
-                $('#party_id').parent('.select-wrapper').find('input').css('border-color','red');
+                $('#party_id').parent('.select-wrapper').find('input').css('border-color','#ced4da');
             }
             if(role===null){
                 validate = validate+"রোল প্রয়োজন</br>";
                 $('#role_id').parent('.select-wrapper').find('input').css('border-color','red');
             }
             else{
-                $('#role_id').parent('.select-wrapper').find('input').css('border-color','red');
+                $('#role_id').parent('.select-wrapper').find('input').css('border-color','#ced4da');
             }
 
             if(validate==''){
@@ -468,8 +470,11 @@
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                         if(data.status == 200){
                             $('#is_verification').val('on');
-                            $('#form_area').addClass('hidden');
-                            $('#code_area').removeclass('hidden');
+                            $('#system_code').val(data.code);
+                            $('#form_area').hide();
+                            $('#code_area').show();
+                            $('#register_button').hide('hidden');
+                            $('#verify_button').show('hidden');
                             //window.location.href="{{ url('/home') }}";
                         }
                         else{
@@ -493,7 +498,7 @@
         });
         
 
-        public function verify_registration(){
+        function verify_registration(){
             var verification_code = $('#verification_code').val();
             var validate = '';
 

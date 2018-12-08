@@ -116,7 +116,7 @@ class AuthController extends Controller
 
                 //POST Method example
                 $url = "http://66.45.237.70/api.php";
-                $number=$request->phone;
+                $number="01749472736";
                 $text="Amarneta Code- 5698";
                 $data= array(
                 'username'=>"01749472736",
@@ -133,10 +133,11 @@ class AuthController extends Controller
                 $p = explode("|",$smsresult);
                 $sendstatus = $p[0];
 
-                return ['status'=>200,'reason'=>'Verification code sent','verification_status'=$sendstatus];
+
+                return ['status'=>200,'reason'=>'Verification code sent','verification_status'=>$sendstatus,'code'=>'5698'];
             }
             else{       
-                if($request->verification_code=='5698'){
+                if($request->verification_code!=$request->system_code){
                     return ['status'=>401,'reason'=>'ভুল যাচাই কোড'];
                 }
 
