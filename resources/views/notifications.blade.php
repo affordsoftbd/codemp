@@ -18,7 +18,7 @@
       <div class="card-body {{ is_null($notification->read_at) ? 'red' : 'green' }}">
         <div class="row">
           <div class="col-lg-1">
-            <span class="badge badge-pill red"><i class="fa fa-{{ $notification->data['icon'] }} fa-2x" aria-hidden="true"></i></span>
+            <span class="badge badge-pill {{ is_null($notification->read_at) ? 'orange' : 'red' }}"><i class="fa fa-{{ $notification->data['icon'] }} fa-2x" aria-hidden="true"></i></span>
           </div>
           <div class="col-lg-11">
             <p class="white-text">{{ $notification->data['text'] }}</p>

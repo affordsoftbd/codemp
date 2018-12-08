@@ -59,9 +59,9 @@
                     <div class="news_comment_area" data-url-edit="{{ route('news.comment.edit', $comment->global_news_comment_id) }}" data-url-update="{{ route('news.comment.update', $comment->global_news_comment_id) }}">
                       <?php echo htmlspecialchars_decode($comment->comment); ?>
                     </div>
-                    @if($comment->user_id == $news->user_id || $comment->user_id == $user->id && (strtotime($comment->created_at) + 3600) > time())
+                    @if($user->id == $news->user_id || $comment->user_id == $user->id && (strtotime($comment->created_at) + 3600) > time())
                         <div class="clearfix"></div>
-                        <div class="event_options">
+                        <div class="news_options">
                             {!! Form::open(['method' => 'delete', 'route' => ['news.comment.delete', $comment->global_news_comment_id]]) !!}
                                 <div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
                                   <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_comment_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
@@ -181,7 +181,7 @@
               success:function(response){
                 div.hide().html('<textarea class="editor" name="comment">'+response+'</textarea><button class="btn btn-sm btn-danger my-3 save_comment"><i class="fa fa-check pr-2"></i>হালনাগাদ</button>').fadeIn('slow');
                 setTinyMce();
-                $(".event_options").hide();
+                $(".news_options").hide();
                 $(".add_comment").hide();
               }
             });
@@ -207,7 +207,7 @@
               },
               success:function(response){
                 div.html(response);
-                $(".event_options").show();
+                $(".news_options").show();
                 $(".add_comment").show();
                 showNotification("সাফল্য!", "মন্তব্য হালনাগাদ করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
               },

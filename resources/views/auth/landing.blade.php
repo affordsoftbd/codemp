@@ -27,7 +27,7 @@
         <div class="container container-fluid">
         
             <a class="navbar-brand font-weight-bold" href="javascript:void(0)">
-                <span class="yellow-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা
+                <span class="red-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা
             </a>
             <form class="form-inline" method="post" action="{{ route('postLogin') }}">
                 {{ csrf_field() }}

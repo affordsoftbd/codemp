@@ -99,7 +99,9 @@ Route::put('/update_profile_image/{id}', 'UserController@updateProfileImage')->n
 /*Post routes*/
 Route::get('/post/{id?}', 'PostController@postDetails')->name('post');
 Route::get('/post/{id}/edit', 'PostController@editPostDetails')->name('post.edit');
+Route::get('/post/comment/{id}/edit', 'PostController@editPostComment')->name('post.comment.edit');
 Route::put('/post/{id}/update', 'PostController@updatePostDetails')->name('post.update');
+Route::put('/post/comment/{id}/update', 'PostController@updatePostComment')->name('post.comment.update');
 Route::get('/image/{id?}', 'PostController@imageDetails')->name('image');
 Route::post('/image/add', 'PostController@addImage')->name('image.add');
 Route::delete('/image/{id}/delete', 'PostController@deleteImage')->name('image.delete');
@@ -110,6 +112,7 @@ Route::post('saveVideoPost', 'PostController@saveVideoPost')->name('video.save')
 Route::post('get_post_ajax', 'PostController@getPostAjax');
 Route::post('save_comment', 'PostController@saveComment');
 Route::post('save_post_like', 'PostController@savePostLike');
+Route::delete('/post/comment/{id}/delete', 'PostController@deletePostComment')->name('post.comment.delete');
 Route::delete('/post/{id?}/delete', 'PostController@deletePost')->name('post.delete');
 
 /*Profile route*/

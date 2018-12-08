@@ -46,7 +46,20 @@
                 <h6 class="font-weight-bold">{{ $comment->first_name." ".$comment->last_name}}</h6>
                 <small class="grey-text">{{ date('l d F Y, h:i A',strtotime($comment->created_at)) }}</small>
                 <hr>
-                <?php echo htmlspecialchars_decode($comment->comment); ?>
+                <div class="post_comment_area" data-url-edit="{{ route('post.comment.edit', $comment->post_comment_id) }}" data-url-update="{{ route('post.comment.update', $comment->post_comment_id) }}">
+                    <?php echo htmlspecialchars_decode($comment->comment); ?>
+                </div>
+                @if($user->id == $post->user_id || $comment->user_id == $user->id && (strtotime($comment->created_at) + 3600) > time())
+                    <div class="clearfix"></div>
+                    <div class="post_options">
+                        {!! Form::open(['method' => 'delete', 'route' => ['post.comment.delete', $comment->post_comment_id]]) !!}
+                            <div class="btn-group mb-3 mx-3 pull-right" role="group" aria-label="Basic example">
+                              <button type="button" class="btn btn-light-green btn-sm btn-rounded edit_comment_button"><i class="fa fa-edit"" aria-hidden="true"></i></button>
+                              {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনার মন্তব্য হারিয়ে যাবে!', 'confirmButtonText'=>'হ্যাঁ, মন্তব্য মুছে দিন!', 'type'=>'submit')) !!}
+                            </div>
+                        {!! Form::close() !!} 
+                    </div>
+                @endIf
             </div>
         </div>
     </div>
@@ -131,12 +144,17 @@
                     async: false,
                     success: function (data) {
                         if(data.status == 200){
-                            location.reload();
+
+                            showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                            setTimeout(function(){
+                              location.reload();
+                            }, 2000);
                         }
                         else{
-                            $('#comment_success').hide();
+                            /*$('#comment_success').hide();
                             $('#comment_error').show();
-                            $('#comment_error').html(data.reason);
+                            $('#comment_error').html(data.reason);*/
+                            showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         }
                     },
                     cache: false,
@@ -145,10 +163,72 @@
                 });
             }
             else{
-                $('#comment_success').hide();
+                /*$('#comment_success').hide();
                 $('#comment_error').show();
-                $('#comment_error').html(validate);
+                $('#comment_error').html(validate); */               
+                showNotification("এরর!", validate, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
             }
+        });
+
+        $(document).ready(function(){
+
+            $(document).on('click', '.edit_comment_button', function(){
+                var url = $(this).closest('div.card-body').find('.post_comment_area').data("url-edit");
+                var div = $(this).closest('div.card-body').find('.post_comment_area');
+                var html = '';
+                $.ajaxSetup({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+                  }
+                });
+                $.ajax({
+                  url: url,
+                  type: 'GET',
+                  dataType: 'JSON',
+                  beforeSend: function(){
+                    div.html("<center><h1><i class='fa fa-spinner fa-spin my-5'></i></h1></center>");
+                  },
+                  success:function(response){
+                    div.hide().html('<textarea class="editor" name="comment">'+response+'</textarea><button class="btn btn-sm btn-danger my-3 save_comment"><i class="fa fa-check pr-2"></i>হালনাগাদ</button>').fadeIn('slow');
+                    setTinyMce();
+                    $(".post_options").hide();
+                    $(".add_comment").hide();
+                  }
+                });
+            });
+
+            $(document).on('click', '.save_comment', function(){
+                var url = $(this).closest('div.card-body').find('.post_comment_area').data("url-update");
+                var div = $(this).closest('div.card-body').find('.post_comment_area');
+                $.ajaxSetup({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+                  }
+                });
+                $.ajax({
+                  url: url,
+                  type: 'PUT',
+                  data: {
+                    'comment': tinyMCE.activeEditor.getContent()
+                  },
+                  dataType: 'JSON',
+                  beforeSend: function(){
+                    div.html("<center><h1><i class='fa fa-spinner fa-spin my-5'></i></h1></center>");
+                  },
+                  success:function(response){
+                    div.html(response);
+                    $(".post_options").show();
+                    $(".add_comment").show();
+                    showNotification("সাফল্য!", "মন্তব্য হালনাগাদ করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
+                  },
+                  error: function(response){
+                    div.hide().html('<textarea class="editor" name="comment">'+tinyMCE.activeEditor.getContent()+'</textarea><button class="btn btn-sm btn-danger save_comment"><i class="fa fa-check pr-2"></i>হালনাগাদ</button>').fadeIn('slow');
+                    setTinyMce();
+                    showNotification("আপডেট করার সময় ত্রুটি!", "আপনার মন্তব্য আপডেট করা যাবে না! আপনার মন্তব্য খালি না তা নিশ্চিত করুন!", "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
+                  }
+                });
+            });
+
         });
     </script>
 @endsection

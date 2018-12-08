@@ -165,9 +165,7 @@ class PostController extends Controller
     public function postDetails(Request $request)
     {
         try {
-            if(!Auth::check()){                
-                return view('post');
-            }
+            $data['user'] = Auth::user();
             $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
                 ->with('images')
                 ->with('videos')
@@ -210,6 +208,12 @@ class PostController extends Controller
         }
     }
 
+    public function editPostComment($id)
+    {
+        $post_comment = PostComment::findOrFail($id);
+        return json_encode($post_comment->comment);
+    }
+
     public function updatePostDetails(Request $request, $id)
     {
         $this->validate(request(),[
@@ -229,12 +233,21 @@ class PostController extends Controller
         }
     }
 
+    public function updatePostComment(Request $request, $id)
+    {
+        $this->validate(request(),[
+            'comment' => 'required|string|max:1000'
+        ]);
+        $input = $request->all();
+        $post_comment = PostComment::findOrFail($id);
+        $post_comment->update($input);
+        return json_encode($request->comment);
+    }
+
     public function imageDetails(Request $request)
     {
         try {
-            if(!Auth::check()){
-                return view('image');
-            }
+            $data['user'] = Auth::user();
             $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
                 ->with('images')
                 ->with('videos')
@@ -304,6 +317,7 @@ class PostController extends Controller
             if(!Auth::check()){
                 return view('video');
             }
+            $data['user'] = Auth::user();
             $data['post'] = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
                 ->with('images')
                 ->with('videos')
@@ -333,6 +347,19 @@ class PostController extends Controller
         }
     }
 
+    private function getPostRoute($post_type=''){
+        if($post_type == 'photo'){
+            $post_type = 'image';
+        }
+        elseif($post_type == 'text'){
+            $post_type = 'post';
+        }
+        elseif($post_type == 'video'){
+            $post_type = 'video';
+        }
+        return $post_type;
+    }
+
     public function saveComment(Request $request){
         $comment = NEW PostComment();
         $comment->parent_id = 0;
@@ -341,10 +368,7 @@ class PostController extends Controller
         $comment->user_id = Session::get('user_id');
         $comment->save();
         $post = Post::where('post_id', $request->post_id)->first(); 
-        if($post->post_type == 'photo'){
-            $post->post_type = 'image';
-        }
-        $this->send_notification(array($post->user_id), Session::get('first_name').' '.Session::get('last_name').' আপনার পোস্ট  এ নতুন মন্তব্য যোগ করেছেন!', route($post->post_type, $request->post_id));
+        $this->send_notification(array($post->user_id), Session::get('first_name').' '.Session::get('last_name').' আপনার পোস্ট  এ নতুন মন্তব্য যোগ করেছেন!', route($this->getPostRoute($post->post_type), $request->post_id));
         return ['status'=>200,'reason'=>'মন্তব্য সফলভাবে সংরক্ষিত হয়েছে'];
     }
 
@@ -359,11 +383,15 @@ class PostController extends Controller
         $like->user_id = Session::get('user_id');
         $like->save();
         $post = Post::where('post_id', $request->post_id)->first();
-        if($post->post_type == 'photo'){
-            $post->post_type = 'image';
-        }
-        $this->send_notification(array($post->user_id), Session::get('first_name').' '.Session::get('last_name').' আপনার পোস্ট  পছন্দ করেছেন!', route($post->post_type, $request->post_id));
+        $this->send_notification(array($post->user_id), Session::get('first_name').' '.Session::get('last_name').' আপনার পোস্ট  পছন্দ করেছেন!', route($this->getPostRoute($post->post_type), $request->post_id));
         return ['status'=>200,'reason'=>'নতুন লাইক সংরক্ষিত','like'=>1];
+    }
+
+    public function deletePostComment(Request $request, $id)
+    {
+        $comment = PostComment::findOrFail($id);
+        $comment->delete();
+        return redirect()->back()->with('success', array('সাফল্য'=>'মন্তব্য মুছে ফেলা হয়েছে!'));
     }
 
     public function deletePost($id)

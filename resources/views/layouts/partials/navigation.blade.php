@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark green fixed-top">
     <div class="container">
     <a class="navbar-brand font-weight-bold" href="{{ route('home') }}">
-        <span class="yellow-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা
+        <span class="red-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা
     </a>
 
     <!-- Collapse button -->
