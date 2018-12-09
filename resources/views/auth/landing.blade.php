@@ -167,9 +167,10 @@
                                         <div class="md-form">
                                             <input type="password" name="password" id="reg_password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                                             <label for="reg_password">পাসওয়ার্ড</label>
-                                            <small id="reg_password" class="form-text text-muted mb-4">
+                                            <small id="reg_password" class="form-text text-muted">
                                                 অন্ততপক্ষে ৮টি বা আরও অক্ষর এবং ১ সংখ্যা
                                             </small>
+                                            <small id="password_strength" class="text-danger" style="display:none">দুর্বল পাসওয়ার্ড</small>
                                         </div>                                       
                                     </div>
                                     <div class="col-sm-6">
@@ -342,6 +343,24 @@
                 },
             });
         }
+        $(document).on('keyup', '#reg_password', function(event){
+            var password = $(this).val();
+            var strength = 0;
+            var arr = [/.{8,}/, /[a-z]+/, /[0-9]+/, /[A-Z]+/];
+            jQuery.map(arr, function(regexp) {
+              if(password.match(regexp)){
+                 strength++;
+              }
+            });
+            if(strength<4){
+                $('#password_strength').show();
+                $('#reg_password').css('border-color','red');
+            }
+            else{
+                $('#password_strength').hide();
+                $('#reg_password').css('border-color','#ced4da');
+            }
+        });
 
         $(document).on('submit', '#registration_form', function(event){
             event.preventDefault();
@@ -398,12 +417,22 @@
             else{
                 $('#reg_password').css('border-color','#ced4da');
             }
-            if(password.trim()!='' && password.trim().length<8){
-                validate = validate+"পাসওয়ার্ড অন্তত ৮ সংখ্যা প্রয়োজন</br>";
-            }
-            var regex = /\d/g;
-            if(password.trim()!='' && !regex.test(password.trim())){
-                validate = validate+"পাসওয়ার্ড অন্তত ১ নম্বর থাকতে হবে</br>";
+
+            if(password.trim()!=''){
+                var strength = 0;
+                var arr = [/.{8,}/, /[a-z]+/, /[0-9]+/, /[A-Z]+/];
+                jQuery.map(arr, function(regexp) {
+                  if(password.match(regexp)){
+                     strength++;
+                  }
+                });
+                if(strength<4){
+                    validate = validate+"শক্তিশালী পাসওয়ার্ড ব্যবহার করুন</br>";
+                    $('#reg_password').css('border-color','red');
+                }
+                else{
+                    $('#reg_password').css('border-color','#ced4da');
+                }
             }
             if(password_confirm.trim()==''){
                 validate = validate+"পাসওয়ার্ড নিশ্চিত করা প্রয়োজন</br>";
