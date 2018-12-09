@@ -198,11 +198,23 @@ class AuthController extends Controller
     }
     
     public function postLogin(Request $request){
+        $auth = 0;
         $result = Auth::attempt(['username' => trim($request->username),
             'password' => $request->password
         ], $request->has('remember'));
 
         if($result){
+            $auth = 1;
+        }
+        else{
+            $result = Auth::attempt(['email' => trim($request->username),
+            'password' => $request->password], $request->has('remember'));
+            if($result){
+                $auth = 1;
+            }
+        }
+
+        if($auth==1){
             $user = Auth::user();
             $user_details = DB::table('user_details')->where('user_id', $user->id)->get();
             Session::put('role_id',$user->role_id);

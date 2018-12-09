@@ -167,7 +167,7 @@
 			<div class="card-body">
 				<p class="card-meta">
 					<i class="fa fa-calendar-check-o prefix grey-text fa-sm pr-2"></i>
-					অংশগ্রহন {{ date('l d F Y',strtotime($user->created_at)) }}
+					অংশগ্রহন {{ date('l d F Y',strtotime($user->joining_date)) }}
 				</p>
 				<p class="card-meta">
 					<i class="fa fa-envelope prefix grey-text fa-sm pr-2"></i>

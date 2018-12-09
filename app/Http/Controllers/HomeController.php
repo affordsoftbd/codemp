@@ -173,7 +173,7 @@ class HomeController extends Controller
     public function profilePosts(Request $request)
     {
         try {
-            $data['user'] = User::where('username',$request->username)
+            $data['user'] = User::select('users.*','users.created_at as joining_date','user_details.*','divisions.*','districts.*','thanas.*','zips.*')->where('username',$request->username)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->leftJoin('divisions','divisions.division_id','user_details.division_id')
                 ->leftJoin('districts','districts.district_id','user_details.district_id')
@@ -255,7 +255,7 @@ class HomeController extends Controller
     public function publicProfile(Request $request)
     {
         try {
-            $data['user'] = User::where('username',$request->user)
+            $data['user'] = User::select('users.*','users.created_at as joining_date','user_details.*','divisions.*','districts.*','thanas.*','zips.*')->where('username',$request->user)
                 ->join('user_details','user_details.user_id','=','users.id')
                 ->leftJoin('divisions','divisions.division_id','user_details.division_id')
                 ->leftJoin('districts','districts.district_id','user_details.district_id')
@@ -334,6 +334,7 @@ class HomeController extends Controller
     {
         $data['applicants'] = User::query();
         $data['applicants'] = $data['applicants']->select('users.*','user_details.*','divisions.division_name','districts.district_name','thanas.thana_name','zips.zip_code','my_leaders.my_leader_id','my_leaders.leader_id','my_leaders.worker_id');
+        $data['applicants'] = $data['applicants']->with('followers');
         $data['applicants'] = $data['applicants']->join('user_details','user_details.user_id','users.id');
         $data['applicants'] = $data['applicants']->join('my_leaders','my_leaders.worker_id','users.id');
         $data['applicants'] = $data['applicants']->leftJoin('divisions','divisions.division_id','user_details.division_id');
