@@ -8,51 +8,10 @@
     height: .98rem; 
     /*padding-bottom: 5px;*/
 }
-.member_photos {
-   /* Prevent vertical gaps */
-   line-height: 0;
-   
-   -webkit-column-count: 5;
-   -webkit-column-gap:   0px;
-   -moz-column-count:    5;
-   -moz-column-gap:      0px;
-   column-count:         5;
-   column-gap:           0px;
-}
-
-.member_photos img {
-  /* Just in case there are inline attributes */
-  width: 100% !important;
-  height: auto !important;
-}
-
-@media (max-width: 1200px) {
-  .member_photos {
-  -moz-column-count:    4;
-  -webkit-column-count: 4;
-  column-count:         4;
-  }
-}
-@media (max-width: 1000px) {
-  .member_photos {
-  -moz-column-count:    3;
-  -webkit-column-count: 3;
-  column-count:         3;
-  }
-}
-@media (max-width: 800px) {
-  .member_photos {
-  -moz-column-count:    2;
-  -webkit-column-count: 2;
-  column-count:         2;
-  }
-}
-@media (max-width: 400px) {
-  .member_photos {
-  -moz-column-count:    1;
-  -webkit-column-count: 1;
-  column-count:         1;
-  }
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
 }
 </style>
 @endsection
@@ -81,47 +40,45 @@
 	</div>
 </form>
 
-
 @foreach($groups as $group)
-    <!-- Card -->
-    <div class="card card-cascade wider mb-5">
 
-      <!-- Card image -->
-      <div class="view view-cascade gradient-card-header green">
-
-        <!-- Title -->
-        <h2 class="card-header-title mb-3">{{ $group->group_name }}</h2>
-        <!-- Text -->
-        <p class="mb-0"><i class="fa fa-calendar pr-2"></i>{{ date('d M Y', strtotime($group->created_at)) }}</p>
-
-      </div>
-
-      <!-- Card content -->
-      <div class="card-body card-body-cascade text-center">
-
-        <section class="member_photos">
-            @foreach($group->members as $member)
-                <img {{-- 'class="img-fluid mx-3 my-3"' --}} src="{{ file_exists($member->user->user_details_image_path) ? asset($member->user->user_details_image_path) : url('/').'/img/avatar.png' }}" alt="{{ $member->user->first_name }}">
-                @if( $loop->iteration > 15)
-                    @break
-                @endif
-            @endforeach
-        </section>
-        <!-- Text -->
-        <p class="card-text"><i class="fa fa-group fa-sm pr-2"></i>{{ count($group->members) }} member(s)</p>
-        <!-- Link -->
-        <span class="orange-text d-flex flex-row-reverse p-2">
+<!-- Small news -->
+<div class="single-news my-4">
+    <div class="row">
+        <div class="col-lg-4 col-md-12">
+            <h5 class="font-weight-bold dark-grey-text">
+                {{ $group->group_name }}
+            </h5>
+            <div class="d-flex justify-content-between">
+              <div class="col-11 text-truncate pl-0 mb-3">              
+                <p class="dark-grey-text">
+                    <i class="fa fa-calendar pr-2"></i><strong>{{ date('d M Y', strtotime($group->created_at)) }}
+                </p>
+                <p class="grey-text small"><i class="fa fa-group fa-sm pr-2"></i>{{ count($group->members) }} member(s)</p>
+              </div>
+            </div>
             {!! Form::open(['route' => ['group.delete', $group->group_id], 'method'=>'delete']) !!}
                 <a href="#!" class="btn btn-light-green btn-sm" onclick="edit_group({{ $group->group_id }})"><i class="fa fa-edit fa-sm"></i></a>
                 {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-red btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই গ্রুপটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, গ্রুপ টি মুছে দিন!', 'type'=>'submit')) !!}
             {!! Form::close() !!}
-        </span>
-
-      </div>
-      <!-- Card content -->
-
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+            @foreach($group->members as $member)
+                <div class="column">
+                    <img class="img-thumbnail mx-3" src="{{ file_exists($member->user->user_details_image_path) ? asset($member->user->user_details_image_path) : url('/').'/img/avatar.png' }}" alt="{{ $member->user->first_name }}" style="width: 150px">
+                </div>
+                @if( $loop->iteration > 15)
+                    @break
+                @endif
+            @endforeach
+            </div>
+        </div>
     </div>
-    <!-- Card -->
+    <hr>
+</div>
+<!-- Small news -->
+
 @endforeach
 
 

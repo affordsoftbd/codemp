@@ -124,7 +124,7 @@ $(document).ready(function(){
         success:function(){
           $("#markasread").hide();
           $("#new_notification_number").empty().append('0');
-          showNotification("সাফল্য!", "বিজ্ঞপ্তিগুলো  পড়া হিসাবে চিহ্নিত করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
+          showNotification("সাফল্য!", "বিজ্ঞপ্তিগুলো অক্ষিগত হিসাবে চিহ্নিত করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
         }
       });
     }
