@@ -148,9 +148,16 @@ div.mce-fullscreen {
   border: none !important; 
 }
 
+.navigation-button{
+    display:none !important;
+}
+
 @media only screen and ( max-width: 767px ) {
     .scrolltotop{
         display:none !important;
+    }
+    .navigation-button{
+        display:inline-block !important;
     }
 }
 

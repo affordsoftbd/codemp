@@ -61,7 +61,7 @@ $(document).ready(function(){
         if(response.length > 0){
           redirect = $("#all_new_messages").data('url');
           for(var i = 0; i<response.length; i++){
-            $("#all_new_messages").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="'+redirect+'/'+response[i]['subject_id']+'"><img class="rounded-circle" src="'+response[i]['image']+'" width="60" alt="'+response[i]['user']+'"></a><a class="media-body" href="'+redirect+'/'+response[i]['subject_id']+'" target="_blank"><h6 class="media-heading font-weight-bold green-text">'+response[i]['user']+'</h6><small>'+response[i]['date']+'</small><p>'+response[i]['message']+'</p></a></div><div class="dropdown-divider"></div>');
+            $("#all_new_messages").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="'+redirect+'/'+response[i]['subject_id']+'"><img class="rounded-circle" src="'+response[i]['image']+'" width="60" alt="'+response[i]['user']+'"></a><a class="media-body" href="'+redirect+'/'+response[i]['subject_id']+'"><h6 class="media-heading font-weight-bold green-text">'+response[i]['user']+'</h6><small>'+response[i]['date']+'</small><p>'+response[i]['message']+'</p></a></div><div class="dropdown-divider"></div>');
           }
         }
         else{
@@ -90,11 +90,13 @@ $(document).ready(function(){
         $("#all_new_notifications").empty();
         $("#new_notification_number").empty().append(response.length);
         if(response.length > 0){
+          $("#markasread").show();
+          $('#marknotificationasread').prop('disabled', false).prop('checked', false); 
           if(response.length > 30){
             $("#all_new_notifications").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="/notifications"><span class="badge badge-pill orange"><i class="fa fa-warning fa-2x" aria-hidden="true"></i></span></a><a class="media-body" href="/notifications" target="_blank"><h6 class="red-text small">আপনার  অত্যধিক অপঠিত বিজ্ঞপ্তি আছে! দেখতে এবং পরিচালনা করতে এখানে ক্লিক করুন!</h6></a></div><div class="dropdown-divider"></div>');
           }
           for(var i = 0; i<30; i++){
-            $("#all_new_notifications").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="'+response[i]['link']+'"><span class="badge badge-pill red"><i class="fa fa-'+response[i]['icon']+' fa-2x" aria-hidden="true"></i></span></a><a class="media-body" href="'+response[i]['link']+'" target="_blank"><h6 class="green-text">'+response[i]['text']+'</h6></a></div><div class="dropdown-divider"></div>');
+            $("#all_new_notifications").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="'+response[i]['link']+'"><span class="badge badge-pill red"><i class="fa fa-'+response[i]['icon']+' fa-2x" aria-hidden="true"></i></span></a><a class="media-body" href="'+response[i]['link']+'"><h6 class="green-text">'+response[i]['text']+'</h6></a></div><div class="dropdown-divider"></div>');
           }
         }
         else{
@@ -103,6 +105,30 @@ $(document).ready(function(){
       }
     });
   })
+
+    // Clear read notifications
+
+  $('#marknotificationasread').change(function() {
+    if(this.checked) {
+      $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+        }
+      });
+      $.ajax({
+        url: $("#markasread").data('url'),
+        type: 'GET',
+        beforeSend: function(){
+          $("#marknotificationasread").prop('disabled', true);
+        },
+        success:function(){
+          $("#markasread").hide();
+          $("#new_notification_number").empty().append('0');
+          showNotification("সাফল্য!", "বিজ্ঞপ্তিগুলো  পড়া হিসাবে চিহ্নিত করা হয়েছে!", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp'); 
+        }
+      });
+    }
+  });
 
     // Set Lightslider
 

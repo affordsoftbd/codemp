@@ -3,7 +3,7 @@
 @section('extra-style')
     <style>
         body {
-            background-image: linear-gradient(#ffffff, #e6ffe6);
+            background-image: linear-gradient(#ffffff, #ccffcc);
             background-size: cover;
         }
         .intro-2 {
@@ -168,7 +168,7 @@
                                             <input type="password" name="password" id="reg_password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                                             <label for="reg_password">পাসওয়ার্ড</label>
                                             <small id="reg_password" class="form-text text-muted">
-                                                অন্ততপক্ষে ৮টি বা আরও অক্ষর এবং ১ সংখ্যা
+                                                পাসওয়ার্ড এ ৮টি বা আরও হরফ, অন্ততপক্ষে ১টি বড় অক্ষর এবং ১টি সংখ্যা থাকতে হবে
                                             </small>
                                             <small id="password_strength" class="text-danger" style="display:none">দুর্বল পাসওয়ার্ড</small>
                                         </div>                                       
@@ -199,7 +199,7 @@
                                 </div>
 
                                 <!-- Sign up button -->
-                                <button id="register_button" class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
+                                <button id="register_button" class="btn btn-outline-danger btn-rounded btn-block my-3 waves-effect z-depth-0" type="submit">রেজিস্টার</button>
                                 <button id="verify_button" class="btn btn-outline-danger btn-rounded btn-block mb-4 waves-effect z-depth-0" type="button" style="display:none" onclick="verify_registration()">কোড নিশ্চিত করুন</button>
                                 <hr>
                                 <center>

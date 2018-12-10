@@ -37,12 +37,15 @@
         <div class="card my-5 mx-5">
 
         <!--Card content-->
-        	<div class="card-body px-lg-5 pt-0 my-5">
+        <div class="card-body px-lg-5 pt-0 my-5">
 
-	            <h4 class="green-text"><i class="fa fa-sign-in fa-sm pr-2" aria-hidden="true"></i>আমার নেতা লগ ইন!</h4><hr>
+	            <h4 class="green-text">
+                    <i class="fa fa-sign-in fa-sm pr-2" aria-hidden="true"></i>আমার নেতা লগ ইন!
+                </h4>
+                <hr>
 
 	            <form class="login-form" method="post" action="{{ route('postLogin') }}">
-                                {{ csrf_field() }}
+                    {{ csrf_field() }}
                     <div data-toggle="popover" data-placement="top" title="ভুল লগইন ক্রেডেনশিয়াল" data-content="আপনার প্রদত্ত লগইন ক্রেডেনশিয়াল খুঁজে পাওয়া  যাচ্ছে না!"></div>
                      <!-- Confirm Email -->
                     <div class="md-form">
@@ -67,6 +70,10 @@
 
             </div>
 
+        </div>
+
+        <div class="text-center mb-5">
+            <a href="{{ route('welcome') }}"><i class="fa fa-user-plus pr-2"></i>নিবন্ধন করুন</a>
         </div>
 
     </div>

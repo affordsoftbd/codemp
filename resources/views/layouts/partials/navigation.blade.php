@@ -39,6 +39,10 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-wide dropdown-success">
                     <p class="text-center h6">বিজ্ঞপ্তিগুলি</p>
                     <div class="dropdown-divider"></div>
+                    <div class="form-check my-3" id="markasread" data-url="{{ route('notifications.read') }}" style="display: none;">
+                        <input type="checkbox" class="form-check-input" id="marknotificationasread">
+                        <label class="form-check-label red-text" for="marknotificationasread">বিজ্ঞপ্তি অক্ষিগত হিসাবে চিহ্নিত করুন</label>
+                    </div>
                     <div id="all_new_notifications" data-url="{{ route('notifications.new') }}"></div>
                     <a class="dropdown-item text-center" href="{{ route('notifications.index') }}">সকল বিজ্ঞপ্তি প্রদর্শন</a>
                 </div>

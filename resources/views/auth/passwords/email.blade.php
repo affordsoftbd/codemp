@@ -38,6 +38,9 @@
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-send pr-2"></i>সাবমিট</button>
                     </div>
+                    <div class="text-center mt-4">
+                        <a href="{{ route('login') }}">লগইন এ ফিরে যান</a>
+                    </div>
                 </form>
                 <!-- Form -->
 
