@@ -50,11 +50,11 @@
                 {{ $group->group_name }}
             </h5>
             <div class="d-flex justify-content-between">
-              <div class="col-11 text-truncate pl-0 mb-3">              
+              <div class="col-11 text-truncate pl-0">              
                 <p class="dark-grey-text">
-                    <i class="fa fa-calendar pr-2"></i><strong>{{ date('d M Y', strtotime($group->created_at)) }}
+                    <i class="fa fa-group fa-sm pr-2"></i><strong>{{ count($group->members) }} member(s)</strong>
                 </p>
-                <p class="grey-text small"><i class="fa fa-group fa-sm pr-2"></i>{{ count($group->members) }} member(s)</p>
+                <p class="grey-text small"><i class="fa fa-calendar pr-2"></i>{{ date('d M Y', strtotime($group->created_at)) }}</p>
               </div>
             </div>
             {!! Form::open(['route' => ['group.delete', $group->group_id], 'method'=>'delete']) !!}
@@ -66,7 +66,7 @@
             <div class="row">
             @foreach($group->members as $member)
                 <div class="column">
-                    <img class="img-thumbnail mx-3" src="{{ file_exists($member->user->user_details_image_path) ? asset($member->user->user_details_image_path) : url('/').'/img/avatar.png' }}" alt="{{ $member->user->first_name }}" style="width: 150px">
+                    <img class="img-thumbnail" src="{{ file_exists($member->user->user_details_image_path) ? asset($member->user->user_details_image_path) : url('/').'/img/avatar.png' }}" alt="{{ $member->user->first_name }}" style="width: 70px">
                 </div>
                 @if( $loop->iteration > 15)
                     @break
