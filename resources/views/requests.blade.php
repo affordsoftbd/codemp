@@ -25,10 +25,10 @@
             <p class="card-meta">অংশগ্রহন {{ date('l d F Y',strtotime($applicant->created_at)) }}</p>
             <!-- Text -->
             <p class="card-text">
-              @if(!empty($leader->division_name))
-                <strong>{{ $leader->division_name }} > {{ $leader->district_name }} > {{ $leader->thana_name }} > {{ $leader->zip_code }}</strong> অধীনে 
+              @if(!empty($applicant->division_name))
+                <strong>{{ $applicant->division_name }} > {{ $applicant->district_name }} > {{ $applicant->thana_name }} > {{ $applicant->zip_code }}</strong> অধীনে 
               @endIf
-              <strong>নেতা</strong> হিসেবে যোগদান করেছেন
+              <strong>@if($applicant->role_id==2)নেতা@elseসমর্থক@endif</strong> হিসেবে যোগদান করেছেন
             </p>
             <hr>
             <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($applicant->followers) }} জন অনুসারী</span></a>  

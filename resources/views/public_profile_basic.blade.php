@@ -7,7 +7,7 @@
       @if(!empty($user->division_name))
         <strong>{{ $user->division_name}} > {{ $user->district_name}} > {{ $user->thana_name}} > {{ $user->zip_code}}</strong> অধীনে 
       @endIf
-      <strong>নেতা</strong> হিসেবে যোগদান করেছেন
+      <strong>@if($user->role_id==2)নেতা@elseসমর্থক@endif</strong> হিসেবে যোগদান করেছেন
     </small>
 		<hr>
     </div>
