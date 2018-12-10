@@ -181,53 +181,5 @@
 
         });
 
-        /*function remove_follower(follower_id){
-            $('#item_id').val(follower_id);
-            $('.text-danger').text('আপনি এই অনুসারীকে অপসারণ করতে চান?');
-            $('#warning-modal').modal('show');
-        }*/
-
-        /*$(document).on('click','#warning_ok',function(){
-          var follower_id = $('#item_id').val();
-          $.ajax({
-              type: "POST",
-              url: "{{ url('remove_follower') }}",
-              data: {follower_id:follower_id,_token: "{{ csrf_token() }}"},
-              dataType: "JSON",
-              cache : false,
-              beforeSend: function() {
-              },
-
-              success: function(data){
-                  $('#warning-modal').modal('hide');
-                  if(data.status == 200){
-                      showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-
-                      setTimeout(function(){
-                          location.reload();
-                      }, 2000);
-
-                  }
-
-                  else{
-                      showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-                  }
-
-                  setTimeout(function(){
-                      location.reload();
-                  }, 3000);
-
-              },
-
-              error: function(xhr, status, error) {
-
-                  alert(error);
-
-              },
-
-          });
-
-      })*/
-
      </script>
 @endsection

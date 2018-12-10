@@ -129,10 +129,7 @@
                     data: formData,
                     async: false,
                     success: function (data) {
-                        if(data.status == 200){/*
-                            $('#comment_success').show();
-                            $('#comment_error').hide();
-                            $('#comment_success').html(data.reason);*/
+                        if(data.status == 200){
 
                             showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                             setTimeout(function(){
@@ -140,9 +137,6 @@
                           }, 2000);
                         }
                         else{
-                            /*$('#comment_success').hide();
-                            $('#comment_error').show();
-                            $('#comment_error').html(data.reason);*/
 
                             showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         }
@@ -153,9 +147,6 @@
                 });
             }
             else{
-                /*$('#comment_success').hide();
-                $('#comment_error').show();
-                $('#comment_error').html(validate);*/
                 showNotification("এরর!", validate, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
             }
         });
