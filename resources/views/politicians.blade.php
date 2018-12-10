@@ -230,28 +230,6 @@
           );
         })
 
-        /*function un_follow_leader(leader_id){
-            $.ajax({
-                type: "POST",
-                url: "{{ route('un_follow_leader') }}",
-                data: { _token: "{{ csrf_token() }}",leader_id:leader_id},
-                dataType: "json",
-                cache : false,
-                success: function(data){
-                    if(data.status == 200){
-                        showNotification("সাফল্য!", 'leader un-followed successfully', "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-                        setTimeout(function(){
-                          location.reload();
-                      }, 2000);
-                    }
-                    else{
-                        alert(data);
-                    }
-                } ,error: function(xhr, status, error) {
-                    alert(error);
-                },
-            });
-        }*/
 
         function send_request(leader_id){
             $.ajax({

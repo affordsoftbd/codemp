@@ -212,25 +212,6 @@
                 $('#last_load').val(parseInt(last_load)-5);
                 getPost(parseInt(last_load)-5);
             });
-
-            /*Scroll function starts*/
-            /*$.fn.is_on_screen = function(){     
-                var win = $(window);             
-                var viewport = {
-                    top : win.scrollTop(),
-                    left : win.scrollLeft()
-                };
-                viewport.right = viewport.left + win.width();
-                viewport.bottom = viewport.top + win.height();
-                 
-                var bounds = this.offset();
-                bounds.right = bounds.left + this.outerWidth();
-                bounds.bottom = bounds.top + this.outerHeight();
-                 
-                return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
-                 
-            };*/
-            /*Scroll function starts*/
         });
         
         $(document).on('submit', '#text_post_form', function(event){
@@ -254,10 +235,6 @@
                     success: function (data) {
                         if(data.status == 200){
                             tinyMCE.activeEditor.setContent('');
-                            /*$('#post_success').hide();
-                            $('#post_danger').hide();
-                            $('#post_success').html('');
-                            $('#post_danger').html('');*/
                             showNotification("সফল!", "পোস্টটি সফলভাবে শেয়ার করা হয়েছে", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
 
                             var last_id = $('#last_id').val();
@@ -266,9 +243,6 @@
                             getPost(parseInt(last_id)+1,'init');
                         }
                         else{
-                            /*$('#post_success').hide(); 
-                            $('#post_danger').show();
-                            $('#post_danger').html(data.reason);*/
                             showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                         }
                     },
@@ -278,9 +252,6 @@
                 });
             }
             else{
-                /*$('#post_success').hide();
-                $('#post_danger').show();
-                $('#post_danger').html(validate);*/
                 showNotification("এরর!", validate, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
             }
         });
@@ -477,21 +448,6 @@
                             }
                             
                             if (typeof image_post !== 'undefined'){
-                                /*$('.lightSlider:last').lightSlider({
-                                    gallery: true,
-                                    item: 1,
-                                    loop: true,
-                                    slideMargin: 0,
-                                    thumbItem: 9,
-                                    onBeforeSlide: function (el) {
-                                        $('.slidercount:eq('+index+')').text(el.getCurrentSlideCount());
-                                    },
-                                    onSliderLoad: function(el) {
-                                        el.lightGallery({
-                                            selector: '.lightgallery .lslide'
-                                        });
-                                    }
-                                });*/
                                 $('.lightSlider').each(function (index) {
                                     if (this.hasAttribute("sliderInstance")) {
                                     }

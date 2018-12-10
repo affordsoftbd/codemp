@@ -86,10 +86,10 @@
             <p class="card-meta">অংশগ্রহন {{ date('l d F Y',strtotime($follower->created_at)) }}</p>
             <!-- Text -->
             <p class="card-text">
-              @if(!empty($leader->division_name))
-                <strong>{{ $leader->division_name }} > {{ $leader->district_name }} > {{ $leader->thana_name }} > {{ $leader->zip_code }}</strong> অধীনে 
+              @if(!empty($follower->division_name))
+                <strong>{{ $follower->division_name }} > {{ $follower->district_name }} > {{ $follower->thana_name }} > {{ $follower->zip_code }}</strong> অধীনে 
               @endIf
-              <strong>নেতা</strong> হিসেবে যোগদান করেছেন
+              <strong>@if($follower->role_id==2)নেতা@elseসমর্থক@endif</strong> হিসেবে যোগদান করেছেন
             </p>
             <hr>
             <a class="card-meta"><span><i class="fa fa-user"></i>{{ count($follower->followers) }} জন অনুসারী</span></a>
@@ -180,54 +180,6 @@
           })
 
         });
-
-        /*function remove_follower(follower_id){
-            $('#item_id').val(follower_id);
-            $('.text-danger').text('আপনি এই অনুসারীকে অপসারণ করতে চান?');
-            $('#warning-modal').modal('show');
-        }*/
-
-        /*$(document).on('click','#warning_ok',function(){
-          var follower_id = $('#item_id').val();
-          $.ajax({
-              type: "POST",
-              url: "{{ url('remove_follower') }}",
-              data: {follower_id:follower_id,_token: "{{ csrf_token() }}"},
-              dataType: "JSON",
-              cache : false,
-              beforeSend: function() {
-              },
-
-              success: function(data){
-                  $('#warning-modal').modal('hide');
-                  if(data.status == 200){
-                      showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-
-                      setTimeout(function(){
-                          location.reload();
-                      }, 2000);
-
-                  }
-
-                  else{
-                      showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-                  }
-
-                  setTimeout(function(){
-                      location.reload();
-                  }, 3000);
-
-              },
-
-              error: function(xhr, status, error) {
-
-                  alert(error);
-
-              },
-
-          });
-
-      })*/
 
      </script>
 @endsection
