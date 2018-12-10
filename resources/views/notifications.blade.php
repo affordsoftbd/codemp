@@ -4,9 +4,11 @@
 
 @section('content')
 
-<a href="{{ route('notifications.read') }}" class="btn btn-dark-green btn-sm pull-right {{ count($user->unreadNotifications) == 0 ? 'disabled' : '' }}">
+@if(count($user->unreadNotifications) > 0)
+<a href="{{ route('notifications.read') }}" class="btn btn-dark-green btn-sm pull-right">
   <i class="fa fa-check fa-sm pr-2"></i>সকল বিজ্ঞপ্তি অক্ষিগত হিসাবে চিহ্নিত করুন
 </a>
+@endIf
 
 <h4 class="font-weight-bold green-text">বিজ্ঞপ্তি এর তালিকা</h4>
 <small class="red-text">এখানে আপনি প্রাপ্ত সমস্ত বিজ্ঞপ্তিগুলোর তালিকা!</small>

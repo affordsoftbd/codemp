@@ -37,13 +37,12 @@
               @include('layouts.partials.sidemenu')
             </div>
             <div class="col-md-9 mb-3 order-first order-sm-12">
-              <a href="#navigation-menu" class="btn btn-red btn-sm mb-3 navigation-button"><i class="fa fa-list pr-2"></i>মেনু প্রদর্শন</a>
+              <a href="#list-navigation-menu" class="btn btn-red btn-sm mb-3 navigation-button"><i class="fa fa-list pr-2"></i>মেনু প্রদর্শন</a>
               <!-- Content -->
               @yield('content')
               <!-- #ENDS# Content -->
             </div>
         </div>
-        <div id="navigation-menu"></div>
     </div>
 
 

@@ -1,4 +1,4 @@
-<div class="list-group sticky-top">
+<div class="list-group sticky-top" id="list-navigation-menu">
     <a href="{{ route('home') }}" class="list-group-item list-group-item-action waves-effect {{ Route::is('home')? 'active':'' }}">
         <i class="fa fa-rss fa-sm pr-2"></i>ফিড
     </a>
