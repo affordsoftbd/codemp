@@ -81,9 +81,19 @@
 
     <script>        
         $(document).ready(function(){
-            //
+            var last_post_id = {{$last_id}}
+            ///var last_post_id = $('#get_last_id').text();
+            $('#last_load').val(last_post_id);
+            $('#last_id').val(last_post_id);
+            getPost(last_post_id,'init','text');
         });
-        
+
+        $(document).on('click','.load_more_button',function(){
+            var last_load = $('#last_load').val(); 
+            $('#last_load').val(parseInt(last_load)-5);
+            getPost(parseInt(last_load)-5,'','text');
+        });
+         
 
         function checkImage(image){
             var profile_image = "{{ url('/img/avatar.png') }}";
@@ -163,7 +173,7 @@
             var last_id = $('#last_id').val();
             $('#last_id').val(parseInt(last_id)+1);
 
-            getPost(parseInt(last_id)+1,'init');
+            getPost(parseInt(last_id)+1,'init','text');
           }
         }); 
       })();
@@ -204,7 +214,7 @@
                 var last_id = $('#last_id').val();
                 $('#last_id').val(parseInt(last_id)+1);
 
-                getPost(parseInt(last_id)+1,'init');
+                getPost(parseInt(last_id)+1,'init','text');
               }
             }); 
         })();
