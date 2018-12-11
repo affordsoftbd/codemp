@@ -133,7 +133,7 @@
                 <div class="modal-body mx-3">
                     <div class="md-form">
                         <input type="hidden" name="group_id" id="group_id">
-                        <input type="text" name="group_name" id="edit_group_name" class="form-control">
+                        <input type="text" name="group_name" id="edit_group_name" class="form-control" value="edit_group_name">
                         {!! Form::label('address', 'নাম') !!}
                     </div>
                     <select class="mdb-select md-form" name="members[]" id="edit_members" multiple searchable="এখানে অনুসন্ধান করুন..">

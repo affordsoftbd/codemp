@@ -146,7 +146,8 @@
       $(document).ready(function(){
           set_new_request_count(); 
 
-          var last_post_id = {{ $last_id }};
+          // var last_post_id = {{-- $last_id --}}
+          var last_post_id = $('#get_last_id').text();
           $('#last_load').val(last_post_id);
           $('#last_id').val(last_post_id);
           getPost(last_post_id,'init');

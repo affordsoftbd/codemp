@@ -20,9 +20,8 @@
  <!-- Tab panels -->
  <div class="tab-content">
 
-    <div id="post_list">
-
-    </div>
+    <div id="post_list"></div>
+    <div id="get_last_id" style="display: none">{{ $last_id }}</div>
 
     <!--Pagination-->
     <div class="container-fluid my-5">
@@ -61,7 +60,7 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    {{ Form::button('পোস্ট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                    {{ Form::button('পোস্ট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-sm'] ) }}
                 </div>
             </form>
         </div>
@@ -78,7 +77,8 @@
 
     <script>        
         $(document).ready(function(){
-            var last_post_id = {{ $last_id }};
+            // var last_post_id = {{-- $last_id --}};
+            var last_post_id = $('#get_last_id').text();
             $('#last_load').val(last_post_id);
             $('#last_id').val(last_post_id);
             getPost(last_post_id,'init');
