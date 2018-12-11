@@ -92,8 +92,8 @@ $(document).ready(function(){
         if(response.length > 0){
           $("#markasread").show();
           $('#marknotificationasread').prop('disabled', false).prop('checked', false); 
-          if(response.length > 30){
-            $("#all_new_notifications").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="/notifications"><span class="badge badge-pill orange"><i class="fa fa-warning fa-2x" aria-hidden="true"></i></span></a><a class="media-body" href="/notifications" target="_blank"><h6 class="red-text small">আপনার  অত্যধিক অপঠিত বিজ্ঞপ্তি আছে! দেখতে এবং পরিচালনা করতে এখানে ক্লিক করুন!</h6></a></div><div class="dropdown-divider"></div>');
+          if(response.length > 0){
+            $("#all_new_notifications").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="/notifications"><span class="badge badge-pill orange"><i class="fa fa-warning fa-2x" aria-hidden="true"></i></span></a><a class="media-body" href="/notifications"><h6 class="red-text small">আপনার  অত্যধিক অপঠিত বিজ্ঞপ্তি আছে! দেখতে এবং পরিচালনা করতে এখানে ক্লিক করুন!</h6></a></div><div class="dropdown-divider"></div>');
           }
           for(var i = 0; i<30; i++){
             $("#all_new_notifications").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="'+response[i]['link']+'"><span class="badge badge-pill red"><i class="fa fa-'+response[i]['icon']+' fa-2x" aria-hidden="true"></i></span></a><a class="media-body" href="'+response[i]['link']+'"><h6 class="green-text">'+response[i]['text']+'</h6></a></div><div class="dropdown-divider"></div>');
