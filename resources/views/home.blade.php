@@ -147,8 +147,6 @@
 
 <div id="post_list"></div>
 
-<div id="get_last_id" style="display: none">{{ $last_id }}</div>
-
 <input type="hidden" name="last_load" id="last_load">
 <input type="hidden" name="last_id" id="last_id">
 <div class="container-fluid my-5">
@@ -205,7 +203,6 @@
 
         $(document).ready(function(){           
           var last_post_id = {{$last_id}}
-            ///var last_post_id = $('#get_last_id').text();
           $('#last_load').val(last_post_id);
           $('#last_id').val(last_post_id);
           getPost(last_post_id,'init','all');

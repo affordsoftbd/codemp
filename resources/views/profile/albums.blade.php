@@ -20,7 +20,6 @@
  <!-- Tab panels -->
  <div class="tab-content">
 	<div id="post_list"></div>
-    <div id="get_last_id" style="display: none">{{ $last_id }}</div>
 	<!--Pagination-->
 	<div class="container-fluid my-5">
 	    <div class="row">

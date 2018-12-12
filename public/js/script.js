@@ -271,7 +271,7 @@ $(document).ready(function(){
 
 /*==================== start of individual functions  ====================*/
 
-// Function for getting new messages number
+  // Function for getting new messages number
 
 function numberOfNewMessages() {
   $.ajaxSetup({
@@ -292,7 +292,7 @@ function numberOfNewMessages() {
   });
 }
 
-// Function for getting new notifications number
+  // Function for getting new notifications number
 
 function numberOfNewNotifications() {
   $.ajaxSetup({
@@ -313,7 +313,7 @@ function numberOfNewNotifications() {
   });
 }
 
-// Function for showing image preview
+  // Function for showing image preview
 
 function readURL(input, i) {
     i = i-1;

@@ -26,7 +26,6 @@
 
 <div class="tab-content">
 	<div id="post_list"></div>
-  <div id="get_last_id" style="display: none">{{ $last_id }}</div>
 	
 	<div class="container-fluid my-5">
 	    <div class="row">
@@ -82,7 +81,6 @@
     <script>        
         $(document).ready(function(){
             var last_post_id = {{$last_id}}
-            ///var last_post_id = $('#get_last_id').text();
             $('#last_load').val(last_post_id);
             $('#last_id').val(last_post_id);
             getPost(last_post_id,'init','text');
