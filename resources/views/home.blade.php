@@ -147,6 +147,7 @@
 
 <div id="post_list"></div>
 
+
 <input type="hidden" name="last_load" id="last_load">
 <input type="hidden" name="last_id" id="last_id">
 <div class="container-fluid my-5">
@@ -212,41 +213,6 @@
           var last_load = $('#last_load').val(); 
           $('#last_load').val(parseInt(last_load)-5);
           getPost(parseInt(last_load)-5,'','all');
-      });
-
-        function checkImage(image){
-            var profile_image = "{{ url('/img/avatar.png') }}";
-            $.ajax({
-                url: "{{ url('/').'/' }}"+image,
-                type:'HEAD',
-                async: false,
-                success:function(){
-                    profile_image = "{{ url('/').'/' }}"+image; 
-                }
-            });
-            return profile_image;
-        }
-
-        //  Show image preview
-      $(".input_album").on("change", function(e) {
-        var files = e.target.files,
-        filesLength = files.length;
-        $("#album_upload_feedback").attr('style', '');
-        $("#album_upload_feedback").html("<h5 class='red-text font-weight-bold mt-3'>প্রিভিউ ছবি</h5><small class='grey-text mb-3'>নিম্নলিখিত ফাঙ্কশনালিটিজ শুধুমাত্র প্রিভিউ এর জন্য! আপনি যদি ইমেজ এর একটি ভিন্ন সেট চান তাহলে আবার আপনার ছবি নির্বাচন করুন! ইমেজ আকার <strong>2MB</strong> এর বেশী হতে পারবেনা!</small><hr>");
-        for (var i = 0; i < filesLength; i++) {
-          var f = files[i];
-          var fileReader = new FileReader();
-          fileReader.onload = (function(e) {
-            var file = e.target;
-            $("#album_upload_feedback").append("<span class='pip' align='center'><img src='"+file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='প্রিভিউ আড়াল করুন!'><i class='fa fa-eye-slash'></i></button></span>").hide().fadeIn(500+Math.pow(i, 2));
-            $(".remove").click(function() {
-                $(this).parent(".pip").fadeOut("normal", function() {
-                     $(this).parent(".pip").remove();
-                });
-            });
-          });
-          fileReader.readAsDataURL(f);
-        }
       });
 
         //  Jquery form for uploading image and showing progress (image_error_message)
