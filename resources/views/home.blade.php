@@ -220,8 +220,6 @@
             return profile_image;
         }
 
-        
-
         //  Show image preview
       $(".input_album").on("change", function(e) {
         var files = e.target.files,
@@ -233,7 +231,7 @@
           var fileReader = new FileReader();
           fileReader.onload = (function(e) {
             var file = e.target;
-            $("#album_upload_feedback").append("<span class='pip' align='center'><img src='"+ file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='Hide Preview!'><i class='fa fa-eye-slash'></i></button></span>").hide().fadeIn(500+Math.pow(i, 2));
+            $("#album_upload_feedback").append("<span class='pip' align='center'><img src='"+file.result+"' alt="+f.name+"' class='img-thumbnail mx-3 my-3' width= '200'><button type='button' class='btn btn-sm btn-danger remove' data-toggle='tooltip' data-placement='right' title='প্রিভিউ আড়াল করুন!'><i class='fa fa-eye-slash'></i></button></span>").hide().fadeIn(500+Math.pow(i, 2));
             $(".remove").click(function() {
                 $(this).parent(".pip").fadeOut("normal", function() {
                      $(this).parent(".pip").remove();
