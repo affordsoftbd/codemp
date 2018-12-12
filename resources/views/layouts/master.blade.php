@@ -96,6 +96,8 @@
     </div>
 </div>
 
+<input type="hidden" id="page_type" value='all'>
+
 <!-- alert message End -->
 
   	@include('layouts.partials.alerts')
@@ -146,17 +148,7 @@
       $(document).ready(function(){
           set_new_request_count(); 
 
-          // var last_post_id = {{-- $last_id --}}
-          var last_post_id = $('#get_last_id').text();
-          $('#last_load').val(last_post_id);
-          $('#last_id').val(last_post_id);
-          getPost(last_post_id,'init');
-      });
-      
-      $(document).on('click','.load_more_button',function(){
-          var last_load = $('#last_load').val(); 
-          $('#last_load').val(parseInt(last_load)-5);
-          getPost(parseInt(last_load)-5);
+          
       });
 
 
@@ -272,7 +264,8 @@
           });
       }
 
-      function getPost(last_id,type){
+      function getPost(last_id,type,page){
+            $('#page_type').val(page); // Set current page name/type
             if(last_id > 0){  
                 var html = '';
                 $.ajax({
@@ -284,7 +277,7 @@
                     success: function(data){
                         if(data.status == 200){                   
                             $.each(data.posts, function( index, value ) {
-                                if(value.post_type=='text'){
+                                if(value.post_type=='text' && (page=='all' || page=='text')){
                                     /*
                                     *Text post
                                     */
@@ -327,7 +320,7 @@
                                         html +='</div>';
                                     html +='</div>';
                                 }
-                                if(value.post_type=='photo'){  
+                                if(value.post_type=='photo' && (page=='all' || page=='album')){  
                                     /*
                                     *Image post
                                     */
@@ -386,7 +379,7 @@
 
                                     html +='</div>';
                                 }
-                                else if(value.post_type=='video'){  
+                                else if(value.post_type=='video' && (page=='all' || page=='video')){  
                                     /*
                                     * Video post
                                     */
@@ -502,6 +495,7 @@
         $(document).on('submit', '#text_post_form', function(event){
             event.preventDefault();
             var post_text = $('#post_text').val();
+            var page = $('#page_type').val();
             var validate = '';
 
             if(post_text==''){
@@ -525,7 +519,7 @@
                             var last_id = $('#last_id').val();
                             $('#last_id').val(parseInt(last_id)+1);
 
-                            getPost(parseInt(last_id)+1,'init');
+                            getPost(parseInt(last_id)+1,'init',page);
                         }
                         else{
                             showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
@@ -571,6 +565,7 @@
                             showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                             $('#post_id').val('');
                             $('#comment_text').val('');
+                            tinymce.get('#comment_text').setContent('');
                             $('#modalSubscriptionForm').modal('hide');
 
                             var current_comment = $('#p_comment_'+post_id).text();

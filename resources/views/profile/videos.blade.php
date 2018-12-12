@@ -77,69 +77,17 @@
 
     <script>        
         $(document).ready(function(){
-            // var last_post_id = {{-- $last_id --}};
-            var last_post_id = $('#get_last_id').text();
+            var last_post_id = {{$last_id}}
+            ///var last_post_id = $('#get_last_id').text();
             $('#last_load').val(last_post_id);
             $('#last_id').val(last_post_id);
-            getPost(last_post_id,'init');
+            getPost(last_post_id,'init','video');
         });
 
         $(document).on('click','.load_more_button',function(){
             var last_load = $('#last_load').val(); 
             $('#last_load').val(parseInt(last_load)-5);
-            getPost(parseInt(last_load)-5);
-        });
-        
-        $(document).on('submit', '#text_post_form', function(event){
-            event.preventDefault();
-            var post_text = $('#post_text').val();
-            var validate = '';
-
-            if(post_text==''){
-                validate = validate+"দয়া করে কিছু লিখুন";
-            }
-
-            if(validate==''){
-
-                var formData = new FormData($('#text_post_form')[0]);
-                var url = '{{ url('saveTextPost') }}';
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: formData,
-                    async: false,
-                    success: function (data) {
-                        if(data.status == 200){
-                            tinyMCE.activeEditor.setContent('');
-                            /*$('#post_success').hide();
-                            $('#post_danger').hide();
-                            $('#post_success').html('');
-                            $('#post_danger').html('');*/
-                            showNotification("সফল!", "পোস্টটি সফলভাবে শেয়ার করা হয়েছে", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-
-                            var last_id = $('#last_id').val();
-                            $('#last_id').val(parseInt(last_id)+1);
-
-                            getPost(parseInt(last_id)+1,'init');
-                        }
-                        else{
-                            /*$('#post_success').hide();
-                            $('#post_danger').show();
-                            $('#post_danger').html(data.reason);*/
-                            showNotification("এরর!", data.reason, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-                        }
-                    },
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                });
-            }
-            else{
-                /*$('#post_success').hide();
-                $('#post_danger').show();
-                $('#post_danger').html(validate);*/
-                showNotification("এরর!", validate, "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-            }
+            getPost(parseInt(last_load)-5,'','video');
         });
 
         function checkImage(image){
@@ -153,192 +101,6 @@
                 }
             });
             return profile_image;
-        }
-
-        function getPost(last_id,type){
-            if(last_id > 0){  
-                var html = '';
-                $.ajax({
-                    type: "POST",
-                    url: "{{ url('get_user_post_ajax',$user->id) }}",
-                    data: { _token: "{{ csrf_token() }}",last_id:last_id},
-                    dataType: "json",
-                    cache : false,
-                    success: function(data){
-                        if(data.status == 200){                   
-                            $.each(data.posts, function( index, value ) {
-                                if(value.post_type=='video'){  
-                                    /*
-                                    * Video post
-                                    */
-                                    video_post = true;
-
-                                    var profile_image = checkImage(value.image_path);
-
-                                    var like_icon = "fa fa-thumbs-o-up";
-                                    if(value.likes.length > 0){
-                                        for (var i = 0; i < value.likes.length; i++) {
-                                            if(value.likes[i]['user_id'] == {{ Session::get('user_id') }}){
-                                                var like_icon = "fa fa-thumbs-up";
-                                            }
-                                            break; 
-                                        }
-                                    }
-                                    
-                                    html +='<div class="card my-4 news-card">';
-
-                                        html +='<div class="card-body">';
-                                            html +='<div class="content">';
-                                                html +='<div class="right-side-meta">'+$.format.date(value.created_at, 'ddd d MMMM yyyy, h:ss a')+'</div>';
-                                                html +='<img src="'+profile_image+'" class="rounded-circle profile-image-thumbnile avatar-img z-depth-1-half"><strong>'+value.first_name+' '+value.last_name+'</strong>';
-                                            html +='</div>';
-                                            html +='<hr>';
-                                            html +=value.description;
-                                        html +='</div>';
-
-                                        
-                                        html +='<div class="ml-auto mr-4 mb-4 ">';
-                                        html +='<a class="btn-floating btn-action light-green" href="{{ url('/') }}/post/'+value.post_id+'/edit"><i class="fa fa-edit pl-1"></i></a>';
-                                        html +='<a class="btn-floating btn-action green" href="{{ route('video') }}/'+value.post_id+'"><i class="fa fa-eye pl-1"></i></a>';
-                                        html +='<a class="btn-floating btn-action red" onclick="show_comment_box('+value.post_id+')"><i class="fa fa-comment-o pl-1"></i></a>';
-                                        html +='</div>';
-
-                                        $.each(value.videos, function( index, video ) {
-                                            var video_url =  '{{ url('/').'/' }}'+video.video_path;
-
-                                            html +='<div class="view overlay my-3" align="center">';
-                                                html +='<video class="video-js z-depth-1" controls style="width:100%">';
-                                                    html +='<source src="'+video_url+'" type="video/mp4">';
-                                                html +='</video> ';
-                                            html +='</div>';
-                                        });
-
-                                        html +='<div class="rounded-bottom green text-center pt-3">';
-                                            html +='<ul class="list-unstyled list-inline font-small">';
-                                                html +='<li class="list-inline-item pr-2"><a href="javascript:void(0)" class="white-text" onclick="save_post_like('+value.post_id+')"><i class="'+like_icon+' pr-1" id="p_like_ico_'+value.post_id+'"></i><span id="p_like_'+value.post_id+'">'+value.likes.length+'</span></a></li>';                
-                                                 html +='<li class="list-inline-item"><a href="{{ route('video') }}/'+value.post_id+'#total_comments" class="white-text"><i class="fa fa-comments-o pr-1"></i><span id="p_comment_'+value.post_id+'">'+value.comments.length+'</span></a></li>';
-                                            html +='</ul>';
-                                        html +='</div>';
-
-                                    html +='</div>'; 
-                                }
-                            }); 
-
-                            if(type=='init'){
-                                $('#post_list').html(html);
-                            }
-                            else{
-                                $('#post_list').append(html);
-                            }
-                            if (typeof video_post !== 'undefined'){
-                                var massVideo = $('.video-js');
-                                for(var i = 0; i < massVideo.length; i++){
-                                  videojs(massVideo[i]).ready(function(){});
-                                }
-                                delete video_post;
-                            }
-                        }
-                        else{
-                            alert(data);
-                        }
-                    } ,error: function(xhr, status, error) {
-                        alert(error);
-                    },
-                });
-            }
-
-            if(last_id-5<5){
-                $('.load_more_button').hide();
-            }
-        }
-
-        function show_comment_box(id){
-            $('#post_id').val(id);
-            $('#modalSubscriptionForm').modal('show');
-        }
-
-
-        $(document).on('submit', '#comment_form', function(event){
-            event.preventDefault();
-            var post_id = $('#post_id').val();
-            var comment_text = $('#comment_text').val();
-            var validate = '';
-
-            if(comment_text==''){
-                /*showNotification("এরর!", "দয়া করে কিছু লিখুন", "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');*/
-                validate = validate+"দয়া করে কিছু লিখুন";
-            }
-
-            if(validate==''){
-
-                var formData = new FormData($('#comment_form')[0]);
-                var url = '{{ url('save_comment') }}';
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: formData,
-                    async: false,
-                    success: function (data) {
-                        if(data.status == 200){
-                            showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-                            $('#post_id').val('');
-                            $('#comment_text').val('');
-                            $('#modalSubscriptionForm').modal('hide');
-
-                            var current_comment = $('#p_comment_'+post_id).text();
-                            var new_comment = parseInt(current_comment)+1;
-                            $('#p_comment_'+post_id).text(new_comment);
-
-                            setTimeout(function(){
-                                $('#alert-modal').modal('hide');
-                            },2000)
-                        }
-                        else{
-                            $('#comment_success').hide();
-                            $('#comment_error').show();
-                            $('#comment_error').html(data.reason);
-                        }
-                    },
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                });
-            }
-            else{
-                $('#comment_success').hide();
-                $('#comment_error').show();
-                $('#comment_error').html(validate);
-            }
-        });
-
-        function save_post_like(post_id){
-            $.ajax({
-                type: "POST",
-                url: "{{ url('save_post_like') }}",
-                data: { _token: "{{ csrf_token() }}",post_id:post_id},
-                dataType: "json",
-                cache : false,
-                success: function(data){
-                    if(data.status == 200){
-                        var current_like = $('#p_like_'+post_id).text();
-                        var new_like = parseInt(current_like)+data.like;
-                        $('#p_like_'+post_id).text(new_like);
-                        if($('#p_like_ico_'+post_id).hasClass("fa fa-thumbs-up")) {
-                            $('#p_like_ico_'+post_id).removeClass('fa fa-thumbs-up').addClass('fa fa-thumbs-o-up');
-                            showNotification("সতর্কতা!", "আপনার পছন্দ মুছে ফেলা হয়েছে", "#", "warning", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-                        }
-                        else if($('#p_like_ico_'+post_id).hasClass("fa fa-thumbs-o-up")){
-                            $('#p_like_ico_'+post_id).removeClass('fa fa-thumbs-o-up').addClass('fa fa-thumbs-up');
-                            showNotification("সাফল্য!", "আপনি এই পোস্টটি পছন্দ করেছেন", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
-                        }
-                    }
-                    else{
-                        alert(data);
-                    }
-                } ,error: function(xhr, status, error) {
-                    alert(error);
-                },
-            });
         }
 
          //  Show image preview
@@ -404,7 +166,7 @@
             var last_id = $('#last_id').val();
             $('#last_id').val(parseInt(last_id)+1);
 
-            getPost(parseInt(last_id)+1,'init');
+            getPost(parseInt(last_id)+1,'init','video');
           }
         }); 
       })();
@@ -445,7 +207,7 @@
                 var last_id = $('#last_id').val();
                 $('#last_id').val(parseInt(last_id)+1);
 
-                getPost(parseInt(last_id)+1,'init');
+                getPost(parseInt(last_id)+1,'init','video');
               }
             }); 
         })();
