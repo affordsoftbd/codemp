@@ -152,6 +152,23 @@ div.mce-fullscreen {
     display:none !important;
 }
 
+
+@media (max-width: 321px) {
+
+  .header-option .pull-right { 
+    float: none!important; 
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .header-option .pull-right {
+    float: none!important; 
+  }
+
+}
+
 @media only screen and ( max-width: 767px ) {
     .scrolltotop{
         display:none !important;

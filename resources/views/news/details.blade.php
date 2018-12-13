@@ -78,7 +78,7 @@
 
         <div class="alert alert-success" id="comment_success" style="display:none"></div>
         <div class="alert alert-danger" id="comment_error" style="display:none"></div>
-        <div class="row">
+        <div class="row add_comment">
           <div class="col-xl-1 col-lg-2 col-md-2 my-3 post_creator">
             <img src="{{ file_exists($user->detail->image_path) ? asset($user->detail->image_path) : url('/').'/img/avatar.png' }}" class="rounded-circle z-depth-1-half image-thumbnail my-3">
           </div>

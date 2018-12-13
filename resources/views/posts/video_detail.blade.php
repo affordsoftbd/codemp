@@ -13,11 +13,13 @@
         <small class="red-text">{{ date('l d F Y, h:i A',strtotime($post->created_at)) }}</small>
     </div>
     <div class="col-xl-5 col-lg-6 col-md-6" align="right">
-         {!! Form::open(['route' => ['post.delete', $post->post_id], 'method'=>'delete']) !!}
-            <a href="{{ route('post.edit', $post->post_id) }}" class="btn btn-light-green btn-sm">
-                <i class="fa fa-edit"></i>
-            </a>
-            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
+        {!! Form::open(['route' => ['post.delete', $post->post_id], 'method'=>'delete']) !!}
+            @if($user->id == $post->user_id)    
+                <a href="{{ route('post.edit', $post->post_id) }}" class="btn btn-light-green btn-sm">
+                    <i class="fa fa-edit"></i>
+                </a>
+                {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
+            @endif
             <!--Likes-->
             <button id="like_btn" type="button" class="btn {{ ($my_like==0)? 'btn-yellow' : 'btn-green' }} btn-sm" 
             onclick="save_post_like({{ $post->post_id }})"><i class="fa fa-thumbs-o-up"></i></button>
@@ -74,13 +76,13 @@
     </div>
     @endforeach
 
-    <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center">
+    <div class="col-xl-12 col-lg-12 col-md-12 mt-5 text-center add_comment">
         <h6 class="font-weight-bold red-text">আপনার মন্তব্য যোগ করুন</h6>
     </div>
-    <div class="col-xl-1 col-lg-2 col-md-2">
+    <div class="col-xl-1 col-lg-2 col-md-2 add_comment">
         <img src="{{ file_exists(Session::get('image_path')) ? asset(Session::get('image_path')) : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1 image-thumbnail my-3">
     </div>
-    <div class="col-xl-11 col-lg-10 col-md-10">
+    <div class="col-xl-11 col-lg-10 col-md-10 add_comment">
         <div class="alert alert-success" id="comment_success" style="display:none"></div>
         <div class="alert alert-danger" id="comment_error" style="display:none"></div>
         <form id="comment_form" class="login-form" method="post" action="">

@@ -4,18 +4,23 @@
 
 @section('content')
 
-@if(Request::url() === url('/').'/events')
-<a href="{{ route('events.organized') }}" class="btn btn-dark-green btn-sm pull-right">
-  <i class="fa fa-exclamation-circle fa-sm pr-2"></i>শুধুমাত্র আপনার সংগঠিত ইভেন্টসসমূহ প্রদর্শন করুন
-</a>
-@else
-<a href="{{ route('events.index') }}" class="btn btn-dark-green btn-sm pull-right">
-  <i class="fa fa-exclamation-circle fa-sm pr-2"></i>সকল  ইভেন্টসসমূহ প্রদর্শন করুন
-</a>
-@endif
-
-<h4 class="font-weight-bold green-text">{{ (Request::url() === url('/').'/events') ? '' : 'সংগঠিত' }} ইভেন্টস {{ empty($search) ? 'এর তালিকা' : 'অনুসন্ধান' }} </h4>
-<small class="red-text">{{ empty($search) ? 'আপনার অংশগ্রহনকৃত' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} ইভেন্টস তালিকা</small>
+<div class="row">
+	<div class="col-lg-6 col-sm-12">
+		<h4 class="font-weight-bold green-text">{{ (Request::url() === url('/').'/events') ? '' : 'সংগঠিত' }} ইভেন্টস {{ empty($search) ? 'এর তালিকা' : 'অনুসন্ধান' }} </h4>
+		<small class="red-text">{{ empty($search) ? 'আপনার অংশগ্রহনকৃত' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} ইভেন্টস তালিকা</small>
+	</div>
+	<div class="col-lg-6 col-sm-12 header-option">
+		@if(Request::url() === url('/').'/events')
+			<a href="{{ route('events.organized') }}" class="btn btn-dark-green btn-sm pull-right">
+			  <i class="fa fa-exclamation-circle fa-sm pr-2"></i>শুধুমাত্র আপনার সংগঠিত ইভেন্টসসমূহ প্রদর্শন করুন
+			</a>
+		@else
+			<a href="{{ route('events.index') }}" class="btn btn-dark-green btn-sm pull-right">
+			  <i class="fa fa-exclamation-circle fa-sm pr-2"></i>সকল  ইভেন্টসসমূহ প্রদর্শন করুন
+			</a>
+		@endif
+	</div>
+</div>
 <hr>
 
 @if(empty($search))
