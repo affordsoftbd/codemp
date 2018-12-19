@@ -498,13 +498,13 @@
                     success: function (data) {
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                         if(data.status == 200){
-                            $('#is_verification').val('on');
+                            /*$('#is_verification').val('on');
                             $('#system_code').val(data.code);
                             $('#form_area').hide();
                             $('#code_area').show();
                             $('#register_button').hide('hidden');
-                            $('#verify_button').show('hidden');
-                            //window.location.href="{{ url('/home') }}";
+                            $('#verify_button').show('hidden');*/
+                            window.location.href="{{ url('/home') }}";
                         }
                         else{
                             $('#success_message').hide();
