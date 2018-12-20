@@ -284,7 +284,7 @@
                 $.ajax({
                     type: "POST",
                     url: "{{ url('get_post_ajax') }}",
-                    data: { _token: "{{ csrf_token() }}",last_id:last_id},
+                    data: { _token: "{{ csrf_token() }}",last_id:last_id,type:page},
                     dataType: "json",
                     cache : false,
                     success: function(data){
@@ -576,9 +576,10 @@
                     success: function (data) {
                         if(data.status == 200){
                             showNotification("সাকসেস!", data.reason, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                            var comment_from = $('#comment_from').val();
                             $('#post_id').val('');
                             $('#comment_text').val('');
-                            tinymce.get('#comment_text').setContent('');
+                            //tinymce.get('#comment_text').setContent('');
                             $('#modalSubscriptionForm').modal('hide');
 
                             var current_comment = $('#p_comment_'+post_id).text();
@@ -587,6 +588,9 @@
 
                             setTimeout(function(){
                                 $('#alert-modal').modal('hide');
+                                if(comment_from=='post_detail'){
+                                  location.reload();
+                                }
                             },2000)
                         }
                         else{
@@ -616,6 +620,7 @@
                 cache : false,
                 success: function(data){
                     if(data.status == 200){
+                        var like_from = $('#comment_from').val();
                         var current_like = $('#p_like_'+post_id).text();
                         var new_like = parseInt(current_like)+data.like;
                         $('#p_like_'+post_id).text(new_like);
@@ -626,6 +631,10 @@
                         else if($('#p_like_ico_'+post_id).hasClass("fa fa-thumbs-o-up")){
                             $('#p_like_ico_'+post_id).removeClass('fa fa-thumbs-o-up').addClass('fa fa-thumbs-up');
                             showNotification("সাফল্য!", "আপনি এই পোস্টটি পছন্দ করেছেন", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                        }
+                        
+                        if(like_from=='post_detail'){
+                          location.reload();
                         }
                     }
                     else{

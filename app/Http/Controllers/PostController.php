@@ -34,18 +34,27 @@ class PostController extends Controller
             $lastPost = Post::whereIn('posts.user_id',$post_creators)->orderBy('post_id','desc')->first();
             $last_id = $request->last_id;
 
-            $posts = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path')
-            ->with('images')
-            ->with('videos')
-            ->with('comments')
-            ->with('likes')
-            ->join('users','users.id','=','posts.user_id')
-            ->join('user_details','users.id','=','user_details.user_id')
-            ->whereIn('posts.user_id',$post_creators)
-            ->where('post_id','<=',$last_id)
-            ->orderBy('post_id','desc')
-            ->limit(5)
-            ->get();
+            $posts = Post::select('posts.*','users.first_name','users.last_name','user_details.image_path');
+            $posts = $posts->with('images');
+            $posts = $posts->with('videos');
+            $posts = $posts->with('comments');
+            $posts = $posts->with('likes');
+            $posts = $posts->join('users','users.id','=','posts.user_id');
+            $posts = $posts->join('user_details','users.id','=','user_details.user_id');
+            $posts = $posts->whereIn('posts.user_id',$post_creators);
+            $posts = $posts->where('post_id','<=',$last_id);
+            if($request->type=='text'){
+                $posts = $posts->where('post_type','text');
+            }
+            if($request->type=='album'){
+                $posts = $posts->where('post_type','photo');
+            }
+            if($request->type=='video'){
+                $posts = $posts->where('post_type','video');
+            }
+            $posts = $posts->orderBy('post_id','desc');
+            $posts = $posts->limit(5);
+            $posts = $posts->get();
 
             return ['status'=>200,'reason'=>'','posts'=>$posts,'last_id'=>$last_id];
         }

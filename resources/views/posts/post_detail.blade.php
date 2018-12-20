@@ -22,7 +22,7 @@
             @endif
             <!--Likes-->
             <button id="like_btn" type="button" class="btn {{ ($my_like==0)? 'btn-yellow' : 'btn-green' }} btn-sm" 
-            onclick="save_post_like({{ $post->post_id }})"><i class="fa fa-thumbs-o-up"></i></button>
+            onclick="save_post_like({{ $post->post_id }})"><i id="p_like_ico_{{ $post->post_id }}" class="fa fa-thumbs-o-up"></i></button>
             <span class="counter" id="p_like_{{ $post->post_id }}">{{ count($post->likes) }}</span>
             <!--Comments-->
             <a href="#total_comments" class="btn btn-red btn-sm">
@@ -79,6 +79,7 @@
         <form id="comment_form" class="login-form" method="post" action="">
             {{ csrf_field() }}  
             <input type="hidden" name="post_id" value="{{ $post->post_id }}">
+            <input type="hidden" id="comment_from" value="post_detail">
             <div class="md-form">
                 {!! Form::textarea('additional_details', null, array('class'=>'editor','name'=>'comment_text','id'=>'comment_text')) !!}
             </div>
