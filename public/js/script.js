@@ -250,13 +250,13 @@ $(document).ready(function(){
       beforeSend: function() {
       },
       uploadProgress: function() {
-        $(".image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2'>Uploading Image</h5><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>");
+        $(".image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2'>ছবি আপলোড করা হচ্ছে</h5><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>");
       },
       success: function() {
-        $(".image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 light-green-text'><i class='fa fa-check-circle'></i> Image Uploaded</h5><p class='mt-1 mb-2 deep-orange-text'>Wait till return message...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
+        $(".image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 light-green-text'><i class='fa fa-check-circle'></i> ছবি আপলোড হয়েছে</h5><p class='mt-1 mb-2 deep-orange-text'>প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন ..</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
       },
       error: function() {
-       $(".image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 red-text'><i class='fa fa-warning'></i> Image can't be Uploaded!</h5><p class='mt-1 mb-2 light-blue-text'>Something went wrong in the server. Wait till the page refreshes...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
+       $(".image_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 red-text'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!</h5><p class='mt-1 mb-2 light-blue-text'>সার্ভারে কিছু ত্রুটি হয়েছে।! প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
       },
       complete: function(xhr) {
         location.reload();
