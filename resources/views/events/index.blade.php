@@ -26,7 +26,7 @@
 @if(empty($search))
 	<a href="{{ route('events.create') }}" class="btn btn-outline-danger btn-rounded waves-effect"><i class="fa fa-plus pr-2"></i>নতুন ইভেন্ট যোগ করুন</a>
 @else
-  	<a class="btn btn-sm btn-dark-green" href="{{ route('events.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> রিফ্রেশ তালিকা</a>
+  	<a class="btn btn-sm btn-dark-green" href="{{ route('events.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i>রিফ্রেশ তালিকা</a>
 @endif
 
 @if(Request::url() === url('/').'/events')

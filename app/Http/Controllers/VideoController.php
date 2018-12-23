@@ -13,7 +13,8 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        $search = '';
+        return view('videos.index', compact('search'));
     }
 
     /**
@@ -23,7 +24,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        //
+        return view('videos.create');
     }
 
     /**

@@ -73,19 +73,25 @@ class HomeController extends Controller
     public function news(Request $request)
     {
         try {
+            $search = '';
+
             $data['news'] = News::query();
 
             if($request->start_date){
+                $search .= $request->start_date.' ';
                 $data['news'] = $data['news']->where('created_at','>=',date('Y-m-d',strtotime($request->start_date)));
             }
             if($request->end_date){
+                $search .= $request->end_date.' ';
                 $data['news'] = $data['news']->where('created_at','<=',date('Y-m-d',strtotime($request->end_date)));
             }
 
             if($request->keyword){
+                $search .= $request->keyword.' ';
                 $data['news'] = $data['news']->where('description','LIKE','%'.$request->keyword.'%');
             }
             $data['news'] = $data['news']->paginate(10);
+            $data['search'] = $search;
             return view('news.index',$data);
         }
         catch (\Exception $e) {

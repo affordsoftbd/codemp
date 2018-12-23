@@ -26,7 +26,7 @@
 @if(empty($search))
 <a href="{{ route('messages.create') }}" class="btn btn-outline-danger btn-rounded waves-effect"><i class="fa fa-plus pr-2"></i>নতুন বার্তা যোগ করুন</a>
 @else
-  <a class="btn btn-sm btn-dark-green" href="{{ route('messages.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> রিফ্রেশ তালিকা</a>
+  <a class="btn btn-sm btn-dark-green" href="{{ route('messages.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i>রিফ্রেশ তালিকা</a>
 @endif
 
 @if(Request::url() === url('/').'/messages')
