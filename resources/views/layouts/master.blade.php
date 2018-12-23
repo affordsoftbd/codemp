@@ -726,13 +726,13 @@
                 $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>Connecting with server...</p>");
               },
               uploadProgress: function() {
-                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>Video is being saved! Please wait...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>");
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>ভিডিও সংরক্ষণ করা হচ্ছে! অনুগ্রহপূর্বক অপেক্ষা করুন...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>");
               },
               success: function() {
-                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 green-text'>Video has been saved. Wait till return message..</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>").fadeIn("slow");        
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 green-text'>ভিডিও সংরক্ষণ করা হয়েছে। প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন ..</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>").fadeIn("slow");        
               },
               error: function() {
-               $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 red-text'>Something went wrong in the server. Wait till return message..</p>").fadeIn("slow");        
+               $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 red-text'>সার্ভারে কিছু ত্রুটি হয়েছে।. প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন ..</p>").fadeIn("slow");        
               },
               complete: function(xhr) {
                 $(".input_video").val(null);
