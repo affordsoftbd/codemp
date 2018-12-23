@@ -686,7 +686,7 @@
                     $('#album_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%; height: 20px' aria-valuenow='100%' aria-valuemin='0' aria-valuemax='100'>100%</div></div>");   
                     },
                     error: function() {
-                    $("#album_upload_feedback").html("<h5 class='mt-1 mb-2 red-text text-center'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text text-center'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p>").fadeIn("slow");        
+                    $("#album_upload_feedback").html("<h5 class='mt-1 mb-2 red-text text-center'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text text-center'>সার্ভারে কিছু ত্রুটি হয়েছে।! প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন ..</p>").fadeIn("slow");        
                     },
                     complete: function(xhr) {
                     $(".input_album").val(null);
@@ -729,10 +729,10 @@
                 $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>ভিডিও সংরক্ষণ করা হচ্ছে! অনুগ্রহপূর্বক অপেক্ষা করুন...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>");
               },
               success: function() {
-                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 green-text'>ভিডিও সংরক্ষণ করা হয়েছে। প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন ..</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>").fadeIn("slow");        
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 green-text'>ভিডিও সংরক্ষণ করা হয়েছে!। প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন ..</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>").fadeIn("slow");        
               },
               error: function() {
-               $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 red-text'>সার্ভারে কিছু ত্রুটি হয়েছে।. প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন ..</p>").fadeIn("slow");        
+               $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 red-text'>সার্ভারে কিছু ত্রুটি হয়েছে।! প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন ..</p>").fadeIn("slow");        
               },
               complete: function(xhr) {
                 $(".input_video").val(null);
