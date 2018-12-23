@@ -42,6 +42,9 @@ Route::put('/events/comments/{id}/update', 'EventController@updateComment')->nam
 Route::delete('/events/comments/{id}/delete', 'EventController@deleteComment')->name('events.comment.delete');
 Route::put('/events/{id}/image/update', 'EventController@updateImage')->name('event.image.update');
 
+/*Video routes*/
+Route::resource('videos', 'VideoController');
+
 /*News routes*/
 Route::get('/news', 'HomeController@news')->name('news');
 Route::get('/news/comment/{id}', 'HomeController@editNewsComment')->name('news.comment.edit');
