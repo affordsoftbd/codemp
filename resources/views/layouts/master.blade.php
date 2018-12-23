@@ -667,6 +667,99 @@
             fileReader.readAsDataURL(f);
           }
         });
+
+          //  Jquery form for uploading image and showing progress (image_error_message)
+
+        (function() {
+            $('.upload_album').ajaxForm({
+                beforeSend: function() {
+                    $('#image_error_message').delay(5000).empty();
+                    $('#album_upload_feedback').fadeOut('fast', function() {
+                        $(this).html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 0%; height: 20px' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>0%</div></div>").fadeIn('slow');
+                    });
+                    },
+                    uploadProgress: function(event, position, total, percentComplete) {
+                    percentVal = percentComplete + '%';
+                    $('#album_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: "+percentVal+"; height: 20px' aria-valuenow='"+percentVal+"' aria-valuemin='0' aria-valuemax='100'>"+percentVal+"</div></div>");
+                    },
+                    success: function() {
+                    $('#album_upload_feedback').html("<div class='progress md-progress' style='height: 20px'><div class='progress-bar bg-success progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%; height: 20px' aria-valuenow='100%' aria-valuemin='0' aria-valuemax='100'>100%</div></div>");   
+                    },
+                    error: function() {
+                    $("#album_upload_feedback").html("<h5 class='mt-1 mb-2 red-text text-center'><i class='fa fa-warning'></i> ছবি আপলোড করা যাচ্ছে না!!</h5><p class='mt-1 mb-2 light-blue-text text-center'>সার্ভারে সমস্যার সম্মুখীন হয়েছে।! অনুগ্রহপূর্বক আবার চেষ্টা করুন!</p>").fadeIn("slow");        
+                    },
+                    complete: function(xhr) {
+                    $(".input_album").val(null);
+                    $("#image_description").empty().val("");
+                    $("#selected_images_names").empty().val("");
+                    $('#album_upload_feedback').fadeOut('slow', function() {
+                        $(this).empty();
+                    });
+                    var json = JSON.parse(xhr.responseText);
+                    if(json.response == 'error'){
+                        for( var i = 0; i<json.message.length; i++){
+                            showNotification("এরর!", json.message[i], "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                        }
+
+                    }
+                    else{
+                        for( var i = 0; i<json.message.length; i++){
+                            showNotification("সাফল্য!", json.message[i], "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                        }
+                    }
+
+                    var last_id = $('#last_id').val();
+                    var content_type = $('#content_type').val();
+                    $('#last_id').val(parseInt(last_id)+1);
+
+                    getPost(parseInt(last_id)+1,'init', content_type);
+                }
+            }); 
+        })();
+
+          //  Jquery form for uploading video and showing progress
+
+        (function() {
+            $('.share_video').ajaxForm({
+              beforeSend: function() {
+                $('#video_error_message').delay(5000).empty();
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>Connecting with server...</p>");
+              },
+              uploadProgress: function() {
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 orange-text'>Video is being saved! Please wait...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>");
+              },
+              success: function() {
+                $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 green-text'>Video has been saved. Wait till return message..</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div>").fadeIn("slow");        
+              },
+              error: function() {
+               $("#video_upload_feedback").empty().append("<p class='mt-1 mb-2 red-text'>Something went wrong in the server. Wait till return message..</p>").fadeIn("slow");        
+              },
+              complete: function(xhr) {
+                $(".input_video").val(null);
+                $("#selected_video_name").empty().val("");
+                $("#video_description").empty().val("");
+                $('#video_upload_feedback').fadeOut('slow', function() {
+                    $(this).empty();
+                });
+                var json = JSON.parse(xhr.responseText);
+                if(json.response == 'error'){
+                    for( var i = 0; i<json.message.length; i++){
+                        showNotification("এরর!", json.message[i], "#", "danger", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                    }
+
+                }
+                else{
+                    showNotification("সাফল্য!", json.message, "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
+                }
+
+                var last_id = $('#last_id').val();
+                var content_type = $('#content_type').val();
+                $('#last_id').val(parseInt(last_id)+1);
+
+                getPost(parseInt(last_id)+1,'init', content_type);
+              }
+            }); 
+        })();
     </script>
 
   </body>
