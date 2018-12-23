@@ -232,7 +232,7 @@ class MessageController extends Controller
             if((isset($message) && count($message->viewers) == 0) || (isset($message) && count($message->viewers) > 0 && !$message->viewers->contains('viewer', $user->id))){
                 $unreadMessages[] = array(
                     'user'=>$message->user->first_name.' '.$message->user->last_name, 
-                    'image'=> !empty($message->user->detail->image_path) ? asset($message->user->detail->image_path) : url('/').'/img/avatar.png', 
+                    'image'=> file_exists($message->user->detail->image_path) ? asset($message->user->detail->image_path) : url('/').'/img/avatar.png', 
                     'subject_id'=>$message->message_subject->id, 
                     'message'=>strip_tags(substr($message->message_text,0,20))."...", 
                     'date'=>date('l d F Y, h:i A', strtotime($message->created_at))
