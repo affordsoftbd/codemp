@@ -79,13 +79,7 @@
 
 @section('extra-script')
 
-    <script>        
-        $(document).ready(function(){
-            var last_post_id = {{$last_id}}
-            $('#last_load').val(last_post_id);
-            $('#last_id').val(last_post_id);
-            getPost(last_post_id,'init','text');
-        });
+    <script>   
 
         $(document).on('click','.load_more_button',function(){
             var last_load = $('#last_load').val(); 
@@ -93,6 +87,13 @@
             getPost(parseInt(last_load)-5,'','text');
         });
 
+        $(document).ready(function(){
+            var last_post_id = {{$last_id}}
+            $('#last_load').val(last_post_id);
+            $('#last_id').val(last_post_id);
+            getPost(last_post_id,'init','text');
+        });
+        
     </script>
 @endsection
 
