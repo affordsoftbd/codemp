@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class VideoController extends Controller
 {
@@ -15,6 +16,11 @@ class VideoController extends Controller
     {
         $search = '';
         return view('videos.index', compact('search'));
+    }
+
+    public function saveRecordedVideo(Request $request){
+        $video_path = $this->uploadVideo($request->file, 'records');
+        Log::info($video_path);
     }
 
     /**

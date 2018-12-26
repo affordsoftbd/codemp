@@ -44,6 +44,7 @@ Route::put('/events/{id}/image/update', 'EventController@updateImage')->name('ev
 
 /*Video routes*/
 Route::resource('videos', 'VideoController');
+Route::post('video/record/save', 'VideoController@saveRecordedVideo');
 
 /*News routes*/
 Route::get('/news', 'HomeController@news')->name('news');
