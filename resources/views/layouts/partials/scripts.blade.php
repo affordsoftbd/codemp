@@ -41,7 +41,7 @@
     {{Html::script('plugins/material-addons/js/datatables.min.js') }}
 
     <!-- Video JavaScript -->
-    {{Html::script('plugins/video-js/video.js')}}
+    {{Html::script('plugins/video-js/video.min.js')}}
     {{Html::script('plugins/video-js/newskin.js')}}
 
     <!-- MDB core JavaScript -->

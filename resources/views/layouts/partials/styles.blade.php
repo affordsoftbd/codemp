@@ -27,7 +27,7 @@
     {{ Html::style('css/material.min.css') }}
 
      <!-- Video Css -->
-    {{ Html::style('https://vjs.zencdn.net/7.2.3/video-js.css') }}
+    {{ Html::style('https://vjs.zencdn.net/7.2.4/video-js.min.css') }}
 
     <!-- Custom styles for this template -->
     {{ Html::style('css/style.css') }}
