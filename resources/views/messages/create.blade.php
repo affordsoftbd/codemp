@@ -4,7 +4,10 @@
 
 @section('extra-css')
 
-        <!-- Animation Css -->
+        <!-- Video Surfer Css -->
+    {{ Html::style('//unpkg.com/videojs-wavesurfer/dist/css/videojs.wavesurfer.min.css') }}
+
+        <!-- Video Recorder Css -->
     {{ Html::style('plugins/video-recorder/css/videojs.record.min.css') }}
 
     <style>
@@ -12,7 +15,10 @@
         #myVideo {
             background-color: #b3b3b3;
         }
-     </style>
+        #myAudio {
+            background-color: #b3b3b3;
+        }
+    </style>
 
 @endsection
 
@@ -73,8 +79,9 @@
   <!-- Panel 2 -->
   <div class="tab-pane fade" id="panel666" role="tabpanel">
 
-    <p class="pt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+    <div class="audio-record stylish-color" align="center" style="padding-top: 15px; padding-bottom: 15px;">
+        <audio id="myAudio" class="video-js vjs-default-skin"></audio>
+    </div>
 
   </div>
   <!-- Panel 2 -->
@@ -102,10 +109,19 @@
 @section('extra-script')
 
         <!-- Record RTC Js -->
-    {{ Html::script('https://cdn.webrtc-experiment.com/RecordRTC.js') }}
+    {{ Html::script('//cdn.webrtc-experiment.com/RecordRTC.js') }}
 
         <!-- Adapter Js -->
-    {{ Html::script('https://unpkg.com/webrtc-adapter/out/adapter.js') }}
+    {{ Html::script('//unpkg.com/webrtc-adapter/out/adapter.js') }}
+
+        <!-- Webserver Js -->
+    {{ Html::script('//unpkg.com/wavesurfer.js/dist/wavesurfer.min.js') }}
+
+        <!-- Webserver Microphone  Js -->
+    {{ Html::script('//unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.microphone.min.js') }}
+
+        <!-- Webserver Video Js -->
+    {{ Html::script('//unpkg.com/videojs-wavesurfer/dist/videojs.wavesurfer.min.js') }}
 
         <!-- Video Recorder Js -->
     {{ Html::script('plugins/video-recorder/js/videojs.record.min.js') }}
@@ -114,7 +130,7 @@
     {{ Html::script('plugins/video-recorder/js/browser-workarounds.js') }}
 
     <script>
-        var options = {
+        var video_options = {
             controls: true,
             width: 280,
             height: 210,
@@ -131,7 +147,7 @@
         // apply some workarounds for certain browsers
         applyVideoWorkaround();
 
-        var player = videojs('myVideo', options, function() {
+        var video_player = videojs('myVideo', video_options, function() {
             // print version information at startup
             var msg = 'Using video.js ' + videojs.VERSION +
                 ' with videojs-record ' + videojs.getPluginVersion('record') +
@@ -140,24 +156,24 @@
         });
 
         // error handling
-        player.on('deviceError', function() {
-            console.log('device error:', player.deviceErrorCode);
-            swal('ডিভাইস ত্রুটি', player.deviceErrorCode)
+        video_player.on('deviceError', function() {
+            console.log('device error:', video_player.deviceErrorCode);
+            swal('ডিভাইস ত্রুটি', video_player.deviceErrorCode)
         });
 
         // user clicked the record button and started recording
-        player.on('startRecord', function() {
+        video_player.on('startRecord', function() {
             console.log('started recording!');
         });
 
         // user completed recording and stream is available
-        player.on('finishRecord', function() {
+        video_player.on('finishRecord', function() {
             // the blob object contains the recorded data that
             // can be downloaded by the user, stored on server etc.
-            console.log('finished recording: ', player.recordedData);
+            console.log('finished recording: ', video_player.recordedData);
 
                 // upload recorded data
-            upload(player.recordedData);
+            upload(video_player.recordedData);
         });
 
         function upload(blob) {
@@ -177,6 +193,78 @@
             ).catch(
                 error => console.error('an upload error occurred!')
             );
+        }
+
+        var audio_player;
+        var audio_options = {
+            controls: true,
+            width: 280,
+            height: 210,
+            plugins: {
+                wavesurfer: {
+                    src: 'live',
+                    waveColor: '#36393b',
+                    progressColor: 'black',
+                    debug: true,
+                    cursorWidth: 1,
+                    msDisplayMax: 20,
+                    hideScrollbar: true
+                },
+                record: {
+                    audio: true,
+                    video: false,
+                    maxLength: 20,
+                    debug: true
+                }
+            }
+        };
+
+            // apply some workarounds for certain browsers
+        applyAudioWorkaround();
+
+        if (isSafari) {
+                // add start button for safari
+            addStartButton();
+        } else {
+                // other browsers
+            createPlayer();
+        }
+
+        function createPlayer(event) {
+            if (isSafari) {
+                if (event) {
+                        // hide button on safari
+                    event.target.style.display = 'none';
+                }
+                updateContext(audio_options);
+            }
+            // create player
+            audio_player = videojs('myAudio', audio_options, function() {
+                // print version information at startup
+                var msg = 'Using video.js ' + videojs.VERSION +
+                    ' with videojs-record ' + videojs.getPluginVersion('record') +
+                    ', videojs-wavesurfer ' + videojs.getPluginVersion('wavesurfer') +
+                    ', wavesurfer.js ' + WaveSurfer.VERSION + ' and recordrtc ' +
+                    RecordRTC.version;
+                videojs.log(msg);
+            });
+
+            // error handling
+            audio_player.on('deviceError', function() {
+                console.log('device error:', audio_player.deviceErrorCode);
+            });
+
+            // user clicked the record button and started recording
+            audio_player.on('startRecord', function() {
+                console.log('started recording!');
+            });
+
+            // user completed recording and stream is available
+            audio_player.on('finishRecord', function() {
+                // the blob object contains the recorded data that
+                // can be downloaded by the user, stored on server etc.
+                console.log('finished recording: ', audio_player.recordedData);
+            });
         }
     </script>
 

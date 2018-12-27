@@ -11,9 +11,6 @@
     <a href="{{ route('messages.index') }}" class="list-group-item list-group-item-action {{ Route::is('messages*')? 'active':'' }} waves-effect">
         <i class="fa fa-envelope fa-sm pr-2"></i>বার্তা
     </a>
-    <a href="{{ route('videos.index') }}" class="list-group-item list-group-item-action {{ Route::is('videos*')? 'active':'' }} waves-effect">
-        <i class="fa fa-video-camera pr-2"></i>ভিডিও
-    </a>
     <a href="{{ route('summeries') }}" class="list-group-item list-group-item-action {{Route::is('summeries*')? 'active':''}} waves-effect">
         <i class="fa fa-dashboard fa-sm pr-2"></i>সংক্ষিপ্তসার
     </a>
