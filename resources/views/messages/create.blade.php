@@ -13,10 +13,10 @@
     <style>
             /* change player background color */
         #myVideo {
-            background-color: #b3b3b3;
+            background-color: #ff4d4d;
         }
         #myAudio {
-            background-color: #b3b3b3;
+            background-color: #ff4d4d;
         }
     </style>
 
@@ -62,7 +62,7 @@
   <!-- Panel 1 -->
   <div class="tab-pane fade in show active" id="panel555" role="tabpanel">
 
-    <div class="video-record stylish-color" align="center" style="padding-top: 15px; padding-bottom: 15px;">
+    <div class="video-record success-color-dark" align="center" style="padding-top: 15px; padding-bottom: 15px;">
         <video id="myVideo" class="video-js vjs-default-skin">
           <p class="vjs-no-js">
             এই ভিডিওটি দেখতে দয়া করে জাভাস্ক্রিপ্ট সক্রিয় করুন, অথবা একটি আপগ্রেড বিবেচনা করুন ওয়েব ব্রাউজার যে
@@ -79,7 +79,7 @@
   <!-- Panel 2 -->
   <div class="tab-pane fade" id="panel666" role="tabpanel">
 
-    <div class="audio-record stylish-color" align="center" style="padding-top: 15px; padding-bottom: 15px;">
+    <div class="audio-record success-color-dark" align="center" style="padding-top: 15px; padding-bottom: 15px;">
         <audio id="myAudio" class="video-js vjs-default-skin"></audio>
     </div>
 
