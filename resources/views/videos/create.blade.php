@@ -82,7 +82,8 @@
 		            audio: true,
 		            video: true,
 		            maxLength: 10,
-		            debug: true
+		            debug: true,
+		    		videoMimeType: 'video/mp4',
 		        }
 		    }
 		};
