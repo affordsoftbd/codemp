@@ -38,6 +38,11 @@ class MessageController extends Controller
         $view->save();
     }
 
+    public function saveRecordedVideo(Request $request){
+        $video_path = $this->uploadVideo($request->file, 'records');
+        Log::info($video_path);
+    }
+
     /**
      * Display a listing of the resource.
      *

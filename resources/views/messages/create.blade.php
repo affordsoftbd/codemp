@@ -36,7 +36,7 @@
     @endif
 
     <h6 class="font-weight-bold my-3">মিডিয়া যোগ করুন</h6>
-    
+
 <!-- Nav tabs -->
 <ul class="nav nav-tabs md-tabs nav-justified danger-color" role="tablist">
   <li class="nav-item">
@@ -116,8 +116,8 @@
     <script>
         var options = {
             controls: true,
-            width: 320,
-            height: 240,
+            width: 280,
+            height: 210,
             plugins: {
                 record: {
                     audio: true,
@@ -142,6 +142,7 @@
         // error handling
         player.on('deviceError', function() {
             console.log('device error:', player.deviceErrorCode);
+            swal('ডিভাইস ত্রুটি', player.deviceErrorCode)
         });
 
         // user clicked the record button and started recording
@@ -160,7 +161,7 @@
         });
 
         function upload(blob) {
-            var serverUrl = '/video/record/save';
+            var serverUrl = '/messages/video/record/save';
             var formData = new FormData();
             formData.append('file', blob, blob.name);
             console.log('upload recording ' + blob.name + ' to ' + serverUrl);
