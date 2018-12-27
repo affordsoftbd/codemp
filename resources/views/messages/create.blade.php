@@ -13,10 +13,16 @@
     <style>
             /* change player background color */
         #myVideo {
-            background-color: #ff4d4d;
+            background-image: linear-gradient(-45deg, #ff1a1a, #ff6666);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
         #myAudio {
-            background-color: #ff4d4d;
+            background-image: linear-gradient(-45deg, #ff1a1a, #ff6666);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .recorder {
+            padding-top: 15px; 
+            padding-bottom: 15px;
         }
     </style>
 
@@ -43,51 +49,51 @@
 
     <h6 class="font-weight-bold my-3">মিডিয়া যোগ করুন</h6>
 
-<!-- Nav tabs -->
-<ul class="nav nav-tabs md-tabs nav-justified danger-color" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
-    <i class="fa fa-video-camera pr-2"></i>ভিডিও</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
-    <i class="fa fa-microphone pr-2"></i>অডিও</a>
-  </li>
-</ul>
-<!-- Nav tabs -->
+    <!-- Media tabs -->
+    <ul class="nav nav-tabs md-tabs nav-justified danger-color" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
+        <i class="fa fa-video-camera pr-2"></i>ভিডিও</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
+        <i class="fa fa-microphone pr-2"></i>অডিও</a>
+      </li>
+    </ul>
+    <!-- Media tabs -->
 
-<!-- Tab panels -->
-<div class="tab-content">
+    <!-- Media panels -->
+    <div class="tab-content">
 
-  <!-- Panel 1 -->
-  <div class="tab-pane fade in show active" id="panel555" role="tabpanel">
+      <!-- Video Panel -->
+      <div class="tab-pane fade in show active" id="panel555" role="tabpanel">
 
-    <div class="video-record success-color-dark" align="center" style="padding-top: 15px; padding-bottom: 15px;">
-        <video id="myVideo" class="video-js vjs-default-skin">
-          <p class="vjs-no-js">
-            এই ভিডিওটি দেখতে দয়া করে জাভাস্ক্রিপ্ট সক্রিয় করুন, অথবা একটি আপগ্রেড বিবেচনা করুন ওয়েব ব্রাউজার যে
-            <a href="http://videojs.com/html5-video-support/" target="_blank">
-              HTML5 ভিডিও সমর্থন করে.
-            </a>
-          </p>
-        </video>
+        <div class="recorder success-color-dark z-depth-1-half border border-light rounded mb-0" align="center">
+            <video id="myVideo" class="video-js vjs-default-skin">
+              <p class="vjs-no-js">
+                এই ভিডিওটি দেখতে দয়া করে জাভাস্ক্রিপ্ট সক্রিয় করুন, অথবা একটি আপগ্রেড বিবেচনা করুন ওয়েব ব্রাউজার যে
+                <a href="http://videojs.com/html5-video-support/" target="_blank">
+                  HTML5 ভিডিও সমর্থন করে.
+                </a>
+              </p>
+            </video>
+        </div>
+
+      </div>
+      <!-- Video Panel -->
+
+      <!-- Audio Panel -->
+      <div class="tab-pane fade" id="panel666" role="tabpanel">
+
+        <div class="recorder success-color-dark z-depth-1-half border border-light rounded mb-0" align="center">
+            <audio id="myAudio" class="video-js vjs-default-skin"></audio>
+        </div>
+
+      </div>
+      <!-- Audio Panel -->
+
     </div>
-
-  </div>
-  <!-- Panel 1 -->
-
-  <!-- Panel 2 -->
-  <div class="tab-pane fade" id="panel666" role="tabpanel">
-
-    <div class="audio-record success-color-dark" align="center" style="padding-top: 15px; padding-bottom: 15px;">
-        <audio id="myAudio" class="video-js vjs-default-skin"></audio>
-    </div>
-
-  </div>
-  <!-- Panel 2 -->
-
-</div>
-<!-- Tab panels -->
+    <!-- Media panels -->
 
     <h6 class="font-weight-bold my-3">বার্তা</h6>
     <div class="md-form">
