@@ -176,25 +176,6 @@
             upload(video_player.recordedData);
         });
 
-        function upload(blob) {
-            var serverUrl = '/messages/video/record/save';
-            var formData = new FormData();
-            formData.append('file', blob, blob.name);
-            console.log('upload recording ' + blob.name + ' to ' + serverUrl);
-                // start upload
-            fetch(serverUrl, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
-                },
-            }).then(
-                success => console.log('upload recording complete.')
-            ).catch(
-                error => console.error('an upload error occurred!')
-            );
-        }
-
         var audio_player;
         var audio_options = {
             controls: true,
@@ -264,7 +245,30 @@
                 // the blob object contains the recorded data that
                 // can be downloaded by the user, stored on server etc.
                 console.log('finished recording: ', audio_player.recordedData);
+
+                    // upload recorded data
+                upload(audio_player.recordedData);
             });
+        }
+
+            // Upload file to server
+        function upload(blob) {
+            var serverUrl = '/messages/video/record/save';
+            var formData = new FormData();
+            formData.append('file', blob, blob.name);
+            console.log('upload recording ' + blob.name + ' to ' + serverUrl);
+                // start upload
+            fetch(serverUrl, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+                },
+            }).then(
+                success => console.log('upload recording complete.')
+            ).catch(
+                error => console.error('an upload error occurred!')
+            );
         }
     </script>
 
