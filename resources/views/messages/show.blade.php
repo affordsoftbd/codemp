@@ -51,8 +51,10 @@
 		</div>
         <hr>
         @if(!empty($conversation->media_path))
-        	<h5 class="font-weight-bold">সংযুক্ত মিডিয়া</h5>
-        	<p>{{ $conversation->media_path }}</p>
+        	<h5 class="font-weight-bold text-muted"><i class="fa fa-play pr-2"></i>সংযুক্ত মিডিয়া</h5>
+        	<video id="my-video" class="video-js my-3" preload="auto" controls data-setup="{}" style="width:100%">
+              <source src="{{ asset($conversation->media_path) }}">
+            </video>
         @endif
         <!-- Pagination -->
         <nav aria-label="Page navigation example">

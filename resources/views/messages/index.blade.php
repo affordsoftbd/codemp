@@ -51,7 +51,7 @@
 {!! Form::close() !!}
 
 @foreach($messages as $message)
-	<a href="{{ route('messages.show', $message->id) }}" target="_blank">
+	<a href="{{ route('messages.show', $message->id) }}">
 	  <div class="row mb-5">
 	    <div class="col-md-1">
 	     <img src="{{ file_exists($message->messages->last()->user->detail->image_path) ? asset($message->messages->last()->user->detail->image_path) : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-0 image-thumbnail my-3">
