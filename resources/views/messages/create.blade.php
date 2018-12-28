@@ -36,9 +36,13 @@
 <hr>
 
 {!! Form::open(['method' => 'post', 'route' => ['messages.subject.add'], 'class'=>'md-form login-form', 'name' => 'check_edit']) !!}
+    
     @if(!empty($recipient))
         {!! Form::hidden('recipient', $recipient->id) !!}
     @endIf
+
+    {!! Form::hidden('media_path', null) !!}
+
     <div class="md-form">
         {!! Form::textarea('subject_text', null, array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'subject_text')) !!}
         {!! Form::label('subject_text', 'বার্তা বিষয়') !!}
@@ -276,8 +280,9 @@
                 (response) => response.json()
             ).then(
                 (responseJSON) => {
-                    alert(responseJSON);
                     console.log('Upload record complete '+responseJSON);
+                    $('input[name=media_path]').val(responseJSON);
+                    showNotification("সাফল্য!", "রেকর্ড মিডিয়া যোগ করা  হয়েছে ", "#", "success", "top", "right", 20, 20, 'animated fadeInDown', 'animated fadeOutUp');
                 }
             ).catch(
                 error => console.error('an upload error occurred!')

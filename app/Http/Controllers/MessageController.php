@@ -101,6 +101,7 @@ class MessageController extends Controller
         $message = $this->message;
         $message->message_subject_id = $messageSubject->id;
         $message->message_text = $request->message_text;
+        $message->media_path = $request->media_path;
         $message->user_id = $request->session()->get('user_id');
         $message->save();
         $messageReceipent = $this->messageReceipent;
