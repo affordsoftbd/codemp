@@ -96,12 +96,12 @@ class MessageController extends Controller
 
         $messageSubject = $this->messageSubject;
         $messageSubject->subject_text = $request->subject_text;
+        $messageSubject->media_path = $request->media_path;
         $messageSubject->author = $request->session()->get('user_id');
         $messageSubject->save();
         $message = $this->message;
         $message->message_subject_id = $messageSubject->id;
         $message->message_text = $request->message_text;
-        $message->media_path = $request->media_path;
         $message->user_id = $request->session()->get('user_id');
         $message->save();
         $messageReceipent = $this->messageReceipent;
@@ -314,7 +314,7 @@ class MessageController extends Controller
     public function updateMessageSubject(Request $request, $id)
     {
         $rules = [
-            'message_text' => 'required|max:500'
+            'subject_text' => 'required|max:500'
         ];
 
         $customMessages = [

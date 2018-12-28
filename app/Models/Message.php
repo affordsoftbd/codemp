@@ -10,7 +10,7 @@ class Message extends Model
 
     protected $table = "messages";
 
-    protected $fillable = ['message_text', 'message_subject_id', 'media_path', 'user_id'];
+    protected $fillable = ['message_text', 'message_subject_id', 'user_id'];
 
     use SoftDeletes;
 

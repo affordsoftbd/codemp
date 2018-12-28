@@ -29,7 +29,7 @@
 		    </div>
 		    <div class="col-xl-6 col-lg-4 col-md-4">
 		        <h4>{{ $conversation->subject_text }}</h4>
-				<small class="red-text">{{ $conversation->created_at->format('l d F Y, h:i A') }}</small>
+				<small class="red-text">{{ $conversation->created_at->format('l d F Y, h:i A') }} {{ $conversation->media_path }}</small>
 		    </div>
 		    <div class="col-xl-5 col-lg-6 col-md-6" align="right">
                 <a class="btn btn-green btn-sm" href="{{ route('messages.show', $conversation->id) }}">

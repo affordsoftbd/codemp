@@ -9,7 +9,7 @@ class MessageSubject extends Model
 {
     protected $table = "message_subjects";
 
-    protected $fillable = ['subject_text', 'author'];
+    protected $fillable = ['subject_text', 'media_path', 'author'];
 
     use SoftDeletes;
 
