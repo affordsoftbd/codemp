@@ -232,6 +232,7 @@
             // error handling
             audio_player.on('deviceError', function() {
                 console.log('device error:', audio_player.deviceErrorCode);
+                swal('ডিভাইস ত্রুটি', audio_player.deviceErrorCode);
             });
 
             // user clicked the record button and started recording
