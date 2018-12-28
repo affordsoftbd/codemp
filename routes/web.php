@@ -21,6 +21,7 @@ Route::get('/messages/subject/{id}/add/workers', 'MessageController@addWorkers')
 Route::get('/messages/subject/{id}/group/{group_id}/members', 'MessageController@addGroupMembers')->name('messages.add.group.members');
 Route::resource('messages', 'MessageController');
 Route::post('/messages/subject/{id}/getUserList', 'MessageController@getUserList')->name('messages.user.list');
+Route::post('/messages/video/record/save', 'MessageController@saveRecordedVideo')->name('messages.video.record.save');
 Route::delete('/messages/{id}/receipent/{receipent}/remove', 'MessageController@removeReceipent')->name('messages.receipent.remove');
 Route::post('/messages/subject/add', 'MessageController@addMessageSubject')->name('messages.subject.add');
 Route::put('/messages/subject/{id}/update', 'MessageController@updateMessageSubject')->name('messages.subject.update');
@@ -41,10 +42,6 @@ Route::post('/events/comments/add', 'EventController@addComment')->name('events.
 Route::put('/events/comments/{id}/update', 'EventController@updateComment')->name('events.comment.update');
 Route::delete('/events/comments/{id}/delete', 'EventController@deleteComment')->name('events.comment.delete');
 Route::put('/events/{id}/image/update', 'EventController@updateImage')->name('event.image.update');
-
-/*Video routes*/
-Route::resource('videos', 'VideoController');
-Route::post('video/record/save', 'VideoController@saveRecordedVideo');
 
 /*News routes*/
 Route::get('/news', 'HomeController@news')->name('news');
