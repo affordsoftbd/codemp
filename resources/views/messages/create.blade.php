@@ -273,7 +273,7 @@
                     'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
                 },
             }).then(
-                (response) => response.json()
+                (response) => response.json() asd
             ).then(
                 (responseJSON) => {
                     alert(responseJSON);
