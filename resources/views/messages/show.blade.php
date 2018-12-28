@@ -51,7 +51,12 @@
 		</div>
         <hr>
         @if(!empty($conversation->media_path))
-        	<h5 class="font-weight-bold text-muted"><i class="fa fa-play pr-2"></i>সংযুক্ত মিডিয়া</h5>
+        	<h5 class="font-weight-bold text-muted">
+        		<i class="fa fa-play pr-2"></i>সংযুক্ত মিডিয়া
+        		<button class="btn btn-sm btn-success mx-3" id="media-link-button" onclick="copyMediaLink('{{ asset($conversation->media_path) }}')">
+        			<i class="fa fa-share-square pr-2"></i>Copy Link
+        		</button>
+        	</h5>
         	<video id="my-video" class="video-js my-3" preload="auto" controls data-setup="{}" style="width:100%">
               <source src="{{ asset($conversation->media_path) }}">
             </video>
@@ -223,6 +228,17 @@
 @section('extra-script')
 
 <script type="text/javascript">
+
+function copyMediaLink(value) {
+  	var tempInput = document.createElement("input");
+    tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+    tempInput.value = value;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+	$('#media-link-button').empty().append("<i class='fa fa-exclamation-triangle pr-2'></i>Link Copied!");
+}
 
 $(document).ready(function(){
 
