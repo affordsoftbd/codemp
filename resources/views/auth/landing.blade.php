@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card wow h-100" data-wow-delay="0.3s">
-                        <div class="card-body">
+                        <div class="card-body" id="landing_page_registration">
 
                             <h5 class="red-text"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>রেজিস্টার করুন</h5><hr>
 

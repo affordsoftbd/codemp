@@ -73,7 +73,7 @@
         </div>
 
         <div class="text-center mb-5">
-            <a href="{{ route('welcome') }}"><i class="fa fa-user-plus pr-2"></i>নিবন্ধন করুন</a>
+            <a href="{{ route('welcome') }}#landing_page_registration"><i class="fa fa-user-plus pr-2"></i>নিবন্ধন করুন</a>
         </div>
 
     </div>
