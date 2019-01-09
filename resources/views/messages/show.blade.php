@@ -54,7 +54,7 @@
         	<h5 class="font-weight-bold text-muted">
         		<i class="fa fa-play pr-2"></i>সংযুক্ত মিডিয়া
         		<button class="btn btn-sm btn-success mx-3" id="media-link-button" onclick="copyMediaLink('{{ asset($conversation->media_path) }}')">
-        			<i class="fa fa-share-square pr-2"></i>Copy Link
+        			<i class="fa fa-share-square pr-2"></i>লিংক কপি করুন
         		</button>
         	</h5>
         	<video id="my-video" class="video-js my-3" preload="auto" controls data-setup="{}" style="width:100%">
@@ -237,7 +237,7 @@ function copyMediaLink(value) {
     tempInput.select();
     document.execCommand("copy");
     document.body.removeChild(tempInput);
-	$('#media-link-button').empty().append("<i class='fa fa-exclamation-triangle pr-2'></i>Link Copied!");
+	$('#media-link-button').empty().append("<i class='fa fa-exclamation-triangle pr-2'></i>লিঙ্ক কপি করা হয়েছে!");
 }
 
 $(document).ready(function(){
