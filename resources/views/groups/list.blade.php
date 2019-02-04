@@ -18,7 +18,7 @@
 
 @section('content')
 
-<h4 class="font-weight-bold green-text">বার্তা গ্রুপ এর তালিকা</h4>
+<h4 class="font-weight-bold green-text">গ্রুপ এর তালিকা</h4>
 <small class="red-text">{{ empty(request()->get('keyword')) ? 'সকল' : 'আপনার অনুসন্ধানের উপর ভিত্তি করে' }} গ্রুপ এর তালিকা</small>
 <hr>
 

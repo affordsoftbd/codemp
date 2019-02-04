@@ -13,6 +13,11 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
+.jquery_dropdown_result .list-group-item:hover{
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
 </style>
 @endsection
 
