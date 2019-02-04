@@ -147,7 +147,6 @@
 
     <!-- Participants -->
     <div class="col-lg-4 mb-4">
-        <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
         <button id="add_participant_dropdown" type="button" class="btn btn-sm btn-dark-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	      <i class="fa fa-check pr-2"></i>প্রাপকবর্গ নির্বাচন করুন
 	    </button>
@@ -165,6 +164,7 @@
             <input type="text" class="form-control" id="add_participant" data-url="{{ route('messages.user.list', $conversation->id) }}">
             <label for="add_participant">নির্দিষ্ট প্রাপক যোগ করুন</label>
         </div>
+        <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
 	    <p class="red-text small mt-3"><i class="fa fa-hand-stop-o pr-2"></i>নির্বাচিত প্রাপকরা বার্তা বিষযটি খুদেবার্তা হিসেবে পাবেন!</p>
         <h6>মোট অংশগ্রহণকারী: {{ count($conversation->receipents) }}</h6>
         <small> </small>
@@ -179,7 +179,7 @@
 		        	</div>
 		        	<div class="col-4">
 			        	{!! Form::open(['route' => ['messages.receipent.remove', $conversation->id, $receipent->id], 'method'=>'delete']) !!}
-				            {!! Form::button('<i class="fa fa-trash fa-sm" aria-hidden="true"></i>', array('class' => 'btn btn-sm btn-danger form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই প্রাপক মুছে ফেলা হবে!', 'confirmButtonText'=>'হ্যাঁ, আমি নিশ্চিত!', 'type'=>'submit')) !!}
+				            {!! Form::button('<i class="fa fa-trash fa-sm" aria-hidden="true"></i>', array('class' => 'btn btn-sm btn-danger form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই অংশগ্রহণকারী মুছে ফেলা হবে!', 'confirmButtonText'=>'হ্যাঁ, আমি নিশ্চিত!', 'type'=>'submit')) !!}
 				        {!! Form::close() !!}  
 		        	</div>
 		        </div>
@@ -274,6 +274,11 @@ $(document).ready(function(){
 	      $(".jquery_dropdown_result").empty();
 	    }
 	});
+
+    $(window).click(function() {
+        $("#add_participant").val('');
+        $('.jquery_dropdown_result').empty();
+    });
 
   	$(document).on('click', '.edit_message_button', function(){
 		var url = $(this).closest('div.social-meta').find('.message-div').data("url-edit");
