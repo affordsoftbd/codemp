@@ -27,28 +27,29 @@
 		    <div class="col-xl-1 col-lg-2 col-md-2 post_creator">
 		        <img src="{{ file_exists($conversation->subjectAuthor->detail->image_path) ? asset($conversation->subjectAuthor->detail->image_path) : url('/').'/img/avatar.png' }}" class="img-fluid rounded-circle z-depth-1-half image-thumbnail my-3">		        
 		    </div>
-		    <div class="col-xl-6 col-lg-4 col-md-4">
+		    <div class="col-xl-11 col-lg-10 col-md-10">
 		        <h4>{{ $conversation->subject_text }}</h4>
 				<small class="red-text">{{ $conversation->created_at->format('l d F Y, h:i A') }}</small>
 		    </div>
-		    <div class="col-xl-5 col-lg-6 col-md-6" align="right">
-                <a class="btn btn-green btn-sm" href="{{ route('messages.show', $conversation->id) }}">
-                	<i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i>বার্তা রিফ্রেশ করুন
-                </a>
-		        @if($conversation->author == $user->id && (strtotime($conversation->created_at) + 3600) > time())
-			        {!! Form::open(['route' => ['messages.subject.delete', $conversation->id], 'method'=>'delete']) !!}
-			            <a href="{{ route('messages.subject.edit', $conversation->id) }}" class="btn btn-light-green btn-sm">
-			                <i class="fa fa-edit"></i>
-			            </a>
-			            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
-			        {!! Form::close() !!}
-			    @elseIf($conversation->author != $user->id)
-			    	{!! Form::open(['route' => ['messages.receipent.remove', $conversation->id, $user->id], 'method'=>'delete']) !!}
-			            {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>কথোপকথন অগ্রাহ্য করুন', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই কথোপকথন দেখতে পারবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
-			        {!! Form::close() !!}   
-        		@endIf
-		    </div>
 		</div>
+        @if($conversation->author == $user->id && (strtotime($conversation->created_at) + 3600) > time())
+	        {!! Form::open(['route' => ['messages.subject.delete', $conversation->id], 'method'=>'delete']) !!}
+		        <a class="btn btn-green btn-sm" href="{{ route('messages.show', $conversation->id) }}">
+		        	<i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i>বার্তা রিফ্রেশ করুন
+		        </a>
+	            <a href="{{ route('messages.subject.edit', $conversation->id) }}" class="btn btn-light-green btn-sm">
+	                <i class="fa fa-edit"></i>
+	            </a>
+	            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'এই পোস্টটি আর উদ্ধার করা যাবে না!', 'confirmButtonText'=>'হ্যাঁ, পোস্টটি মুছে দিন!', 'type'=>'submit')) !!}
+	        {!! Form::close() !!}
+	    @elseIf($conversation->author != $user->id)
+	    	{!! Form::open(['route' => ['messages.receipent.remove', $conversation->id, $user->id], 'method'=>'delete']) !!}
+	            <a class="btn btn-green btn-sm" href="{{ route('messages.show', $conversation->id) }}">
+		        	<i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i>বার্তা রিফ্রেশ করুন
+		        </a>
+	            {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>কথোপকথন অগ্রাহ্য করুন', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই কথোপকথন দেখতে পারবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
+	        {!! Form::close() !!}   
+		@endIf
         <hr>
         @if(!empty($conversation->media_path))
         	<h5 class="font-weight-bold text-muted">
