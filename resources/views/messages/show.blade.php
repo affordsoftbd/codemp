@@ -14,8 +14,7 @@
 }
 
 .jquery_dropdown_result .list-group-item:hover{
-  background-color: #4caf50;
-  border-color: #4caf50;
+  background-color: #f2f2f2;
 }
 
 </style>
