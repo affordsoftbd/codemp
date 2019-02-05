@@ -148,7 +148,7 @@ class MessageController extends Controller
         $user = $this->user->findOrFail($receipent);
         $user->participating()->attach($id);
         $conversation = $this->messageSubject->findOrFail($id);  
-        $this->send_sms($conversation->subject_text, Auth::user()->id, $receipent, $id, 'messaging');
+        $this->save_sms_receivers($conversation->subject_text, Auth::user()->id, $receipent, $id, 'messaging', route('messages.show', $id));
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'প্রাপক যোগ করা হয়েছে!'));
     }
 
@@ -160,7 +160,7 @@ class MessageController extends Controller
             if(!in_array($follower->user->id, $allReceipents)){
                 $follower->user->participating()->attach($id);
                 $conversation = $this->messageSubject->findOrFail($id); 
-                $this->send_sms($conversation->subject_text, Auth::user()->id, $follower->user->id, $id, 'messaging');
+                $this->save_sms_receivers($conversation->subject_text, Auth::user()->id, $follower->user->id, $id, 'messaging');
             }
         }
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'আপনার অনুসারীদের যোগ করা হয়েছে!'));
@@ -176,7 +176,7 @@ class MessageController extends Controller
             if(!in_array($worker->id, $allReceipents)){
                 $worker->participating()->attach($id);
                 $conversation = $this->messageSubject->findOrFail($id); 
-                $this->send_sms($conversation->subject_text, Auth::user()->id, $worker->id, $id, 'messaging');
+                $this->save_sms_receivers($conversation->subject_text, Auth::user()->id, $worker->id, $id, 'messaging');
             }
         }
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'সমস্ত কর্মচারীদের যোগ করা হয়েছে!'));
@@ -192,7 +192,7 @@ class MessageController extends Controller
                     if(!in_array($member->user_id, $allReceipents)){
                         $member->user->participating()->attach($id);
                         $conversation = $this->messageSubject->findOrFail($id); 
-                        $this->send_sms($conversation->subject_text, Auth::user()->id, $member->user_id, $id, 'messaging');
+                        $this->save_sms_receivers($conversation->subject_text, Auth::user()->id, $member->user_id, $id, 'messaging');
                     }
                 }
                 break;
