@@ -49,6 +49,8 @@
     </div>
     @if ($errors->has('subject_text'))
         <p class="red-text">{{ $errors->first('subject_text') }}</p>
+    @else
+        <p class="text-muted small">*বার্তা বিষয়টি খুদেবার্তা পাঠানোর জন্য ব্যবহৃত হবে</p>
     @endif
 
     <h6 class="font-weight-bold my-3">মিডিয়া যোগ করুন</h6>
@@ -99,7 +101,7 @@
     </div>
     <!-- Media panels -->
 
-    <center><small class="text-muted">আমরা ভিডিও এবং অডিও প্লাগইন জন্য সঠিকভাবে কাজ করার জন্য <strong>firefox ওয়েব ব্রাউজার</strong> ব্যবহার করার অত্যন্ত ভাবে সুপারিশ করি</small></center>
+    <center><small class="text-muted">আমরা ভিডিও এবং অডিও প্লাগইন জন্য সঠিকভাবে কাজ করার জন্য <strong>firefox ওয়েব ব্রাউজার</strong> ব্যবহার করার অত্যন্ত ভাবে সুপারিশ করছি</small></center>
 
     <h6 class="font-weight-bold my-3">বার্তা</h6>
     <div class="md-form">

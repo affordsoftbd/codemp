@@ -61,6 +61,7 @@ class Controller extends BaseController
         $userDetail = UserDetail::where('user_id', $reciever_id)->first();  
         if($user){
             $sms = new SMS();
+            $userDetail = UserDetail::where('user_id', $reciever_id)->first();
             $sms->message = $message;
             $sms->sender_id = $sender_id;
             $sms->receiver_id = $reciever_id;

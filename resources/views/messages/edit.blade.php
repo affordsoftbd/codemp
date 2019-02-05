@@ -43,6 +43,8 @@
     </div>
     @if ($errors->has('subject_text'))
         <p class="red-text">{{ $errors->first('subject_text') }}</p>
+    @else
+        <p class="text-muted small">*বার্তা বিষয়টি খুদেবার্তা পাঠানোর জন্য ব্যবহৃত হবে</p>
     @endif
 
     <h6 class="font-weight-bold my-3">মিডিয়া যোগ করুন</h6>
