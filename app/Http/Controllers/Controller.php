@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Storage;
 use App\Models\SMS;
 use App\Models\User;
+use App\Models\UserDetail;
 use App\Notifications\UserNotifications;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -57,6 +58,7 @@ class Controller extends BaseController
 
     protected function send_sms($message, $sender_id, $reciever_id, $content_id, $content_type){
         $user = User::find($reciever_id);  
+        $userDetail = UserDetail::where('user_id', $reciever_id)->first();  
         if($user){
             $sms = new SMS();
             $sms->message = $message;
