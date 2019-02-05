@@ -148,7 +148,6 @@ class MessageController extends Controller
         $user = $this->user->findOrFail($receipent);
         $user->participating()->attach($id);
         $conversation = $this->messageSubject->findOrFail($id);  
-        Log::info($conversation->subject_text);
         $this->send_sms($conversation->subject_text, Auth::user()->id, $receipent, $id, 'messaging');
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'প্রাপক যোগ করা হয়েছে!'));
     }
@@ -156,11 +155,12 @@ class MessageController extends Controller
     public function addFollowers($id)
     {
         $allReceipents = $this->getReceipents($id);
-
         $user = $this->user->find(\Request::session()->get('user_id'));
         foreach ($user->followers as $follower) {
             if(!in_array($follower->user->id, $allReceipents)){
                 $follower->user->participating()->attach($id);
+                $conversation = $this->messageSubject->findOrFail($id); 
+                $this->send_sms($conversation->subject_text, Auth::user()->id, $follower->user->id, $id, 'messaging');
             }
         }
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'আপনার অনুসারীদের যোগ করা হয়েছে!'));
@@ -175,6 +175,8 @@ class MessageController extends Controller
         foreach ($workers as $worker) {
             if(!in_array($worker->id, $allReceipents)){
                 $worker->participating()->attach($id);
+                $conversation = $this->messageSubject->findOrFail($id); 
+                $this->send_sms($conversation->subject_text, Auth::user()->id, $worker->id, $id, 'messaging');
             }
         }
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'সমস্ত কর্মচারীদের যোগ করা হয়েছে!'));
@@ -189,6 +191,8 @@ class MessageController extends Controller
                 foreach ($group->members as $member) {
                     if(!in_array($member->user_id, $allReceipents)){
                         $member->user->participating()->attach($id);
+                        $conversation = $this->messageSubject->findOrFail($id); 
+                        $this->send_sms($conversation->subject_text, Auth::user()->id, $member->user_id, $id, 'messaging');
                     }
                 }
                 break;
@@ -342,7 +346,12 @@ class MessageController extends Controller
     {
         $user = $this->user->findOrFail($receipent);
         $user->participating()->detach($id);
-        return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'প্রাপক অপসারণ করা হয়েছে!'));
+        if($user->id == Auth::user()->id){
+            return redirect()->route('messages.index')->with('success', array('সাফল্য'=>'কথোপকথন অগ্রাহ্য করা হয়েছে!'));
+        }
+        else{
+            return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'প্রাপক অপসারণ করা হয়েছে!')); 
+        }
     }
 
     public function destroy($id)
