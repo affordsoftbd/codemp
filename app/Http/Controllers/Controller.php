@@ -56,13 +56,16 @@ class Controller extends BaseController
     }
 
     protected function send_sms($message, $sender_id, $reciever_id, $content_id, $content_type){
-        $sms = new SMS();
-        $sms->message = $message;
-        $sms->sender_id = $sender_id;
-        $sms->receiver_id = $reciever_id;
-        $sms->content_id = $content_id;
-        $sms->content_type = $content_type;
-        $sms->save();
-        return $sms->id;
+        $user = User::find($reciever_id);  
+        if($user){
+            $sms = new SMS();
+            $sms->message = $message;
+            $sms->sender_id = $sender_id;
+            $sms->receiver_id = $reciever_id;
+            $sms->content_id = $content_id;
+            $sms->content_type = $content_type;
+            $sms->save();
+            return $sms->id;
+        }
     }
 }

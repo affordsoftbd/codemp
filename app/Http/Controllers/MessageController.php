@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
+use DB; use Log;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\MessageSubject;
 use App\Models\Message;
 use App\Models\MessageReceipent;
 use App\Models\MessageViewer;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -146,6 +147,9 @@ class MessageController extends Controller
     {
         $user = $this->user->findOrFail($receipent);
         $user->participating()->attach($id);
+        $conversation = $this->messageSubject->findOrFail($id);  
+        Log::info($conversation->subject_text);
+        $this->send_sms($conversation->subject_text, Auth::user()->id, $receipent, $id, 'messaging');
         return redirect()->route('messages.show', $id)->with('success', array('সাফল্য'=>'প্রাপক যোগ করা হয়েছে!'));
     }
 
