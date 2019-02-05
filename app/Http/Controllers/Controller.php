@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Storage;
+use App\Models\SMS;
 use App\Models\User;
 use App\Notifications\UserNotifications;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -52,5 +53,16 @@ class Controller extends BaseController
                 $user->notify(new UserNotifications(['text' => $text, 'link' => $link, 'icon' => $icon]));
             }
         }
+    }
+
+    protected function send_sms($message, $sender_id, $reciever_id, $content_id, $content_type){
+        $sms = new SMS();
+        $sms->message = $message;
+        $sms->sender_id = $sender_id;
+        $sms->receiver_id = $reciever_id;
+        $sms->content_id = $content_id;
+        $sms->content_type = $content_type;
+        $sms->save();
+        return $sms->id;
     }
 }
