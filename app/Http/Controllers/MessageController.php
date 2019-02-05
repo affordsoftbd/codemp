@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB; use Log;
+use DB; 
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\MessageSubject;
