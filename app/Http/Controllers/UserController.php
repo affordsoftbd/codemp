@@ -159,7 +159,7 @@ class UserController extends Controller
 
                 // Send SMS
             $url = config('smscredential.url');
-            $data = array('username'=> config('smscredential.username'), 'password'=> config('smscredential.password'), 'number'=> $contacts, 'message'=> $request->content.' Link: '.$request->content_link);
+            $data = array('username'=> config('smscredential.username'), 'password'=> config('smscredential.password'), 'number'=> $contacts, 'message'=> $request->content.' আরো পড়ুন: '.$request->content_link);
             $ch = curl_init(); 
             curl_setopt($ch, CURLOPT_URL,$url);
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));

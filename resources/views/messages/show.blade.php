@@ -157,8 +157,8 @@
 		      <i class="fa fa-check pr-2"></i>প্রাপকবর্গ নির্বাচন করুন
 		    </button>
 		    <div class="dropdown-menu" aria-labelledby="add_participant_dropdown">
-		      <a class="dropdown-item" href="{{ route('messages.add.workers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>সমস্ত কর্মচারী</a>
-		      <a class="dropdown-item" href="{{ route('messages.add.followers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>শুধুমাত্র আপনার অনুসরণকারী</a>
+		      <a class="dropdown-item" href="{{ route('messages.add.workers', $conversation->id) }}"><strong><i class="fa fa-hand-o-right pr-2"></i>সমস্ত কর্মী</strong></a>
+		      <a class="dropdown-item" href="{{ route('messages.add.followers', $conversation->id) }}"><strong><i class="fa fa-hand-o-right pr-2"></i>আপনার অনুসরণকারীগণ</strong></a>
 		      @if(!empty($user->groups))
 		      	@foreach($user->groups as $group)
 		      		<a class="dropdown-item" href="{{ route('messages.add.group.members', [$conversation->id, $group->group_id]) }}"><i class="fa fa-hand-o-right pr-2"></i>গ্রুপ {{ $group->group_name }}</a>
@@ -171,7 +171,7 @@
 	            <label for="add_participant">নির্দিষ্ট প্রাপক যোগ করুন</label>
 	        </div>
 	        <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
-	        <button type="button" class="btn btn-deep-orange btn-sm my-3" data-toggle="modal" data-target="#sendSmsModel">
+	        <button type="button" class="btn btn-red btn-sm my-3" data-toggle="modal" data-target="#sendSmsModel">
 			  <i class="fa fa-send pr-2"></i>খুদেবার্তা পাঠান!
 			</button>
         @endIf
@@ -221,8 +221,11 @@
         </button>
       </div>
       <div class="modal-body mb-5 send_sms_modal">
+    	<p class="text-muted small mx-5">
+        	<strong>বার্তা: </strong>{{ $conversation->subject_text.', আরো পড়ুন: '. Request::url() }}
+    	</p>
         <center>
-        	<p class="red-text mt-3"><i class="fa fa-hand-stop-o pr-2"></i>নির্বাচিত প্রাপকরা বার্তা বিষযটি খুদেবার্তা হিসেবে পাবেন!</p>
+        	<p class="red-text mt-3"><i class="fa fa-hand-stop-o pr-2"></i>নির্বাচিত প্রাপকরা এই বার্তাটি খুদেবার্তা হিসেবে পাবেন!</p>
         	{!! Form::open(['class'=>'send_sms', 'route' => ['sms.send'], 'method'=>'post']) !!}   
 			    {!! Form::hidden('content_id', $conversation->id) !!} 
 			    {!! Form::hidden('content_type', 'messaging') !!}

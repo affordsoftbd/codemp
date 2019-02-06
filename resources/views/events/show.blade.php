@@ -15,6 +15,9 @@
     <div class="col-xl-5 col-lg-6 col-md-6" align="right">
         @if($event->user_id == $user->id)
 	        {!! Form::open(['route' => ['events.destroy', $event->id], 'method'=>'delete']) !!}
+                <button type="button" class="btn btn-red btn-sm my-3" data-toggle="modal" data-target="#sendSmsModel">
+                  <i class="fa fa-send pr-2"></i>খুদেবার্তা পাঠান!
+                </button>
 	            <a href="{{ route('events.edit', $event->id) }}" class="btn btn-light-green btn-sm">
 	                <i class="fa fa-edit"></i>
 	            </a>
@@ -116,6 +119,39 @@
     </div>
 
 </div>
+
+<!-- Send SMS -->
+<div class="modal fade" id="sendSmsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            খুদেবার্তা পাঠান!
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mb-5 send_sms_modal">
+        <p class="text-muted small mx-5">
+            <strong>বার্তা: </strong>{{ $event->title.' অবস্থান: '.$event->location.', তারিখ: '.$event->event_date.', আরো পড়ুন: '. Request::url() }}
+        </p>
+        <center>
+            <p class="red-text mt-3"><i class="fa fa-hand-stop-o pr-2"></i>আপনার দলের সকল কর্মী এই বার্তাটি খুদেবার্তা হিসেবে পাবেন!</p>
+            {!! Form::open(['class'=>'send_sms', 'route' => ['sms.send'], 'method'=>'post']) !!}   
+                {!! Form::hidden('content_id', $event->id) !!} 
+                {!! Form::hidden('content_type', 'events') !!}
+                {!! Form::hidden('content', $event->title.' অবস্থান: '.$event->location.', তারিখ: '.$event->event_date) !!}
+                {!! Form::hidden('content_link', Request::url()) !!}
+                {!! Form::button('<i class="fa fa-arrow-circle-right pr-2" aria-hidden="true"></i>শুরু করুন', array('class' => 'btn btn-success btn-sm', 'type'=>'submit')) !!}
+            {!! Form::close() !!} 
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Send SMS -->
 
 <!-- Image Modal -->
 <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

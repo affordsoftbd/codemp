@@ -17,6 +17,8 @@
     </div>
     @if ($errors->has('title'))
         <p class="red-text">{{ $errors->first('title') }}</p>
+    @else
+        <p class="text-muted small">*ইভেন্ট শিরনামটি খুদেবার্তা পাঠানোর জন্য ব্যবহৃত হবে</p>
     @endif
     <div class="md-form">
         {!! Form::text('location', null, array('class'=>'form-control', 'id'=>'location')) !!}

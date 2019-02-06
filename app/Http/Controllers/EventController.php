@@ -83,9 +83,17 @@ class EventController extends Controller
         ];
         $this->validate($request, $rules, $customMessages);
         $id = $this->event->create($input)->id;
+
         $user = $this->user->find(\Request::session()->get('user_id'));
         $user->participating_events()->attach($id);
+
         $this->send_notification($this->get_followers(\Request::session()->get('user_id')), $user->first_name.' '.$user->last_name.' একটি নতুন ইভেন্ট যোগ করেছেন!', route('events.show', $id));
+
+        $workers = $this->user->where('party_id', $user->party_id);
+        foreach ($workers as $worker) {
+            $this->save_sms_receivers(Auth::user()->id, $worker->id, $id, 'events');
+        }
+
         return redirect()->route('events.show', $id)->with('success', array('সাফল্য'=>'ইভেন্ট যোগ করা হয়েছে!'));
     }
 
