@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "ইভেন্টস ||")
+@section('title', "ইভেন্টসমূহ ||")
 
 @section('content')
 
@@ -12,11 +12,11 @@
 	<div class="col-lg-6 col-sm-12 header-option">
 		@if(Request::url() === url('/').'/events')
 			<a href="{{ route('events.organized') }}" class="btn btn-dark-green btn-sm pull-right">
-			  <i class="fa fa-exclamation-circle fa-sm pr-2"></i>শুধুমাত্র আপনার সংগঠিত ইভেন্টসসমূহ প্রদর্শন করুন
+			  <i class="fa fa-exclamation-circle fa-sm pr-2"></i>শুধুমাত্র আপনার সংগঠিত ইভেন্টসমূহ প্রদর্শন করুন
 			</a>
 		@else
 			<a href="{{ route('events.index') }}" class="btn btn-dark-green btn-sm pull-right">
-			  <i class="fa fa-exclamation-circle fa-sm pr-2"></i>সকল  ইভেন্টসসমূহ প্রদর্শন করুন
+			  <i class="fa fa-exclamation-circle fa-sm pr-2"></i>সকল  ইভেন্টসমূহ প্রদর্শন করুন
 			</a>
 		@endif
 	</div>

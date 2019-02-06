@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "নতুন ইভেন্টস ||")
+@section('title', "নতুন ইভেন্ট ||")
 
 @section('content')
 
