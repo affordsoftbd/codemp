@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Log;
+
 use Storage;
 use App\Models\SMS;
 use App\Models\User;
@@ -56,7 +56,7 @@ class Controller extends BaseController
         }
     }
 
-    protected function save_sms_receivers($message, $sender_id, $receiver_id, $content_id, $content_type, $link){  
+    protected function save_sms_receivers($sender_id, $receiver_id, $content_id, $content_type){  
         $sms = new SMS();
         $check = $sms->where('sender_id', $sender_id)->where('receiver_id', $receiver_id)->where('content_id', $content_id)->where('content_type', $content_type)->first();
         if(!$check){ 
@@ -67,44 +67,6 @@ class Controller extends BaseController
             $sms->content_type = $content_type;
             $sms->link = $link;
             $sms->save();
-            $recievers = $sms->where('sender_id', $sender_id)->where('content_id', $content_id)->where('content_type', $content_type)->pluck('receiver_id');
-            return $recievers;
         }
-    }
-
-    public function send_sms($sender_id, $content_id, $content_type){
-
-    /*
-        $user = User::find($receiver_id); 
-        $userDetail = UserDetail::where('user_id', $receiver_id)->first();
-    */
-
-    /*
-        $url = "http://66.45.237.70/api.php";
-        $number="88017,88018,88019";
-        $text="Hello Bangladesh";
-        $data= array('username'=>"YourID", 'password'=>"YourPasswd", 'number'=>"$number", 'message'=>"$text")
-
-        $ch = curl_init(); // Initialize cURL
-        curl_setopt($ch, CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $smsresult = curl_exec($ch);
-        $p = explode("|",$smsresult);
-        $sendstatus = $p[0];
-    */
-
-    /*
-        1000 = Invalid user or Password
-        1002 = empty Number
-        1003 = Invalid message or empty message
-        1004 = Number shuld be 13 Digit
-        1005 = Invalid number
-        1006 = insufficient Balance 
-        1009 = Inactive Account
-        1010 = Max number limit exceeded
-        1101 = Success
-    */
-
     }
 }

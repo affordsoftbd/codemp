@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "গ্রুপ ||")
+@section('title', "গ্রুপ সমূহ ||")
 
 @section('extra-css')
 <style>
@@ -109,7 +109,7 @@
                     </select>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    {{ Form::button('সাবমিট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                    {{ Form::button('<i class="fa fa-plus pr-2"></i>যোগ করুন', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm mt-1 btn-md'] ) }}
                 </div>
             </form>
         </div>
@@ -144,7 +144,7 @@
                     </select>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    {{ Form::button('সাবমিট', ['type' => 'submit', 'class' => 'btn btn-danger mt-1 btn-md'] ) }}
+                    {{ Form::button('<i class="fa fa-check pr-2"></i>হালনাগাদ', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm mt-1 btn-md'] ) }}
                 </div>
             </form>
         </div>

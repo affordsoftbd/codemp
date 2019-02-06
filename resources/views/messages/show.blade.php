@@ -47,7 +47,7 @@
 			        {!! Form::close() !!}
 			    @elseIf($conversation->author != $user->id)
 			    	{!! Form::open(['route' => ['messages.receipent.remove', $conversation->id, $user->id], 'method'=>'delete']) !!}
-			            {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>কথোপকথন অগ্রাহ্য করুন', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই কথোপকথন দেখতে পারবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
+			            {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>কথোপকথন অগ্রাহ্য করুন', array('class' => 'btn c btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই কথোপকথন দেখতে পারবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
 			        {!! Form::close() !!} 
 			    @else 
 			    	<a class="btn btn-green btn-sm" href="{{ route('messages.show', $conversation->id) }}">
@@ -151,7 +151,7 @@
 
     <!-- Participants -->
     <div class="col-lg-4 mb-4">
-        <button id="add_participant_dropdown" type="button" class="btn btn-sm btn-dark-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button id="add_participant_dropdown" type="button" class="btn btn-dark-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	      <i class="fa fa-check pr-2"></i>প্রাপকবর্গ নির্বাচন করুন
 	    </button>
 	    <div class="dropdown-menu" aria-labelledby="add_participant_dropdown">
@@ -169,7 +169,9 @@
             <label for="add_participant">নির্দিষ্ট প্রাপক যোগ করুন</label>
         </div>
         <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
-	    <p class="red-text small mt-3"><i class="fa fa-hand-stop-o pr-2"></i>নির্বাচিত প্রাপকরা বার্তা বিষযটি খুদেবার্তা হিসেবে পাবেন!</p>
+        <button type="button" class="btn btn-deep-orange btn-sm my-3" data-toggle="modal" data-target="#sendSmsModel">
+		  <i class="fa fa-send pr-2"></i>খুদেবার্তা পাঠান!
+		</button>
         <h6>মোট অংশগ্রহণকারী: {{ count($conversation->receipents) }}</h6>
         <small> </small>
         <hr>
@@ -197,6 +199,35 @@
 
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="sendSmsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+        	খুদেবার্তা পাঠান!
+    	</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mb-5" id="sendSmsBody">
+        <center>
+        	<p class="red-text mt-3"><i class="fa fa-hand-stop-o pr-2"></i>নির্বাচিত প্রাপকরা বার্তা বিষযটি খুদেবার্তা হিসেবে পাবেন!</p>
+        	{!! Form::open(['route' => ['sms.send'], 'method'=>'post']) !!}   
+			    {!! Form::hidden('content_id', $conversation->id) !!} 
+			    {!! Form::hidden('content_type', 'messaging') !!}
+			    {!! Form::hidden('content', $conversation->subject_text) !!}
+			    {!! Form::hidden('content_link', Request::url()) !!}
+	            {!! Form::button('<i class="fa fa-arrow-circle-right pr-2" aria-hidden="true"></i>শুরু করুন', array('class' => 'btn btn-success btn-sm', 'type'=>'submit')) !!}
+	        {!! Form::close() !!} 
+    	</center>
+      </div>
+    </div>
+  </div>
+</div>
+
 @if($messages->isNotEmpty())
     <!-- Viewers Modal -->
     <div class="modal fade" id="viewers_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -210,7 +241,7 @@
           </div>
           <div class="modal-body viewers_list">
             <ul class="list-group">
-                <ul class="list-group list-group-flush">
+                <ul class="list-inline list-group-flush">
                 @foreach($messages->first()->viewers as $viewer)
 					<li class="list-group-item">
 						<div class="chip">

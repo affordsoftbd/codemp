@@ -44,7 +44,7 @@ Route::delete('/events/comments/{id}/delete', 'EventController@deleteComment')->
 Route::put('/events/{id}/image/update', 'EventController@updateImage')->name('event.image.update');
 
 /*SMS routes*/
-Route::post('/sms/send', 'Controller@send_sms')->name('sms.send');
+Route::post('/sms/send', 'UserController@send_sms')->name('sms.send');
 
 /*News routes*/
 Route::get('/news', 'HomeController@news')->name('news');

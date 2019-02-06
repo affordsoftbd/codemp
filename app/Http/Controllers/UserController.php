@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use Illuminate\Http\Request;
+use App\Models\SMS;
 use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\Post;
@@ -140,5 +142,48 @@ class UserController extends Controller
             DB::rollback();
             return ['status'=>200,'reason'=>$e->getMessage()];
         }
+    }
+
+
+
+    public function send_sms(Request $request){ 
+        $sms = new SMS();
+        $recievers = $sms->where('sender_id', Auth::user()->id)->where('content_id', $request->content_id)->where('content_type', $request->content_type)->pluck('receiver_id');
+        $contacts = array();
+        foreach ($recievers as $reciever) {
+            $userDetail = UserDetail::where('user_id', $reciever)->first();
+            array_push($contacts, $userDetail->phone);
+        }
+        Log::info($recievers);
+        Log::info($contacts);
+
+        // Send SMS
+    
+        $url = "http://66.45.237.70/api.php";
+        $number= $contacts;
+        $text = "Hello Bangladesh";
+        $data = array('username'=>"YourID", 'password'=>"YourPasswd", 'number'=>"$number", 'message'=>"$text")
+
+        $ch = curl_init(); // Initialize cURL
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $smsresult = curl_exec($ch);
+        $p = explode("|",$smsresult);
+        $sendstatus = $p[0];
+    
+
+    /*
+        1000 = Invalid user or Password
+        1002 = empty Number
+        1003 = Invalid message or empty message
+        1004 = Number shuld be 13 Digit
+        1005 = Invalid number
+        1006 = insufficient Balance 
+        1009 = Inactive Account
+        1010 = Max number limit exceeded
+        1101 = Success
+    */
+
     }
 }
