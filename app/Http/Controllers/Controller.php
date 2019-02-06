@@ -60,12 +60,10 @@ class Controller extends BaseController
         $sms = new SMS();
         $check = $sms->where('sender_id', $sender_id)->where('receiver_id', $receiver_id)->where('content_id', $content_id)->where('content_type', $content_type)->first();
         if(!$check){ 
-            $sms->message = $message;
             $sms->sender_id = $sender_id;
             $sms->receiver_id = $receiver_id;
             $sms->content_id = $content_id;
             $sms->content_type = $content_type;
-            $sms->link = $link;
             $sms->save();
         }
     }

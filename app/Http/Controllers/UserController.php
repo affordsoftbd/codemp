@@ -147,43 +147,45 @@ class UserController extends Controller
 
 
     public function send_sms(Request $request){ 
-        $sms = new SMS();
-        $recievers = $sms->where('sender_id', Auth::user()->id)->where('content_id', $request->content_id)->where('content_type', $request->content_type)->pluck('receiver_id');
-        $contacts = array();
-        foreach ($recievers as $reciever) {
-            $userDetail = UserDetail::where('user_id', $reciever)->first();
-            array_push($contacts, $userDetail->phone);
+        try {
+                // Get Receivers
+            $sms = new SMS();
+            $recievers = $sms->where('sender_id', Auth::user()->id)->where('content_id', $request->content_id)->where('content_type', $request->content_type)->pluck('receiver_id');
+            $contacts = '';
+            foreach ($recievers as $receiver) {
+                $userDetail = UserDetail::where('user_id', $receiver)->first();
+                $contacts .= '88'.$userDetail->phone.',';
+            }
+
+                // Send SMS
+            $url = config('smscredential.url');
+            $data = array('username'=> config('smscredential.username'), 'password'=> config('smscredential.password'), 'number'=> $contacts, 'message'=> $request->content.' Link: '.$request->content_link);
+            $ch = curl_init(); 
+            curl_setopt($ch, CURLOPT_URL,$url);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $smsresult = curl_exec($ch);
+            $p = explode("|",$smsresult);
+            $sendstatus = $p[0];
+
+
+                // Update Receivers
+            if($sendstatus == '1101'){
+                foreach ($recievers as $receiver) {
+                    $get_count = $sms->where('sender_id', Auth::user()->id)->where('content_id', $request->content_id)->where('content_type', $request->content_type)->where('receiver_id', $receiver)->first();
+                    $count = $get_count->total_sent + 1;
+                    DB::table('bulk_sms')->where('sender_id', Auth::user()->id)->where('content_id', $request->content_id)->where('content_type', $request->content_type)->where('receiver_id', $receiver)->update(array('total_sent' => $count));
+                }
+                Session::flash('success', array('সফল!'=>'বার্তা পাঠানো সম্পন্ন হয়েছে!'));
+            }
+            else{
+                Session::flash('error', array(config('smscredential.error_codes.'.$sendstatus) => 'বার্তা পাঠানোর সময় সমস্যা হয়েছে! স্টেটাস কোড: '.$sendstatus));
+                Log::info($sendstatus.': '.config('smscredential.error_codes.'.$sendstatus));
+            }
         }
-        Log::info($recievers);
-        Log::info($contacts);
-
-        // Send SMS
-    
-        $url = "http://66.45.237.70/api.php";
-        $number= $contacts;
-        $text = "Hello Bangladesh";
-        $data = array('username'=>"YourID", 'password'=>"YourPasswd", 'number'=>"$number", 'message'=>"$text")
-
-        $ch = curl_init(); // Initialize cURL
-        curl_setopt($ch, CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $smsresult = curl_exec($ch);
-        $p = explode("|",$smsresult);
-        $sendstatus = $p[0];
-    
-
-    /*
-        1000 = Invalid user or Password
-        1002 = empty Number
-        1003 = Invalid message or empty message
-        1004 = Number shuld be 13 Digit
-        1005 = Invalid number
-        1006 = insufficient Balance 
-        1009 = Inactive Account
-        1010 = Max number limit exceeded
-        1101 = Success
-    */
+        catch (\Exception $e) {
+            return ['status'=>200,'reason'=>$e->getMessage()];
+        }
 
     }
 }

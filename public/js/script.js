@@ -263,6 +263,27 @@ $(document).ready(function(){
     }); 
   })();
 
+   //  Jquery form for sending SMS and showing progress
+
+  (function() {
+    $('.send_sms').ajaxForm({
+      beforeSend: function() {
+      },
+      uploadProgress: function() {
+        $(".send_sms_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2'>সকল প্রাপকদের বার্তা পাঠানো হচ্ছে</h5><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>");
+      },
+      success: function() {
+        $(".send_sms_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 light-green-text'><i class='fa fa-check-circle pr-2'></i>বার্তা পাঠানো সম্পন্ন হয়েছে</h5><p class='mt-1 mb-2 deep-orange-text'>প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন ..</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
+      },
+      error: function() {
+       $(".send_sms_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 red-text'><i class='fa fa-warning'></i> বার্তা পাঠানো যাচ্ছে না!</h5><p class='mt-1 mb-2 light-blue-text'>সার্ভারে কিছু ত্রুটি হয়েছে।! প্রতিক্রিয়া পর্যন্ত অপেক্ষা করুন...</p><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>").fadeIn("slow");        
+      },
+      complete: function(xhr) {
+        location.reload();
+      }
+    }); 
+  })();
+
 
 });
 

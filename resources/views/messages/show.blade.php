@@ -47,7 +47,7 @@
 			        {!! Form::close() !!}
 			    @elseIf($conversation->author != $user->id)
 			    	{!! Form::open(['route' => ['messages.receipent.remove', $conversation->id, $user->id], 'method'=>'delete']) !!}
-			            {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>কথোপকথন অগ্রাহ্য করুন', array('class' => 'btn c btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই কথোপকথন দেখতে পারবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
+			            {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>কথোপকথন অগ্রাহ্য করুন', array('class' => 'btn btn-deep-orange btn-sm form_warning_sweet_alert', 'title'=>'আপনি কি নিশ্চিত?', 'text'=>'আপনি আর এই কথোপকথন দেখতে পারবেন না!', 'confirmButtonText'=>'হ্যাঁ, আমাকে সরান!', 'type'=>'submit')) !!}
 			        {!! Form::close() !!} 
 			    @else 
 			    	<a class="btn btn-green btn-sm" href="{{ route('messages.show', $conversation->id) }}">
@@ -151,27 +151,31 @@
 
     <!-- Participants -->
     <div class="col-lg-4 mb-4">
-        <button id="add_participant_dropdown" type="button" class="btn btn-dark-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	      <i class="fa fa-check pr-2"></i>প্রাপকবর্গ নির্বাচন করুন
-	    </button>
-	    <div class="dropdown-menu" aria-labelledby="add_participant_dropdown">
-	      <a class="dropdown-item" href="{{ route('messages.add.workers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>সমস্ত কর্মচারী</a>
-	      <a class="dropdown-item" href="{{ route('messages.add.followers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>শুধুমাত্র আপনার অনুসরণকারী</a>
-	      @if(!empty($user->groups))
-	      	@foreach($user->groups as $group)
-	      		<a class="dropdown-item" href="{{ route('messages.add.group.members', [$conversation->id, $group->group_id]) }}"><i class="fa fa-hand-o-right pr-2"></i>গ্রুপ {{ $group->group_name }}</a>
-	      	@endforeach
-	      @endIf
-	    </div>
-        <div class="md-form">
-            <i class="fa fa-plus prefix grey-text"></i>
-            <input type="text" class="form-control" id="add_participant" data-url="{{ route('messages.user.list', $conversation->id) }}">
-            <label for="add_participant">নির্দিষ্ট প্রাপক যোগ করুন</label>
-        </div>
-        <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
-        <button type="button" class="btn btn-deep-orange btn-sm my-3" data-toggle="modal" data-target="#sendSmsModel">
-		  <i class="fa fa-send pr-2"></i>খুদেবার্তা পাঠান!
-		</button>
+
+    	@if($conversation->author == $user->id)
+	        <button id="add_participant_dropdown" type="button" class="btn btn-dark-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		      <i class="fa fa-check pr-2"></i>প্রাপকবর্গ নির্বাচন করুন
+		    </button>
+		    <div class="dropdown-menu" aria-labelledby="add_participant_dropdown">
+		      <a class="dropdown-item" href="{{ route('messages.add.workers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>সমস্ত কর্মচারী</a>
+		      <a class="dropdown-item" href="{{ route('messages.add.followers', $conversation->id) }}"><i class="fa fa-hand-o-right pr-2"></i>শুধুমাত্র আপনার অনুসরণকারী</a>
+		      @if(!empty($user->groups))
+		      	@foreach($user->groups as $group)
+		      		<a class="dropdown-item" href="{{ route('messages.add.group.members', [$conversation->id, $group->group_id]) }}"><i class="fa fa-hand-o-right pr-2"></i>গ্রুপ {{ $group->group_name }}</a>
+		      	@endforeach
+		      @endIf
+		    </div>
+	        <div class="md-form">
+	            <i class="fa fa-plus prefix grey-text"></i>
+	            <input type="text" class="form-control" id="add_participant" data-url="{{ route('messages.user.list', $conversation->id) }}">
+	            <label for="add_participant">নির্দিষ্ট প্রাপক যোগ করুন</label>
+	        </div>
+	        <div class="list-group jquery_dropdown_result" data-base = "{{ url('/') }}"></div>
+	        <button type="button" class="btn btn-deep-orange btn-sm my-3" data-toggle="modal" data-target="#sendSmsModel">
+			  <i class="fa fa-send pr-2"></i>খুদেবার্তা পাঠান!
+			</button>
+        @endIf
+
         <h6>মোট অংশগ্রহণকারী: {{ count($conversation->receipents) }}</h6>
         <small> </small>
         <hr>
@@ -180,7 +184,9 @@
 		        <div class="row mt-3">
 		        	<div class="col-8">
 				        <div class="chip mt-2">
-				          <img src="{{ file_exists($receipent->detail->image_path) ? asset($receipent->detail->image_path) : url('/').'/img/avatar.png' }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
+		        			<a href="{{ url('public_profile?user='.$receipent->username) }}">
+				          		<img src="{{ file_exists($receipent->detail->image_path) ? asset($receipent->detail->image_path) : url('/').'/img/avatar.png' }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
+				          	</a>
 				        </div>
 		        	</div>
 		        	<div class="col-4">
@@ -191,7 +197,9 @@
 		        </div>
 		    @else
 		        <div class="chip mt-3">
-		        	<img src="{{ file_exists($receipent->detail->image_path) ? asset($receipent->detail->image_path) : url('/').'/img/avatar.png' }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
+		        	<a href="{{ url('public_profile?user='.$receipent->username) }}">
+		        		<img src="{{ file_exists($receipent->detail->image_path) ? asset($receipent->detail->image_path) : url('/').'/img/avatar.png' }}" alt="{{ $receipent->first_name.' '.$receipent->last_name }}"> {{ $receipent->first_name.' '.$receipent->last_name }}
+		        	</a>
 		        </div>
         	@endIf
         @endforeach
@@ -199,7 +207,7 @@
 
 </div>
 
-<!-- Modal -->
+<!-- Send SMS -->
 <div class="modal fade" id="sendSmsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -212,10 +220,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body mb-5" id="sendSmsBody">
+      <div class="modal-body mb-5 send_sms_modal">
         <center>
         	<p class="red-text mt-3"><i class="fa fa-hand-stop-o pr-2"></i>নির্বাচিত প্রাপকরা বার্তা বিষযটি খুদেবার্তা হিসেবে পাবেন!</p>
-        	{!! Form::open(['route' => ['sms.send'], 'method'=>'post']) !!}   
+        	{!! Form::open(['class'=>'send_sms', 'route' => ['sms.send'], 'method'=>'post']) !!}   
 			    {!! Form::hidden('content_id', $conversation->id) !!} 
 			    {!! Form::hidden('content_type', 'messaging') !!}
 			    {!! Form::hidden('content', $conversation->subject_text) !!}
@@ -227,6 +235,7 @@
     </div>
   </div>
 </div>
+<!-- Send SMS -->
 
 @if($messages->isNotEmpty())
     <!-- Viewers Modal -->
