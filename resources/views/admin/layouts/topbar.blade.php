@@ -28,6 +28,9 @@
                 <a class="dropdown-item" href="#">Something else here</a>
             </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.login') }}"><i class="fas fa-sign-out-alt pr-2"></i><span class="clearfix d-none d-sm-inline-block">সাইন আউট</span></a>
+        </li>
     </ul>
 </nav>
 <!-- /.Navbar -->

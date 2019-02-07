@@ -33,10 +33,10 @@
                 <!-- Side navigation links -->
                 <li>
                     <ul class="collapsible collapsible-accordion">
-                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-chevron-right"></i> Submit blog<i class="fas fa-angle-down rotate-icon"></i></a>
+                        <li><a class="collapsible-header waves-effect arrow-r active"><i class="fas fa-chevron-right"></i> Submit blog<i class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul class="list-unstyled">
-                                    <li><a href="#" class="waves-effect">Submit listing</a>
+                                    <li><a href="#" class="waves-effect red-text">Submit listing</a>
                                     </li>
                                     <li><a href="#" class="waves-effect">Registration form</a>
                                     </li>
