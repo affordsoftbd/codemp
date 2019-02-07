@@ -17,8 +17,8 @@
 	</nav>
 
 	<!-- faq -->
-    <div class="container">
-
+    <div class="container my-5">
+		<h4 class="red-text">প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী</h4><hr>
     </div>
 
 @endsection

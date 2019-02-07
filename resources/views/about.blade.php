@@ -17,8 +17,8 @@
 	</nav>
 
 	<!-- about us -->
-    <div class="container">
-
+    <div class="container my-5">
+		<h4 class="red-text">আমাদের সম্পর্কে</h4><hr>
     </div>
 
 @endsection

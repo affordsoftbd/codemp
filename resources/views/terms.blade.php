@@ -18,8 +18,8 @@
 
 
     <!-- terms and conditions -->
-    <div class="container">
-
+    <div class="container my-5">
+        <h4 class="red-text">শর্তাবলী</h4><hr>
     </div>
 
 @endsection

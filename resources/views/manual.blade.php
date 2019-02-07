@@ -17,8 +17,8 @@
 	</nav>
 
 	<!-- manual -->
-    <div class="container">
-
+    <div class="container my-5">
+		<h4 class="red-text">ব্যবহারবিধি</h4><hr>
     </div>
 
 @endsection
