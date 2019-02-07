@@ -152,10 +152,17 @@ class UserController extends Controller
             $sms = new SMS();
             $recievers = $sms->where('sender_id', Auth::user()->id)->where('content_id', $request->content_id)->where('content_type', $request->content_type)->pluck('receiver_id');
             $contacts = '';
+            $count = 0;
             foreach ($recievers as $receiver) {
                 $userDetail = UserDetail::where('user_id', $receiver)->first();
-                $contacts .= '88'.$userDetail->phone.',';
+                if($count > 0){
+                    $contacts .=',';
+                }
+                $contacts .= '88'.$userDetail->phone;
+                $count++;
             }
+
+            Log::info($contacts);
 
                 // Send SMS
             $url = config('smscredential.url');
