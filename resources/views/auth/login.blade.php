@@ -26,7 +26,7 @@
 	    <div class="container container-fluid">
 
             <a class="navbar-brand" href="{{ route('welcome') }}">
-                {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('width' => '193', 'height' => '35')) }}
+                {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('width' => '146', 'height' => '40')) }}
             </a>
 
 	    </div>

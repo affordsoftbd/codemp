@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark green fixed-top">
     <div class="container">
     <a class="navbar-brand" href="{{ route('home') }}">
-        {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('width' => '193', 'height' => '35')) }}
+        {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('width' => '146', 'height' => '40')) }}
     </a>
 
     <!-- Collapse button -->

@@ -6,7 +6,7 @@
     @include('layouts.partials.meta')
 
     <!-- Favicon-->
-    <link rel="icon" href="https://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"/>
+    <link rel="icon" href="{{{ asset('favicon.png') }}}"/>
 
     <title>@yield('title') আমার নেতা || আপনার নেতাদের সাথে সংযোগ স্থাপন করুন</title>
 
@@ -46,7 +46,7 @@
 
                 <!--First column-->
                 <div class="col-md-6">
-                    {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('class' => 'mb-3', 'width' => '137', 'height' => '25')) }}
+                    {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('class' => 'mb-3', 'width' => '109', 'height' => '30')) }}
                     <h6 class="mb-3">নেতা কর্মী সংযোগ</h6>
                     <p class="small">সুস্থ ধারার রাজনৈতিক চর্চা, গণতন্ত্র, উন্নয়ন ও জনসেবায় নিয়োজিত নেতা কর্মী ও সমর্থকদের মধ্যে সংযোগ স্থাপন করুন।</p>
                 </div>

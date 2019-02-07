@@ -6,7 +6,7 @@
     @include('layouts.partials.meta')
 
     <!-- Favicon-->
-    <link rel="icon" href="https://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"/"/>
+    <link rel="icon" href="{{{ asset('favicon.png') }}}"/"/>
 
     <title>@yield('title') আমার নেতা || আপনার নেতাদের সাথে সংযোগ স্থাপন করুন</title>
 
