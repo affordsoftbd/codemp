@@ -54,19 +54,19 @@
 
                 <!--Second column-->
                 <div class="col-md-3">
-                    <h5 class="text-uppercase">আমাদের সম্পর্কে</h5>
+                    <h5 class="text-uppercase">সহায়ক লিংকসমূহ</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!">খবর</a>
+                            <a href="{{ route('terms') }}">শর্তাবলী</a>
                         </li>
                         <li>
-                            <a href="#!">ব্যবহারবিধি</a>
+                            <a href="{{ route('manual') }}">ব্যবহারবিধি</a>
                         </li>
                         <li>
-                            <a href="#!">প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী</a>
+                            <a href="{{ route('about') }}">আমাদের সম্পর্কে</a>
                         </li>
                         <li>
-                            <a href="#!">শর্তাবলী</a>
+                            <a href="{{ route('faq') }}">প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী</a>
                         </li>
                     </ul>
                 </div>

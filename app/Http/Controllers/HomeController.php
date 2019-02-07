@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('check.auth')->except('index');
+        $this->middleware('check.auth')->except('index', 'manual', 'faq', 'terms', 'about');
     }
 
     /**
@@ -502,16 +502,23 @@ class HomeController extends Controller
         }
     }
 
-    public function unFollowLeader(Request $request)
-    {
-        try {
-            FOLLOWER::where('leader_id',$request->leader_id)->where('follower_user_id',Session::get('user_id'))->delete();
-            
-            return ['status'=>200,'reason'=>'সফলভাবে বাতিল অনুসরণ করা হয়েছে'];
-        }
-        catch (\Exception $e) {
-            //return $e->getMessage();
-            return ['status'=>401,'reason'=>'কিছু ত্রুটি ঘটেছে'];
-        }
+    public function manual()
+    {  
+        return view('manual');
+    }
+
+    public function faq()
+    {  
+        return view('faq');
+    }
+
+    public function terms()
+    {  
+        return view('terms');
+    }
+
+    public function about()
+    {  
+        return view('about');
     }
 }

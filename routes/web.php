@@ -82,6 +82,10 @@ Route::post('/reject_request', 'HomeController@rejectRequests')->name('reject_re
 Route::post('/new_request_ajax', 'HomeController@newRequestsAjax')->name('new_request_ajax');
 Route::get('/followers', 'HomeController@followers')->name('followers');
 Route::post('/remove_follower', 'HomeController@removeFollowers')->name('remove_follower');
+Route::get('/manual', 'HomeController@manual')->name('manual');
+Route::get('/faq', 'HomeController@faq')->name('faq');
+Route::get('/terms', 'HomeController@terms')->name('terms');
+Route::get('/about', 'HomeController@about')->name('about');
 
 Route::get('/group', 'GroupController@index')->name('group');
 Route::post('/save_group', 'GroupController@saveGroup')->name('save_group');
@@ -138,3 +142,11 @@ Route::get('/{username}/videos', 'HomeController@profileVideos')->name('profile.
 Route::get('/{username}/update', 'HomeController@editProfile')->name('profile.edit');
 Route::get('/{username}/update/politican', 'HomeController@editPoloticanProfile')->name('profile.edit.politican');
 Route::get('/{username}/update/password', 'HomeController@editProfilePassword')->name('profile.edit.password');
+
+
+/*Admin routes*/
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+
+	Route::get('/login', 'AuthController@login')->name('admin.login');
+
+});

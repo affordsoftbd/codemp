@@ -30,8 +30,6 @@
 
 @section('content')
 
-@section('content')
-
 <h4 class="red-text">{{ !empty($recipient)? $recipient->first_name.' '.$recipient->last_name.' কে বার্তা পাঠান' : 'একটি নতুন বার্তা তৈরি করুন' }}</h4>
 <hr>
 
