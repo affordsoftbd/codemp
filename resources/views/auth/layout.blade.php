@@ -46,26 +46,27 @@
 
                 <!--First column-->
                 <div class="col-md-6">
-                    <h5 class="font-weight-bold"><span class="red-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</h5>
-                    <p>আপনার নেতাদের সাথে সংযোগ স্থাপন করুন</p>
+                    {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('class' => 'mb-3', 'width' => '137', 'height' => '25')) }}
+                    <h6 class="mb-3">নেতা কর্মী সংযোগ</h6>
+                    <p class="small">সুস্থ ধারার রাজনৈতিক চর্চা, গণতন্ত্র, উন্নয়ন ও জনসেবায় নিয়োজিত নেতা কর্মী ও সমর্থকদের মধ্যে সংযোগ স্থাপন করুন।</p>
                 </div>
                 <!--/.First column-->
 
                 <!--Second column-->
                 <div class="col-md-3">
-                    <h5 class="text-uppercase">About Us</h5>
+                    <h5 class="text-uppercase">আমাদের সম্পর্কে</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!">News</a>
+                            <a href="#!">খবর</a>
                         </li>
                         <li>
-                            <a href="#!">How to</a>
+                            <a href="#!">ব্যবহারবিধি</a>
                         </li>
                         <li>
-                            <a href="#!">FAQ</a>
+                            <a href="#!">প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী</a>
                         </li>
                         <li>
-                            <a href="#!">Terms &#38; Conditions</a>
+                            <a href="#!">শর্তাবলী</a>
                         </li>
                     </ul>
                 </div>
@@ -73,24 +74,24 @@
 
                 <!--Third column-->
                 <div class="col-md-3">
-                    <h5 class="text-uppercase">Contact</h5>
+                    <h5 class="text-uppercase">যোগাযোগ</h5>
                     <ul class="list-unstyled">
                         <li>
                             <a href="#!"><i class="fa fa-phone fa-sm pr-2" aria-hidden="true"></i>01712423414</a>
                         </li>
                         <li>
-                            <a href="#!"><i class="fa fa-envelope fa-sm pr-2" aria-hidden="true"></i>bappychanting@outlook.com</a>
+                            <a href="#!"><i class="fa fa-envelope fa-sm pr-2" aria-hidden="true"></i>affordsoftbd@gmail.com</a>
                         </li>
                     </ul>
                     <div class="my-3">
                         <!--Facebook-->
-                        <a type="button" class="btn-social btn-sm btn-fb mr-3"><i class="fa fa-facebook"></i></a>
+                        <a type="button" class="btn-social btn-sm btn-fb mr-3 z-depth-1"><i class="fa fa-facebook"></i></a>
                         <!--Twitter-->
-                        <a type="button" class="btn-social btn-sm btn-tw mr-3"><i class="fa fa-twitter"></i></a>
+                        <a type="button" class="btn-social btn-sm btn-tw mr-3 z-depth-1"><i class="fa fa-twitter"></i></a>
                         <!--Google +-->
-                        <a type="button" class="btn-social btn-sm btn-gplus mr-3"><i class="fa fa-google-plus"></i></a>
+                        <a type="button" class="btn-social btn-sm btn-gplus mr-3 z-depth-1"><i class="fa fa-google-plus"></i></a>
                         <!--Youtube-->
-                        <a type="button" class="btn-social btn-sm btn-yt mr-3"><i class="fa fa-youtube"></i></a>   
+                        <a type="button" class="btn-social btn-sm btn-yt mr-3 z-depth-1"><i class="fa fa-youtube"></i></a>   
                     </div>                 
                 </div>
                 <!--/.Second column-->

@@ -24,8 +24,10 @@
 	<nav class="navbar navbar-expand-lg navbar-dark green">
 
 	    <div class="container container-fluid">
-	    
-	        <a class="navbar-brand font-weight-bold" href="{{ route('welcome') }}"><span class="red-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা</a>
+
+            <a class="navbar-brand" href="{{ route('welcome') }}">
+                {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('width' => '193', 'height' => '35')) }}
+            </a>
 
 	    </div>
 

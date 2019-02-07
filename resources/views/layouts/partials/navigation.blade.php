@@ -1,8 +1,8 @@
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark green fixed-top">
     <div class="container">
-    <a class="navbar-brand font-weight-bold" href="{{ route('home') }}">
-        <span class="red-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা
+    <a class="navbar-brand" href="{{ route('home') }}">
+        {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('width' => '193', 'height' => '35')) }}
     </a>
 
     <!-- Collapse button -->

@@ -23,11 +23,9 @@
 @section('content')    
 
     <nav class="navbar navbar-expand-lg navbar-dark green">
-
         <div class="container container-fluid">
-        
-            <a class="navbar-brand font-weight-bold" href="javascript:void(0)">
-                <span class="red-text"><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i></span>আমারনেতা
+            <a class="navbar-brand" href="javascript:void(0)">
+                {{ Html::image('img/amarneta.png', 'Amar Neta Logo', array('width' => '193', 'height' => '35')) }}
             </a>
             <form class="form-inline" method="post" action="{{ route('postLogin') }}">
                 {{ csrf_field() }}
@@ -40,19 +38,16 @@
                 <button class="btn btn-outline-white btn-md my-2 my-sm-0 mx-3" type="submit">লগ ইন</button>
                 <a class="white-text" href="{{ route('recovery') }}">পাসওয়ার্ড ভুলে গেছেন?</a>
             </form>
-
         </div>
-
     </nav>
      
-
     <!-- Page Content -->
     <div class="intro-2">
         <div class="container mb-5">
             <div class="row">
                 <div class="col-md-4">
-                    <h1 class="display-5 font-weight-bold green-text">আপনাকে স্বাগতম!</h1><hr>
-                    <p class="red-text">আপনার নেতাদের সাথে সংযোগ স্থাপন করুন</p>
+                    <h2 class="display-5 font-weight-bold green-text">নেতা কর্মী সংযোগ</h2><hr>
+                    <p class="red-text">সুস্থ ধারার রাজনৈতিক চর্চা, গণতন্ত্র, উন্নয়ন ও জনসেবায় নিয়োজিত নেতা কর্মী ও সমর্থকদের মধ্যে সংযোগ স্থাপন করুন।</p>
                     {{ Html::image('img/p2p.svg', 'Peer to peer', array('class' => 'p2p img-responsive my-5')) }}
                 </div>
                 <div class="col-md-8">
