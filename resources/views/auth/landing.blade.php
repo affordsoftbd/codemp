@@ -201,7 +201,7 @@
                                     <!-- Terms of service -->
                                     <p><em>রেজিস্টার</em> 
                                     &nbsp;ক্লিক এর আগে আপনি আমাদের
-                                    <a href="" target="_blank">শর্তাবলী</a> মেনে নিচ্ছেন</p>
+                                    <a href="{{ route('terms') }}" target="_blank">শর্তাবলী</a> মেনে নিচ্ছেন</p>
                                 </center>
                             </form>
                         </div>

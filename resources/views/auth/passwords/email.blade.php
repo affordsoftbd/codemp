@@ -33,7 +33,7 @@
                                 {{ csrf_field() }}
                     <!-- Confirm Password -->
                     <div class="md-form">
-                        <i class="fa fa-envelope prefix green-text"></i>
+                        <i class="fa fa-envelope prefix red-text"></i>
                         <input type="text" name="email" id="email" class="form-control">
                         <label for="email">আপনার ইমেইল</label>
                     </div>
